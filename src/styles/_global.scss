@@ -6,3 +6,22 @@ a {
   text-decoration: none;
   color: $text-black;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+p,
+span,
+li {
+  font-family: $font-family;
+}
+
+.container {
+  max-width: 150rem;
+  padding: 0 4rem;
+  margin: 0 auto;
+}
