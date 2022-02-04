@@ -7,6 +7,7 @@ import "./styles/style.scss";
 
 // IMPORT PERMANENT COMPONENTS
 import Nav from "./components/global/Nav";
+import Footer from "./components/global/Footer";
 
 // IMPORT PAGES
 import Main from "./pages/Main";
@@ -18,6 +19,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Main />} />
       </Routes>
+      <Footer />
     </div>
   );
 };

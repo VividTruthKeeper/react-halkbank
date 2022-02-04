@@ -1,0 +1,17 @@
+.footer {
+  background: $base-grey;
+  padding: 2rem 0;
+
+  h2 {
+    font-size: 1.6rem;
+
+    span {
+      color: $base-green;
+      cursor: pointer;
+    }
+
+    a {
+      color: $base-green;
+    }
+  }
+}

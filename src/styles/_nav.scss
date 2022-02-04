@@ -115,8 +115,9 @@
 }
 
 .lang-dropdown {
+  z-index: 2;
   border-radius: 1rem;
-  background: $base-grey;
+  background: rgb(219, 219, 219);
   position: absolute;
   top: calc(100% + 1rem);
   left: 0;
