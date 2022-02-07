@@ -5,7 +5,7 @@ import React from "react";
 import LogoBg from "../components/global/LogoBg";
 
 // IMPORT PERSONAL COMPONENTS
-import SignForm from "../components/signIn/SignForm";
+import SignForm from "../components/sign/SignForm";
 
 const SignIn = () => {
   return (
