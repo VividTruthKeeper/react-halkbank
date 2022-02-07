@@ -1,0 +1,12 @@
+.logo-bg {
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 128rem;
+  max-height: 61.8rem;
+  width: 100%;
+  height: 100%;
+  background: url("../images/logo-bg.jpg") no-repeat center;
+  background-size: contain;
+}

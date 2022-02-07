@@ -8,7 +8,6 @@ import arrow from "../../icons/arrow-down.svg";
 const TitleGrid = () => {
   const handleOpen = (el, target) => {
     el.current.classList.toggle("active");
-    console.log(target.target);
     target.target.children[2].classList.toggle("active");
   };
   const handlePush = (el) => {

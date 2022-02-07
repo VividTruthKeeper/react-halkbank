@@ -1,3 +1,7 @@
+.main {
+  position: relative;
+}
+
 .main-head {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -23,6 +27,12 @@
     display: flex;
     gap: 0.8rem;
     align-items: center;
+    transition: 0.4s all ease;
+    &:hover {
+      background: rgb(3, 102, 76);
+      transition: 0.4s all ease;
+    }
+
     h3 {
       font-weight: normal;
     }
@@ -44,7 +54,7 @@
 }
 
 .titlegrid {
-  padding-bottom: 24rem;
+  padding-bottom: 20rem;
   ul {
     display: grid;
     grid-template-columns: 1fr 1fr;

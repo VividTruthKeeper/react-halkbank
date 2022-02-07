@@ -8,6 +8,12 @@
     span {
       color: $base-green;
       cursor: pointer;
+
+      transition: 0.4s all ease;
+      &:hover {
+        color: rgb(3, 102, 76);
+        transition: 0.4s all ease;
+      }
     }
 
     a {
