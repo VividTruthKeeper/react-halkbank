@@ -4,4 +4,4 @@
 - SCSS
 - react-router-dom
 - react-google-recaptcha
-- react-select
+- react-datepicker
