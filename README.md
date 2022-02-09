@@ -3,5 +3,3 @@
 - React
 - SCSS
 - react-router-dom
-- react-google-recaptcha
-- react-datepicker

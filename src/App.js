@@ -17,13 +17,11 @@ import SignUp from "./pages/SignUp";
 const App = () => {
   return (
     <div className="App">
-      <Nav />
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
       </Routes>
-      <Footer />
     </div>
   );
 };

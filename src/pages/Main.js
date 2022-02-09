@@ -5,12 +5,17 @@ import { Link } from "react-router-dom";
 // IMPORT IMAGES
 import logout from "../icons/logout.svg";
 
+// IMPORT COMPONENTS
+import Nav from "../components/global/Nav";
+import Footer from "../components/global/Footer";
+
 // IMPORT PERSONAL COMPONENTS
 import TitleGrid from "../components/main/TitleGrid";
 
 const Main = () => {
   return (
     <section className="main">
+      <Nav />
       <div className="container">
         <div className="main-inner">
           <div className="main-head">
@@ -29,6 +34,7 @@ const Main = () => {
           <TitleGrid />
         </div>
       </div>
+      <Footer />
     </section>
   );
 };

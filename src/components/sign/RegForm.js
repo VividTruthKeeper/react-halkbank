@@ -57,7 +57,7 @@ const RegForm = () => {
                 Дата рождения<span>*</span>
               </label>
               <input
-                type="text"
+                type="date"
                 name="date"
                 placeholder="дд / мм / гггг"
                 id="date"
