@@ -203,11 +203,7 @@ const RegForm = () => {
             Все поля с символом ( <span>*</span> ) обязательны для заполнения
             Все поля доожны быть заполненны латиницей
           </h2>
-          <button
-            type="submit"
-            className="sign-btn"
-            onClick={(e) => e.preventDefault()}
-          >
+          <button type="button" className="sign-btn">
             <div>
               <h3>Зарегистрироваться</h3>
               <div className="btn-img">

@@ -5,8 +5,9 @@ import { Link } from "react-router-dom";
 // IMPORT IMAGES
 import logout from "../../icons/logout.svg";
 import up from "../../icons/clipboard.svg";
+import { useEffect } from "react/cjs/react.development";
 
-const SignForm = () => {
+const SignForm = ({ setRecoveryOpen }) => {
   return (
     <section className="sign-form">
       <form>
@@ -26,15 +27,17 @@ const SignForm = () => {
             <h1>CAPTCHA</h1>
           </div>
           <div className="forget">
-            <h3>Забыли пароль?</h3>
+            <h3
+              onClick={() => {
+                setRecoveryOpen(true);
+              }}
+            >
+              Забыли пароль?
+            </h3>
           </div>
         </div>
         <div className="sign-bottom">
-          <button
-            type="submit"
-            className="sign-btn"
-            onClick={(e) => e.preventDefault()}
-          >
+          <button type="button" className="sign-btn">
             <div>
               <h3>Войти</h3>
               <div className="btn-img">
