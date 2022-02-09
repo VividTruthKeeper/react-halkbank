@@ -7,7 +7,7 @@
 }
 
 .nav-inner {
-  margin: 3rem 0;
+  padding: 3rem 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
@@ -51,6 +51,9 @@
 .nav__right {
   justify-self: right;
   align-self: center;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
 }
 
 .language {
@@ -129,5 +132,38 @@
   &.active {
     max-height: 15rem;
     transition: 0.4s all ease;
+  }
+}
+
+// LOGGED ON
+.nav-menu {
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+.user {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1.4rem 2.6rem;
+  border: 0.1rem solid rgba(229, 229, 229, 1);
+  border-radius: 0.5rem;
+
+  h4 {
+    font-size: 1.6rem;
+    font-weight: normal;
+  }
+}
+
+.user-img {
+  width: 2rem;
+  height: 2rem;
+
+  img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
   }
 }

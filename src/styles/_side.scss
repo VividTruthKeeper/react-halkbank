@@ -1,0 +1,54 @@
+.side {
+  position: fixed;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  max-width: 40rem;
+  width: 100%;
+  background: $base-green;
+}
+
+.home {
+  margin-left: 40rem;
+}
+
+.side-title {
+  background: $dark-green;
+}
+
+.side-inner {
+  ul {
+    display: flex;
+    flex-direction: column;
+    li {
+      position: relative;
+      border-bottom: 0.1rem solid $dark-green;
+
+      &::before {
+        width: 0.6rem;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        content: "";
+        background: rgba(255, 255, 255, 0);
+        transition: 0.4s all ease;
+      }
+
+      &.active {
+        &::before {
+          background: rgba(255, 255, 255, 1);
+          transition: 0.4s all ease;
+        }
+      }
+    }
+    h2,
+    a {
+      display: block;
+      font-size: 1.6rem;
+      color: #fff;
+      padding: 2.9rem 5rem;
+      font-weight: normal;
+    }
+  }
+}
