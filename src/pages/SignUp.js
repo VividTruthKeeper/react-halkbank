@@ -1,4 +1,4 @@
-// IMPORT IMAGES
+// IMPORT MODULES
 import React from "react";
 
 // IMPORT PERSONAL COMPONENTS
