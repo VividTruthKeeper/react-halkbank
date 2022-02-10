@@ -1,5 +1,5 @@
 // IMPORT MODULES
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 // IMPORT IMAGES
@@ -13,6 +13,15 @@ import arrow from "../../icons/arrow-back.svg";
 
 const Side = ({ sideOpen }) => {
   const [linkStage, setLinkStage] = useState(0);
+
+  useEffect(() => {
+    const location = window.location.href;
+    if (location.includes("cards")) {
+      setLinkStage(1);
+    } else if (location.includes("credits")) {
+      setLinkStage(2);
+    }
+  }, []);
   return (
     <section className={sideOpen ? "side active" : "side"}>
       <div className="side-inner">
@@ -40,7 +49,7 @@ const Side = ({ sideOpen }) => {
                 setLinkStage(2);
               }}
             >
-              <Link to="">
+              <Link to="/home/credits">
                 <div className="link-img">
                   <img src={credit} alt="link" />
                 </div>

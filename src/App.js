@@ -8,6 +8,7 @@ import "./styles/style.scss";
 // IMPORT PAGES
 import Base from "./pages/Base";
 import Cards from "./pages/Cards";
+import Credits from "./pages/Credits";
 
 // IMPORT PAGES
 import Main from "./pages/Main";
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/home" element={<Home ChildEl={Base} />} />
         <Route path="/home/cards" element={<Home ChildEl={Cards} />} />
+        <Route path="/home/credits" element={<Home ChildEl={Credits} />} />
       </Routes>
     </div>
   );
