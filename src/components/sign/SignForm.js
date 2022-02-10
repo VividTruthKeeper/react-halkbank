@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 // IMPORT IMAGES
 import logout from "../../icons/logout.svg";
 import up from "../../icons/clipboard.svg";
-import { useEffect } from "react/cjs/react.development";
 
 const SignForm = ({ setRecoveryOpen }) => {
   return (

@@ -1,0 +1,32 @@
+.home-inner {
+  min-height: calc(100vh - 6.15rem);
+}
+
+.cards-title {
+  padding: 5rem 0;
+  font-size: 2.2rem;
+}
+
+.home-table {
+  width: 100%;
+
+  tr {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    padding: 1.7rem 0;
+    border: 0.1rem solid #f2f2f2;
+    border-top: none;
+  }
+
+  th,
+  td {
+    font-size: 1.6rem;
+    text-align: center;
+    font-weight: normal;
+    padding: 0 1rem;
+  }
+}
+
+.table-head {
+  background: #f2f2f2;
+}

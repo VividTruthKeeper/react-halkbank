@@ -22,7 +22,7 @@ const PasswordRec = ({ recoveryOpen, setRecoveryOpen }) => {
     return () => {
       window.removeEventListener("mousedown", () => {});
     };
-  }, [recoveryOpen]);
+  }, [recoveryOpen, setRecoveryOpen]);
   return (
     <section className={recoveryOpen ? "recovery active" : "recovery"}>
       <div className="recovery-container">

@@ -9,7 +9,7 @@ import arrow from "../../icons/arrow-down.svg";
 import menu from "../../icons/menu.svg";
 import user from "../../icons/user.svg";
 
-const LoggedNav = () => {
+const LoggedNav = ({ setSideOpen }) => {
   const handleLanguage = (lang) => {
     setLanguage(lang);
   };
@@ -17,11 +17,16 @@ const LoggedNav = () => {
   const [langOpen, setLangOpen] = useState(false);
   const [language, setLanguage] = useState("РУС");
   return (
-    <nav className="nav">
+    <nav className="nav logged-nav">
       <div className="container">
         <div className="nav-inner">
           <div className="nav__left">
-            <div className="nav-menu">
+            <div
+              className="nav-menu"
+              onClick={() => {
+                setSideOpen((prevState) => !prevState);
+              }}
+            >
               <img src={menu} alt="menu" />
             </div>
             <Link to="/" className="nav-logo">
@@ -91,7 +96,6 @@ const LoggedNav = () => {
           </div>
         </div>
       </div>
-      <div className="line"></div>
     </nav>
   );
 };

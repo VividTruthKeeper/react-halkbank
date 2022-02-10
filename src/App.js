@@ -5,9 +5,8 @@ import { Routes, Route } from "react-router-dom";
 // IMPORT STYLES
 import "./styles/style.scss";
 
-// IMPORT PERMANENT COMPONENTS
-import Nav from "./components/global/Nav";
-import Footer from "./components/global/Footer";
+// IMPORT PAGES
+import Base from "./pages/Base";
 
 // IMPORT PAGES
 import Main from "./pages/Main";
@@ -22,7 +21,8 @@ const App = () => {
         <Route path="/" element={<Main />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/home" element={<Home ChildEl={Footer} />} />
+        <Route path="/home" element={<Home ChildEl={Base} />} />
+        <Route path="/home/cards" element={<Home ChildEl={Base} />} />
       </Routes>
     </div>
   );
