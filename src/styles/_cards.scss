@@ -1,0 +1,17 @@
+.card-title {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.cards-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.card-btn {
+  max-width: 22.6rem;
+  justify-self: right;
+}

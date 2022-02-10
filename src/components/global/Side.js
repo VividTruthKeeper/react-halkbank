@@ -27,7 +27,7 @@ const Side = ({ sideOpen }) => {
                 setLinkStage(1);
               }}
             >
-              <Link to="">
+              <Link to="/home/cards">
                 <div className="link-img">
                   <img src={card} alt="link" />
                 </div>

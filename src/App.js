@@ -7,6 +7,7 @@ import "./styles/style.scss";
 
 // IMPORT PAGES
 import Base from "./pages/Base";
+import Cards from "./pages/Cards";
 
 // IMPORT PAGES
 import Main from "./pages/Main";
@@ -22,7 +23,7 @@ const App = () => {
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/home" element={<Home ChildEl={Base} />} />
-        <Route path="/home/cards" element={<Home ChildEl={Base} />} />
+        <Route path="/home/cards" element={<Home ChildEl={Cards} />} />
       </Routes>
     </div>
   );
