@@ -35,3 +35,9 @@ body {
   min-height: 100vh;
   position: relative;
 }
+
+button:disabled {
+  background: #e5e5e5 !important;
+  pointer-events: none;
+  transition: 0.4s all ease;
+}

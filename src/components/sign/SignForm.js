@@ -1,5 +1,5 @@
 // IMPORT MODULES
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 // IMPORT IMAGES
@@ -7,6 +7,19 @@ import logout from "../../icons/logout.svg";
 import up from "../../icons/clipboard.svg";
 
 const SignForm = ({ setRecoveryOpen }) => {
+  const [inputValid, setInputValid] = useState({
+    login: false,
+    password: false,
+  });
+  const [btnEnabled, setBtnEnabled] = useState(false);
+
+  useEffect(() => {
+    if (inputValid.login === true && inputValid.password === true) {
+      setBtnEnabled(true);
+    } else {
+      setBtnEnabled(false);
+    }
+  }, [inputValid]);
   return (
     <section className="sign-form">
       <form>
@@ -16,11 +29,41 @@ const SignForm = ({ setRecoveryOpen }) => {
         <div className="sign-mid">
           <div className="input-block">
             <label htmlFor="login">Логин</label>
-            <input type="text" id="login" />
+            <input
+              required
+              type="text"
+              id="login"
+              name="login"
+              onChange={(e) => {
+                if (e.target.value !== "") {
+                  setInputValid({ ...inputValid, login: true });
+                } else {
+                  setInputValid({ ...inputValid, login: false });
+                }
+              }}
+            />
           </div>
           <div className="input-block">
             <label htmlFor="password">Введите пароль</label>
-            <input type="password" id="password" />
+            <input
+              required
+              type="password"
+              id="password"
+              onChange={(e) => {
+                if (e.target.value.length >= 8) {
+                  setInputValid({ ...inputValid, password: true });
+                } else {
+                  setInputValid({ ...inputValid, password: false });
+                }
+              }}
+            />
+            <span
+              className={
+                inputValid.password ? "pass-check" : "pass-check active"
+              }
+            >
+              Пароль должен содержать не менее 8 символов
+            </span>
           </div>
           <div className="captcha">
             <h1>CAPTCHA</h1>
@@ -36,7 +79,7 @@ const SignForm = ({ setRecoveryOpen }) => {
           </div>
         </div>
         <div className="sign-bottom">
-          <button type="button" className="sign-btn">
+          <button disabled={!btnEnabled} type="button" className="sign-btn">
             <div>
               <h3>Войти</h3>
               <div className="btn-img">
