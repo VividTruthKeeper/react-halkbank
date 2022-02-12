@@ -4,7 +4,14 @@ import React, { useState, useRef, useEffect } from "react";
 // IMPORT IMAGES
 import arrow from "../../icons/arrow-gray.svg";
 
-const CustomSelect = ({ blockName, elName, customId, items, name }) => {
+const CustomSelect = ({
+  blockName,
+  elName,
+  customId,
+  items,
+  name,
+  stateSetter,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
   const inner1 = useRef();
@@ -17,6 +24,12 @@ const CustomSelect = ({ blockName, elName, customId, items, name }) => {
       }
     });
   }, []);
+
+  useEffect(() => {
+    if (input !== "") {
+      stateSetter(true);
+    }
+  }, [input]);
   return (
     <div className="custom-select">
       <input
@@ -27,6 +40,7 @@ const CustomSelect = ({ blockName, elName, customId, items, name }) => {
         type="text"
         id={customId ? customId : ""}
         value={input}
+        readOnly
         onClick={() => {
           setIsOpen(!isOpen);
         }}

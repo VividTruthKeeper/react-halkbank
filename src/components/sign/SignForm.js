@@ -1,5 +1,5 @@
 // IMPORT MODULES
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 // IMPORT IMAGES
@@ -10,7 +10,6 @@ const SignForm = ({ setRecoveryOpen }) => {
   const [inputValid, setInputValid] = useState({
     login: false,
     password: false,
-    validate: false,
   });
   const [btnEnabled, setBtnEnabled] = useState(false);
 
@@ -32,40 +31,28 @@ const SignForm = ({ setRecoveryOpen }) => {
           <div className="input-block">
             <label htmlFor="login">Логин</label>
             <input
+              autoComplete="true"
               required
               type="text"
               id="login"
               name="login"
               onChange={(e) => {
                 if (e.target.value !== "") {
-                  setInputValid({ ...inputValid, login: true, validate: true });
+                  setInputValid({ ...inputValid, login: true });
                 } else {
                   setInputValid({ ...inputValid, login: false });
                 }
               }}
             />
-            {inputValid.validate ? (
-              <span
-                className={
-                  inputValid.login ? "pass-check" : "pass-check active"
-                }
-              >
-                Введите имя пользователя
-              </span>
-            ) : (
-              ""
-            )}
           </div>
           <div className="input-block">
             <label htmlFor="password">Введите пароль</label>
             <input
+              autoComplete="true"
               required
               type="password"
               id="password"
               onChange={(e) => {
-                if (e.target.value !== "") {
-                  setInputValid({ ...inputValid, validate: true });
-                }
                 if (e.target.value.length >= 8) {
                   setInputValid({ ...inputValid, password: true });
                 } else {
@@ -73,17 +60,6 @@ const SignForm = ({ setRecoveryOpen }) => {
                 }
               }}
             />
-            {inputValid.validate ? (
-              <span
-                className={
-                  inputValid.password ? "pass-check" : "pass-check active"
-                }
-              >
-                Пароль должен содержать не менее 8 символов
-              </span>
-            ) : (
-              ""
-            )}
           </div>
           <div className="captcha">
             <h1>CAPTCHA</h1>

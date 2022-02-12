@@ -1,9 +1,6 @@
 // IMPORT MODULES
 import React, { useState, useEffect, useRef } from "react";
 
-// IMPORT IMAGES
-import Next from "../../icons/arrow-circle-right.svg";
-
 // IMPORT PERSONAL COMPONENTS
 import Stage1 from "../passwordRec/Stage1";
 import Stage2 from "../passwordRec/Stage2";

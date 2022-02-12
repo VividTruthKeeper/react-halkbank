@@ -4,6 +4,9 @@ import React, { useState, useEffect } from "react";
 // IMPORT IMAGES
 import Next from "../../icons/arrow-circle-right.svg";
 
+// IMPORT HELPERS
+import { ValidatePassword } from "../../validators/ValidatePassword";
+
 const Stage2 = ({ setRecoveryOpen, setRecStage }) => {
   const [inputValid, setInputValid] = useState({
     newPassword: false,
@@ -44,6 +47,7 @@ const Stage2 = ({ setRecoveryOpen, setRecStage }) => {
             Введите пароль<span>*</span>
           </label>
           <input
+            autoComplete="false"
             type="password"
             id="new-pass"
             name="new-pass"
@@ -51,7 +55,7 @@ const Stage2 = ({ setRecoveryOpen, setRecStage }) => {
             onChange={(e) => {
               setInput({ ...input, new: e.target.value });
               setValid(true);
-              if (e.target.value.length >= 8) {
+              if (ValidatePassword(e.target.value)) {
                 setInputValid({
                   ...inputValid,
                   newPassword: true,
@@ -64,12 +68,26 @@ const Stage2 = ({ setRecoveryOpen, setRecStage }) => {
               }
             }}
           />
+          {valid ? (
+            <span
+              className={
+                inputValid.newPassword ? "pass-check" : "pass-check active"
+              }
+            >
+              Пароль должен содержать не менее 1 цифры, 1 заглавной и 1
+              прописной буквы, 1 особого знака, и быть не менее 8 и не более 15
+              символов в длину.
+            </span>
+          ) : (
+            ""
+          )}
         </div>
         <div className="reg-input-block rec-input">
           <label htmlFor="confirm">
             Повторите пароль<span>*</span>
           </label>
           <input
+            autoComplete="false"
             type="password"
             id="confirm"
             name="confirm"
@@ -90,19 +108,6 @@ const Stage2 = ({ setRecoveryOpen, setRecStage }) => {
               }
             }}
           />
-          {valid ? (
-            <span
-              className={
-                inputValid.confirm && inputValid.newPassword
-                  ? "pass-check"
-                  : "pass-check active"
-              }
-            >
-              Пароль должен содержать не менее 8 символов
-            </span>
-          ) : (
-            ""
-          )}
           {valid ? (
             <span
               className={inputValid.match ? "pass-check" : "pass-check active"}

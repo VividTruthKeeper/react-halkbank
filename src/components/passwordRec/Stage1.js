@@ -4,11 +4,15 @@ import React, { useState } from "react";
 // IMPORT IMAGES
 import Next from "../../icons/arrow-circle-right.svg";
 
+// IMPORT HELPER
+import { ValidateEmail } from "../../validators/ValidateEmail";
+
 const Stage1 = ({ setRecStage }) => {
-  const [inputValid, setinputValid] = useState({
+  const [inputValid, setInputValid] = useState({
     email: false,
-    validate: false,
   });
+
+  const [validate, setValidate] = useState(false);
   return (
     <div className="recovery-block recovery-1">
       <form>
@@ -21,28 +25,29 @@ const Stage1 = ({ setRecStage }) => {
             type="email"
             id="mail"
             name="mail"
+            autoComplete="true"
             placeholder="amanamanow@gmail.com"
             required
             onChange={(e) => {
-              if (e.target.value !== "") {
-                setinputValid({
+              setValidate(true);
+              if (ValidateEmail(e.target.value)) {
+                setInputValid({
                   ...inputValid,
                   email: true,
-                  validate: true,
                 });
               } else {
-                setinputValid({
+                setInputValid({
                   ...inputValid,
                   email: false,
                 });
               }
             }}
           />
-          {inputValid.validate && (
+          {validate && (
             <span
               className={inputValid.email ? "pass-check" : "pass-check active"}
             >
-              Введите ваш e-mail
+              Введен неверный email
             </span>
           )}
         </div>
@@ -51,7 +56,7 @@ const Stage1 = ({ setRecStage }) => {
             disabled={!inputValid.email}
             type="button"
             className="sign-btn"
-            onClick={(e) => {
+            onClick={() => {
               setRecStage((prevStage) => prevStage + 1);
             }}
           >
