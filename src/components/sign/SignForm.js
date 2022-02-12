@@ -10,6 +10,7 @@ const SignForm = ({ setRecoveryOpen }) => {
   const [inputValid, setInputValid] = useState({
     login: false,
     password: false,
+    validate: false,
   });
   const [btnEnabled, setBtnEnabled] = useState(false);
 
@@ -20,6 +21,7 @@ const SignForm = ({ setRecoveryOpen }) => {
       setBtnEnabled(false);
     }
   }, [inputValid]);
+
   return (
     <section className="sign-form">
       <form>
@@ -36,12 +38,23 @@ const SignForm = ({ setRecoveryOpen }) => {
               name="login"
               onChange={(e) => {
                 if (e.target.value !== "") {
-                  setInputValid({ ...inputValid, login: true });
+                  setInputValid({ ...inputValid, login: true, validate: true });
                 } else {
                   setInputValid({ ...inputValid, login: false });
                 }
               }}
             />
+            {inputValid.validate ? (
+              <span
+                className={
+                  inputValid.login ? "pass-check" : "pass-check active"
+                }
+              >
+                Введите имя пользователя
+              </span>
+            ) : (
+              ""
+            )}
           </div>
           <div className="input-block">
             <label htmlFor="password">Введите пароль</label>
@@ -50,6 +63,9 @@ const SignForm = ({ setRecoveryOpen }) => {
               type="password"
               id="password"
               onChange={(e) => {
+                if (e.target.value !== "") {
+                  setInputValid({ ...inputValid, validate: true });
+                }
                 if (e.target.value.length >= 8) {
                   setInputValid({ ...inputValid, password: true });
                 } else {
@@ -57,13 +73,17 @@ const SignForm = ({ setRecoveryOpen }) => {
                 }
               }}
             />
-            <span
-              className={
-                inputValid.password ? "pass-check" : "pass-check active"
-              }
-            >
-              Пароль должен содержать не менее 8 символов
-            </span>
+            {inputValid.validate ? (
+              <span
+                className={
+                  inputValid.password ? "pass-check" : "pass-check active"
+                }
+              >
+                Пароль должен содержать не менее 8 символов
+              </span>
+            ) : (
+              ""
+            )}
           </div>
           <div className="captcha">
             <h1>CAPTCHA</h1>
