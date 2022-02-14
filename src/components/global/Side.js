@@ -20,6 +20,8 @@ const Side = ({ sideOpen }) => {
       setLinkStage(1);
     } else if (location.includes("credits")) {
       setLinkStage(2);
+    } else if (location.includes("contact-us")) {
+      setLinkStage(3);
     }
   }, []);
   return (
@@ -62,7 +64,7 @@ const Side = ({ sideOpen }) => {
                 setLinkStage(3);
               }}
             >
-              <Link to="">
+              <Link to="/home/contact-us">
                 <div className="link-img">
                   <img src={mail} alt="link" />
                 </div>

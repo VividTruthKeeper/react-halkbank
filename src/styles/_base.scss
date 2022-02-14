@@ -1,5 +1,7 @@
-.home-inner {
-  min-height: calc(100vh - 6.15rem);
+.home-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .cards-title {
