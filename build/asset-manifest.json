@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/static/css/main.1e2e7f16.css",
-    "main.js": "/static/js/main.51470174.js",
+    "main.js": "/static/js/main.611d2c3f.js",
     "static/media/logo-bg.jpg": "/static/media/logo-bg.1d55df78b7376108f96c.jpg",
     "static/media/logo.jpg": "/static/media/logo.4132ef3815cdd5e7314e.jpg",
     "static/media/credit.svg": "/static/media/credit.287a7c0a67e2efc5004a44819ab0b1d2.svg",
     "static/media/password.svg": "/static/media/password.3c81a8eb2e5833ac220cc1eb6ea80f68.svg",
-    "static/media/lang.svg": "/static/media/lang.f22ff42454c87587f79377a48b1248e2.svg",
+    "static/media/lang.svg": "/static/media/lang.9c83d98865dc02c5dab82257e781a7ca.svg",
     "static/media/card.svg": "/static/media/card.6f83ff39d635861a53f4fb970082231d.svg",
     "static/media/card-black.svg": "/static/media/card-black.7a81177f3df2bb995ccdc030dc4df70d.svg",
     "static/media/card-remove.svg": "/static/media/card-remove.82eaef0cd0abb7da28f6da230d159f04.svg",
@@ -24,12 +24,12 @@
     "static/media/user-square.svg": "/static/media/user-square.d8e480e0d0a30f34f74130c8c706f68a.svg",
     "static/media/arrow-back.svg": "/static/media/arrow-back.7106eb7539d85d1dc7288726f85efeba.svg",
     "static/media/arrow-gray.svg": "/static/media/arrow-gray.c688e9bf277186332d33431cd6f52c8e.svg",
-    "static/media/arrow-down.svg": "/static/media/arrow-down.dc22eaaf68bd39561e303bcfbddc6a9e.svg",
+    "static/media/arrow-down.svg": "/static/media/arrow-down.2ec2ec0ddf677f60c1aa23e6d1abdc8d.svg",
     "main.1e2e7f16.css.map": "/static/css/main.1e2e7f16.css.map",
-    "main.51470174.js.map": "/static/js/main.51470174.js.map"
+    "main.611d2c3f.js.map": "/static/js/main.611d2c3f.js.map"
   },
   "entrypoints": [
     "static/css/main.1e2e7f16.css",
-    "static/js/main.51470174.js"
+    "static/js/main.611d2c3f.js"
   ]
 }
