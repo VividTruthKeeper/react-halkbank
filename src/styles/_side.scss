@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: auto 1fr;
   transition: 0.4s all ease;
+  min-height: 100vh;
 }
 
 .side-inner {
