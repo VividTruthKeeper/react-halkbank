@@ -5,10 +5,11 @@ import { Routes, Route } from "react-router-dom";
 // IMPORT STYLES
 import "./styles/style.scss";
 
-// IMPORT PAGES
+// IMPORT INNER PAGES
 import Base from "./pages/Base";
 import Cards from "./pages/Cards";
 import Credits from "./pages/Credits";
+import ContactUs from "./pages/ContactUs";
 
 // IMPORT PAGES
 import Main from "./pages/Main";
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/home" element={<Home ChildEl={Base} />} />
         <Route path="/home/cards" element={<Home ChildEl={Cards} />} />
         <Route path="/home/credits" element={<Home ChildEl={Credits} />} />
+        <Route path="/home/contact-us" element={<Home ChildEl={ContactUs} />} />
       </Routes>
     </div>
   );

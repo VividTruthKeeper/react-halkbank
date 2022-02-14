@@ -5,6 +5,7 @@ import React, { useState, useRef, useEffect } from "react";
 import arrow from "../../icons/arrow-gray.svg";
 
 const CustomSelect = ({
+  placeholder,
   blockName,
   elName,
   customId,
@@ -33,7 +34,7 @@ const CustomSelect = ({
   return (
     <div className="custom-select">
       <input
-        placeholder={items ? items[0] : ""}
+        placeholder={placeholder ? placeholder : items ? items[0] : ""}
         name={name ? name : ""}
         required
         ref={inner1}

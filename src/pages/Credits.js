@@ -5,17 +5,13 @@ import React from "react";
 import Breadcrumb from "../components/global/Breadcrumb";
 
 // IMPORT IMAGES
-import card from "../icons/card-black.svg";
+import credit from "../icons/credit-black.svg";
 import add from "../icons/add.svg";
 
 const Credits = () => {
   return (
     <section className="cards">
-      <Breadcrumb
-        image={card}
-        link={"/home/cards"}
-        linkTitle={"Пластиковые карты"}
-      />
+      <Breadcrumb image={credit} link={"/home/credits"} linkTitle={"Кредиты"} />
       <div className="container">
         <div className="cards-inner">
           <div className="card-title">
