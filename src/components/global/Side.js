@@ -22,6 +22,8 @@ const Side = ({ sideOpen }) => {
       setLinkStage(2);
     } else if (location.includes("contact-us")) {
       setLinkStage(3);
+    } else if (location.includes("recovery")) {
+      setLinkStage(5);
     }
   }, []);
   return (
@@ -95,20 +97,15 @@ const Side = ({ sideOpen }) => {
                 setLinkStage(5);
               }}
             >
-              <Link to="">
+              <Link to="/home/recovery">
                 <div className="link-img">
                   <img src={password} alt="link" />
                 </div>
                 <span>Смена пароля</span>
               </Link>
             </li>
-            <li
-              className={linkStage === 6 ? "active" : ""}
-              onClick={() => {
-                setLinkStage(6);
-              }}
-            >
-              <Link to="">
+            <li>
+              <Link to="/sign-in">
                 <div className="link-img">
                   <img src={quit} alt="link" />
                 </div>

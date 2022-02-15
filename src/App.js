@@ -10,6 +10,7 @@ import Base from "./pages/Base";
 import Cards from "./pages/Cards";
 import Credits from "./pages/Credits";
 import ContactUs from "./pages/ContactUs";
+import Recovery from "./pages/Recovery";
 
 // IMPORT PAGES
 import Main from "./pages/Main";
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="/home/cards" element={<Home ChildEl={Cards} />} />
         <Route path="/home/credits" element={<Home ChildEl={Credits} />} />
         <Route path="/home/contact-us" element={<Home ChildEl={ContactUs} />} />
+        <Route path="/home/recovery" element={<Home ChildEl={Recovery} />} />
       </Routes>
     </div>
   );

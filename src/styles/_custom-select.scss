@@ -61,7 +61,8 @@
 
 .input-img {
   position: absolute;
-  top: 2.25rem;
+  top: 50%;
+  transform: translateY(-50%);
   left: calc(100% - 3rem);
   pointer-events: none;
 }
