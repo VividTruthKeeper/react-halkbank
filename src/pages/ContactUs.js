@@ -1,5 +1,5 @@
 // IMPORT MODULES
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 // IMPORT COMPONENTS
 import CustomSelect from "../components/global/CustomSelect";
@@ -10,6 +10,19 @@ import mail from "../icons/mail-black.svg";
 import send from "../icons/send.svg";
 
 const ContactUs = () => {
+  const [topic, setTopic] = useState(false);
+  const [inputValid, setInputValid] = useState({
+    message: false,
+  });
+  const [btnEnabled, setBtnEnabled] = useState(false);
+
+  useEffect(() => {
+    if (topic && inputValid.message) {
+      setBtnEnabled(true);
+    } else {
+      setBtnEnabled(false);
+    }
+  }, [topic, inputValid]);
   return (
     <section className="contact-us">
       <Breadcrumb
@@ -27,7 +40,7 @@ const ContactUs = () => {
                 placeholder={"Выберите тему письма"}
                 name={"topic"}
                 items={["Пластиковые карты", "Кредиты"]}
-                stateSetter={() => null}
+                stateSetter={setTopic}
                 customId={"topic"}
                 elName={"topic"}
               />
@@ -39,11 +52,22 @@ const ContactUs = () => {
                 id="msg"
                 rows="10"
                 placeholder="Ваше сообщение"
+                onChange={(e) => {
+                  if (e.target.value !== "") {
+                    setInputValid({ ...inputValid, message: true });
+                  } else {
+                    setInputValid({ ...inputValid, message: false });
+                  }
+                }}
               ></textarea>
             </div>
             <div className="cu-bottom">
               <h1>CAPTCHA</h1>
-              <button type="button" className="sign-btn cu-btn">
+              <button
+                type="button"
+                disabled={!btnEnabled}
+                className="sign-btn cu-btn"
+              >
                 <div>
                   <h3>Отправить письмо</h3>
                   <div className="btn-img">
