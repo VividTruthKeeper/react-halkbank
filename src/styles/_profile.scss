@@ -1,0 +1,21 @@
+.profile-title {
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+}
+
+.profile-inner {
+  padding: 5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+
+  input {
+    background: #f2f2f2;
+  }
+
+  form {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+}

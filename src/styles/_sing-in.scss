@@ -47,9 +47,13 @@
 
   input {
     border: 0.1rem solid #e5e5e5;
-    padding: 1.4rem 0 1.4rem 2rem;
+    padding: 1.4rem 2rem;
     border-radius: 0.5rem;
     cursor: pointer;
+
+    &:focus {
+      background: #ffffff;
+    }
   }
 }
 

@@ -22,6 +22,8 @@ const Side = ({ sideOpen }) => {
       setLinkStage(2);
     } else if (location.includes("contact-us")) {
       setLinkStage(3);
+    } else if (location.includes("profile")) {
+      setLinkStage(4);
     } else if (location.includes("recovery")) {
       setLinkStage(5);
     }
@@ -84,7 +86,7 @@ const Side = ({ sideOpen }) => {
                 setLinkStage(4);
               }}
             >
-              <Link to="">
+              <Link to="/home/profile">
                 <div className="link-img">
                   <img src={user} alt="link" />
                 </div>
