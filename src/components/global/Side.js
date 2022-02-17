@@ -116,7 +116,7 @@ const Side = ({ sideOpen }) => {
             </li>
           </ul>
         </div>
-        <Link to="" className="side-footer">
+        <Link to="/" className="side-footer">
           <div className="footer-img">
             <img src={arrow} alt="arrow" />
           </div>

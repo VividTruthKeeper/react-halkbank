@@ -41,3 +41,11 @@ button:disabled {
   pointer-events: none;
   transition: 0.4s all ease;
 }
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  color: rgba(0, 0, 0, 0);
+  opacity: 1;
+  display: block;
+  background: url("../icons/calendar.svg") no-repeat;
+  border-width: thin;
+}
