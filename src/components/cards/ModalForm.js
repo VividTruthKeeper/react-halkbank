@@ -13,6 +13,7 @@ import { ReactComponent as Lines } from "../../icons/lines.svg";
 
 // IMPORT COMPONENTS
 import CardStage1 from "../CardStages/CardStage1";
+import CardStage2 from "../CardStages/CardStage2";
 
 const ModalForm = ({ modalOpen, setModalOpen, stage, setStage }) => {
   return (
@@ -81,7 +82,13 @@ const ModalForm = ({ modalOpen, setModalOpen, stage, setStage }) => {
               </div>
             </div>
             <div className="modal-bottom">
-              {stage === 1 ? <CardStage1 setStage={setStage} /> : ""}
+              {stage === 1 ? (
+                <CardStage1 setStage={setStage} />
+              ) : stage === 2 ? (
+                <CardStage2 setStage={setStage} />
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </div>

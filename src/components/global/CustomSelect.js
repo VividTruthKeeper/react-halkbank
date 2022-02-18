@@ -18,18 +18,26 @@ const CustomSelect = ({
   const inner1 = useRef();
   const inner2 = useRef();
 
+  const handleOpen = (e) => {
+    if (e.target !== inner1.current && e.target !== inner2.current) {
+      setIsOpen(false);
+    }
+  };
+
   useEffect(() => {
-    window.addEventListener("click", (e) => {
-      if (e.target !== inner1.current && e.target !== inner2.current) {
-        setIsOpen(false);
-      }
-    });
+    window.addEventListener("click", handleOpen);
+
+    return () => {
+      window.removeEventListener("click", handleOpen);
+    };
   }, []);
 
   useEffect(() => {
     if (input !== "") {
       stateSetter(true);
     }
+
+    return () => null;
   }, [input]);
   return (
     <div className="custom-select">

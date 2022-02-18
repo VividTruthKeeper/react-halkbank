@@ -216,3 +216,35 @@
 .cd-btn {
   max-width: 20rem;
 }
+
+.card-stage-2 {
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+}
+
+.card-stage-2 {
+  .form-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+.cd-2-title {
+  h4 {
+    font-size: 1.2rem;
+    font-weight: normal;
+  }
+  span {
+    color: red;
+  }
+}
+
+.input-block {
+  span {
+    color: red;
+  }
+}
