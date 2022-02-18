@@ -11,7 +11,7 @@ import add from "../icons/add.svg";
 
 const Cards = () => {
   const [modalOpen, setModalOpen] = useState(false);
-
+  const [stage, setStage] = useState(1);
   useEffect(() => {
     if (modalOpen) {
       document.body.style.overflowY = "hidden";
@@ -26,7 +26,12 @@ const Cards = () => {
         link={"/home/cards"}
         linkTitle={"Пластиковые карты"}
       />
-      <ModalForm setModalOpen={setModalOpen} modalOpen={modalOpen} />
+      <ModalForm
+        setModalOpen={setModalOpen}
+        modalOpen={modalOpen}
+        stage={stage}
+        setStage={setStage}
+      />
       <div className="container">
         <div className="cards-inner">
           <div className="card-title">
@@ -36,6 +41,7 @@ const Cards = () => {
               className="card-btn sign-btn"
               onClick={() => {
                 setModalOpen(true);
+                setStage(1);
               }}
             >
               <div className="card-img">

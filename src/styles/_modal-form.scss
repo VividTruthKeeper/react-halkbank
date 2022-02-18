@@ -35,8 +35,7 @@
   background: #fff;
   padding: 5rem;
   padding-top: 2.8rem;
-  height: 74.4rem;
-  width: 128rem;
+  overflow: hidden;
 }
 
 .modal-top {
@@ -65,4 +64,155 @@
       }
     }
   }
+}
+
+.modal-middle {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr 1.5fr 1fr 1.5fr 1fr 1.5fr 1fr 1.5fr 1fr;
+
+  padding: 3rem 0;
+  position: relative;
+
+  &::before {
+    position: absolute;
+    content: "";
+    width: calc(100% + 18rem);
+    top: 0;
+    height: 0.1rem;
+    left: -9rem;
+    background: rgb(229, 229, 229);
+    pointer-events: none;
+  }
+
+  &::after {
+    position: absolute;
+    content: "";
+    width: calc(100% + 18rem);
+    height: 0.1rem;
+    bottom: 0;
+    right: -9rem;
+    background: rgb(229, 229, 229);
+    pointer-events: none;
+  }
+}
+
+.icon-title {
+  font-size: 1.2rem;
+  text-align: center;
+  color: rgb(229, 229, 229);
+  transition: 0.4s all ease;
+  font-weight: normal;
+}
+
+.modal-icon {
+  fill: rgba(229, 229, 229, 1);
+  transition: 0.4s all ease;
+}
+
+.icon-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  &.active {
+    .modal-icon {
+      fill: $base-green;
+      transition: 0.4s all ease;
+    }
+
+    .icon-title {
+      color: $base-green;
+      transition: 0.4s all ease;
+    }
+  }
+}
+
+.lines {
+  stroke: rgba(229, 229, 229, 1);
+  transition: 0.4s all ease;
+}
+
+.line-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.active {
+    stroke: $base-green;
+    transition: 0.4s all ease;
+  }
+}
+
+.modal-bottom {
+  padding-top: 3rem;
+}
+
+.card-description {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding: 3rem 0;
+}
+
+.cd-top {
+  display: grid;
+  grid-template-columns: 22rem 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.cd-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  h2 {
+    font-size: 2.2rem;
+  }
+  h3 {
+    font-size: 1.2rem;
+    font-weight: normal;
+  }
+}
+
+.cd-bottom {
+  padding: 2rem 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border: 0.1rem solid rgba(229, 229, 229, 1);
+}
+
+.cd-bottom-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  border-left: 0.1rem solid rgba(229, 229, 229, 1);
+  border-right: 0.1rem solid rgba(229, 229, 229, 1);
+
+  h2 {
+    font-size: 2.2rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    color: $base-green;
+    font-weight: normal;
+  }
+
+  &:first-child {
+    border: none;
+  }
+  &:last-child {
+    border: none;
+  }
+}
+
+.card-button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cd-btn {
+  max-width: 20rem;
 }

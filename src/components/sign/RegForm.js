@@ -48,7 +48,7 @@ const RegForm = () => {
     if (passwords.p1 === passwords.p2) {
       setInputValid({ ...inputValid, match: true });
     } else {
-      setInputValid({ ...inputValid, match: false });
+      setInputValid({ ...inputValid, match: true });
     }
   }, [passwords]);
 
@@ -74,7 +74,7 @@ const RegForm = () => {
     } else {
       setBtnEnabled(false);
     }
-  }, [inputValid]);
+  }, [inputValid, ppSerie, ppPrefix]);
 
   return (
     <section className="reg">
