@@ -40,43 +40,43 @@ const ModalForm = ({ modalOpen, setModalOpen, stage, setStage }) => {
                 <Card className="modal-icon" />
                 <h3 className="icon-title">Выберите вид карты</h3>
               </div>
-              <div className="line-block active">
+              <div className={stage > 1 ? "line-block active" : "line-block"}>
                 <Lines className="lines" />
                 <Lines className="lines" />
               </div>
-              <div className="icon-block">
+              <div className={stage > 1 ? "icon-block active" : "icon-block"}>
                 <Document className="modal-icon" />
                 <h3 className="icon-title">Личные данные</h3>
               </div>
-              <div className="line-block">
+              <div className={stage > 2 ? "line-block active" : "line-block"}>
                 <Lines className="lines" />
                 <Lines className="lines" />
               </div>
-              <div className="icon-block">
+              <div className={stage > 2 ? "icon-block active" : "icon-block"}>
                 <Edit className="modal-icon" />
                 <h3 className="icon-title">Данные для карты</h3>
               </div>
-              <div className="line-block">
+              <div className={stage > 3 ? "line-block active" : "line-block"}>
                 <Lines className="lines" />
                 <Lines className="lines" />
               </div>
-              <div className="icon-block">
+              <div className={stage > 3 ? "icon-block active" : "icon-block"}>
                 <Note className="modal-icon" />
                 <h3 className="icon-title">Требования и документы</h3>
               </div>
-              <div className="line-block">
+              <div className={stage > 4 ? "line-block active" : "line-block"}>
                 <Lines className="lines" />
                 <Lines className="lines" />
               </div>
-              <div className="icon-block">
+              <div className={stage > 4 ? "icon-block active" : "icon-block"}>
                 <Receipt className="modal-icon" />
                 <h3 className="icon-title">Оплата</h3>
               </div>
-              <div className="line-block">
+              <div className={stage > 5 ? "line-block active" : "line-block"}>
                 <Lines className="lines" />
                 <Lines className="lines" />
               </div>
-              <div className="icon-block">
+              <div className={stage > 5 ? "icon-block active" : "icon-block"}>
                 <Task className="modal-icon" />
                 <h3 className="icon-title">Отправка</h3>
               </div>

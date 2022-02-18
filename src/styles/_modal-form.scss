@@ -139,8 +139,10 @@
   justify-content: center;
 
   &.active {
-    stroke: $base-green;
-    transition: 0.4s all ease;
+    .lines {
+      stroke: $base-green;
+      transition: 0.4s all ease;
+    }
   }
 }
 
