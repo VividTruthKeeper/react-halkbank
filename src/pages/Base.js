@@ -1,5 +1,5 @@
 // IMPORT MODULES
-import React from "react";
+import React, { useEffect } from "react";
 
 // IMPORT COMPONENTS
 import Breadcrumb from "../components/global/Breadcrumb";

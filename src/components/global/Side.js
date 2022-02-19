@@ -26,6 +26,8 @@ const Side = ({ sideOpen }) => {
       setLinkStage(4);
     } else if (location.includes("recovery")) {
       setLinkStage(5);
+    } else {
+      setLinkStage(0);
     }
   }, []);
   return (
