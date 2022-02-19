@@ -42,7 +42,7 @@ const CustomSelect = ({
   return (
     <div className="custom-select">
       <input
-        placeholder={placeholder ? placeholder : items ? items[0] : ""}
+        placeholder={placeholder ? placeholder : ""}
         name={name ? name : ""}
         required
         ref={inner1}

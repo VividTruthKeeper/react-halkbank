@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 // IMPORT VALIDATORS
 import { ValidateEmail } from "../../validators/ValidateEmail";
 import { ValidatePhoneNumber } from "../../validators/ValidatePhoneNumber";
+import { getDate } from "../../helpers/Date";
 
 // IMPORT IMAGES
 import next from "../../icons/next.svg";
@@ -103,6 +104,8 @@ const CardStage2 = ({ setStage }) => {
               type="date"
               id="date"
               defaultValue={"1990-02-20"}
+              min="1900-01-01"
+              max={getDate(18)}
               onChange={(e) => {
                 if (e.target.value !== "") {
                   setInputValid({ ...inputValid, date: true });

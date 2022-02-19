@@ -181,6 +181,7 @@ const RegForm = () => {
                   customId={"serie"}
                   name={"passport-serie"}
                   stateSetter={setPpSerie}
+                  placeholder="I"
                 />
               </div>
               <div className="split-block">
@@ -191,6 +192,7 @@ const RegForm = () => {
                   customId={"reg"}
                   name={"passport-reg"}
                   stateSetter={setPpPrefix}
+                  placeholder="AŞ"
                 />
               </div>
               <div className="split-block">
