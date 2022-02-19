@@ -14,8 +14,9 @@ import arrow from "../../icons/arrow-back.svg";
 const Side = ({ sideOpen }) => {
   const [linkStage, setLinkStage] = useState(0);
 
+  const location = window.location.href;
+
   useEffect(() => {
-    const location = window.location.href;
     if (location.includes("cards")) {
       setLinkStage(1);
     } else if (location.includes("credits")) {
@@ -29,7 +30,7 @@ const Side = ({ sideOpen }) => {
     } else {
       setLinkStage(0);
     }
-  }, []);
+  }, [location]);
   return (
     <section className={sideOpen ? "side active" : "side"}>
       <div className="side-inner">
