@@ -1,5 +1,5 @@
 // IMPORT MODULES
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 // IMPORT VALIDATORS
 import { ValidateEmail } from "../../validators/ValidateEmail";
@@ -13,6 +13,29 @@ import next from "../../icons/next.svg";
 import CustomSelect from "../global/CustomSelect";
 
 const CardStage3 = ({ setStage }) => {
+  const [inputValid, setInputValid] = useState({
+    region: false,
+    affiliate: false,
+    date: false,
+    time: false,
+    code: false,
+  });
+  const [btnEnabled, setBtnEnabled] = useState(false);
+
+  useEffect(() => {
+    if (
+      inputValid.region &&
+      inputValid.affiliate &&
+      inputValid.date &&
+      inputValid.time &&
+      inputValid.code
+    ) {
+      setBtnEnabled(true);
+    } else {
+      setBtnEnabled(false);
+    }
+  }, [inputValid]);
+
   return (
     <section className="card-stage-3">
       <form>
@@ -28,8 +51,9 @@ const CardStage3 = ({ setStage }) => {
               elName={"card-3-select-el"}
               name={"region"}
               placeholder="Выберите регион"
-
-              // stateSetter={setInputValid}
+              stateSetter={(state) =>
+                setInputValid({ ...inputValid, region: state })
+              }
             />
           </div>
           <div className="input-block">
@@ -43,7 +67,9 @@ const CardStage3 = ({ setStage }) => {
               elName={"card-3-select-el"}
               name={"affiliate"}
               placeholder="Выберите филиал"
-              // stateSetter={setInputValid}
+              stateSetter={(state) =>
+                setInputValid({ ...inputValid, affiliate: state })
+              }
             />
           </div>
           <div className="input-block">
@@ -56,6 +82,13 @@ const CardStage3 = ({ setStage }) => {
               id="date"
               name="date"
               max={getDate(18)}
+              onChange={(e) => {
+                if (e.target.value !== "") {
+                  setInputValid({ ...inputValid, date: true });
+                } else {
+                  setInputValid({ ...inputValid, date: false });
+                }
+              }}
             />
           </div>
           <div className="input-block">
@@ -69,7 +102,9 @@ const CardStage3 = ({ setStage }) => {
               elName={"card-3-select-el"}
               name={"time"}
               placeholder="Выберите время"
-              // stateSetter={setInputValid}
+              stateSetter={(state) =>
+                setInputValid({ ...inputValid, time: state })
+              }
             />
           </div>
           <div className="input-block">
@@ -81,6 +116,13 @@ const CardStage3 = ({ setStage }) => {
               id="code"
               name="code"
               placeholder="amanamanow12"
+              onChange={(e) => {
+                if (e.target.value !== "") {
+                  setInputValid({ ...inputValid, code: true });
+                } else {
+                  setInputValid({ ...inputValid, code: false });
+                }
+              }}
             />
           </div>
         </div>
@@ -98,6 +140,29 @@ const CardStage3 = ({ setStage }) => {
               placeholder="+99365656565"
             />
           </div>
+        </div>
+        <div className="cu-bottom card-stage-3-bottom">
+          <h4>
+            <p>
+              Все поля с символом ( <span>*</span> ) обязательны для заполнения
+            </p>
+            <p>Все поля доожны быть заполненны латиницей</p>
+          </h4>
+          <button
+            type="button"
+            disabled={!btnEnabled}
+            className="sign-btn cu-btn"
+            onClick={() => {
+              setStage(4);
+            }}
+          >
+            <div>
+              <h3>Продолжить</h3>
+              <div className="btn-img">
+                <img src={next} alt="logout" />
+              </div>
+            </div>
+          </button>
         </div>
       </form>
     </section>
