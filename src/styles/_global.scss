@@ -49,3 +49,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   background: url("../icons/calendar.svg") no-repeat;
   border-width: thin;
 }
+
+input::placeholder {
+  color: rgba(195, 195, 195, 0.5);
+}

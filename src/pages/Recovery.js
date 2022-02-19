@@ -35,7 +35,7 @@ const Recovery = () => {
   }, [inputValid]);
 
   useEffect(() => {
-    if (input.input1 == input.input2) {
+    if (input.input1 === input.input2) {
       setInputValid({ ...inputValid, match: true });
     } else {
       setInputValid({ ...inputValid, match: false });
