@@ -2,8 +2,6 @@
 import React, { useState, useEffect } from "react";
 
 // IMPORT VALIDATORS
-import { ValidateEmail } from "../../validators/ValidateEmail";
-import { ValidatePhoneNumber } from "../../validators/ValidatePhoneNumber";
 import { getDate } from "../../helpers/Date";
 
 // IMPORT IMAGES

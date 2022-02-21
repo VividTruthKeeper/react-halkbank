@@ -15,6 +15,7 @@ import { ReactComponent as Lines } from "../../icons/lines.svg";
 import CardStage1 from "../CardStages/CardStage1";
 import CardStage2 from "../CardStages/CardStage2";
 import CardStage3 from "../CardStages/CardStage3";
+import CardStage4 from "../CardStages/CardStage4";
 
 const ModalForm = ({ modalOpen, setModalOpen, stage, setStage }) => {
   return (
@@ -89,6 +90,8 @@ const ModalForm = ({ modalOpen, setModalOpen, stage, setStage }) => {
                 <CardStage2 setStage={setStage} />
               ) : stage === 3 ? (
                 <CardStage3 setStage={setStage} />
+              ) : stage === 4 ? (
+                <CardStage4 setStage={setStage} />
               ) : (
                 ""
               )}
