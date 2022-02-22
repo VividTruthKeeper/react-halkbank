@@ -6,7 +6,16 @@ import { Link } from "react-router-dom";
 import logout from "../../icons/logout.svg";
 import up from "../../icons/clipboard.svg";
 
-const SignForm = ({ setRecoveryOpen, setFormData }) => {
+// IMPORT COMPONENTS
+import Loader from "../../components/global/Loader";
+
+const SignForm = ({
+  setRecoveryOpen,
+  setFormData,
+  error,
+  isLoading,
+  setIsLoading,
+}) => {
   const data = new FormData();
   const [inputValid, setInputValid] = useState({
     login: null,
@@ -40,7 +49,6 @@ const SignForm = ({ setRecoveryOpen, setFormData }) => {
               onChange={(e) => {
                 if (e.target.value !== "") {
                   setInputValid({ ...inputValid, login: e.target.value });
-                  data.append("username", e.target.value);
                 } else {
                   setInputValid({ ...inputValid, login: null });
                 }
@@ -62,6 +70,7 @@ const SignForm = ({ setRecoveryOpen, setFormData }) => {
                 }
               }}
             />
+            {error ? <span>Неверные имя пользователя или пароль</span> : ""}
           </div>
           <div className="captcha">
             <h1>CAPTCHA</h1>
@@ -82,17 +91,22 @@ const SignForm = ({ setRecoveryOpen, setFormData }) => {
             type="button"
             className="sign-btn"
             onClick={() => {
+              setIsLoading(true);
               data.append("username", inputValid.login);
               data.append("password", inputValid.password);
               setFormData(data);
             }}
           >
-            <div>
-              <h3>Войти</h3>
-              <div className="btn-img">
-                <img src={logout} alt="logout" />
+            {isLoading ? (
+              <Loader />
+            ) : (
+              <div>
+                <h3>Войти</h3>
+                <div className="btn-img">
+                  <img src={logout} alt="logout" />
+                </div>
               </div>
-            </div>
+            )}
           </button>
           <Link to="/sign-up" className="sign-btn reg-btn">
             <div>

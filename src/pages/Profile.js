@@ -199,7 +199,7 @@ const Profile = () => {
                 <input
                   type="text"
                   id="mobile"
-                  defaultValue={"+99365656565"}
+                  defaultValue={"865656565"}
                   onChange={(e) => {
                     if (ValidatePhoneNumber(e.target.value)) {
                       setInputValid({ ...inputValid, mobile: true });
@@ -214,7 +214,7 @@ const Profile = () => {
                 <input
                   type="text"
                   id="homeTel"
-                  defaultValue={"+99312121212"}
+                  defaultValue={"812121212"}
                   onChange={(e) => {
                     if (ValidatePhoneNumber(e.target.value)) {
                       setInputValid({ ...inputValid, home: true });

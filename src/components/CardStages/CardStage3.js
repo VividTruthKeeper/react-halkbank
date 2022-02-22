@@ -135,7 +135,7 @@ const CardStage3 = ({ setStage }) => {
               type="text"
               id="mobile"
               name="sms-mobile"
-              placeholder="+99365656565"
+              placeholder="865656565"
             />
           </div>
         </div>

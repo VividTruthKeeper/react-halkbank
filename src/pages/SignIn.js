@@ -16,6 +16,8 @@ import SignForm from "../components/sign/SignForm";
 import PasswordRec from "../components/sign/PasswordRec";
 
 const SignIn = () => {
+  const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const checkFirstLoad = useRef(true);
   const postUrl = "http://95.85.124.85:8000/api/login";
   const [formData, setFormData] = useState();
@@ -34,7 +36,7 @@ const SignIn = () => {
     if (checkFirstLoad.current) {
       checkFirstLoad.current = false;
     } else {
-      loginUser(postUrl, formData, setUser, true);
+      loginUser(postUrl, formData, setUser, true, setError, setIsLoading);
     }
   }, [formData]);
   return (
@@ -50,6 +52,9 @@ const SignIn = () => {
           <SignForm
             setRecoveryOpen={setRecoveryOpen}
             setFormData={setFormData}
+            error={error}
+            isLoading={isLoading}
+            setIsLoading={setIsLoading}
           />
         </div>
       </div>

@@ -299,7 +299,7 @@ const RegForm = () => {
                 autoComplete="false"
                 type="text"
                 name="mobile"
-                placeholder="+99365656565"
+                placeholder="865656565"
                 id="mobile"
                 required
                 onChange={(e) => {
@@ -331,7 +331,7 @@ const RegForm = () => {
                 autoComplete="false"
                 type="text"
                 name="hometel"
-                placeholder="+99312121212"
+                placeholder="812121212"
                 id="hometel"
                 required
                 onChange={(e) => {

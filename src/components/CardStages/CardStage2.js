@@ -190,7 +190,7 @@ const CardStage2 = ({ setStage }) => {
             <input
               type="text"
               id="mobile"
-              defaultValue={"+99365656565"}
+              defaultValue={"865656565"}
               onChange={(e) => {
                 if (ValidatePhoneNumber(e.target.value)) {
                   setInputValid({ ...inputValid, mobile: true });
@@ -202,7 +202,7 @@ const CardStage2 = ({ setStage }) => {
           </div>
           <div className="input-block">
             <label htmlFor="homeTel">Домашний телефон</label>
-            <input type="text" id="homeTel" defaultValue={"+99312121212"} />
+            <input type="text" id="homeTel" defaultValue={"812121212"} />
           </div>
         </div>
         <div className="form-bottom">
