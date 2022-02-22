@@ -1,6 +1,10 @@
 // IMPORT MODULES
-import React from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Routes, Route } from "react-router-dom";
+import { UserContext } from "./backend/UserContext";
+
+// IMPORT FUNCTIONS
+import { getUserInfo } from "./backend/getUserInfo";
 
 // IMPORT STYLES
 import "./styles/style.scss";
@@ -20,20 +24,34 @@ import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
 
 const App = () => {
+  const loginUrl = "http://95.85.124.85:8000/api/me";
+  const [user, setUser] = useState();
+  const providerValue = useMemo(() => ({ user, setUser }), [user, setUser]);
+  useEffect(() => {
+    const userToken = localStorage.getItem("userToken");
+    if (userToken) {
+      getUserInfo(loginUrl, userToken, setUser);
+    }
+  }, []);
   return (
-    <div className="App">
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/home" element={<Home ChildEl={Base} />} />
-        <Route path="/home/cards" element={<Home ChildEl={Cards} />} />
-        <Route path="/home/credits" element={<Home ChildEl={Credits} />} />
-        <Route path="/home/contact-us" element={<Home ChildEl={ContactUs} />} />
-        <Route path="/home/recovery" element={<Home ChildEl={Recovery} />} />
-        <Route path="/home/profile" element={<Home ChildEl={Profile} />} />
-      </Routes>
-    </div>
+    <UserContext.Provider value={providerValue}>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/home" element={<Home ChildEl={Base} />} />
+          <Route path="/home/cards" element={<Home ChildEl={Cards} />} />
+          <Route path="/home/credits" element={<Home ChildEl={Credits} />} />
+          <Route
+            path="/home/contact-us"
+            element={<Home ChildEl={ContactUs} />}
+          />
+          <Route path="/home/recovery" element={<Home ChildEl={Recovery} />} />
+          <Route path="/home/profile" element={<Home ChildEl={Profile} />} />
+        </Routes>
+      </div>
+    </UserContext.Provider>
   );
 };
 

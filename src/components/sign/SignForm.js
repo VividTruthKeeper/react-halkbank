@@ -6,15 +6,16 @@ import { Link } from "react-router-dom";
 import logout from "../../icons/logout.svg";
 import up from "../../icons/clipboard.svg";
 
-const SignForm = ({ setRecoveryOpen }) => {
+const SignForm = ({ setRecoveryOpen, setFormData }) => {
+  const data = new FormData();
   const [inputValid, setInputValid] = useState({
-    login: false,
-    password: false,
+    login: null,
+    password: null,
   });
   const [btnEnabled, setBtnEnabled] = useState(false);
 
   useEffect(() => {
-    if (inputValid.login === true && inputValid.password === true) {
+    if (inputValid.login && inputValid.password) {
       setBtnEnabled(true);
     } else {
       setBtnEnabled(false);
@@ -38,9 +39,10 @@ const SignForm = ({ setRecoveryOpen }) => {
               name="login"
               onChange={(e) => {
                 if (e.target.value !== "") {
-                  setInputValid({ ...inputValid, login: true });
+                  setInputValid({ ...inputValid, login: e.target.value });
+                  data.append("username", e.target.value);
                 } else {
-                  setInputValid({ ...inputValid, login: false });
+                  setInputValid({ ...inputValid, login: null });
                 }
               }}
             />
@@ -54,9 +56,9 @@ const SignForm = ({ setRecoveryOpen }) => {
               id="password"
               onChange={(e) => {
                 if (e.target.value.length >= 8) {
-                  setInputValid({ ...inputValid, password: true });
+                  setInputValid({ ...inputValid, password: e.target.value });
                 } else {
-                  setInputValid({ ...inputValid, password: false });
+                  setInputValid({ ...inputValid, password: null });
                 }
               }}
             />
@@ -75,7 +77,16 @@ const SignForm = ({ setRecoveryOpen }) => {
           </div>
         </div>
         <div className="sign-bottom">
-          <button disabled={!btnEnabled} type="button" className="sign-btn">
+          <button
+            disabled={!btnEnabled}
+            type="button"
+            className="sign-btn"
+            onClick={() => {
+              data.append("username", inputValid.login);
+              data.append("password", inputValid.password);
+              setFormData(data);
+            }}
+          >
             <div>
               <h3>Войти</h3>
               <div className="btn-img">
