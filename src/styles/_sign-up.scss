@@ -5,6 +5,11 @@
   border: 0.1rem solid rgba(229, 229, 229, 1);
   border-radius: 0.5rem;
 
+  .spinner {
+    width: 3rem;
+    height: 3rem;
+  }
+
   form {
     display: flex;
     flex-direction: column;

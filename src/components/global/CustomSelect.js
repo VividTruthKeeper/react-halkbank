@@ -12,6 +12,7 @@ const CustomSelect = ({
   items,
   name,
   stateSetter,
+  eTarget,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
@@ -34,7 +35,11 @@ const CustomSelect = ({
 
   useEffect(() => {
     if (input !== "") {
-      stateSetter(true);
+      if (!eTarget) {
+        stateSetter(true);
+      } else {
+        stateSetter(input);
+      }
     }
 
     return () => null;

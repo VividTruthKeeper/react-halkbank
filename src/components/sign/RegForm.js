@@ -1,5 +1,7 @@
 // IMPORT MODULES
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../backend/UserContext";
 
 // IMPORT IMAGES
 import up from "../../icons/clipboard-white.svg";
@@ -7,6 +9,10 @@ import up from "../../icons/clipboard-white.svg";
 // IMPORT COMPONENTS
 import CustomSelect from "../global/CustomSelect";
 import LogoBg from "../global/LogoBg";
+import Loader from "../global/Loader";
+
+// IMPORT FUNCTIONS
+import { loginUser } from "../../backend/loginUser";
 
 // IMPORT HELPERS
 import { ValidatePassword } from "../../validators/ValidatePassword";
@@ -16,29 +22,37 @@ import { ValidatePhoneNumber } from "../../validators/ValidatePhoneNumber";
 import { getDate } from "../../helpers/Date";
 
 const RegForm = () => {
+  const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const checkFirstLoad = useRef(true);
+  const postUrl = "http://95.85.124.85:8000/api/signup";
+  const form = new FormData();
+  const [formData, setFormData] = useState();
+  const { user, setUser } = useContext(UserContext);
+  const navigate = useNavigate();
   const [passwords, setPasswords] = useState({
     p1: "",
     p2: "",
   });
 
   const [inputValid, setInputValid] = useState({
-    surname: false,
-    name: false,
-    fathers: false,
-    date: false,
-    ppNum: false,
-    ppAddr: false,
-    address: false,
-    email: false,
-    mobileTel: false,
-    homeTel: false,
-    user: false,
-    password: false,
+    surname: null,
+    name: null,
+    fathers: null,
+    date: null,
+    ppNum: null,
+    ppAddr: null,
+    address: null,
+    email: null,
+    mobileTel: null,
+    homeTel: null,
+    user: null,
+    password: null,
     match: false,
   });
 
-  const [ppSerie, setPpSerie] = useState(false);
-  const [ppPrefix, setPpPrefix] = useState(false);
+  const [ppSerie, setPpSerie] = useState(null);
+  const [ppPrefix, setPpPrefix] = useState(null);
 
   const [validateTop, setValidateTop] = useState(false);
   const [validateBottom, setValidateBottom] = useState(false);
@@ -48,7 +62,7 @@ const RegForm = () => {
     if (passwords.p1 === passwords.p2) {
       setInputValid({ ...inputValid, match: true });
     } else {
-      setInputValid({ ...inputValid, match: true });
+      setInputValid({ ...inputValid, match: false });
     }
   }, [passwords]);
 
@@ -76,6 +90,22 @@ const RegForm = () => {
     }
   }, [inputValid, ppSerie, ppPrefix]);
 
+  useEffect(() => {
+    if (checkFirstLoad.current) {
+      checkFirstLoad.current = false;
+    } else {
+      loginUser(postUrl, formData, setUser, true, setError, setIsLoading);
+    }
+  }, [formData]);
+
+  useEffect(() => {
+    if (user) {
+      navigate("/home");
+    } else {
+      navigate("/sign-up");
+    }
+  }, [user]);
+
   return (
     <section className="reg">
       <LogoBg />
@@ -97,9 +127,9 @@ const RegForm = () => {
                 onChange={(e) => {
                   setValidateTop(true);
                   if (e.target.value !== "") {
-                    setInputValid({ ...inputValid, surname: true });
+                    setInputValid({ ...inputValid, surname: e.target.value });
                   } else {
-                    setInputValid({ ...inputValid, surname: false });
+                    setInputValid({ ...inputValid, surname: null });
                   }
                 }}
               />
@@ -118,9 +148,9 @@ const RegForm = () => {
                 onChange={(e) => {
                   setValidateTop(true);
                   if (e.target.value !== "") {
-                    setInputValid({ ...inputValid, name: true });
+                    setInputValid({ ...inputValid, name: e.target.value });
                   } else {
-                    setInputValid({ ...inputValid, name: false });
+                    setInputValid({ ...inputValid, name: null });
                   }
                 }}
               />
@@ -139,9 +169,9 @@ const RegForm = () => {
                 onChange={(e) => {
                   setValidateTop(true);
                   if (e.target.value !== "") {
-                    setInputValid({ ...inputValid, fathers: true });
+                    setInputValid({ ...inputValid, fathers: e.target.value });
                   } else {
-                    setInputValid({ ...inputValid, fathers: false });
+                    setInputValid({ ...inputValid, fathers: null });
                   }
                 }}
               />
@@ -162,9 +192,9 @@ const RegForm = () => {
                 onChange={(e) => {
                   setValidateTop(true);
                   if (e.target.value !== "") {
-                    setInputValid({ ...inputValid, date: true });
+                    setInputValid({ ...inputValid, date: e.target.value });
                   } else {
-                    setInputValid({ ...inputValid, date: false });
+                    setInputValid({ ...inputValid, date: null });
                   }
                 }}
               />
@@ -181,6 +211,7 @@ const RegForm = () => {
                   customId={"serie"}
                   name={"passport-serie"}
                   stateSetter={setPpSerie}
+                  eTarget={true}
                   placeholder="I"
                 />
               </div>
@@ -192,6 +223,7 @@ const RegForm = () => {
                   customId={"reg"}
                   name={"passport-reg"}
                   stateSetter={setPpPrefix}
+                  eTarget={true}
                   placeholder="AŞ"
                 />
               </div>
@@ -209,9 +241,9 @@ const RegForm = () => {
                   onChange={(e) => {
                     setValidateTop(true);
                     if (e.target.value !== "") {
-                      setInputValid({ ...inputValid, ppNum: true });
+                      setInputValid({ ...inputValid, ppNum: e.target.value });
                     } else {
-                      setInputValid({ ...inputValid, ppNum: false });
+                      setInputValid({ ...inputValid, ppNum: null });
                     }
                   }}
                 />
@@ -231,9 +263,9 @@ const RegForm = () => {
                 onChange={(e) => {
                   setValidateTop(true);
                   if (e.target.value !== "") {
-                    setInputValid({ ...inputValid, ppAddr: true });
+                    setInputValid({ ...inputValid, ppAddr: e.target.value });
                   } else {
-                    setInputValid({ ...inputValid, ppAddr: false });
+                    setInputValid({ ...inputValid, ppAddr: null });
                   }
                 }}
               />
@@ -252,9 +284,9 @@ const RegForm = () => {
                 onChange={(e) => {
                   setValidateTop(true);
                   if (e.target.value !== "") {
-                    setInputValid({ ...inputValid, address: true });
+                    setInputValid({ ...inputValid, address: e.target.value });
                   } else {
-                    setInputValid({ ...inputValid, address: false });
+                    setInputValid({ ...inputValid, address: null });
                   }
                 }}
               />
@@ -273,9 +305,9 @@ const RegForm = () => {
                 onChange={(e) => {
                   setValidateTop(true);
                   if (ValidateEmail(e.target.value)) {
-                    setInputValid({ ...inputValid, email: true });
+                    setInputValid({ ...inputValid, email: e.target.value });
                   } else {
-                    setInputValid({ ...inputValid, email: false });
+                    setInputValid({ ...inputValid, email: null });
                   }
                 }}
               />
@@ -305,9 +337,9 @@ const RegForm = () => {
                 onChange={(e) => {
                   setValidateTop(true);
                   if (ValidatePhoneNumber(e.target.value)) {
-                    setInputValid({ ...inputValid, mobileTel: true });
+                    setInputValid({ ...inputValid, mobileTel: e.target.value });
                   } else {
-                    setInputValid({ ...inputValid, mobileTel: false });
+                    setInputValid({ ...inputValid, mobileTel: null });
                   }
                 }}
               />
@@ -337,9 +369,9 @@ const RegForm = () => {
                 onChange={(e) => {
                   setValidateTop(true);
                   if (ValidatePhoneNumber(e.target.value)) {
-                    setInputValid({ ...inputValid, homeTel: true });
+                    setInputValid({ ...inputValid, homeTel: e.target.value });
                   } else {
-                    setInputValid({ ...inputValid, homeTel: false });
+                    setInputValid({ ...inputValid, homeTel: null });
                   }
                 }}
               />
@@ -374,9 +406,9 @@ const RegForm = () => {
                 onChange={(e) => {
                   setValidateBottom(true);
                   if (ValidateUserName(e.target.value)) {
-                    setInputValid({ ...inputValid, user: true });
+                    setInputValid({ ...inputValid, user: e.target.value });
                   } else {
-                    setInputValid({ ...inputValid, user: false });
+                    setInputValid({ ...inputValid, user: null });
                   }
                 }}
               />
@@ -406,9 +438,9 @@ const RegForm = () => {
                   setValidateBottom(true);
                   setPasswords({ ...passwords, p1: e.target.value });
                   if (ValidatePassword(e.target.value)) {
-                    setInputValid({ ...inputValid, password: true });
+                    setInputValid({ ...inputValid, password: e.target.value });
                   } else {
-                    setInputValid({ ...inputValid, password: false });
+                    setInputValid({ ...inputValid, password: null });
                   }
                 }}
               />
@@ -461,13 +493,39 @@ const RegForm = () => {
             Все поля с символом ( <span>*</span> ) обязательны для заполнения
             Все поля доожны быть заполненны латиницей
           </h2>
-          <button type="button" disabled={!btnEnabled} className="sign-btn">
-            <div>
-              <h3>Зарегистрироваться</h3>
-              <div className="btn-img">
-                <img src={up} alt="logout" />
+          <button
+            type="button"
+            disabled={!btnEnabled}
+            className="sign-btn"
+            onClick={() => {
+              form.append("email", inputValid.email);
+              form.append("password", inputValid.password);
+              form.append("password_confirmation", inputValid.password);
+              form.append("surname", inputValid.surname);
+              form.append("name", inputValid.name);
+              form.append("middle_name", inputValid.fathers);
+              form.append("username", inputValid.user);
+              form.append("date_birth", inputValid.date);
+              form.append("address_residence", inputValid.address);
+              form.append("mobile_phone", inputValid.mobileTel);
+              form.append("place_passport", inputValid.ppAddr);
+              form.append(
+                "passport",
+                `${inputValid.ppSerie}-${inputValid.ppPrefix}-${inputValid.ppNum}`
+              );
+              setFormData(form);
+            }}
+          >
+            {isLoading ? (
+              <Loader />
+            ) : (
+              <div>
+                <h3>Зарегистрироваться</h3>
+                <div className="btn-img">
+                  <img src={up} alt="logout" />
+                </div>
               </div>
-            </div>
+            )}
           </button>
         </div>
       </form>
