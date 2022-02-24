@@ -1,6 +1,7 @@
 // IMPORT MODULES
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../backend/UserContext";
 
 // IMPORT IMAGES
 import logout from "../icons/logout.svg";
@@ -13,6 +14,7 @@ import Footer from "../components/global/Footer";
 import TitleGrid from "../components/main/TitleGrid";
 
 const Main = () => {
+  const { user } = useContext(UserContext);
   return (
     <section className="main">
       <Nav />
@@ -23,7 +25,7 @@ const Main = () => {
               <h1>Личный кабинет</h1>
             </div>
             <div className="main-head__right">
-              <Link to="/sign-in">
+              <Link to={user ? "/home" : "/sign-in"}>
                 <h3>Физическое лицо</h3>
                 <div className="logout">
                   <img src={logout} alt="logout" />

@@ -1,21 +1,30 @@
 // IMPORT MODULES
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../backend/UserContext";
+
+// IMPORT COMPONENTS
+import Loader from "./Loader";
 
 // IMPORT IMAGES
 import hb from "../../images/logo.jpg";
 import lang from "../../icons/lang.svg";
 import arrow from "../../icons/arrow-down.svg";
 import menu from "../../icons/menu.svg";
-import user from "../../icons/user.svg";
+import userImg from "../../icons/user.svg";
 
 const LoggedNav = ({ setSideOpen }) => {
+  const { user } = useContext(UserContext);
   const handleLanguage = (lang) => {
     setLanguage(lang);
   };
-
   const [langOpen, setLangOpen] = useState(false);
   const [language, setLanguage] = useState("РУС");
+  // const [userData, setUserData] = useState(user);
+  // useEffect(() => {
+  //   setUserData(user);
+  // }, [user]);
+
   return (
     <nav className="nav logged-nav">
       <div className="container">
@@ -86,9 +95,19 @@ const LoggedNav = ({ setSideOpen }) => {
             </ul>
             <div className="user">
               <div className="user-img">
-                <img src={user} alt="user" />
+                <img src={userImg} alt="user" />
               </div>
-              <h4>Аман Аманов</h4>
+              <h4>
+                {user ? (
+                  user.name ? (
+                    `${user.name} ${user.surname}`
+                  ) : (
+                    <Loader />
+                  )
+                ) : (
+                  <Loader />
+                )}
+              </h4>
               <div className="user-arrow">
                 <img src={arrow} alt="arrow" />
               </div>

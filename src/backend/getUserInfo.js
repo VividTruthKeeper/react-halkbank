@@ -7,9 +7,9 @@ export const getUserInfo = (url, userToken, setState) => {
       return `Failed to fetch user info: ${err}`;
     }
     if (setState) {
-      setState(res.data);
+      setState(res.data.me);
     } else {
-      return res.data;
+      return res.data.me;
     }
   });
 };

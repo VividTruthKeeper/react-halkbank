@@ -33,7 +33,11 @@ const SignForm = ({
 
   return (
     <section className="sign-form">
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
         <div className="sign-top">
           <h2>Вход</h2>
         </div>
@@ -88,7 +92,7 @@ const SignForm = ({
         <div className="sign-bottom">
           <button
             disabled={!btnEnabled}
-            type="button"
+            type="submit"
             className="sign-btn"
             onClick={() => {
               setIsLoading(true);

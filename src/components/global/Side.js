@@ -1,6 +1,8 @@
 // IMPORT MODULES
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../backend/UserContext";
+import { deleteUser } from "../../backend/deleteUser";
 
 // IMPORT IMAGES
 import card from "../../icons/card.svg";
@@ -12,6 +14,7 @@ import user from "../../icons/user-square.svg";
 import arrow from "../../icons/arrow-back.svg";
 
 const Side = ({ sideOpen }) => {
+  const { setUser } = useContext(UserContext);
   const [linkStage, setLinkStage] = useState(0);
 
   const location = window.location.href;
@@ -110,12 +113,18 @@ const Side = ({ sideOpen }) => {
               </Link>
             </li>
             <li>
-              <Link to="/sign-in">
+              <button
+                type="button"
+                onClick={() => {
+                  deleteUser();
+                  setUser(null);
+                }}
+              >
                 <div className="link-img">
                   <img src={quit} alt="link" />
                 </div>
                 <span>Выход</span>
-              </Link>
+              </button>
             </li>
           </ul>
         </div>

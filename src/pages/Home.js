@@ -11,13 +11,12 @@ import Side from "../components/global/Side";
 const Home = ({ ChildEl }) => {
   const [sideOpen, setSideOpen] = useState(false);
   const navigate = useNavigate();
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   useEffect(() => {
     if (!user) {
-      console.log("Сука, что ты делаешь");
       navigate("/sign-in");
     }
-  }, [user]);
+  }, [user, navigate]);
   // CLEANUP FUNCTION
   useEffect(() => {
     return () => null;

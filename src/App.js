@@ -33,6 +33,7 @@ const App = () => {
       getUserInfo(loginUrl, userToken, setUser);
     }
   }, []);
+
   return (
     <UserContext.Provider value={providerValue}>
       <div className="App">

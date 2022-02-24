@@ -1,5 +1,7 @@
 // IMPORT MODULES
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { UserContext } from "../backend/UserContext";
+import { parseDate } from "../helpers/parseDate";
 
 // IMPORT COMPONENTS
 import Breadcrumb from "../components/global/Breadcrumb";
@@ -9,10 +11,11 @@ import { ValidateEmail } from "../validators/ValidateEmail";
 import { ValidatePhoneNumber } from "../validators/ValidatePhoneNumber";
 
 // IMPORT IMAGES
-import user from "../icons/user-black.svg";
+import userImg from "../icons/user-black.svg";
 import change from "../icons/change.svg";
 
 const Profile = () => {
+  const { user } = useContext(UserContext);
   const [inputValid, setInputValid] = useState({
     surname: true,
     name: true,
@@ -49,7 +52,7 @@ const Profile = () => {
   return (
     <section className="profile">
       <Breadcrumb
-        image={user}
+        image={userImg}
         link={"/home/profile"}
         linkTitle={"Данные профиля"}
       />
@@ -79,7 +82,7 @@ const Profile = () => {
                 <input
                   type="text"
                   id="surname"
-                  defaultValue={"Amanow"}
+                  defaultValue={user ? user.surname : ""}
                   onChange={(e) => {
                     if (e.target.value !== "") {
                       setInputValid({ ...inputValid, surname: true });
@@ -94,7 +97,7 @@ const Profile = () => {
                 <input
                   type="text"
                   id="name"
-                  defaultValue={"Aman"}
+                  defaultValue={user ? user.name : ""}
                   onChange={(e) => {
                     if (e.target.value !== "") {
                       setInputValid({ ...inputValid, name: true });
@@ -109,7 +112,7 @@ const Profile = () => {
                 <input
                   type="text"
                   id="fathers"
-                  defaultValue={"Amanowic"}
+                  defaultValue={user ? user.middle_name : ""}
                   onChange={(e) => {
                     if (e.target.value !== "") {
                       setInputValid({ ...inputValid, fathers: true });
@@ -124,7 +127,8 @@ const Profile = () => {
                 <input
                   type="date"
                   id="date"
-                  defaultValue={"1990-02-20"}
+                  format="dd-mm-yyyy"
+                  defaultValue={user ? parseDate(user.date_birth) : ""}
                   onChange={(e) => {
                     if (e.target.value !== "") {
                       setInputValid({ ...inputValid, date: true });
@@ -139,7 +143,7 @@ const Profile = () => {
                 <input
                   type="text"
                   id="passport"
-                  defaultValue={"I-AŞ 212121"}
+                  defaultValue={user ? user.passport : ""}
                   onChange={(e) => {
                     if (e.target.value !== "") {
                       setInputValid({ ...inputValid, passport: true });
@@ -154,7 +158,7 @@ const Profile = () => {
                 <input
                   type="text"
                   id="p-address"
-                  defaultValue={"Kopetdag etrapyň häkimliki"}
+                  defaultValue={user ? user.place_passport : ""}
                   onChange={(e) => {
                     if (e.target.value !== "") {
                       setInputValid({ ...inputValid, p_address: true });
@@ -169,7 +173,7 @@ const Profile = () => {
                 <input
                   type="text"
                   id="address"
-                  defaultValue={"Parahat 3/1, j.16, k.5"}
+                  defaultValue={user ? user.address_residence : ""}
                   onChange={(e) => {
                     if (e.target.value !== "") {
                       setInputValid({ ...inputValid, address: true });
@@ -184,7 +188,7 @@ const Profile = () => {
                 <input
                   type="email"
                   id="mail"
-                  defaultValue={"amanamanow@gmail.com"}
+                  defaultValue={user ? user.email : ""}
                   onChange={(e) => {
                     if (ValidateEmail(e.target.value)) {
                       setInputValid({ ...inputValid, mail: true });
@@ -199,7 +203,7 @@ const Profile = () => {
                 <input
                   type="text"
                   id="mobile"
-                  defaultValue={"865656565"}
+                  defaultValue={user ? user.mobile_phone : ""}
                   onChange={(e) => {
                     if (ValidatePhoneNumber(e.target.value)) {
                       setInputValid({ ...inputValid, mobile: true });
@@ -214,7 +218,7 @@ const Profile = () => {
                 <input
                   type="text"
                   id="homeTel"
-                  defaultValue={"812121212"}
+                  defaultValue={user ? user.home_phone : ""}
                   onChange={(e) => {
                     if (ValidatePhoneNumber(e.target.value)) {
                       setInputValid({ ...inputValid, home: true });

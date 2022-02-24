@@ -1,17 +1,35 @@
 // IMPORT MODULES
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { UserContext } from "../backend/UserContext";
 
 // IMPORT COMPONENTS
 import Breadcrumb from "../components/global/Breadcrumb";
+import Loader from "../components/global/Loader";
 
 const Base = () => {
+  const { user } = useContext(UserContext);
+  // const [userData, setUserData] = useState(user);
+  // useEffect(() => {
+  //   setUserData(user);
+  // }, [user]);
   return (
     <section className="cards">
       <Breadcrumb />
       <div className="container">
         <div className="cards-inner">
           <h2 className="cards-title">
-            Добро пожаловать, <span id="user">Aman Amanow</span>
+            Добро пожаловать,{" "}
+            <span id="user">
+              {user ? (
+                user.name ? (
+                  `${user.name} ${user.surname}`
+                ) : (
+                  <Loader />
+                )
+              ) : (
+                <Loader />
+              )}
+            </span>
           </h2>
           <table className="home-table">
             <tbody>

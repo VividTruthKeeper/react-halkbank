@@ -61,7 +61,12 @@
       }
     }
     h2,
-    a {
+    a,
+    button {
+      width: 100%;
+      cursor: pointer;
+      border: none;
+      background: transparent;
       display: flex;
       gap: 1.6rem;
       font-size: 1.6rem;
@@ -73,6 +78,11 @@
         overflow: hidden;
         text-overflow: ellipsis;
       }
+    }
+
+    h2 {
+      background: $dark-green;
+      cursor: default;
     }
   }
 }

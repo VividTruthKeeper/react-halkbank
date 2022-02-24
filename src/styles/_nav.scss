@@ -138,6 +138,11 @@
 // LOGGED ON
 .logged-nav {
   padding-bottom: 0;
+
+  .spinner {
+    height: 3rem;
+    width: 3rem;
+  }
 }
 
 .nav-menu {
