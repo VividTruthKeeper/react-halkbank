@@ -1,5 +1,5 @@
 // IMPORT MODULES
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../backend/UserContext";
 
@@ -20,10 +20,6 @@ const LoggedNav = ({ setSideOpen }) => {
   };
   const [langOpen, setLangOpen] = useState(false);
   const [language, setLanguage] = useState("РУС");
-  // const [userData, setUserData] = useState(user);
-  // useEffect(() => {
-  //   setUserData(user);
-  // }, [user]);
 
   return (
     <nav className="nav logged-nav">

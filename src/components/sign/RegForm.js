@@ -104,12 +104,13 @@ const RegForm = () => {
     } else {
       navigate("/sign-up");
     }
-  }, [user]);
+  }, [user, navigate]);
 
   return (
     <section className="reg">
       <LogoBg />
       <form>
+        {isLoading ? <Loader /> : ""}
         <div className="reg-top">
           <h2 className="reg-title">Регистрация</h2>
           <div className="reg-input-wrapper">
@@ -487,6 +488,11 @@ const RegForm = () => {
             </div>
           </div>
         </div>
+        {error ? (
+          <h3 className="error">Произошла ошибка, повторите попытку позже</h3>
+        ) : (
+          ""
+        )}
         <div className="reg-btns">
           <h1>CAPTCHA</h1>
           <h2>
@@ -514,18 +520,15 @@ const RegForm = () => {
                 `${inputValid.ppSerie}-${inputValid.ppPrefix}-${inputValid.ppNum}`
               );
               setFormData(form);
+              setIsLoading(true);
             }}
           >
-            {isLoading ? (
-              <Loader />
-            ) : (
-              <div>
-                <h3>Зарегистрироваться</h3>
-                <div className="btn-img">
-                  <img src={up} alt="logout" />
-                </div>
+            <div>
+              <h3>Зарегистрироваться</h3>
+              <div className="btn-img">
+                <img src={up} alt="logout" />
               </div>
-            )}
+            </div>
           </button>
         </div>
       </form>
