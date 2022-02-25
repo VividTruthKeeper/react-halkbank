@@ -48,7 +48,6 @@ const Profile = () => {
       setBtnEnabled(false);
     }
   }, [inputValid]);
-
   return (
     <section className="profile">
       <Breadcrumb
@@ -127,8 +126,7 @@ const Profile = () => {
                 <input
                   type="date"
                   id="date"
-                  format="dd-mm-yyyy"
-                  defaultValue={user ? parseDate(user.date_birth) : ""}
+                  defaultValue={user ? user.date_birth : ""}
                   onChange={(e) => {
                     if (e.target.value !== "") {
                       setInputValid({ ...inputValid, date: true });

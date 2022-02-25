@@ -211,7 +211,9 @@ const RegForm = () => {
                   elName={"select-el"}
                   customId={"serie"}
                   name={"passport-serie"}
-                  stateSetter={setPpSerie}
+                  stateSetter={(e) => {
+                    setPpSerie(e);
+                  }}
                   eTarget={true}
                   placeholder="I"
                 />
@@ -223,7 +225,9 @@ const RegForm = () => {
                   elName={"select-el"}
                   customId={"reg"}
                   name={"passport-reg"}
-                  stateSetter={setPpPrefix}
+                  stateSetter={(e) => {
+                    setPpPrefix(e);
+                  }}
                   eTarget={true}
                   placeholder="AŞ"
                 />
@@ -489,7 +493,15 @@ const RegForm = () => {
           </div>
         </div>
         {error ? (
-          <h3 className="error">Произошла ошибка, повторите попытку позже</h3>
+          error === "The email has already been taken." ? (
+            <h3 className="error">
+              Этот адресс электронной почты уже используется
+            </h3>
+          ) : error === "The username has already been taken." ? (
+            <h3 className="error">Это имя пользователя уже используется</h3>
+          ) : (
+            ""
+          )
         ) : (
           ""
         )}
@@ -514,10 +526,11 @@ const RegForm = () => {
               form.append("date_birth", inputValid.date);
               form.append("address_residence", inputValid.address);
               form.append("mobile_phone", inputValid.mobileTel);
+              form.append("home_phone", inputValid.homeTel);
               form.append("place_passport", inputValid.ppAddr);
               form.append(
                 "passport",
-                `${inputValid.ppSerie}-${inputValid.ppPrefix}-${inputValid.ppNum}`
+                `${ppSerie}-${ppPrefix}-${inputValid.ppNum}`
               );
               setFormData(form);
               setIsLoading(true);

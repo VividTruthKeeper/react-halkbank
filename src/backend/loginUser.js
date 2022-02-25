@@ -18,8 +18,8 @@ export const loginUser = (
         localStorage.setItem("userToken", res.data.token);
       }
     })
-    .catch(() => {
-      setError(true);
+    .catch((err) => {
+      setError(err.response.data.error);
       setIsLoading(false);
     });
 };

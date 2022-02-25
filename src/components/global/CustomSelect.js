@@ -34,16 +34,14 @@ const CustomSelect = ({
   }, []);
 
   useEffect(() => {
-    if (input !== "") {
-      if (!eTarget) {
-        stateSetter(true);
-      } else {
-        stateSetter(input);
-      }
+    if (!eTarget) {
+      stateSetter(true);
+    } else {
+      stateSetter(input);
     }
 
     return () => null;
-  }, [input]);
+  }, [input, eTarget, stateSetter]);
   return (
     <div className="custom-select">
       <input

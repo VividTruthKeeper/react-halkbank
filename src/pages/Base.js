@@ -1,5 +1,5 @@
 // IMPORT MODULES
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { UserContext } from "../backend/UserContext";
 
 // IMPORT COMPONENTS
@@ -8,10 +8,6 @@ import Loader from "../components/global/Loader";
 
 const Base = () => {
   const { user } = useContext(UserContext);
-  // const [userData, setUserData] = useState(user);
-  // useEffect(() => {
-  //   setUserData(user);
-  // }, [user]);
   return (
     <section className="cards">
       <Breadcrumb />
