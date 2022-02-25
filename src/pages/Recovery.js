@@ -1,8 +1,10 @@
 // IMPORT MODULES
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { UserContext } from "../backend/UserContext";
 
 // IMPORT COMPONENTS
 import Breadcrumb from "../components/global/Breadcrumb";
+import Loader from "../components/global/Loader";
 
 // IMPORT IMAGES
 import recovery from "../icons/recovery.svg";
@@ -13,6 +15,7 @@ import eye from "../icons/eye.svg";
 import { ValidatePassword } from "../validators/ValidatePassword";
 
 const Recovery = () => {
+  const { user } = useContext(UserContext);
   const [isPassword, setIsPassword] = useState(true);
   const [inputValid, setInputValid] = useState({
     old: false,
@@ -55,85 +58,102 @@ const Recovery = () => {
         linkTitle={"Смена пароля"}
       />
       <div className="container">
-        <div className="p-recovery-inner">
-          <form>
-            <div className="cu-bottom p-recovery-title">
-              <h2>Поменять пароль</h2>
-              <button
-                type="button"
-                disabled={!btnEnabled}
-                className="sign-btn cu-btn"
-              >
-                <div>
-                  <div className="btn-img">
-                    <img src={change} alt="logout" />
+        {user ? (
+          user.is_activated ? (
+            <div className="p-recovery-inner">
+              <form>
+                <div className="cu-bottom p-recovery-title">
+                  <h2>Поменять пароль</h2>
+                  <button
+                    type="button"
+                    disabled={!btnEnabled}
+                    className="sign-btn cu-btn"
+                  >
+                    <div>
+                      <div className="btn-img">
+                        <img src={change} alt="logout" />
+                      </div>
+                      <h3>Сохранить изменения</h3>
+                    </div>
+                  </button>
+                </div>
+                <div className="p-recovery-content">
+                  <div className="input-block rel-block">
+                    <label htmlFor="old-p">Старый пароль</label>
+                    <input
+                      type={isPassword ? "password" : "text"}
+                      id="old-p"
+                      autoComplete="true"
+                    />
+                    <div
+                      className="p-input-img"
+                      onClick={(e) => {
+                        console.log(e.target);
+                        setIsPassword(!isPassword);
+                      }}
+                    >
+                      <img src={eye} alt="reveal/hide" />
+                    </div>
                   </div>
-                  <h3>Сохранить изменения</h3>
+                  <div className="input-block">
+                    <label htmlFor="new-p">Новый пароль</label>
+                    <input
+                      autoComplete="false"
+                      type={isPassword ? "password" : "text"}
+                      id="new-p"
+                      onChange={(e) => {
+                        setInput({ ...input, input1: e.target.value });
+                      }}
+                    />
+                    {inputValid.validate ? (
+                      <span
+                        className={
+                          inputValid.new ? "pass-check" : "pass-check active"
+                        }
+                      >
+                        Пароль должен содержать не менее 1 цифры, 1 заглавной и
+                        1 прописной буквы, 1 особого знака, и быть не менее 8 и
+                        не более 15 символов в длину.
+                      </span>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                  <div className="input-block">
+                    <label htmlFor="confirm-p">Повторите новый пароль</label>
+                    <input
+                      autoComplete="false"
+                      type={isPassword ? "password" : "text"}
+                      id="confirm-p"
+                      onChange={(e) => {
+                        setInputValid({ ...inputValid, validate: true });
+                        setInput({ ...input, input2: e.target.value });
+                      }}
+                    />
+                    {inputValid.validate ? (
+                      <span
+                        className={
+                          inputValid.match ? "pass-check" : "pass-check active"
+                        }
+                      >
+                        Пароли должны совпадать
+                      </span>
+                    ) : (
+                      ""
+                    )}
+                  </div>
                 </div>
-              </button>
+              </form>
             </div>
-            <div className="p-recovery-content">
-              <div className="input-block rel-block">
-                <label htmlFor="old-p">Старый пароль</label>
-                <input type={isPassword ? "password" : "text"} id="old-p" />
-                <div
-                  className="p-input-img"
-                  onClick={(e) => {
-                    console.log(e.target);
-                    setIsPassword(!isPassword);
-                  }}
-                >
-                  <img src={eye} alt="reveal/hide" />
-                </div>
-              </div>
-              <div className="input-block">
-                <label htmlFor="new-p">Новый пароль</label>
-                <input
-                  type={isPassword ? "password" : "text"}
-                  id="new-p"
-                  onChange={(e) => {
-                    setInput({ ...input, input1: e.target.value });
-                  }}
-                />
-                {inputValid.validate ? (
-                  <span
-                    className={
-                      inputValid.new ? "pass-check" : "pass-check active"
-                    }
-                  >
-                    Пароль должен содержать не менее 1 цифры, 1 заглавной и 1
-                    прописной буквы, 1 особого знака, и быть не менее 8 и не
-                    более 15 символов в длину.
-                  </span>
-                ) : (
-                  ""
-                )}
-              </div>
-              <div className="input-block">
-                <label htmlFor="confirm-p">Повторите новый пароль</label>
-                <input
-                  type={isPassword ? "password" : "text"}
-                  id="confirm-p"
-                  onChange={(e) => {
-                    setInputValid({ ...inputValid, validate: true });
-                    setInput({ ...input, input2: e.target.value });
-                  }}
-                />
-                {inputValid.validate ? (
-                  <span
-                    className={
-                      inputValid.match ? "pass-check" : "pass-check active"
-                    }
-                  >
-                    Пароли должны совпадать
-                  </span>
-                ) : (
-                  ""
-                )}
-              </div>
-            </div>
-          </form>
-        </div>
+          ) : (
+            <h2>
+              Чтобы поменять пароль ваш аккаунт должен быть активирован.
+              Пожалуйста, попробуйте позже
+            </h2>
+          )
+        ) : (
+          <Loader />
+        )}
       </div>
     </section>
   );

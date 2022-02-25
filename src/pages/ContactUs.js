@@ -4,13 +4,21 @@ import React, { useState, useEffect } from "react";
 // IMPORT COMPONENTS
 import CustomSelect from "../components/global/CustomSelect";
 import Breadcrumb from "../components/global/Breadcrumb";
+import Loader from "../components/global/Loader";
+
+// IMPORT FUNCTIONS
+import { sendMessage } from "../backend/sendMessage";
 
 // IMPORT IMAGES
 import mail from "../icons/mail-black.svg";
 import send from "../icons/send.svg";
 
 const ContactUs = () => {
+  const token = localStorage.getItem("userToken");
+  const postUrl = "http://95.85.124.85:8000/api/message";
+  const formData = new FormData();
   const [topic, setTopic] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [inputValid, setInputValid] = useState({
     message: false,
   });
@@ -33,49 +41,73 @@ const ContactUs = () => {
       <div className="container">
         <div className="contact-us-inner">
           <h2 className="cu-title">Написать письмо</h2>
-          <form>
-            <div className="input-block">
-              <label htmlFor="topic">Тема письма</label>
-              <CustomSelect
-                placeholder={"Выберите тему письма"}
-                name={"topic"}
-                items={["Пластиковые карты", "Кредиты"]}
-                stateSetter={setTopic}
-                customId={"topic"}
-                elName={"topic"}
-              />
-            </div>
-            <div className="input-block">
-              <label htmlFor="msg">Сообщение</label>
-              <textarea
-                name="msg"
-                id="msg"
-                rows="10"
-                placeholder="Ваше сообщение"
-                onChange={(e) => {
-                  if (e.target.value !== "") {
-                    setInputValid({ ...inputValid, message: true });
-                  } else {
-                    setInputValid({ ...inputValid, message: false });
-                  }
-                }}
-              ></textarea>
-            </div>
-            <div className="cu-bottom">
-              <h1>CAPTCHA</h1>
-              <button
-                type="button"
-                disabled={!btnEnabled}
-                className="sign-btn cu-btn"
-              >
-                <div>
-                  <h3>Отправить письмо</h3>
-                  <div className="btn-img">
-                    <img src={send} alt="logout" />
-                  </div>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+            }}
+          >
+            {isLoading ? (
+              <Loader />
+            ) : (
+              <div className="form-wrapper">
+                <div className="input-block">
+                  <label htmlFor="topic">Тема письма</label>
+                  <CustomSelect
+                    placeholder={"Выберите тему письма"}
+                    name={"topic"}
+                    items={["Пластиковые карты", "Кредиты"]}
+                    stateSetter={(e) => {
+                      setTopic(e);
+                    }}
+                    eTarget={true}
+                    customId={"topic"}
+                    elName={"topic"}
+                  />
                 </div>
-              </button>
-            </div>
+                <div className="input-block">
+                  <label htmlFor="msg">Сообщение</label>
+                  <textarea
+                    name="msg"
+                    id="msg"
+                    rows="10"
+                    placeholder="Ваше сообщение"
+                    onChange={(e) => {
+                      if (e.target.value !== "") {
+                        setInputValid({
+                          ...inputValid,
+                          message: e.target.value,
+                        });
+                      } else {
+                        setInputValid({ ...inputValid, message: false });
+                      }
+                    }}
+                  ></textarea>
+                </div>
+                <div className="cu-bottom">
+                  <h1>CAPTCHA</h1>
+                  <button
+                    type="submit"
+                    disabled={!btnEnabled}
+                    className="sign-btn cu-btn"
+                    onClick={() => {
+                      formData.append("subject", topic);
+                      formData.append("message", inputValid.message);
+                      sendMessage(postUrl, token, formData, (e) => {
+                        setIsLoading(e);
+                      });
+                      setIsLoading(true);
+                    }}
+                  >
+                    <div>
+                      <h3>Отправить письмо</h3>
+                      <div className="btn-img">
+                        <img src={send} alt="logout" />
+                      </div>
+                    </div>
+                  </button>
+                </div>
+              </div>
+            )}
           </form>
         </div>
       </div>

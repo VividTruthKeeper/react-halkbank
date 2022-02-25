@@ -1,7 +1,6 @@
 // IMPORT MODULES
 import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../backend/UserContext";
-import { parseDate } from "../helpers/parseDate";
 
 // IMPORT COMPONENTS
 import Breadcrumb from "../components/global/Breadcrumb";
@@ -32,16 +31,16 @@ const Profile = () => {
 
   useEffect(() => {
     if (
-      inputValid.surname &&
-      inputValid.name &&
-      inputValid.fathers &&
-      inputValid.date &&
-      inputValid.passport &&
-      inputValid.p_address &&
-      inputValid.address &&
-      inputValid.mail &&
-      inputValid.mobile &&
-      inputValid.home
+      inputValid.surname === true &&
+      inputValid.name === true &&
+      inputValid.fathers === true &&
+      inputValid.date === true &&
+      inputValid.passport === true &&
+      inputValid.p_address === true &&
+      inputValid.address === true &&
+      inputValid.mail === true &&
+      inputValid.mobile === true &&
+      inputValid.home === true
     ) {
       setBtnEnabled(true);
     } else {
