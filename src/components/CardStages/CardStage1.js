@@ -21,7 +21,10 @@ const CardStage1 = ({ setStage }) => {
             blockName={"card-1-select"}
             elName={"card-1-select-el"}
             name={"card-type"}
-            stateSetter={setInputValid}
+            stateSetter={(e) => {
+              setInputValid(e);
+            }}
+            eTarget={true}
             placeholder="Вид карты"
           />
         </div>

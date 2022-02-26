@@ -1,5 +1,6 @@
 // IMPORT MODULES
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { UserContext } from "../../backend/UserContext";
 
 // IMPORT IMAGES
 import exit from "../../icons/exit.svg";
@@ -16,8 +17,53 @@ import CardStage1 from "../CardStages/CardStage1";
 import CardStage2 from "../CardStages/CardStage2";
 import CardStage3 from "../CardStages/CardStage3";
 import CardStage4 from "../CardStages/CardStage4";
+import CardStage6 from "../CardStages/CardStage6";
 
 const ModalForm = ({ modalOpen, setModalOpen, stage, setStage }) => {
+  const { user } = useContext(UserContext);
+  const [userInput, setUserInput] = useState({
+    surname: user ? (user.surname ? user.surname : undefined) : undefined,
+    name: user ? (user.name ? user.name : undefined) : undefined,
+    middle_name: user
+      ? user.middle_name
+        ? user.middle_name
+        : undefined
+      : undefined,
+    date_birth: user
+      ? user.date_birth
+        ? user.date_birth
+        : undefined
+      : undefined,
+    mobile_phone: user
+      ? user.mobile_phone
+        ? user.mobile_phone
+        : undefined
+      : undefined,
+    home_phone: user
+      ? user.home_phone
+        ? user.home_phone
+        : undefined
+      : undefined,
+    email: user ? (user.email ? user.email : undefined) : undefined,
+    sms: undefined,
+    passport: user ? (user.passport ? user.passport : undefined) : undefined,
+    passport_date: undefined,
+    passport_by: user
+      ? user.place_passport
+        ? user.place_passport
+        : undefined
+      : undefined,
+    address: user
+      ? user.address_residence
+        ? user.address_residence
+        : undefined
+      : undefined,
+    region: undefined,
+    selected_card: undefined,
+    affiliation: undefined,
+    selected_time: undefined,
+    code: undefined,
+  });
   return (
     <section className={modalOpen ? "modal active" : "modal"}>
       <div className="modal-container">
@@ -92,6 +138,8 @@ const ModalForm = ({ modalOpen, setModalOpen, stage, setStage }) => {
                 <CardStage3 setStage={setStage} />
               ) : stage === 4 ? (
                 <CardStage4 setStage={setStage} />
+              ) : stage === 6 ? (
+                <CardStage6 setStage={setStage} />
               ) : (
                 ""
               )}

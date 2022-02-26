@@ -41,7 +41,7 @@ const CustomSelect = ({
     }
 
     return () => null;
-  }, [input, eTarget, stateSetter]);
+  }, [input, eTarget]);
   return (
     <div className="custom-select">
       <input

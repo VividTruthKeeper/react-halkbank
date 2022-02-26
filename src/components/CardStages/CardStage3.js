@@ -52,6 +52,7 @@ const CardStage3 = ({ setStage }) => {
               stateSetter={(state) =>
                 setInputValid({ ...inputValid, region: state })
               }
+              eTarget={true}
             />
           </div>
           <div className="input-block">
@@ -68,6 +69,7 @@ const CardStage3 = ({ setStage }) => {
               stateSetter={(state) =>
                 setInputValid({ ...inputValid, affiliate: state })
               }
+              eTarget={true}
             />
           </div>
           <div className="input-block">
@@ -103,6 +105,7 @@ const CardStage3 = ({ setStage }) => {
               stateSetter={(state) =>
                 setInputValid({ ...inputValid, time: state })
               }
+              eTarget={true}
             />
           </div>
           <div className="input-block">

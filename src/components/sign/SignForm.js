@@ -33,6 +33,7 @@ const SignForm = ({
 
   return (
     <section className="sign-form">
+      {isLoading ? <Loader /> : ""}
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -101,16 +102,12 @@ const SignForm = ({
               setFormData(data);
             }}
           >
-            {isLoading ? (
-              <Loader />
-            ) : (
-              <div>
-                <h3>Войти</h3>
-                <div className="btn-img">
-                  <img src={logout} alt="logout" />
-                </div>
+            <div>
+              <h3>Войти</h3>
+              <div className="btn-img">
+                <img src={logout} alt="logout" />
               </div>
-            )}
+            </div>
           </button>
           <Link to="/sign-up" className="sign-btn reg-btn">
             <div>
