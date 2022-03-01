@@ -109,7 +109,11 @@ const RegForm = () => {
   return (
     <section className="reg">
       <LogoBg />
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
         {isLoading ? <Loader /> : ""}
         <div className="reg-top">
           <h2 className="reg-title">Регистрация</h2>
@@ -512,7 +516,7 @@ const RegForm = () => {
             Все поля доожны быть заполненны латиницей
           </h2>
           <button
-            type="button"
+            type="submit"
             disabled={!btnEnabled}
             className="sign-btn"
             onClick={() => {

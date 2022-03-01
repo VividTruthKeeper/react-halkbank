@@ -11,6 +11,9 @@ import { ReactComponent as Img4 } from "../../icons/credit4.svg";
 import { ReactComponent as Img5 } from "../../icons/credit5.svg";
 import { ReactComponent as Img6 } from "../../icons/credit6.svg";
 
+// IMPORT COMPONENTS
+import CreditStage1 from "../CreditStage/CreditStage1";
+
 const CreditModal = ({ modalOpen, setModalOpen, stage, setStage }) => {
   return (
     <section
@@ -80,19 +83,7 @@ const CreditModal = ({ modalOpen, setModalOpen, stage, setStage }) => {
               </div>
             </div>
             <div className="modal-bottom">
-              {/* {stage === 1 ? (
-                <CardStage1 setStage={setStage} />
-              ) : stage === 2 ? (
-                <CardStage2 setStage={setStage} />
-              ) : stage === 3 ? (
-                <CardStage3 setStage={setStage} />
-              ) : stage === 4 ? (
-                <CardStage4 setStage={setStage} />
-              ) : stage === 6 ? (
-                <CardStage6 setStage={setStage} />
-              ) : (
-                ""
-              )} */}
+              {stage === 1 ? <CreditStage1 setStage={setStage} /> : ""}
             </div>
           </div>
         </div>
