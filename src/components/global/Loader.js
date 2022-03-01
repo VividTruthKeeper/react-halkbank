@@ -2,7 +2,6 @@
 import React from "react";
 
 // IMPORT IMAGES
-// import loader from "../../icons/loader.svg";
 import { ReactComponent as Spinner } from "../../icons/loader.svg";
 
 const Loader = () => {

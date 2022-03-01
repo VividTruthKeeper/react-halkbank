@@ -23,20 +23,28 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
 
+// IMPORT COMPONENTS
+import Loader from "./components/global/Loader";
+
 const App = () => {
   const loginUrl = "http://95.85.124.85:8000/api/me";
   const [user, setUser] = useState();
+  const [loaderActive, setLoaderActive] = useState(false);
   const providerValue = useMemo(() => ({ user, setUser }), [user, setUser]);
   useEffect(() => {
     const userToken = localStorage.getItem("userToken");
+    setLoaderActive(true);
     if (userToken) {
-      getUserInfo(loginUrl, userToken, setUser);
+      getUserInfo(loginUrl, userToken, setUser, setLoaderActive);
+    } else {
+      setLoaderActive(false);
     }
   }, []);
 
   return (
     <UserContext.Provider value={providerValue}>
       <div className="App">
+        {loaderActive ? <Loader /> : ""}
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/sign-in" element={<SignIn />} />
