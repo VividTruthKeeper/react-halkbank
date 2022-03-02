@@ -1,26 +1,22 @@
 // IMPORT MODULES
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 // IMPORT COMPONENTS
 import CustomSelect from "../global/CustomSelect";
 
 // IMPORT IMAGES
 import arrow from "../../icons/arrow.svg";
+import next from "../../icons/next.svg";
 
 const CreditStage1 = ({ setStage }) => {
   const [input, setInput] = useState(undefined);
-  const [btn, setBtn] = useState(false);
   const [dropdown, setDropdown] = useState({
     one: true,
     two: false,
   });
   return (
     <section className="cs-1">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
-      >
+      <form>
         <div className="cs-1-top">
           <label htmlFor="credit-type">Выберите вид кредита</label>
           <CustomSelect
@@ -83,9 +79,48 @@ const CreditStage1 = ({ setStage }) => {
               </div>
             </div>
           </div>
-          <div className="data-block docs"></div>
+          <div
+            className="data-block docs"
+            onClick={() => {
+              setDropdown({ ...dropdown, two: !dropdown.two });
+            }}
+          >
+            <div className="data-title">
+              <h4>Требования и документы</h4>
+              <div className="data-img">
+                <img src={arrow} alt="arrow" />
+              </div>
+            </div>
+            <div
+              className={
+                dropdown.two
+                  ? "data-dropdown docs active"
+                  : "data-dropdown docs"
+              }
+            >
+              <h5>Lorem ipsum dolor sit.</h5>
+              <h5 className="left right">Lorem ipsum dolor sit.</h5>
+              <h5>Lorem ipsum dolor sit.</h5>
+            </div>
+          </div>
         </div>
-        <div className="cs-1-bottom"></div>
+        <div className="card-button cs-1-bottom">
+          <button
+            disabled={!input}
+            type="button"
+            className="sign-btn cd-btn"
+            onClick={() => {
+              setStage(2);
+            }}
+          >
+            <div>
+              <h3>Продолжить</h3>
+              <div className="btn-img">
+                <img src={next} alt="logout" />
+              </div>
+            </div>
+          </button>
+        </div>
       </form>
     </section>
   );
