@@ -3,10 +3,12 @@
 }
 
 .p-recovery-title {
+  align-items: center;
   button {
     padding: 2.1rem 3rem;
     max-width: 26.2rem;
     cursor: pointer;
+    max-height: 6rem;
   }
   h2 {
     font-size: 2.2rem;
@@ -39,4 +41,36 @@
     max-width: 34rem;
     width: 100%;
   }
+}
+
+.p-recovery {
+  h2 {
+    padding: 3rem 0;
+    font-weight: normal;
+    font-size: 2.2rem;
+  }
+
+  .spinner {
+    width: 6rem;
+    height: 6rem;
+  }
+  .container {
+    position: relative;
+  }
+  .loader {
+    background: rgba(255, 255, 255, 0.8);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.success {
+  color: $base-green;
+  font-size: 2.2rem;
 }

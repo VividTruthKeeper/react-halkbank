@@ -14,6 +14,10 @@ import { ReactComponent as Img6 } from "../../icons/credit6.svg";
 // IMPORT COMPONENTS
 import CreditStage1 from "../CreditStages/CreditStage1";
 import CreditStage2 from "../CreditStages/CreditStage2";
+import CreditStage3 from "../CreditStages/CreditStage3";
+import CreditStage4 from "../CreditStages/CreditStage4";
+import CreditStage5 from "../CreditStages/CreditStage5";
+import CreditStage6 from "../CreditStages/CreditStage6";
 
 const CreditModal = ({ modalOpen, setModalOpen, stage, setStage }) => {
   return (
@@ -72,7 +76,7 @@ const CreditModal = ({ modalOpen, setModalOpen, stage, setStage }) => {
               </div>
               <div className={stage > 4 ? "icon-block active" : "icon-block"}>
                 <Img5 className="modal-icon" />
-                <h3 className="icon-title">Оплата</h3>
+                <h3 className="icon-title">Требования для кредита</h3>
               </div>
               <div className={stage > 5 ? "line-block active" : "line-block"}>
                 <Lines className="lines" />
@@ -88,6 +92,14 @@ const CreditModal = ({ modalOpen, setModalOpen, stage, setStage }) => {
                 <CreditStage1 setStage={setStage} />
               ) : stage === 2 ? (
                 <CreditStage2 setStage={setStage} />
+              ) : stage === 3 ? (
+                <CreditStage3 setStage={setStage} />
+              ) : stage === 4 ? (
+                <CreditStage4 setStage={setStage} />
+              ) : stage === 5 ? (
+                <CreditStage5 setStage={setStage} />
+              ) : stage === 6 ? (
+                <CreditStage6 setStage={setStage} />
               ) : (
                 ""
               )}

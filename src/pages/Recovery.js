@@ -13,42 +13,36 @@ import eye from "../icons/eye.svg";
 
 // IMPORT VALIDATORS
 import { ValidatePassword } from "../validators/ValidatePassword";
+import { ValidateEmail } from "../validators/ValidateEmail";
+import { changePassword } from "../backend/changePassword";
 
 const Recovery = () => {
-  const { user } = useContext(UserContext);
+  const [success, setSuccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const postUrl = "http://95.85.124.85:8000/api/me";
+  const userToken = localStorage.getItem("userToken");
+  const { user, setUser } = useContext(UserContext);
   const [isPassword, setIsPassword] = useState(true);
+  const [validate, setValidate] = useState(false);
   const [inputValid, setInputValid] = useState({
-    old: false,
+    email: false,
     new: false,
     match: false,
-    validate: false,
   });
   const [btnEnabled, setBtnEnabled] = useState(false);
-  const [input, setInput] = useState({
-    input1: "",
-    input2: "",
-  });
+  const formData = new FormData();
 
   useEffect(() => {
-    if (inputValid.old && inputValid.new && inputValid.match) {
+    if (
+      inputValid.email &&
+      inputValid.new === inputValid.match &&
+      inputValid.new !== ""
+    ) {
       setBtnEnabled(true);
     } else {
       setBtnEnabled(false);
     }
   }, [inputValid]);
-
-  useEffect(() => {
-    if (input.input1 === input.input2) {
-      setInputValid({ ...inputValid, match: true });
-    } else {
-      setInputValid({ ...inputValid, match: false });
-    }
-    if (ValidatePassword(input.input1)) {
-      setInputValid({ ...inputValid, new: true });
-    } else {
-      setInputValid({ ...inputValid, new: false });
-    }
-  }, [input.input1, input.input2]);
 
   return (
     <section className="p-recovery">
@@ -58,6 +52,7 @@ const Recovery = () => {
         linkTitle={"Смена пароля"}
       />
       <div className="container">
+        {isLoading ? <Loader /> : ""}
         {user ? (
           user.is_activated ? (
             <div className="p-recovery-inner">
@@ -68,6 +63,25 @@ const Recovery = () => {
                     type="button"
                     disabled={!btnEnabled}
                     className="sign-btn cu-btn"
+                    onClick={() => {
+                      setIsLoading(true);
+                      formData.append("email", inputValid.email);
+                      formData.append("password", inputValid.new);
+                      formData.append(
+                        "password_confirmation",
+                        inputValid.match
+                      );
+                      changePassword(
+                        postUrl,
+                        formData,
+                        setUser,
+                        true,
+                        userToken,
+                        () => null,
+                        setIsLoading,
+                        setSuccess
+                      );
+                    }}
                   >
                     <div>
                       <div className="btn-img">
@@ -78,34 +92,48 @@ const Recovery = () => {
                   </button>
                 </div>
                 <div className="p-recovery-content">
-                  <div className="input-block rel-block">
-                    <label htmlFor="old-p">Старый пароль</label>
-                    <input
-                      type={isPassword ? "password" : "text"}
-                      id="old-p"
-                      autoComplete="true"
-                    />
-                    <div
-                      className="p-input-img"
-                      onClick={(e) => {
-                        console.log(e.target);
-                        setIsPassword(!isPassword);
-                      }}
-                    >
-                      <img src={eye} alt="reveal/hide" />
-                    </div>
-                  </div>
                   <div className="input-block">
+                    <label htmlFor="email">E-mail</label>
+                    <input
+                      type="text"
+                      id="email"
+                      autoComplete="true"
+                      onChange={(e) => {
+                        if (ValidateEmail(e.target.value)) {
+                          setInputValid({
+                            ...inputValid,
+                            email: e.target.value,
+                          });
+                        } else {
+                          setInputValid({ ...inputValid, email: false });
+                        }
+                      }}
+                    />
+                  </div>
+                  <div className="input-block rel-block">
                     <label htmlFor="new-p">Новый пароль</label>
                     <input
                       autoComplete="false"
                       type={isPassword ? "password" : "text"}
                       id="new-p"
                       onChange={(e) => {
-                        setInput({ ...input, input1: e.target.value });
+                        setValidate(true);
+                        if (ValidatePassword(e.target.value)) {
+                          setInputValid({ ...inputValid, new: e.target.value });
+                        } else {
+                          setInputValid({ ...inputValid, new: false });
+                        }
                       }}
                     />
-                    {inputValid.validate ? (
+                    <div
+                      className="p-input-img"
+                      onClick={() => {
+                        setIsPassword(!isPassword);
+                      }}
+                    >
+                      <img src={eye} alt="reveal/hide" />
+                    </div>
+                    {validate ? (
                       <span
                         className={
                           inputValid.new ? "pass-check" : "pass-check active"
@@ -126,14 +154,16 @@ const Recovery = () => {
                       type={isPassword ? "password" : "text"}
                       id="confirm-p"
                       onChange={(e) => {
-                        setInputValid({ ...inputValid, validate: true });
-                        setInput({ ...input, input2: e.target.value });
+                        setValidate(true);
+                        setInputValid({ ...inputValid, match: e.target.value });
                       }}
                     />
-                    {inputValid.validate ? (
+                    {validate ? (
                       <span
                         className={
-                          inputValid.match ? "pass-check" : "pass-check active"
+                          inputValid.new === inputValid.match
+                            ? "pass-check"
+                            : "pass-check active"
                         }
                       >
                         Пароли должны совпадать
@@ -143,6 +173,11 @@ const Recovery = () => {
                     )}
                   </div>
                 </div>
+                {success ? (
+                  <h1 className="success">Ваш пароль успешно изменен!</h1>
+                ) : (
+                  ""
+                )}
               </form>
             </div>
           ) : (
@@ -152,7 +187,7 @@ const Recovery = () => {
             </h2>
           )
         ) : (
-          <Loader />
+          ""
         )}
       </div>
     </section>

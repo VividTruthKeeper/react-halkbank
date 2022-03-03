@@ -36,6 +36,7 @@ const Credits = () => {
               type="button"
               className="card-btn sign-btn"
               onClick={() => {
+                setStage(1);
                 setModalOpen(true);
               }}
             >
