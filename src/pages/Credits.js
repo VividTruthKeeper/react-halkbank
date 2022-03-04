@@ -19,6 +19,7 @@ const Credits = () => {
       document.body.style.overflowY = "visible";
     }
   }, [modalOpen]);
+  // const [data, setData] = useState();
   return (
     <section className="cards">
       <Breadcrumb image={credit} link={"/home/credits"} linkTitle={"Кредиты"} />

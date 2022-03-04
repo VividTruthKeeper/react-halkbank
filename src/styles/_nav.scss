@@ -176,3 +176,24 @@
     object-fit: contain;
   }
 }
+
+// MEDIA
+
+@media screen and (max-width: 1000px) {
+  .nav-title {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .sign-top {
+    text-align: center;
+    font-size: 2.2rem;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .nav-title {
+    display: none;
+  }
+}

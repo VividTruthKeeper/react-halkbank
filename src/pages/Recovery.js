@@ -56,11 +56,15 @@ const Recovery = () => {
         {user ? (
           user.is_activated ? (
             <div className="p-recovery-inner">
-              <form>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                }}
+              >
                 <div className="cu-bottom p-recovery-title">
                   <h2>Поменять пароль</h2>
                   <button
-                    type="button"
+                    type="submit"
                     disabled={!btnEnabled}
                     className="sign-btn cu-btn"
                     onClick={() => {

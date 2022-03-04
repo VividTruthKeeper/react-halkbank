@@ -32,3 +32,9 @@
   max-width: 23.3rem;
   width: 100%;
 }
+
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}

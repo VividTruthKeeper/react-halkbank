@@ -214,3 +214,31 @@
     display: block;
   }
 }
+
+// MEDIA
+
+@media screen and (max-width: 600px) {
+  .input-block input {
+    font-size: 1.2rem;
+  }
+  .sign-form {
+    padding: 3rem;
+  }
+  .forget h3 {
+    font-size: 1.4rem;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .sign-btn {
+    h3 {
+      font-size: 1.4rem;
+    }
+  }
+  .sign-form form {
+    gap: 2rem;
+  }
+  .sign-in-inner {
+    padding-bottom: 7rem;
+  }
+}

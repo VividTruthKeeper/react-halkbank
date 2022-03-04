@@ -60,7 +60,7 @@ const Profile = () => {
             <div className="form-top">
               <div className="cu-bottom profile-title">
                 <h2 className="profile-title">Данные профиля</h2>
-                <button
+                {/* <button
                   type="button"
                   disabled={!btnEnabled}
                   className="sign-btn cu-btn"
@@ -71,13 +71,14 @@ const Profile = () => {
                     </div>
                     <h3>Сохранить изменения</h3>
                   </div>
-                </button>
+                </button> */}
               </div>
             </div>
             <div className="form-bottom">
               <div className="input-block">
                 <label htmlFor="surname">Фамилия</label>
                 <input
+                  readOnly
                   type="text"
                   id="surname"
                   defaultValue={user ? user.surname : ""}
@@ -93,6 +94,7 @@ const Profile = () => {
               <div className="input-block">
                 <label htmlFor="name">Имя</label>
                 <input
+                  readOnly
                   type="text"
                   id="name"
                   defaultValue={user ? user.name : ""}
@@ -108,6 +110,7 @@ const Profile = () => {
               <div className="input-block">
                 <label htmlFor="fathers">Отчество</label>
                 <input
+                  readOnly
                   type="text"
                   id="fathers"
                   defaultValue={user ? user.middle_name : ""}
@@ -123,6 +126,7 @@ const Profile = () => {
               <div className="input-block">
                 <label htmlFor="date">Дата рождения</label>
                 <input
+                  readOnly
                   type="date"
                   id="date"
                   defaultValue={user ? user.date_birth : ""}
@@ -138,6 +142,7 @@ const Profile = () => {
               <div className="input-block">
                 <label htmlFor="passport">Паспортные данные</label>
                 <input
+                  readOnly
                   type="text"
                   id="passport"
                   defaultValue={user ? user.passport : ""}
@@ -153,6 +158,7 @@ const Profile = () => {
               <div className="input-block">
                 <label htmlFor="p-address">Место выдачи паспорта</label>
                 <input
+                  readOnly
                   type="text"
                   id="p-address"
                   defaultValue={user ? user.place_passport : ""}
@@ -168,6 +174,7 @@ const Profile = () => {
               <div className="input-block">
                 <label htmlFor="address">Адрес проживания</label>
                 <input
+                  readOnly
                   type="text"
                   id="address"
                   defaultValue={user ? user.address_residence : ""}
@@ -183,6 +190,7 @@ const Profile = () => {
               <div className="input-block">
                 <label htmlFor="mail">Электронная почта</label>
                 <input
+                  readOnly
                   type="email"
                   id="mail"
                   defaultValue={user ? user.email : ""}
@@ -198,6 +206,7 @@ const Profile = () => {
               <div className="input-block">
                 <label htmlFor="mobile">Мобильный телефон</label>
                 <input
+                  readOnly
                   type="text"
                   id="mobile"
                   defaultValue={user ? user.mobile_phone : ""}
@@ -213,6 +222,7 @@ const Profile = () => {
               <div className="input-block">
                 <label htmlFor="homeTel">Домашний телефон</label>
                 <input
+                  readOnly
                   type="text"
                   id="homeTel"
                   defaultValue={user ? user.home_phone : ""}

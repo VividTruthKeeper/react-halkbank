@@ -105,3 +105,39 @@
     color: red;
   }
 }
+
+// MEDIA
+
+@media screen and (max-width: 1200px) {
+  .reg-input-wrapper {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .reg-input-wrapper,
+  .reg-btns {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .reg-title {
+    text-align: center;
+    font-size: 1.8rem;
+  }
+
+  .reg {
+    padding: 3rem;
+  }
+
+  .reg-btns h2 {
+    font-size: 1.4rem;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+}

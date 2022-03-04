@@ -167,3 +167,10 @@ input[type="range"]::-ms-fill-upper {
 input[type="range"]:focus::-ms-fill-upper {
   background: $base-green;
 }
+
+// MEDIA
+@media screen and (max-width: 1200px) {
+  .container {
+    padding: 0 3rem;
+  }
+}

@@ -7,7 +7,7 @@ import plus from "../../icons/plus.svg";
 import minus2 from "../../icons/minus-white.svg";
 import plus2 from "../../icons/plus-white.svg";
 import next from "../../icons/next.svg";
-import logo from "../../images/logo-transp.svg";
+import logo from "../../icons/logo-transp.svg";
 
 // IMPORT COMPONENTS
 
