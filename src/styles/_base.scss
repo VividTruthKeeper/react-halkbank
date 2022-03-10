@@ -14,7 +14,8 @@
 
   tr {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, minmax(18rem, 1fr));
+    gap: 3rem;
     padding: 1.7rem 0;
     border: 0.1rem solid #f2f2f2;
     border-top: none;
@@ -31,4 +32,115 @@
 
 .table-head {
   background: #f2f2f2;
+}
+
+// MEDIA
+@media screen and (max-width: 1000px) {
+  .home-table-wrapper {
+    overflow: auto;
+    width: 90rem;
+    margin: 0 auto;
+  }
+  .home-table {
+    overflow-x: hidden;
+    white-space: nowrap;
+
+    tbody {
+      display: table;
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .home-table-wrapper {
+    width: 85rem;
+  }
+
+  .home-table {
+    tr {
+      grid-template-columns: repeat(5, minmax(15rem, 1fr));
+    }
+  }
+}
+
+@media screen and (max-width: 910px) {
+  .home-table-wrapper {
+    width: 80rem;
+  }
+}
+
+@media screen and (max-width: 860px) {
+  .home-table-wrapper {
+    width: 75rem;
+  }
+}
+
+@media screen and (max-width: 810px) {
+  .home-table-wrapper {
+    width: 70rem;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .home-table-wrapper {
+    width: 65rem;
+  }
+  .home-table {
+    tr {
+      gap: 2rem;
+    }
+  }
+}
+
+@media screen and (max-width: 710px) {
+  .home-table-wrapper {
+    width: 60rem;
+  }
+}
+
+@media screen and (max-width: 660px) {
+  .home-table-wrapper {
+    width: 55rem;
+  }
+}
+
+@media screen and (max-width: 610px) {
+  .cards-title {
+    font-size: 1.8rem;
+    padding: 3rem 0;
+  }
+  .home-table-wrapper {
+    width: 50rem;
+  }
+}
+@media screen and (max-width: 560px) {
+  .home-table-wrapper {
+    width: 45rem;
+  }
+}
+@media screen and (max-width: 510px) {
+  .home-table-wrapper {
+    width: 40rem;
+  }
+}
+@media screen and (max-width: 460px) {
+  .home-table-wrapper {
+    width: 35rem;
+  }
+}
+@media screen and (max-width: 410px) {
+  .home-table-wrapper {
+    width: 30rem;
+  }
+}
+@media screen and (max-width: 360px) {
+  .home-table-wrapper {
+    width: 25rem;
+  }
+}
+@media screen and (max-width: 310px) {
+  .home-table-wrapper {
+    width: 20rem;
+  }
 }

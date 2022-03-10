@@ -47,24 +47,26 @@ const Credits = () => {
               <h3>Заполнить заявку</h3>
             </button>
           </div>
-          <table className="home-table">
-            <tbody>
-              <tr className="table-head">
-                <th>ID</th>
-                <th>Тип</th>
-                <th>Дата</th>
-                <th>Статус</th>
-                <th>Действие</th>
-              </tr>
-              <tr>
-                <td>Заявок на кредиты нет</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
+          <div className="home-table-wrapper">
+            <table className="home-table">
+              <tbody>
+                <tr className="table-head">
+                  <th>ID</th>
+                  <th>Тип</th>
+                  <th>Дата</th>
+                  <th>Статус</th>
+                  <th>Действие</th>
+                </tr>
+                <tr>
+                  <td>Заявок на кредиты нет</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </section>

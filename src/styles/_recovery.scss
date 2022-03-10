@@ -74,3 +74,44 @@
   color: $base-green;
   font-size: 2.2rem;
 }
+
+// MEDIA
+
+@media screen and (max-width: 800px) {
+  .p-recovery-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .p-recovery-content {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    .input-block {
+      max-width: unset;
+    }
+  }
+
+  .rel-block {
+    margin-bottom: 1rem;
+    max-height: unset;
+  }
+
+  .p-input-img {
+    top: 37%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .p-input-img {
+    top: 34%;
+  }
+}
+
+@media screen and (max-width: 361px) {
+  .p-input-img {
+    top: 31%;
+  }
+}
