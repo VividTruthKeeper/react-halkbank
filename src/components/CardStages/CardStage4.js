@@ -2,11 +2,12 @@
 import React, { useState, useRef, useEffect } from "react";
 
 // IMPORT COMPONENTS
-import CustomSelect from "../global/CustomSelect";
+// import CustomSelect from "../global/CustomSelect";
 
 // IMPORT IMAGES
 import remove from "../../icons/remove.svg";
 import next from "../../icons/next.svg";
+import arrow from "../../icons/arrow.svg";
 
 const CardStage4 = ({ setStage }) => {
   const [files, setFiles] = useState({
@@ -14,20 +15,20 @@ const CardStage4 = ({ setStage }) => {
     input2: undefined,
     input3: undefined,
   });
-  const [type, setType] = useState(false);
 
   const input1 = useRef();
   const input2 = useRef();
   const input3 = useRef();
   const [btnEnabled, setBtnEnabled] = useState(false);
+  const [dropdown, setDropdown] = useState(false);
 
   useEffect(() => {
-    if (type && (files.input1 || files.input2 || files.input3)) {
+    if (files.input1 && files.input2 && files.input3) {
       setBtnEnabled(true);
     } else {
       setBtnEnabled(false);
     }
-  }, [type, files]);
+  }, [files]);
   return (
     <section className="card-stage-4">
       <form>
@@ -36,18 +37,28 @@ const CardStage4 = ({ setStage }) => {
             Для оформления заявки на получения кредита загрузите требуемые
             документы.
           </h2>
-          <CustomSelect
-            items={["Требования и документы", "Lorem, ipsum dolor."]}
-            placeholder={"Выберите тип документа"}
-            name={"doc-type"}
-            stateSetter={(e) => {
-              setType(e);
+          <div
+            className="data-block docs"
+            onClick={() => {
+              setDropdown(!dropdown);
             }}
-            eTarget={true}
-            customId={"doc-type"}
-            blockName={"cd-4-custom"}
-            elName={"cd-4-custom-el"}
-          />
+          >
+            <div className="data-title">
+              <h4>Требования и документы</h4>
+              <div className="data-img">
+                <img src={arrow} alt="arrow" />
+              </div>
+            </div>
+            <div
+              className={
+                dropdown ? "data-dropdown docs active" : "data-dropdown docs"
+              }
+            >
+              <h5>Lorem ipsum dolor sit.</h5>
+              <h5 className="left right">Lorem ipsum dolor sit.</h5>
+              <h5>Lorem ipsum dolor sit.</h5>
+            </div>
+          </div>
         </div>
         <div className="cd-bottom-4">
           <div className={files.input1 ? "file filled" : "file"}>

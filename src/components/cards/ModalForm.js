@@ -1,5 +1,5 @@
 // IMPORT MODULES
-import React, { useState, useContext } from "react";
+import React, { useState, useContex, useRef } from "react";
 import { UserContext } from "../../backend/UserContext";
 
 // IMPORT IMAGES
@@ -12,6 +12,9 @@ import { ReactComponent as Receipt } from "../../icons/receipt.svg";
 import { ReactComponent as Task } from "../../icons/task.svg";
 import { ReactComponent as Lines } from "../../icons/lines.svg";
 
+// IMPORT HELPERS
+import { handleOutClick } from "../../helpers/handleOutClick";
+
 // IMPORT COMPONENTS
 import CardStage1 from "../CardStages/CardStage1";
 import CardStage2 from "../CardStages/CardStage2";
@@ -20,54 +23,62 @@ import CardStage4 from "../CardStages/CardStage4";
 import CardStage6 from "../CardStages/CardStage6";
 
 const ModalForm = ({ modalOpen, setModalOpen, stage, setStage }) => {
-  const { user } = useContext(UserContext);
-  const [userInput, setUserInput] = useState({
-    surname: user ? (user.surname ? user.surname : undefined) : undefined,
-    name: user ? (user.name ? user.name : undefined) : undefined,
-    middle_name: user
-      ? user.middle_name
-        ? user.middle_name
-        : undefined
-      : undefined,
-    date_birth: user
-      ? user.date_birth
-        ? user.date_birth
-        : undefined
-      : undefined,
-    mobile_phone: user
-      ? user.mobile_phone
-        ? user.mobile_phone
-        : undefined
-      : undefined,
-    home_phone: user
-      ? user.home_phone
-        ? user.home_phone
-        : undefined
-      : undefined,
-    email: user ? (user.email ? user.email : undefined) : undefined,
-    sms: undefined,
-    passport: user ? (user.passport ? user.passport : undefined) : undefined,
-    passport_date: undefined,
-    passport_by: user
-      ? user.place_passport
-        ? user.place_passport
-        : undefined
-      : undefined,
-    address: user
-      ? user.address_residence
-        ? user.address_residence
-        : undefined
-      : undefined,
-    region: undefined,
-    selected_card: undefined,
-    affiliation: undefined,
-    selected_time: undefined,
-    code: undefined,
-  });
+  // const { user } = useContext(UserContext);
+  const window = useRef();
+  // const [userInput, setUserInput] = useState({
+  //   surname: user ? (user.surname ? user.surname : undefined) : undefined,
+  //   name: user ? (user.name ? user.name : undefined) : undefined,
+  //   middle_name: user
+  //     ? user.middle_name
+  //       ? user.middle_name
+  //       : undefined
+  //     : undefined,
+  //   date_birth: user
+  //     ? user.date_birth
+  //       ? user.date_birth
+  //       : undefined
+  //     : undefined,
+  //   mobile_phone: user
+  //     ? user.mobile_phone
+  //       ? user.mobile_phone
+  //       : undefined
+  //     : undefined,
+  //   home_phone: user
+  //     ? user.home_phone
+  //       ? user.home_phone
+  //       : undefined
+  //     : undefined,
+  //   email: user ? (user.email ? user.email : undefined) : undefined,
+  //   sms: undefined,
+  //   passport: user ? (user.passport ? user.passport : undefined) : undefined,
+  //   passport_date: undefined,
+  //   passport_by: user
+  //     ? user.place_passport
+  //       ? user.place_passport
+  //       : undefined
+  //     : undefined,
+  //   address: user
+  //     ? user.address_residence
+  //       ? user.address_residence
+  //       : undefined
+  //     : undefined,
+  //   region: undefined,
+  //   selected_card: undefined,
+  //   affiliation: undefined,
+  //   selected_time: undefined,
+  //   code: undefined,
+  // });
   return (
-    <section className={modalOpen ? "modal active" : "modal"}>
+    <section
+      className={modalOpen ? "modal active" : "modal"}
+      onClick={(e) => {
+        if (handleOutClick(e.target, window.current)) {
+          setModalOpen(false);
+        }
+      }}
+    >
       <div className="modal-container">
-        <div className="modal-inner">
+        <div className="modal-inner" ref={window}>
           <div className="modal-window">
             <div className="modal-top">
               <h2>Онлайн заявка для получения карты</h2>
@@ -128,6 +139,41 @@ const ModalForm = ({ modalOpen, setModalOpen, stage, setStage }) => {
                 <Task className="modal-icon" />
                 <h3 className="icon-title">Отправка</h3>
               </div>
+            </div>
+            <div className="modal-middle modal-middle-mobile">
+              {stage === 1 ? (
+                <div className="icon-block active">
+                  <Card className="modal-icon" />
+                  <h3 className="icon-title">Выберите вид карты</h3>
+                </div>
+              ) : stage === 2 ? (
+                <div className="icon-block active">
+                  <Document className="modal-icon" />
+                  <h3 className="icon-title">Личные данные</h3>
+                </div>
+              ) : stage === 3 ? (
+                <div className="icon-block active">
+                  <Edit className="modal-icon" />
+                  <h3 className="icon-title">Данные для карты</h3>
+                </div>
+              ) : stage === 4 ? (
+                <div className="icon-block active">
+                  <Note className="modal-icon" />
+                  <h3 className="icon-title">Требования и документы</h3>
+                </div>
+              ) : stage === 5 ? (
+                <div className="icon-block active">
+                  <Receipt className="modal-icon" />
+                  <h3 className="icon-title">Оплата</h3>
+                </div>
+              ) : stage === 6 ? (
+                <div className="icon-block active">
+                  <Task className="modal-icon" />
+                  <h3 className="icon-title">Отправка</h3>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
             <div className="modal-bottom">
               {stage === 1 ? (
