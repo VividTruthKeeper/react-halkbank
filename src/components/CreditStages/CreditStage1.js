@@ -8,7 +8,7 @@ import CustomSelect from "../global/CustomSelect";
 import arrow from "../../icons/arrow.svg";
 import next from "../../icons/next.svg";
 
-const CreditStage1 = ({ setStage }) => {
+const CreditStage1 = ({ setStage, data, setData }) => {
   const [input, setInput] = useState(undefined);
   const [dropdown, setDropdown] = useState({
     one: true,
@@ -111,6 +111,7 @@ const CreditStage1 = ({ setStage }) => {
             className="sign-btn cd-btn"
             onClick={() => {
               setStage(2);
+              setData({ ...data, type: input });
             }}
           >
             <div>

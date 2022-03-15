@@ -7,7 +7,7 @@ import next from "../../icons/next.svg";
 // IMPORT COMPONENTS
 import CustomSelect from "../global/CustomSelect";
 
-const CreditStage4 = ({ setStage }) => {
+const CreditStage4 = ({ setStage, data, setData }) => {
   const [inputValid, setInputValid] = useState({
     workplace: false,
     salary: false,
@@ -139,6 +139,15 @@ const CreditStage4 = ({ setStage }) => {
             className="sign-btn cu-btn"
             onClick={() => {
               setStage(5);
+              setData({
+                ...data,
+                workplace: inputValid.workplace,
+                region: inputValid.region,
+                exp: inputValid.experience,
+                position: inputValid.position,
+                salary: inputValid.salary,
+                branch: inputValid.affiliate,
+              });
             }}
           >
             <div>

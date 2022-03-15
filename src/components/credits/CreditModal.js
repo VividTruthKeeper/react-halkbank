@@ -1,5 +1,5 @@
 // IMPORT MODULES
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 // IMPORT IMAGES
 import exit from "../../icons/exit.svg";
@@ -24,6 +24,7 @@ import CreditStage6 from "../CreditStages/CreditStage6";
 
 const CreditModal = ({ modalOpen, setModalOpen, stage, setStage }) => {
   const window = useRef();
+  const [data, setData] = useState({});
   return (
     <section
       className={modalOpen ? "modal credit-modal active" : "modal credit-modal"}
@@ -133,17 +134,41 @@ const CreditModal = ({ modalOpen, setModalOpen, stage, setStage }) => {
             </div>
             <div className="modal-bottom">
               {stage === 1 ? (
-                <CreditStage1 setStage={setStage} />
+                <CreditStage1
+                  setStage={setStage}
+                  data={data}
+                  setData={setData}
+                />
               ) : stage === 2 ? (
-                <CreditStage2 setStage={setStage} />
+                <CreditStage2
+                  setStage={setStage}
+                  data={data}
+                  setData={setData}
+                />
               ) : stage === 3 ? (
-                <CreditStage3 setStage={setStage} />
+                <CreditStage3
+                  setStage={setStage}
+                  data={data}
+                  setData={setData}
+                />
               ) : stage === 4 ? (
-                <CreditStage4 setStage={setStage} />
+                <CreditStage4
+                  setStage={setStage}
+                  data={data}
+                  setData={setData}
+                />
               ) : stage === 5 ? (
-                <CreditStage5 setStage={setStage} />
+                <CreditStage5
+                  setStage={setStage}
+                  data={data}
+                  setData={setData}
+                />
               ) : stage === 6 ? (
-                <CreditStage6 setStage={setStage} />
+                <CreditStage6
+                  setStage={setStage}
+                  data={data}
+                  setData={setData}
+                />
               ) : (
                 ""
               )}

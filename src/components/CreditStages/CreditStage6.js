@@ -1,82 +1,88 @@
 // IMPORT MODULES
-import React from "react";
+import React, { useState, useContext } from "react";
+import { UserContext } from "../../backend/UserContext";
 
 // IMPORT IMAGES
 import next from "../../icons/next.svg";
 import next_reverse from "../../icons/next-reverse.svg";
 
-const CreditStage6 = ({ setStage }) => {
+// IMPORT HELPERS
+import { sendRequest } from "../../backend/sendRequest";
+import { getUserInfo } from "../../backend/getUserInfo";
+
+const CreditStage6 = ({ setStage, data }) => {
+  const { setUser } = useContext(UserContext);
+  const [response, setResponse] = useState();
+  const token = localStorage.getItem("userToken");
+  const postUrl = "http://95.85.124.85:8000/api/online_credit";
+  const getUrl = "http://95.85.124.85:8000/api/me";
   return (
     <section className="card-stage-6">
       <div className="cd-6-top">
         <ul className="cd-6-list">
           <li>
             <p>Фамилия:</p>
-            <h4></h4>
+            <h4>{data.surname ? data.surname : "-"}</h4>
           </li>
           <li>
             <p>Имя:</p>
-            <h4></h4>
+            <h4>{data.name ? data.name : "-"}</h4>
           </li>
           <li>
             <p>Отчество:</p>
-            <h4></h4>
+            <h4>{data.fathers ? data.fathers : "-"}</h4>
           </li>
           <li>
             <p>Дата рождения:</p>
-            <h4></h4>
+            <h4>{data.birth ? data.birth : "-"}</h4>
           </li>
           <li>
             <p>Мобильный телефон:</p>
-            <h4></h4>
+            <h4>{data.mobile ? data.mobile : "-"}</h4>
           </li>
           <li>
             <p>Домашний телефон:</p>
-            <h4></h4>
+            <h4>{data.home ? data.home : "-"}</h4>
           </li>
           <li>
             <p>Эл. адрес:</p>
-            <h4></h4>
-          </li>
-          <li>
-            <p>SMS оповещение:</p>
-            <h4></h4>
+            <h4>{data.email ? data.email : "-"}</h4>
           </li>
           <li>
             <p>Серия паспорта:</p>
-            <h4></h4>
-          </li>
-          <li>
-            <p>Серия паспорта:</p>
-            <h4></h4>
+            <h4>{data.passport ? data.passport : "-"}</h4>
           </li>
           <li>
             <p>Кем выдан паспорт:</p>
-            <h4></h4>
+            <h4>{data.p_address ? data.p_address : "-"}</h4>
           </li>
           <li>
             <p>Адрес прописки:</p>
-            <h4></h4>
+            <h4>{data.address ? data.address : "-"}</h4>
           </li>
           <li>
             <p>Регион:</p>
-            <h4></h4>
+            <h4>{data.region ? data.region : "-"}</h4>
           </li>
           <li>
             <p>Филиал:</p>
-            <h4></h4>
+            <h4>{data.branch ? data.branch : "-"}</h4>
           </li>
           <li>
-            <p>Дата прихода в банк:</p>
-            <h4></h4>
+            <p>Место работы:</p>
+            <h4>{data.workplace ? data.workplace : "-"}</h4>
           </li>
           <li>
-            <p>Выбранное время:</p>
-            <h4></h4>
+            <p>Сумма зарплаты:</p>
+            <h4>{data.salary ? data.salary : "-"}</h4>
           </li>
           <li>
-            <p>Кодовое слово:</p>
-            <h4></h4>
+            <p>Должность:</p>
+            <h4>{data.position ? data.position : "-"}</h4>
+          </li>
+          <li>
+            <p>Стаж с последнего места работы:</p>
+            <h4>{data.exp ? data.exp : "-"}</h4>
           </li>
         </ul>
       </div>
@@ -100,7 +106,14 @@ const CreditStage6 = ({ setStage }) => {
             </h3>
           </div>
         </button>
-        <button type="button" className="sign-btn cu-btn">
+        <button
+          type="button"
+          className="sign-btn cu-btn"
+          onClick={() => {
+            sendRequest(postUrl, token, data, setResponse);
+            getUserInfo(getUrl, token, setUser, () => null);
+          }}
+        >
           <div>
             <h3>Подтверждаю</h3>
             <div className="btn-img">

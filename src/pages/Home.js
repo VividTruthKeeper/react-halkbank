@@ -11,6 +11,7 @@ import Side from "../components/global/Side";
 const Home = ({ ChildEl }) => {
   const [sideOpen, setSideOpen] = useState(false);
   const navigate = useNavigate();
+  const [credits, setCredits] = useState();
   const { user } = useContext(UserContext);
   useEffect(() => {
     if (!user) {
@@ -29,7 +30,7 @@ const Home = ({ ChildEl }) => {
         <div className="home-inner">
           <LoggedNav setSideOpen={setSideOpen} />
           {/* RENDER PAGE DEPENDING ON URL */}
-          <ChildEl />
+          <ChildEl credits={credits} setCredits={setCredits} />
         </div>
         <Footer />
       </div>

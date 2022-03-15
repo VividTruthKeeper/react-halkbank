@@ -1,12 +1,12 @@
 .modal-container {
   max-width: 85%;
   // padding: 0 3rem;
-  // margin: 0 auto;
+  margin: auto 0;
 }
 
 .modal {
   display: flex;
-  align-items: center;
+  // align-items: center;
   justify-content: center;
   position: fixed;
   top: 0;

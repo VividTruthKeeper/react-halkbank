@@ -37,13 +37,37 @@ const Base = () => {
                   <th>Статус</th>
                   <th>Действие</th>
                 </tr>
-                <tr>
-                  <td>Заявок на карту нет</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                </tr>
+                {/* {user ? (
+                  user.online_credit !== [] ? (
+                    user.online_credit.map((el, i) => {
+                      return (
+                        <tr key={i}>
+                          <td>#{el.id}</td>
+                          <td>{el.type}</td>
+                          <td>--date</td>
+                          <td>--status</td>
+                          <td>--action</td>
+                        </tr>
+                      );
+                    })
+                  ) : (
+                    <tr>
+                      <td>Заявок на карту нет</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  )
+                ) : (
+                  <tr>
+                    <td>Заявок на карту нет</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                )} */}
               </tbody>
             </table>
           </div>

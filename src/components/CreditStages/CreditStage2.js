@@ -11,10 +11,13 @@ import logo from "../../icons/logo-transp.svg";
 
 // IMPORT COMPONENTS
 
-const CreditStage2 = ({ setStage }) => {
+const CreditStage2 = ({ setStage, formData }) => {
   const [inputValue, setInputValue] = useState(3000);
   const [radio, setRadio] = useState(1);
-  const [monthlyPayment, setMonthlyPayment] = useState(252.5);
+  const [
+    monthlyPayment,
+    //  setMonthlyPayment
+  ] = useState(252.5);
   const input = useRef();
   return (
     <section className="cs-2">

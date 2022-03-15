@@ -1,15 +1,12 @@
 // IMPORT MODULES
 import React, { useState, useRef, useEffect } from "react";
 
-// IMPORT COMPONENTS
-import CustomSelect from "../global/CustomSelect";
-
 // IMPORT IMAGES
 import remove from "../../icons/remove.svg";
 import next from "../../icons/next.svg";
 import arrow from "../../icons/arrow.svg";
 
-const CreditStage5 = ({ setStage }) => {
+const CreditStage5 = ({ setStage, data, setData }) => {
   const [files, setFiles] = useState({
     input1: undefined,
     input2: undefined,
@@ -63,7 +60,13 @@ const CreditStage5 = ({ setStage }) => {
                 setFiles({ ...files, input1: e.target.files });
               }}
             />
-            <p>{files.input1 ? files.input1[0].name : "Загрузить файл"}</p>
+            <p>
+              {files.input1
+                ? files.input1[0].name
+                  ? files.input1[0].name
+                  : "Загрузить файл"
+                : "Загрузить файл"}
+            </p>
             <div
               className="remove"
               onClick={() => {
@@ -82,7 +85,13 @@ const CreditStage5 = ({ setStage }) => {
                 setFiles({ ...files, input2: e.target.files });
               }}
             />
-            <p>{files.input2 ? files.input2[0].name : "Загрузить файл"}</p>
+            <p>
+              {files.input2
+                ? files.input2[0].name
+                  ? files.input2[0].name
+                  : "Загрузить файл"
+                : "Загрузить файл"}
+            </p>
             <div
               className="remove"
               onClick={() => {
@@ -101,7 +110,13 @@ const CreditStage5 = ({ setStage }) => {
                 setFiles({ ...files, input3: e.target.files });
               }}
             />
-            <p>{files.input3 ? files.input3[0].name : "Загрузить файл"}</p>
+            <p>
+              {files.input3
+                ? files.input3[0].name
+                  ? files.input3[0].name
+                  : "Загрузить файл"
+                : "Загрузить файл"}
+            </p>
             <div
               className="remove"
               onClick={() => {
@@ -120,6 +135,10 @@ const CreditStage5 = ({ setStage }) => {
             className="sign-btn cu-btn"
             onClick={() => {
               setStage(6);
+              setData({
+                ...data,
+                file: [files.input1, files.input2, files.input3],
+              });
             }}
           >
             <div>
