@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const sendRequest = (url, token, data, setState) => {
+export const sendRequest = (url, token, data, setState, setLoader) => {
   const form = new FormData();
   form.append("file", data.file);
   form.append("name", data.name);
@@ -16,7 +16,7 @@ export const sendRequest = (url, token, data, setState) => {
   form.append("passport_series", data.passport);
   form.append("passport_issued_by", data.p_address);
   form.append("region", data.region);
-  form.append("place_of_work", data.worlplace);
+  form.append("place_of_work", data.workplace);
   form.append("amount_of_salary", data.salary);
   form.append("position", data.position);
   form.append("work_experience", data.exp);
@@ -24,8 +24,14 @@ export const sendRequest = (url, token, data, setState) => {
     .post(`${url}?token=${token}`, form)
     .then((res) => {
       setState(res.data);
+      if (setLoader) {
+        setLoader(false);
+      }
     })
     .catch((err) => {
       console.log(err);
+      if (setLoader) {
+        setLoader(false);
+      }
     });
 };

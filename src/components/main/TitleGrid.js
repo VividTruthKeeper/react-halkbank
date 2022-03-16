@@ -1,5 +1,5 @@
 // IMPORT MODULES
-import React, { useRef } from "react";
+import React from "react";
 
 // IMPORT IMAGES
 import cardRemove from "../../icons/card-remove.svg";

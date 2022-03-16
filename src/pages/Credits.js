@@ -5,15 +5,17 @@ import { UserContext } from "../backend/UserContext";
 // IMPORT COMPONENTS
 import Breadcrumb from "../components/global/Breadcrumb";
 import CreditModal from "../components/credits/CreditModal";
+import Loader from "../components/global/Loader";
 
 // IMPORT IMAGES
 import credit from "../icons/credit-black.svg";
 import add from "../icons/add.svg";
 
-const Credits = ({ credits, setCredits }) => {
+const Credits = () => {
   const { user } = useContext(UserContext);
   const [modalOpen, setModalOpen] = useState(false);
   const [stage, setStage] = useState(1);
+  const [loader, setLoader] = useState(false);
   useEffect(() => {
     if (modalOpen) {
       document.body.style.overflowY = "hidden";
@@ -21,6 +23,7 @@ const Credits = ({ credits, setCredits }) => {
       document.body.style.overflowY = "visible";
     }
   }, [modalOpen]);
+
   return (
     <section className="cards">
       <Breadcrumb image={credit} link={"/home/credits"} linkTitle={"Кредиты"} />
@@ -29,9 +32,10 @@ const Credits = ({ credits, setCredits }) => {
         modalOpen={modalOpen}
         stage={stage}
         setStage={setStage}
-        setCredits={setCredits}
-        credits={credits}
+        loader={loader}
+        setLoader={setLoader}
       />
+      {loader ? <Loader /> : null}
       <div className="container">
         <div className="cards-inner">
           <div className="card-title">
@@ -60,8 +64,8 @@ const Credits = ({ credits, setCredits }) => {
                   <th>Статус</th>
                   <th>Действие</th>
                 </tr>
-                {/* {user ? (
-                  user.online_credit !== (undefined || null) ? (
+                {user ? (
+                  user.online_credit !== [] ? (
                     user.online_credit.map((el, i) => {
                       return (
                         <tr key={i}>
@@ -90,7 +94,7 @@ const Credits = ({ credits, setCredits }) => {
                     <td></td>
                     <td></td>
                   </tr>
-                )} */}
+                )}
               </tbody>
             </table>
           </div>

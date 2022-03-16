@@ -4,12 +4,14 @@ import React, { useState, useEffect } from "react";
 // IMPORT COMPONENTS
 import Breadcrumb from "../components/global/Breadcrumb";
 import ModalForm from "../components/cards/ModalForm";
+import Loader from "../components/global/Loader";
 
 // IMPORT IMAGES
 import card from "../icons/card-black.svg";
 import add from "../icons/add.svg";
 
 const Cards = () => {
+  const [loader, setLoader] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [stage, setStage] = useState(1);
   useEffect(() => {
@@ -31,7 +33,10 @@ const Cards = () => {
         modalOpen={modalOpen}
         stage={stage}
         setStage={setStage}
+        loader={loader}
+        setLoader={setLoader}
       />
+      {loader ? <Loader /> : null}
       <div className="container">
         <div className="cards-inner">
           <div className="card-title">

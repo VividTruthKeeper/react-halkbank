@@ -9,7 +9,7 @@ import remove from "../../icons/remove.svg";
 import next from "../../icons/next.svg";
 import arrow from "../../icons/arrow.svg";
 
-const CardStage4 = ({ setStage }) => {
+const CardStage4 = ({ setStage, data, setData }) => {
   const [files, setFiles] = useState({
     input1: undefined,
     input2: undefined,
@@ -23,7 +23,7 @@ const CardStage4 = ({ setStage }) => {
   const [dropdown, setDropdown] = useState(false);
 
   useEffect(() => {
-    if (files.input1 && files.input2 && files.input3) {
+    if (files.input1 || files.input2 || files.input3) {
       setBtnEnabled(true);
     } else {
       setBtnEnabled(false);
@@ -61,7 +61,11 @@ const CardStage4 = ({ setStage }) => {
           </div>
         </div>
         <div className="cd-bottom-4">
-          <div className={files.input1 ? "file filled" : "file"}>
+          <div
+            className={
+              files.input1 ? (files.input1[0] ? "file filled" : "file") : "file"
+            }
+          >
             <input
               ref={input1}
               type="file"
@@ -69,7 +73,13 @@ const CardStage4 = ({ setStage }) => {
                 setFiles({ ...files, input1: e.target.files });
               }}
             />
-            <p>{files.input1 ? files.input1[0].name : "Загрузить файл"}</p>
+            <p>
+              {files.input1
+                ? files.input1[0]
+                  ? files.input1[0].name
+                  : "Загрузить файл"
+                : "Загрузить файл"}
+            </p>
             <div
               className="remove"
               onClick={() => {
@@ -80,7 +90,11 @@ const CardStage4 = ({ setStage }) => {
               <img src={remove} alt="remove" />
             </div>
           </div>
-          <div className={files.input2 ? "file filled" : "file"}>
+          <div
+            className={
+              files.input2 ? (files.input2[0] ? "file filled" : "file") : "file"
+            }
+          >
             <input
               ref={input2}
               type="file"
@@ -88,7 +102,13 @@ const CardStage4 = ({ setStage }) => {
                 setFiles({ ...files, input2: e.target.files });
               }}
             />
-            <p>{files.input2 ? files.input2[0].name : "Загрузить файл"}</p>
+            <p>
+              {files.input2
+                ? files.input2[0]
+                  ? files.input2[0].name
+                  : "Загрузить файл"
+                : "Загрузить файл"}
+            </p>
             <div
               className="remove"
               onClick={() => {
@@ -107,7 +127,13 @@ const CardStage4 = ({ setStage }) => {
                 setFiles({ ...files, input3: e.target.files });
               }}
             />
-            <p>{files.input3 ? files.input3[0].name : "Загрузить файл"}</p>
+            <p>
+              {files.input3
+                ? files.input3[0]
+                  ? files.input3[0].name
+                  : "Загрузить файл"
+                : "Загрузить файл"}
+            </p>
             <div
               className="remove"
               onClick={() => {
@@ -125,7 +151,47 @@ const CardStage4 = ({ setStage }) => {
             disabled={!btnEnabled}
             className="sign-btn cu-btn"
             onClick={() => {
-              setStage(6);
+              setStage(5);
+              if (files.input1 && files.input2 && files.input3) {
+                setData({
+                  ...data,
+                  file: [files.input1[0], files.input2[0], files.input3[0]],
+                });
+              } else if (files.input1 && files.input2) {
+                setData({
+                  ...data,
+                  file: [files.input1[0], files.input2[0]],
+                });
+              } else if (files.input1 && files.input3) {
+                setData({
+                  ...data,
+                  file: [files.input1[0], files.input3[0]],
+                });
+              } else if (files.input2 && files.input3) {
+                setData({
+                  ...data,
+                  file: [files.input2[0], files.input3[0]],
+                });
+              } else {
+                if (files.input1) {
+                  setData({
+                    ...data,
+                    file: files.input1[0],
+                  });
+                }
+                if (files.input2) {
+                  setData({
+                    ...data,
+                    file: files.input2[0],
+                  });
+                }
+                if (files.input3) {
+                  setData({
+                    ...data,
+                    file: files.input3[0],
+                  });
+                }
+              }
             }}
           >
             <div>

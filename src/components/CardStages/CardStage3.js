@@ -10,13 +10,14 @@ import next from "../../icons/next.svg";
 // IMPORT COMPONENTS
 import CustomSelect from "../global/CustomSelect";
 
-const CardStage3 = ({ setStage }) => {
+const CardStage3 = ({ setStage, data, setData }) => {
   const [inputValid, setInputValid] = useState({
     region: false,
     affiliate: false,
     date: false,
     time: false,
     code: false,
+    sms: false,
   });
   const [btnEnabled, setBtnEnabled] = useState(false);
 
@@ -84,7 +85,7 @@ const CardStage3 = ({ setStage }) => {
               max={getDate(18)}
               onChange={(e) => {
                 if (e.target.value !== "") {
-                  setInputValid({ ...inputValid, date: true });
+                  setInputValid({ ...inputValid, date: e.target.value });
                 } else {
                   setInputValid({ ...inputValid, date: false });
                 }
@@ -119,7 +120,7 @@ const CardStage3 = ({ setStage }) => {
               placeholder="amanamanow12"
               onChange={(e) => {
                 if (e.target.value !== "") {
-                  setInputValid({ ...inputValid, code: true });
+                  setInputValid({ ...inputValid, code: e.target.value });
                 } else {
                   setInputValid({ ...inputValid, code: false });
                 }
@@ -129,17 +130,15 @@ const CardStage3 = ({ setStage }) => {
         </div>
         <div className="card-stage-3-middle">
           <div className="check-block">
-            <input type="checkbox" id="sms" name="sms" />
-            <label htmlFor="sms">SMS - подключение</label>
-          </div>
-          <div className="input-block">
-            <label htmlFor="mobile">Номер телефона для SMS - подключения</label>
             <input
-              type="text"
-              id="mobile"
-              name="sms-mobile"
-              placeholder="865656565"
+              type="checkbox"
+              id="sms"
+              name="sms"
+              onChange={(e) => {
+                setInputValid({ ...inputValid, sms: e.target.checked });
+              }}
             />
+            <label htmlFor="sms">SMS - подключение</label>
           </div>
         </div>
         <div className="cu-bottom card-stage-3-bottom">
@@ -155,6 +154,15 @@ const CardStage3 = ({ setStage }) => {
             className="sign-btn cu-btn"
             onClick={() => {
               setStage(4);
+              setData({
+                ...data,
+                sms_notification: inputValid.sms ? 1 : 0,
+                region: inputValid.region,
+                branch: inputValid.affiliate,
+                date_arrival_bank: inputValid.date,
+                selected_time: inputValid.time,
+                the_codeword: inputValid.code,
+              });
             }}
           >
             <div>

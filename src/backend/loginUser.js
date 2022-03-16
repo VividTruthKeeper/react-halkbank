@@ -1,5 +1,7 @@
 // IMPORT MODULES
 import axios from "axios";
+import { getUserInfo } from "./getUserInfo";
+const getUrl = "http://95.85.124.85:8000/api/me";
 
 export const loginUser = (
   url,
@@ -12,8 +14,8 @@ export const loginUser = (
   axios
     .post(url, formData)
     .then((res) => {
-      setState(res.data.user);
-      setIsLoading(false);
+      // setState(res.data.user);
+      getUserInfo(getUrl, res.data.token, setState, setIsLoading);
       if (tokenSaved) {
         localStorage.setItem("userToken", res.data.token);
       }

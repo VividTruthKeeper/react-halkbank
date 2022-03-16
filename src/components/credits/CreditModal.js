@@ -22,7 +22,13 @@ import CreditStage4 from "../CreditStages/CreditStage4";
 import CreditStage5 from "../CreditStages/CreditStage5";
 import CreditStage6 from "../CreditStages/CreditStage6";
 
-const CreditModal = ({ modalOpen, setModalOpen, stage, setStage }) => {
+const CreditModal = ({
+  modalOpen,
+  setModalOpen,
+  stage,
+  setStage,
+  setLoader,
+}) => {
   const window = useRef();
   const [data, setData] = useState({});
   return (
@@ -168,6 +174,8 @@ const CreditModal = ({ modalOpen, setModalOpen, stage, setStage }) => {
                   setStage={setStage}
                   data={data}
                   setData={setData}
+                  setModalOpen={setModalOpen}
+                  setLoader={setLoader}
                 />
               ) : (
                 ""

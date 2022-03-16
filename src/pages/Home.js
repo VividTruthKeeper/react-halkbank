@@ -3,6 +3,9 @@ import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../backend/UserContext";
 import { useNavigate } from "react-router-dom";
 
+// IMPORT HELPERS
+// import { getUserInfo } from "../backend/getUserInfo";
+
 // IMPORT COMPONENTS
 import LoggedNav from "../components/global/LoggedNav";
 import Footer from "../components/global/Footer";
@@ -11,17 +14,12 @@ import Side from "../components/global/Side";
 const Home = ({ ChildEl }) => {
   const [sideOpen, setSideOpen] = useState(false);
   const navigate = useNavigate();
-  const [credits, setCredits] = useState();
   const { user } = useContext(UserContext);
   useEffect(() => {
     if (!user) {
       navigate("/sign-in");
     }
   }, [user, navigate]);
-  // CLEANUP FUNCTION
-  useEffect(() => {
-    return () => null;
-  }, []);
 
   return (
     <section className="home">
@@ -30,7 +28,7 @@ const Home = ({ ChildEl }) => {
         <div className="home-inner">
           <LoggedNav setSideOpen={setSideOpen} />
           {/* RENDER PAGE DEPENDING ON URL */}
-          <ChildEl credits={credits} setCredits={setCredits} />
+          <ChildEl />
         </div>
         <Footer />
       </div>

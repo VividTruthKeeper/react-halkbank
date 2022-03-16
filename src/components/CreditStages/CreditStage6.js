@@ -1,5 +1,5 @@
 // IMPORT MODULES
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { UserContext } from "../../backend/UserContext";
 
 // IMPORT IMAGES
@@ -10,9 +10,8 @@ import next_reverse from "../../icons/next-reverse.svg";
 import { sendRequest } from "../../backend/sendRequest";
 import { getUserInfo } from "../../backend/getUserInfo";
 
-const CreditStage6 = ({ setStage, data }) => {
+const CreditStage6 = ({ setStage, data, setModalOpen, setLoader }) => {
   const { setUser } = useContext(UserContext);
-  const [response, setResponse] = useState();
   const token = localStorage.getItem("userToken");
   const postUrl = "http://95.85.124.85:8000/api/online_credit";
   const getUrl = "http://95.85.124.85:8000/api/me";
@@ -110,7 +109,9 @@ const CreditStage6 = ({ setStage, data }) => {
           type="button"
           className="sign-btn cu-btn"
           onClick={() => {
-            sendRequest(postUrl, token, data, setResponse);
+            setModalOpen(false);
+            setLoader(true);
+            sendRequest(postUrl, token, data, () => null, setLoader);
             getUserInfo(getUrl, token, setUser, () => null);
           }}
         >

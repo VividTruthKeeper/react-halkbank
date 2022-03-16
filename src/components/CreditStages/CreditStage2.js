@@ -11,7 +11,7 @@ import logo from "../../icons/logo-transp.svg";
 
 // IMPORT COMPONENTS
 
-const CreditStage2 = ({ setStage, formData }) => {
+const CreditStage2 = ({ setStage }) => {
   const [inputValue, setInputValue] = useState(3000);
   const [radio, setRadio] = useState(1);
   const [

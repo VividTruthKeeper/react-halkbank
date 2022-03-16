@@ -1,6 +1,5 @@
 // IMPORT MODULES
-import React, { useState, useContex, useRef } from "react";
-import { UserContext } from "../../backend/UserContext";
+import React, { useState, useRef } from "react";
 
 // IMPORT IMAGES
 import exit from "../../icons/exit.svg";
@@ -22,52 +21,10 @@ import CardStage3 from "../CardStages/CardStage3";
 import CardStage4 from "../CardStages/CardStage4";
 import CardStage6 from "../CardStages/CardStage6";
 
-const ModalForm = ({ modalOpen, setModalOpen, stage, setStage }) => {
-  // const { user } = useContext(UserContext);
+const ModalForm = ({ modalOpen, setModalOpen, stage, setStage, setLoader }) => {
   const window = useRef();
-  // const [userInput, setUserInput] = useState({
-  //   surname: user ? (user.surname ? user.surname : undefined) : undefined,
-  //   name: user ? (user.name ? user.name : undefined) : undefined,
-  //   middle_name: user
-  //     ? user.middle_name
-  //       ? user.middle_name
-  //       : undefined
-  //     : undefined,
-  //   date_birth: user
-  //     ? user.date_birth
-  //       ? user.date_birth
-  //       : undefined
-  //     : undefined,
-  //   mobile_phone: user
-  //     ? user.mobile_phone
-  //       ? user.mobile_phone
-  //       : undefined
-  //     : undefined,
-  //   home_phone: user
-  //     ? user.home_phone
-  //       ? user.home_phone
-  //       : undefined
-  //     : undefined,
-  //   email: user ? (user.email ? user.email : undefined) : undefined,
-  //   sms: undefined,
-  //   passport: user ? (user.passport ? user.passport : undefined) : undefined,
-  //   passport_date: undefined,
-  //   passport_by: user
-  //     ? user.place_passport
-  //       ? user.place_passport
-  //       : undefined
-  //     : undefined,
-  //   address: user
-  //     ? user.address_residence
-  //       ? user.address_residence
-  //       : undefined
-  //     : undefined,
-  //   region: undefined,
-  //   selected_card: undefined,
-  //   affiliation: undefined,
-  //   selected_time: undefined,
-  //   code: undefined,
-  // });
+  const [data, setData] = useState({});
+
   return (
     <section
       className={modalOpen ? "modal active" : "modal"}
@@ -128,16 +85,16 @@ const ModalForm = ({ modalOpen, setModalOpen, stage, setStage }) => {
                 <Lines className="lines" />
               </div>
               <div className={stage > 4 ? "icon-block active" : "icon-block"}>
-                <Receipt className="modal-icon" />
-                <h3 className="icon-title">Оплата</h3>
+                <Task className="modal-icon" />
+                <h3 className="icon-title">Отправка</h3>
               </div>
               <div className={stage > 5 ? "line-block active" : "line-block"}>
                 <Lines className="lines" />
                 <Lines className="lines" />
               </div>
               <div className={stage > 5 ? "icon-block active" : "icon-block"}>
-                <Task className="modal-icon" />
-                <h3 className="icon-title">Отправка</h3>
+                <Receipt className="modal-icon" />
+                <h3 className="icon-title">Оплата</h3>
               </div>
             </div>
             <div className="modal-middle modal-middle-mobile">
@@ -163,13 +120,13 @@ const ModalForm = ({ modalOpen, setModalOpen, stage, setStage }) => {
                 </div>
               ) : stage === 5 ? (
                 <div className="icon-block active">
-                  <Receipt className="modal-icon" />
-                  <h3 className="icon-title">Оплата</h3>
+                  <Task className="modal-icon" />
+                  <h3 className="icon-title">Отправка</h3>
                 </div>
               ) : stage === 6 ? (
                 <div className="icon-block active">
-                  <Task className="modal-icon" />
-                  <h3 className="icon-title">Отправка</h3>
+                  <Receipt className="modal-icon" />
+                  <h3 className="icon-title">Оплата</h3>
                 </div>
               ) : (
                 ""
@@ -177,15 +134,21 @@ const ModalForm = ({ modalOpen, setModalOpen, stage, setStage }) => {
             </div>
             <div className="modal-bottom">
               {stage === 1 ? (
-                <CardStage1 setStage={setStage} />
+                <CardStage1 setStage={setStage} data={data} setData={setData} />
               ) : stage === 2 ? (
-                <CardStage2 setStage={setStage} />
+                <CardStage2 setStage={setStage} data={data} setData={setData} />
               ) : stage === 3 ? (
-                <CardStage3 setStage={setStage} />
+                <CardStage3 setStage={setStage} data={data} setData={setData} />
               ) : stage === 4 ? (
-                <CardStage4 setStage={setStage} />
-              ) : stage === 6 ? (
-                <CardStage6 setStage={setStage} />
+                <CardStage4 setStage={setStage} data={data} setData={setData} />
+              ) : stage === 5 ? (
+                <CardStage6
+                  setStage={setStage}
+                  data={data}
+                  setData={setData}
+                  setLoader={setLoader}
+                  setModalOpen={setModalOpen}
+                />
               ) : (
                 ""
               )}

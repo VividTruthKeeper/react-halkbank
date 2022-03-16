@@ -1,5 +1,6 @@
 // IMPORT MODULES
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { UserContext } from "../../backend/UserContext";
 
 // IMPORT VALIDATORS
 import { ValidateEmail } from "../../validators/ValidateEmail";
@@ -9,18 +10,19 @@ import { getDate } from "../../helpers/Date";
 // IMPORT IMAGES
 import next from "../../icons/next.svg";
 
-const CardStage2 = ({ setStage }) => {
+const CardStage2 = ({ setStage, data, setData }) => {
+  const { user } = useContext(UserContext);
   const [inputValid, setInputValid] = useState({
-    surname: true,
-    name: true,
-    fathers: true,
-    date: true,
-    passport: true,
-    p_address: true,
-    address: true,
-    mail: true,
-    mobile: true,
-    home: true,
+    surname: user ? user.surname : null,
+    name: user ? user.name : null,
+    fathers: user ? user.middle_name : null,
+    date: user ? user.date_birth : null,
+    passport: user ? user.passport : null,
+    p_address: user ? user.place_passport : null,
+    address: user ? user.address_residence : null,
+    mail: user ? user.email : null,
+    mobile: user ? user.mobile_phone : null,
+    home: user ? user.home_phone : null,
   });
   const [btnEnabled, setBtnEnabled] = useState(false);
 
@@ -52,10 +54,10 @@ const CardStage2 = ({ setStage }) => {
             <input
               type="text"
               id="surname"
-              defaultValue={"Amanow"}
+              defaultValue={inputValid.surname}
               onChange={(e) => {
                 if (e.target.value !== "") {
-                  setInputValid({ ...inputValid, surname: true });
+                  setInputValid({ ...inputValid, surname: e.target.value });
                 } else {
                   setInputValid({ ...inputValid, surname: false });
                 }
@@ -69,10 +71,10 @@ const CardStage2 = ({ setStage }) => {
             <input
               type="text"
               id="name"
-              defaultValue={"Aman"}
+              defaultValue={inputValid.name}
               onChange={(e) => {
                 if (e.target.value !== "") {
-                  setInputValid({ ...inputValid, name: true });
+                  setInputValid({ ...inputValid, name: e.target.value });
                 } else {
                   setInputValid({ ...inputValid, name: false });
                 }
@@ -86,10 +88,10 @@ const CardStage2 = ({ setStage }) => {
             <input
               type="text"
               id="fathers"
-              defaultValue={"Amanowic"}
+              defaultValue={inputValid.fathers}
               onChange={(e) => {
                 if (e.target.value !== "") {
-                  setInputValid({ ...inputValid, fathers: true });
+                  setInputValid({ ...inputValid, fathers: e.target.value });
                 } else {
                   setInputValid({ ...inputValid, fathers: false });
                 }
@@ -103,12 +105,12 @@ const CardStage2 = ({ setStage }) => {
             <input
               type="date"
               id="date"
-              defaultValue={"1990-02-20"}
+              defaultValue={inputValid.date}
               min="1900-01-01"
               max={getDate(18)}
               onChange={(e) => {
                 if (e.target.value !== "") {
-                  setInputValid({ ...inputValid, date: true });
+                  setInputValid({ ...inputValid, date: e.target.value });
                 } else {
                   setInputValid({ ...inputValid, date: false });
                 }
@@ -122,10 +124,10 @@ const CardStage2 = ({ setStage }) => {
             <input
               type="text"
               id="passport"
-              defaultValue={"I-AŞ 212121"}
+              defaultValue={inputValid.passport}
               onChange={(e) => {
                 if (e.target.value !== "") {
-                  setInputValid({ ...inputValid, passport: true });
+                  setInputValid({ ...inputValid, passport: e.target.value });
                 } else {
                   setInputValid({ ...inputValid, passport: false });
                 }
@@ -139,10 +141,10 @@ const CardStage2 = ({ setStage }) => {
             <input
               type="text"
               id="p-address"
-              defaultValue={"Kopetdag etrapyň häkimliki"}
+              defaultValue={inputValid.p_address}
               onChange={(e) => {
                 if (e.target.value !== "") {
-                  setInputValid({ ...inputValid, p_address: true });
+                  setInputValid({ ...inputValid, p_address: e.target.value });
                 } else {
                   setInputValid({ ...inputValid, p_address: false });
                 }
@@ -156,10 +158,10 @@ const CardStage2 = ({ setStage }) => {
             <input
               type="text"
               id="address"
-              defaultValue={"Parahat 3/1, j.16, k.5"}
+              defaultValue={inputValid.address}
               onChange={(e) => {
                 if (e.target.value !== "") {
-                  setInputValid({ ...inputValid, address: true });
+                  setInputValid({ ...inputValid, address: e.target.value });
                 } else {
                   setInputValid({ ...inputValid, address: false });
                 }
@@ -173,10 +175,10 @@ const CardStage2 = ({ setStage }) => {
             <input
               type="email"
               id="mail"
-              defaultValue={"amanamanow@gmail.com"}
+              defaultValue={inputValid.mail}
               onChange={(e) => {
                 if (ValidateEmail(e.target.value)) {
-                  setInputValid({ ...inputValid, mail: true });
+                  setInputValid({ ...inputValid, mail: e.target.value });
                 } else {
                   setInputValid({ ...inputValid, mail: false });
                 }
@@ -190,10 +192,10 @@ const CardStage2 = ({ setStage }) => {
             <input
               type="text"
               id="mobile"
-              defaultValue={"865656565"}
+              defaultValue={inputValid.mobile}
               onChange={(e) => {
                 if (ValidatePhoneNumber(e.target.value)) {
-                  setInputValid({ ...inputValid, mobile: true });
+                  setInputValid({ ...inputValid, mobile: e.target.value });
                 } else {
                   setInputValid({ ...inputValid, mobile: false });
                 }
@@ -202,7 +204,18 @@ const CardStage2 = ({ setStage }) => {
           </div>
           <div className="input-block">
             <label htmlFor="homeTel">Домашний телефон</label>
-            <input type="text" id="homeTel" defaultValue={"812121212"} />
+            <input
+              type="text"
+              id="homeTel"
+              defaultValue={inputValid.home}
+              onChange={(e) => {
+                if (ValidatePhoneNumber(e.target.value)) {
+                  setInputValid({ ...inputValid, home: e.target.value });
+                } else {
+                  setInputValid({ ...inputValid, home: false });
+                }
+              }}
+            />
           </div>
         </div>
         <div className="form-bottom">
@@ -216,6 +229,19 @@ const CardStage2 = ({ setStage }) => {
               className="sign-btn cu-btn"
               onClick={() => {
                 setStage(3);
+                setData({
+                  ...data,
+                  name: inputValid.name,
+                  surname: inputValid.surname,
+                  middlename: inputValid.fathers,
+                  birthdate: inputValid.date,
+                  email: inputValid.mail,
+                  passport_series: inputValid.passport,
+                  passport_by: inputValid.p_address,
+                  phone_number: inputValid.mobile,
+                  home_phone_number: inputValid.home,
+                  place_of_residence: inputValid.address,
+                });
               }}
             >
               <div>

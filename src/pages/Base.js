@@ -37,9 +37,21 @@ const Base = () => {
                   <th>Статус</th>
                   <th>Действие</th>
                 </tr>
-                {/* {user ? (
+                {user ? (
                   user.online_credit !== [] ? (
                     user.online_credit.map((el, i) => {
+                      return (
+                        <tr key={i}>
+                          <td>#{el.id}</td>
+                          <td>{el.type}</td>
+                          <td>--date</td>
+                          <td>--status</td>
+                          <td>--action</td>
+                        </tr>
+                      );
+                    })
+                  ) : user.online_card !== [] ? (
+                    user.online_card.map((el, i) => {
                       return (
                         <tr key={i}>
                           <td>#{el.id}</td>
@@ -67,7 +79,7 @@ const Base = () => {
                     <td></td>
                     <td></td>
                   </tr>
-                )} */}
+                )}
               </tbody>
             </table>
           </div>

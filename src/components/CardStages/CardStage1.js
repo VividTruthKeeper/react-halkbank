@@ -8,7 +8,7 @@ import CustomSelect from "../global/CustomSelect";
 import credit from "../../images/credit-card.jpg";
 import next from "../../icons/next.svg";
 
-const CardStage1 = ({ setStage }) => {
+const CardStage1 = ({ setStage, data, setData }) => {
   const [inputValid, setInputValid] = useState(false);
   return (
     <section className="card-stage-1">
@@ -67,6 +67,7 @@ const CardStage1 = ({ setStage }) => {
             className="sign-btn cd-btn"
             onClick={() => {
               setStage(2);
+              setData({ ...data, selected_card: inputValid });
             }}
           >
             <div>
