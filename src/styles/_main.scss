@@ -127,6 +127,7 @@
   p {
     font-size: 1.2rem;
     padding: 3rem 2rem;
+    text-align: center;
   }
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
@@ -156,11 +157,38 @@
 }
 
 @media screen and (max-width: 700px) {
+  .title-right {
+    width: 1.2rem;
+    height: 0.8rem;
+
+    img {
+      width: 1.2rem;
+      height: 0.8rem;
+    }
+  }
+  .titlegrid-inner ul {
+    gap: 1rem;
+  }
+  .title-dropdown p {
+    padding: 2rem 1rem;
+  }
   .title {
     padding: 2rem;
   }
 
-  .title-left h6 {
+  .title-img {
+    width: 2.3rem;
+    height: 2rem;
+
+    img {
+      width: 2.3rem;
+      height: 2rem;
+      object-fit: contain;
+    }
+  }
+
+  .title-left h6,
+  .title-left span {
     font-size: 1.2rem;
   }
 
