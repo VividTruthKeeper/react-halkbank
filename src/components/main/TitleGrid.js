@@ -4,275 +4,290 @@ import React, { useRef } from "react";
 // IMPORT IMAGES
 import cardRemove from "../../icons/card-remove.svg";
 import arrow from "../../icons/arrow-down.svg";
+import shield from "../../icons/shield.svg";
+import globe from "../../icons/globe.svg";
+import direct from "../../icons/direct.svg";
+import lock from "../../icons/lock.svg";
+import wifi from "../../icons/wifi.svg";
+import clipboard_close from "../../icons/clipboard-close.svg";
 
 const TitleGrid = () => {
-  const handleOpen = (el, target) => {
-    el.current.classList.toggle("active");
-    target.target.children[2].classList.toggle("active");
-  };
-  const handlePush = (el) => {
-    el.current.classList.toggle("pushed");
-  };
-  const drop1 = useRef();
-  const drop2 = useRef();
-  const drop3 = useRef();
-  const drop4 = useRef();
-  const drop5 = useRef();
-  const drop6 = useRef();
-  const drop7 = useRef();
-  const drop8 = useRef();
-
-  const push2 = useRef();
-  const push3 = useRef();
-  const push4 = useRef();
-  const push6 = useRef();
-  const push7 = useRef();
-  const push8 = useRef();
-
   return (
     <section className="titlegrid">
-      <ul>
-        <li className="titlegrid-wrapper">
-          <div className="title-container">
-            <div
-              className="title-el"
-              onClick={(e) => {
-                handleOpen(drop1, e);
-                handlePush(push2);
-              }}
-            >
+      <div className="titlegrid-inner">
+        <ul>
+          <li
+            onClick={(e) => {
+              for (let i = 0; i < e.target.children.length; i++) {
+                let child = e.target.children[i];
+                if (
+                  child.classList.contains("title") ||
+                  child.classList.contains("title-dropdown")
+                ) {
+                  child.classList.toggle("active");
+                }
+              }
+            }}
+          >
+            <div className="title">
               <div className="title-left">
-                <div className="title-left-img">
-                  <img src={cardRemove} alt="card" />
+                <div className="title-img">
+                  <img src={cardRemove} alt="title" />
                 </div>
-              </div>
-              <div className="title-mid">
-                <p>Сохранять данные банковской карты на веб-сайтах</p>
+                <span>Сохранять данные банковской карты на веб-сайтах</span>
               </div>
               <div className="title-right">
                 <img src={arrow} alt="arrow" />
               </div>
             </div>
-            <div className="title-drop" ref={drop1}>
-              <h2>
+            <div className="title-dropdown">
+              <p>
                 При использовании общедоступных сетей «Wi-Fi», старайтесь не
                 вводить свою личную информацию, а к незнакомым сетям «Wi-Fi»
                 рекомендуется вообще не подключаться, поскольку эти сети могут
                 использоваться для атаки и получения вашей личной информации
-              </h2>
+              </p>
             </div>
-          </div>
-          <div className="title-container">
-            <div
-              className="title-el"
-              ref={push2}
-              onClick={(e) => {
-                handleOpen(drop2, e);
-                handlePush(push3);
-              }}
-            >
+          </li>
+          <li
+            onClick={(e) => {
+              for (let i = 0; i < e.target.children.length; i++) {
+                let child = e.target.children[i];
+                if (
+                  child.classList.contains("title") ||
+                  child.classList.contains("title-dropdown")
+                ) {
+                  child.classList.toggle("active");
+                }
+              }
+            }}
+          >
+            <div className="title">
               <div className="title-left">
-                <div className="title-left-img">
-                  <img src={cardRemove} alt="card" />
+                <div className="title-img">
+                  <img src={shield} alt="title" />
                 </div>
-              </div>
-              <div className="title-mid">
-                <p>Сохранять данные банковской карты на веб-сайтах</p>
+                <span>Используйте данный сервис где есть антивирус</span>
               </div>
               <div className="title-right">
                 <img src={arrow} alt="arrow" />
               </div>
             </div>
-            <div className="title-drop" ref={drop2}>
-              <h2>
+            <div className="title-dropdown">
+              <p>
                 При использовании общедоступных сетей «Wi-Fi», старайтесь не
                 вводить свою личную информацию, а к незнакомым сетям «Wi-Fi»
                 рекомендуется вообще не подключаться, поскольку эти сети могут
                 использоваться для атаки и получения вашей личной информации
-              </h2>
+              </p>
             </div>
-          </div>
-          <div className="title-container">
-            <div
-              className="title-el"
-              ref={push3}
-              onClick={(e) => {
-                handleOpen(drop3, e);
-                handlePush(push4);
-              }}
-            >
+          </li>
+          <li
+            onClick={(e) => {
+              for (let i = 0; i < e.target.children.length; i++) {
+                let child = e.target.children[i];
+                if (
+                  child.classList.contains("title") ||
+                  child.classList.contains("title-dropdown")
+                ) {
+                  child.classList.toggle("active");
+                }
+              }
+            }}
+          >
+            <div className="title">
               <div className="title-left">
-                <div className="title-left-img">
-                  <img src={cardRemove} alt="card" />
+                <div className="title-img">
+                  <img src={globe} alt="title" />
                 </div>
-              </div>
-              <div className="title-mid">
-                <p>Сохранять данные банковской карты на веб-сайтах</p>
+                <span>Используйте данный сервис где есть антивирус</span>
               </div>
               <div className="title-right">
                 <img src={arrow} alt="arrow" />
               </div>
             </div>
-            <div className="title-drop" ref={drop3}>
-              <h2>
+            <div className="title-dropdown">
+              <p>
                 При использовании общедоступных сетей «Wi-Fi», старайтесь не
                 вводить свою личную информацию, а к незнакомым сетям «Wi-Fi»
                 рекомендуется вообще не подключаться, поскольку эти сети могут
                 использоваться для атаки и получения вашей личной информации
-              </h2>
+              </p>
             </div>
-          </div>
-          <div className="title-container">
-            <div
-              className="title-el"
-              ref={push4}
-              onClick={(e) => {
-                handleOpen(drop4, e);
-              }}
-            >
+          </li>
+          <li
+            onClick={(e) => {
+              for (let i = 0; i < e.target.children.length; i++) {
+                let child = e.target.children[i];
+                if (
+                  child.classList.contains("title") ||
+                  child.classList.contains("title-dropdown")
+                ) {
+                  child.classList.toggle("active");
+                }
+              }
+            }}
+          >
+            <div className="title">
               <div className="title-left">
-                <div className="title-left-img">
-                  <img src={cardRemove} alt="card" />
+                <div className="title-img">
+                  <img src={direct} alt="title" />
                 </div>
-              </div>
-              <div className="title-mid">
-                <p>Сохранять данные банковской карты на веб-сайтах</p>
+                <span>
+                  Открытие писем и вложений от неизвестных электронных почт
+                </span>
               </div>
               <div className="title-right">
                 <img src={arrow} alt="arrow" />
               </div>
             </div>
-            <div className="title-drop" ref={drop4}>
-              <h2>
+            <div className="title-dropdown">
+              <p>
                 При использовании общедоступных сетей «Wi-Fi», старайтесь не
                 вводить свою личную информацию, а к незнакомым сетям «Wi-Fi»
                 рекомендуется вообще не подключаться, поскольку эти сети могут
                 использоваться для атаки и получения вашей личной информации
-              </h2>
+              </p>
             </div>
-          </div>
-        </li>
-        <li className="titlegrid-wrapper">
-          <div className="title-container">
-            <div
-              className="title-el"
-              onClick={(e) => {
-                handleOpen(drop5, e);
-                handlePush(push6);
-              }}
-            >
+          </li>
+        </ul>
+        <ul>
+          <li
+            onClick={(e) => {
+              for (let i = 0; i < e.target.children.length; i++) {
+                let child = e.target.children[i];
+                if (
+                  child.classList.contains("title") ||
+                  child.classList.contains("title-dropdown")
+                ) {
+                  child.classList.toggle("active");
+                }
+              }
+            }}
+          >
+            <div className="title">
               <div className="title-left">
-                <div className="title-left-img">
-                  <img src={cardRemove} alt="card" />
+                <div className="title-img">
+                  <img src={lock} alt="title" />
                 </div>
-              </div>
-              <div className="title-mid">
-                <p>Сохранять данные банковской карты на веб-сайтах</p>
+                <span>Используйте данный сервис где есть антивирус</span>
               </div>
               <div className="title-right">
                 <img src={arrow} alt="arrow" />
               </div>
             </div>
-            <div className="title-drop" ref={drop5}>
-              <h2>
+            <div className="title-dropdown">
+              <p>
                 При использовании общедоступных сетей «Wi-Fi», старайтесь не
                 вводить свою личную информацию, а к незнакомым сетям «Wi-Fi»
                 рекомендуется вообще не подключаться, поскольку эти сети могут
                 использоваться для атаки и получения вашей личной информации
-              </h2>
+              </p>
             </div>
-          </div>
-          <div className="title-container">
-            <div
-              className="title-el"
-              ref={push6}
-              onClick={(e) => {
-                handleOpen(drop6, e);
-                handlePush(push7);
-              }}
-            >
+          </li>
+          <li
+            onClick={(e) => {
+              for (let i = 0; i < e.target.children.length; i++) {
+                let child = e.target.children[i];
+                if (
+                  child.classList.contains("title") ||
+                  child.classList.contains("title-dropdown")
+                ) {
+                  child.classList.toggle("active");
+                }
+              }
+            }}
+          >
+            <div className="title">
               <div className="title-left">
-                <div className="title-left-img">
-                  <img src={cardRemove} alt="card" />
+                <div className="title-img">
+                  <img src={wifi} alt="title" />
                 </div>
-              </div>
-              <div className="title-mid">
-                <p>Сохранять данные банковской карты на веб-сайтах</p>
+                <span>Использование незнакомых «Wi-Fi» сетей</span>
               </div>
               <div className="title-right">
                 <img src={arrow} alt="arrow" />
               </div>
             </div>
-            <div className="title-drop" ref={drop6}>
-              <h2>
+            <div className="title-dropdown">
+              <p>
                 При использовании общедоступных сетей «Wi-Fi», старайтесь не
                 вводить свою личную информацию, а к незнакомым сетям «Wi-Fi»
                 рекомендуется вообще не подключаться, поскольку эти сети могут
                 использоваться для атаки и получения вашей личной информации
-              </h2>
+              </p>
             </div>
-          </div>
-          <div className="title-container">
-            <div
-              className="title-el"
-              ref={push7}
-              onClick={(e) => {
-                handleOpen(drop7, e);
-                handlePush(push8);
-              }}
-            >
+          </li>
+          <li
+            onClick={(e) => {
+              for (let i = 0; i < e.target.children.length; i++) {
+                let child = e.target.children[i];
+                if (
+                  child.classList.contains("title") ||
+                  child.classList.contains("title-dropdown")
+                ) {
+                  child.classList.toggle("active");
+                }
+              }
+            }}
+          >
+            <div className="title">
               <div className="title-left">
-                <div className="title-left-img">
-                  <img src={cardRemove} alt="card" />
+                <div className="title-img">
+                  <img src={shield} alt="title" />
                 </div>
-              </div>
-              <div className="title-mid">
-                <p>Сохранять данные банковской карты на веб-сайтах</p>
+                <span>Используйте данный сервис где есть антивирус</span>
               </div>
               <div className="title-right">
                 <img src={arrow} alt="arrow" />
               </div>
             </div>
-            <div className="title-drop" ref={drop7}>
-              <h2>
+            <div className="title-dropdown">
+              <p>
                 При использовании общедоступных сетей «Wi-Fi», старайтесь не
                 вводить свою личную информацию, а к незнакомым сетям «Wi-Fi»
                 рекомендуется вообще не подключаться, поскольку эти сети могут
                 использоваться для атаки и получения вашей личной информации
-              </h2>
+              </p>
             </div>
-          </div>
-          <div className="title-container">
-            <div
-              className="title-el"
-              ref={push8}
-              onClick={(e) => {
-                handleOpen(drop8, e);
-              }}
-            >
+          </li>
+          <li
+            onClick={(e) => {
+              for (let i = 0; i < e.target.children.length; i++) {
+                let child = e.target.children[i];
+                if (
+                  child.classList.contains("title") ||
+                  child.classList.contains("title-dropdown")
+                ) {
+                  child.classList.toggle("active");
+                }
+              }
+            }}
+          >
+            <div className="title">
               <div className="title-left">
-                <div className="title-left-img">
-                  <img src={cardRemove} alt="card" />
+                <div className="title-img">
+                  <img src={clipboard_close} alt="title" />
                 </div>
-              </div>
-              <div className="title-mid">
-                <p>Сохранять данные банковской карты на веб-сайтах</p>
+                <span>
+                  Принятие различных соглашений без чтения и ознакомления
+                </span>
               </div>
               <div className="title-right">
                 <img src={arrow} alt="arrow" />
               </div>
             </div>
-            <div className="title-drop" ref={drop8}>
-              <h2>
+            <div className="title-dropdown">
+              <p>
                 При использовании общедоступных сетей «Wi-Fi», старайтесь не
                 вводить свою личную информацию, а к незнакомым сетям «Wi-Fi»
                 рекомендуется вообще не подключаться, поскольку эти сети могут
                 использоваться для атаки и получения вашей личной информации
-              </h2>
+              </p>
             </div>
-          </div>
-        </li>
-      </ul>
+          </li>
+        </ul>
+      </div>
     </section>
   );
 };
