@@ -1,5 +1,5 @@
 // IMPORT MODULES
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { UserContext } from "../../backend/UserContext";
 
 // IMPORT IMAGES

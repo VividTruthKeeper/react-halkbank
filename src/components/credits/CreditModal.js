@@ -1,5 +1,5 @@
 // IMPORT MODULES
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
 // IMPORT IMAGES
 import exit from "../../icons/exit.svg";
