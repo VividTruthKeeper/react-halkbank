@@ -25,7 +25,7 @@ export const sendRequest = (url, token, data, setState, setLoader) => {
   axios
     .post(`${url}?token=${token}`, form)
     .then((res) => {
-      setState(res.data);
+      setState(res);
       if (setLoader) {
         setLoader(false);
       }

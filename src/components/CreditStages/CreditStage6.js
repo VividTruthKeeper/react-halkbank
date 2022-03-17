@@ -10,7 +10,13 @@ import next_reverse from "../../icons/next-reverse.svg";
 import { sendRequest } from "../../backend/sendRequest";
 import { getUserInfo } from "../../backend/getUserInfo";
 
-const CreditStage6 = ({ setStage, data, setModalOpen, setLoader }) => {
+const CreditStage6 = ({
+  setStage,
+  data,
+  setModalOpen,
+  setLoader,
+  setSuccess,
+}) => {
   const { setUser } = useContext(UserContext);
   const token = localStorage.getItem("userToken");
   const postUrl = "http://95.85.124.85:8000/api/online_credit";
@@ -111,7 +117,20 @@ const CreditStage6 = ({ setStage, data, setModalOpen, setLoader }) => {
           onClick={() => {
             setModalOpen(false);
             setLoader(true);
-            sendRequest(postUrl, token, data, () => null, setLoader);
+            sendRequest(
+              postUrl,
+              token,
+              data,
+              (res) => {
+                if (res.headers.status === "200") {
+                  setSuccess(true);
+                  setTimeout(() => {
+                    setSuccess(false);
+                  }, 2000);
+                }
+              },
+              setLoader
+            );
             getUserInfo(getUrl, token, setUser, () => null);
           }}
         >

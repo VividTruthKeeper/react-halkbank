@@ -37,63 +37,23 @@ const Base = () => {
                   <th>Статус</th>
                   <th>Действие</th>
                 </tr>
+                {user
+                  ? user.online_credit.length !== 0
+                    ? user.online_credit.map((el, i) => {
+                        return (
+                          <tr key={i}>
+                            <td>#{el.id}</td>
+                            <td>{el.type}</td>
+                            <td>{el.date}</td>
+                            <td>--status</td>
+                            <td>--action</td>
+                          </tr>
+                        );
+                      })
+                    : null
+                  : null}
                 {user ? (
-                  user.online_credit !== [] ? (
-                    user.online_credit.map((el, i) => {
-                      return (
-                        <tr key={i}>
-                          <td>#{el.id}</td>
-                          <td>{el.type}</td>
-                          <td>{el.date}</td>
-                          <td>--status</td>
-                          <td>--action</td>
-                        </tr>
-                      );
-                    })
-                  ) : user ? (
-                    user.online_card !== [] ? (
-                      ""
-                    ) : (
-                      <tr>
-                        <td>Заявок нет</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                      </tr>
-                    )
-                  ) : (
-                    <tr>
-                      <td>Заявок нет</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                  )
-                ) : user ? (
-                  user.online_card !== [] ? (
-                    ""
-                  ) : (
-                    <tr>
-                      <td>Заявок нет</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                  )
-                ) : (
-                  <tr>
-                    <td>Заявок нет</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                )}
-                {user ? (
-                  user.online_card !== [] ? (
+                  user.online_card.length !== 0 ? (
                     user.online_card.map((el, i) => {
                       return (
                         <tr key={i}>

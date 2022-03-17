@@ -1,21 +1,25 @@
 // IMPORT MODULES
 import React, { useState, useEffect } from "react";
 
+// IMPORT COMPONENTS
+import Success from "../global/Success";
+
 // IMPORT IMAGES
 import Next from "../../icons/arrow-circle-right.svg";
 
 // IMPORT HELPERS
 import { ValidatePassword } from "../../validators/ValidatePassword";
+import { forgotPassword } from "../../backend/forgotPassword";
 
-const Stage2 = ({ setRecoveryOpen, setRecStage }) => {
+const Stage2 = ({ setRecoveryOpen, setRecStage, data, setData, setLoader }) => {
   const [inputValid, setInputValid] = useState({
     newPassword: false,
     confirm: false,
     match: false,
   });
-
+  const form = new FormData();
+  const [success, setSuccess] = useState(false);
   const [valid, setValid] = useState(false);
-
   const [input, setInput] = useState({
     new: "",
     confirm: "",
@@ -38,9 +42,16 @@ const Stage2 = ({ setRecoveryOpen, setRecStage }) => {
     }
   }, [input]);
 
+  const postUrl = "http://95.85.124.85:8000/api/me";
+
   return (
     <div className="recovery-block recovery-2">
-      <form>
+      {success ? <Success message={"Пароль успешно изменен"} /> : null}
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
         <h2 className="form-title">Новый пароль</h2>
         <div className="reg-input-block rec-input">
           <label htmlFor="new-pass">
@@ -58,7 +69,7 @@ const Stage2 = ({ setRecoveryOpen, setRecStage }) => {
               if (ValidatePassword(e.target.value)) {
                 setInputValid({
                   ...inputValid,
-                  newPassword: true,
+                  newPassword: e.target.value,
                 });
               } else {
                 setInputValid({
@@ -123,12 +134,26 @@ const Stage2 = ({ setRecoveryOpen, setRecStage }) => {
             disabled={!btnEnabled}
             type="button"
             className="sign-btn"
-            onClick={(e) => {
-              e.preventDefault();
-              setRecoveryOpen(false);
-              setTimeout(() => {
-                setRecStage(1);
-              }, 400);
+            onClick={() => {
+              setData({ ...data, password: inputValid.newPassword });
+              setLoader(true);
+              form.append("email", data.email);
+              form.append("password", data.password);
+              form.append("password_confirmation", data.password);
+              forgotPassword(
+                postUrl,
+                form,
+                () => {
+                  setSuccess(true);
+                  setTimeout(() => {
+                    setSuccess(false);
+                  }, 2000);
+                  setRecoveryOpen(false);
+                  setRecStage(1);
+                  setLoader(false);
+                },
+                setLoader
+              );
             }}
           >
             <div>

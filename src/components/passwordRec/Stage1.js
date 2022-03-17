@@ -7,7 +7,7 @@ import Next from "../../icons/arrow-circle-right.svg";
 // IMPORT HELPER
 import { ValidateEmail } from "../../validators/ValidateEmail";
 
-const Stage1 = ({ setRecStage }) => {
+const Stage1 = ({ setRecStage, data, setData }) => {
   const [inputValid, setInputValid] = useState({
     email: false,
   });
@@ -15,7 +15,11 @@ const Stage1 = ({ setRecStage }) => {
   const [validate, setValidate] = useState(false);
   return (
     <div className="recovery-block recovery-1">
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
         <h2 className="form-title">Восстановление пароля</h2>
         <div className="reg-input-block rec-input">
           <label htmlFor="mail">
@@ -33,7 +37,7 @@ const Stage1 = ({ setRecStage }) => {
               if (ValidateEmail(e.target.value)) {
                 setInputValid({
                   ...inputValid,
-                  email: true,
+                  email: e.target.value,
                 });
               } else {
                 setInputValid({
@@ -57,6 +61,7 @@ const Stage1 = ({ setRecStage }) => {
             type="button"
             className="sign-btn"
             onClick={() => {
+              setData({ ...data, email: inputValid.email });
               setRecStage((prevStage) => prevStage + 1);
             }}
           >

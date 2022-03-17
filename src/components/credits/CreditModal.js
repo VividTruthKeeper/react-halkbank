@@ -28,6 +28,7 @@ const CreditModal = ({
   stage,
   setStage,
   setLoader,
+  setSuccess,
 }) => {
   const window = useRef();
   const [data, setData] = useState({});
@@ -176,6 +177,7 @@ const CreditModal = ({
                   setData={setData}
                   setModalOpen={setModalOpen}
                   setLoader={setLoader}
+                  setSuccess={setSuccess}
                 />
               ) : (
                 ""

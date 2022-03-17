@@ -68,21 +68,19 @@ const Cards = () => {
                   <th>Действие</th>
                 </tr>
                 {user ? (
-                  user.online_card !== [] ? (
+                  user.online_card.length !== 0 ? (
                     user.online_card.map((el, i) => {
-                      return (
-                        <tr key={i}>
-                          <td>#{el.id}</td>
-                          <td>{el.selected_card}</td>
-                          <td>{el.date}</td>
-                          <td>--status</td>
-                          <td>--action</td>
-                        </tr>
-                      );
+                      <tr key={i}>
+                        <td>#{el.id}</td>
+                        <td>{el.selected_card}</td>
+                        <td>{el.date}</td>
+                        <td>--status</td>
+                        <td>--action</td>
+                      </tr>;
                     })
                   ) : (
                     <tr>
-                      <td>Заявок на карту нет</td>
+                      <td>Заявок на карты нет</td>
                       <td></td>
                       <td></td>
                       <td></td>
@@ -91,7 +89,7 @@ const Cards = () => {
                   )
                 ) : (
                   <tr>
-                    <td>Заявок на карту нет</td>
+                    <td>Заявок на карты нет</td>
                     <td></td>
                     <td></td>
                     <td></td>

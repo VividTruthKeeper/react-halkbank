@@ -6,12 +6,14 @@ import { UserContext } from "../backend/UserContext";
 import Breadcrumb from "../components/global/Breadcrumb";
 import CreditModal from "../components/credits/CreditModal";
 import Loader from "../components/global/Loader";
+import Success from "../components/global/Success";
 
 // IMPORT IMAGES
 import credit from "../icons/credit-black.svg";
 import add from "../icons/add.svg";
 
 const Credits = () => {
+  const [success, setSuccess] = useState(false);
   const { user } = useContext(UserContext);
   const [modalOpen, setModalOpen] = useState(false);
   const [stage, setStage] = useState(1);
@@ -26,6 +28,7 @@ const Credits = () => {
 
   return (
     <section className="cards">
+      {success ? <Success message={"ASDASDASD"} /> : null}
       <Breadcrumb image={credit} link={"/home/credits"} linkTitle={"Кредиты"} />
       <CreditModal
         setModalOpen={setModalOpen}
@@ -34,6 +37,7 @@ const Credits = () => {
         setStage={setStage}
         loader={loader}
         setLoader={setLoader}
+        setSuccess={setSuccess}
       />
       {loader ? <Loader /> : null}
       <div className="container">
@@ -65,21 +69,19 @@ const Credits = () => {
                   <th>Действие</th>
                 </tr>
                 {user ? (
-                  user.online_credit !== [] ? (
+                  user.online_credit.length !== 0 ? (
                     user.online_credit.map((el, i) => {
-                      return (
-                        <tr key={i}>
-                          <td>#{el.id}</td>
-                          <td>{el.type}</td>
-                          <td>{el.date}</td>
-                          <td>--status</td>
-                          <td>--action</td>
-                        </tr>
-                      );
+                      <tr key={i}>
+                        <td>#{el.id}</td>
+                        <td>{el.type}</td>
+                        <td>{el.date}</td>
+                        <td>--status</td>
+                        <td>--action</td>
+                      </tr>;
                     })
                   ) : (
                     <tr>
-                      <td>Заявок на карту нет</td>
+                      <td>Заявок на кредиты нет</td>
                       <td></td>
                       <td></td>
                       <td></td>
@@ -88,7 +90,7 @@ const Credits = () => {
                   )
                 ) : (
                   <tr>
-                    <td>Заявок на карту нет</td>
+                    <td>Заявок на кредиты нет</td>
                     <td></td>
                     <td></td>
                     <td></td>
