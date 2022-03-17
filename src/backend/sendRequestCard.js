@@ -1,8 +1,12 @@
 import axios from "axios";
+// import { getDate } from "../helpers/Date";
 
 export const sendRequestCard = (url, token, data, setLoader) => {
+  let today = new Date().toLocaleDateString();
   const form = new FormData();
-  form.append("file", data.file);
+  data.file.map((el) => {
+    form.append("file[]", el);
+  });
   form.append("name", data.name);
   form.append("surname", data.surname);
   form.append("middlename", data.middlename);
@@ -20,6 +24,8 @@ export const sendRequestCard = (url, token, data, setLoader) => {
   form.append("selected_time", data.selected_time);
   form.append("the_codeword", data.the_codeword);
   form.append("sms_notification", data.sms_notification);
+  // form.append("date", `today`);
+
   axios
     .post(`${url}?token=${token}`, form)
     .then((res) => {

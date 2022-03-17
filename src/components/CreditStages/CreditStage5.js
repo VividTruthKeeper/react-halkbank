@@ -171,19 +171,19 @@ const CreditStage5 = ({ setStage, data, setData }) => {
                 if (files.input1) {
                   setData({
                     ...data,
-                    file: files.input1[0],
+                    file: [files.input1[0]],
                   });
                 }
                 if (files.input2) {
                   setData({
                     ...data,
-                    file: files.input2[0],
+                    file: [files.input2[0]],
                   });
                 }
                 if (files.input3) {
                   setData({
                     ...data,
-                    file: files.input3[0],
+                    file: [files.input3[0]],
                   });
                 }
               }

@@ -1,7 +1,8 @@
 // IMPORT MODULES
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../backend/UserContext";
+import { deleteUser } from "../../backend/deleteUser";
 
 // IMPORT COMPONENTS
 import Loader from "./Loader";
@@ -14,15 +15,27 @@ import menu from "../../icons/menu.svg";
 import userImg from "../../icons/user.svg";
 
 const LoggedNav = ({ setSideOpen }) => {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
+  const langBlock = useRef();
+  const userBlock = useRef();
   const handleLanguage = (lang) => {
     setLanguage(lang);
   };
   const [langOpen, setLangOpen] = useState(false);
   const [language, setLanguage] = useState("РУС");
-
+  const [profile, setProfile] = useState(false);
   return (
-    <nav className="nav logged-nav">
+    <nav
+      className="nav logged-nav"
+      onClick={(e) => {
+        if (!langBlock.current.contains(e.target)) {
+          setLangOpen(false);
+        }
+        if (!userBlock.current.contains(e.target)) {
+          setProfile(false);
+        }
+      }}
+    >
       <div className="container">
         <div className="nav-inner">
           <div className="nav__left">
@@ -45,7 +58,8 @@ const LoggedNav = ({ setSideOpen }) => {
           <div className="nav__right">
             <ul
               className={langOpen ? "language active" : "language"}
-              onClick={() => {
+              ref={langBlock}
+              onClick={(e) => {
                 setLangOpen(!langOpen);
               }}
             >
@@ -89,7 +103,31 @@ const LoggedNav = ({ setSideOpen }) => {
                 </ul>
               </li>
             </ul>
-            <div className="user">
+            <div
+              className={profile ? "user active" : "user"}
+              onClick={() => {
+                setProfile(!profile);
+              }}
+              ref={userBlock}
+            >
+              <div className="user-dropdown">
+                <ul>
+                  <li>
+                    <Link to="/home/profile">Данные профиля</Link>
+                  </li>
+                  <li>
+                    <button
+                      className="sign-out-btn"
+                      onClick={() => {
+                        deleteUser();
+                        setUser(null);
+                      }}
+                    >
+                      Выход
+                    </button>
+                  </li>
+                </ul>
+              </div>
               <div className="user-img">
                 <img src={userImg} alt="user" />
               </div>

@@ -1,5 +1,6 @@
 // IMPORT MODULES
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { UserContext } from "../backend/UserContext";
 
 // IMPORT COMPONENTS
 import Breadcrumb from "../components/global/Breadcrumb";
@@ -11,6 +12,7 @@ import card from "../icons/card-black.svg";
 import add from "../icons/add.svg";
 
 const Cards = () => {
+  const { user } = useContext(UserContext);
   const [loader, setLoader] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [stage, setStage] = useState(1);
@@ -65,13 +67,37 @@ const Cards = () => {
                   <th>Статус</th>
                   <th>Действие</th>
                 </tr>
-                <tr>
-                  <td>Заявок на карту нет</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
+                {user ? (
+                  user.online_card !== [] ? (
+                    user.online_card.map((el, i) => {
+                      return (
+                        <tr key={i}>
+                          <td>#{el.id}</td>
+                          <td>{el.selected_card}</td>
+                          <td>{el.date}</td>
+                          <td>--status</td>
+                          <td>--action</td>
+                        </tr>
+                      );
+                    })
+                  ) : (
+                    <tr>
+                      <td>Заявок на карту нет</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  )
+                ) : (
+                  <tr>
+                    <td>Заявок на карту нет</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>

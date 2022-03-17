@@ -36,7 +36,7 @@ const Recovery = () => {
     if (
       inputValid.email &&
       inputValid.new === inputValid.match &&
-      inputValid.new !== ""
+      inputValid.new
     ) {
       setBtnEnabled(true);
     } else {

@@ -1,5 +1,5 @@
 // IMPORT MODULES
-import React, { useContext } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import { UserContext } from "../backend/UserContext";
 
 // IMPORT COMPONENTS
@@ -44,27 +44,39 @@ const Base = () => {
                         <tr key={i}>
                           <td>#{el.id}</td>
                           <td>{el.type}</td>
-                          <td>--date</td>
+                          <td>{el.date}</td>
                           <td>--status</td>
                           <td>--action</td>
                         </tr>
                       );
                     })
-                  ) : user.online_card !== [] ? (
-                    user.online_card.map((el, i) => {
-                      return (
-                        <tr key={i}>
-                          <td>#{el.id}</td>
-                          <td>{el.type}</td>
-                          <td>--date</td>
-                          <td>--status</td>
-                          <td>--action</td>
-                        </tr>
-                      );
-                    })
+                  ) : user ? (
+                    user.online_card !== [] ? (
+                      ""
+                    ) : (
+                      <tr>
+                        <td>Заявок нет</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                    )
                   ) : (
                     <tr>
-                      <td>Заявок на карту нет</td>
+                      <td>Заявок нет</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  )
+                ) : user ? (
+                  user.online_card !== [] ? (
+                    ""
+                  ) : (
+                    <tr>
+                      <td>Заявок нет</td>
                       <td></td>
                       <td></td>
                       <td></td>
@@ -73,7 +85,38 @@ const Base = () => {
                   )
                 ) : (
                   <tr>
-                    <td>Заявок на карту нет</td>
+                    <td>Заявок нет</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                )}
+                {user ? (
+                  user.online_card !== [] ? (
+                    user.online_card.map((el, i) => {
+                      return (
+                        <tr key={i}>
+                          <td>#{el.id}</td>
+                          <td>{el.selected_card}</td>
+                          <td>{el.date}</td>
+                          <td>--status</td>
+                          <td>--action</td>
+                        </tr>
+                      );
+                    })
+                  ) : (
+                    <tr>
+                      <td>Заявок нет</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  )
+                ) : (
+                  <tr>
+                    <td>Заявок нет</td>
                     <td></td>
                     <td></td>
                     <td></td>

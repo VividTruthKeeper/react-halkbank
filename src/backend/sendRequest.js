@@ -2,7 +2,9 @@ import axios from "axios";
 
 export const sendRequest = (url, token, data, setState, setLoader) => {
   const form = new FormData();
-  form.append("file", data.file);
+  data.file.map((el) => {
+    form.append("file[]", el);
+  });
   form.append("name", data.name);
   form.append("last_name", data.surname);
   form.append("middle_name", data.fathers);

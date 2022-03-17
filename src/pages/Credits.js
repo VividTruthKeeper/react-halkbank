@@ -71,7 +71,7 @@ const Credits = () => {
                         <tr key={i}>
                           <td>#{el.id}</td>
                           <td>{el.type}</td>
-                          <td>--date</td>
+                          <td>{el.date}</td>
                           <td>--status</td>
                           <td>--action</td>
                         </tr>
