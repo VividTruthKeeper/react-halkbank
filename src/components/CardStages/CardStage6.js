@@ -19,8 +19,8 @@ const CardStage6 = ({
 }) => {
   const { setUser } = useContext(UserContext);
   const token = localStorage.getItem("userToken");
-  const postUrl = "http://95.85.124.85:8000/api/online_card";
-  const getUrl = "http://95.85.124.85:8000/api/me";
+  const postUrl = "http://shahsyotag.halkbank.gov.tm:8000//api/online_card";
+  const getUrl = "http://shahsyotag.halkbank.gov.tm:8000//api/me";
 
   return (
     <section className="card-stage-6">

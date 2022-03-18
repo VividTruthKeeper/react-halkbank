@@ -19,7 +19,7 @@ const SignIn = () => {
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const checkFirstLoad = useRef(true);
-  const postUrl = "http://95.85.124.85:8000/api/login";
+  const postUrl = "http://shahsyotag.halkbank.gov.tm:8000//api/login";
   const [formData, setFormData] = useState();
   const { user, setUser } = useContext(UserContext);
   const [recoveryOpen, setRecoveryOpen] = useState(false);
