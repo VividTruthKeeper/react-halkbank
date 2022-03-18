@@ -6,12 +6,14 @@ import { UserContext } from "../backend/UserContext";
 import Breadcrumb from "../components/global/Breadcrumb";
 import ModalForm from "../components/cards/ModalForm";
 import Loader from "../components/global/Loader";
+import Success from "../components/global/Success";
 
 // IMPORT IMAGES
 import card from "../icons/card-black.svg";
 import add from "../icons/add.svg";
 
 const Cards = () => {
+  const [success, setSuccess] = useState(false);
   const { user } = useContext(UserContext);
   const [loader, setLoader] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
@@ -25,6 +27,7 @@ const Cards = () => {
   }, [modalOpen]);
   return (
     <section className="cards">
+      {success ? <Success message={"Ваш запрос успешно отправлен!"} /> : null}
       <Breadcrumb
         image={card}
         link={"/home/cards"}
@@ -37,6 +40,7 @@ const Cards = () => {
         setStage={setStage}
         loader={loader}
         setLoader={setLoader}
+        setSuccess={setSuccess}
       />
       {loader ? <Loader /> : null}
       <div className="container">
@@ -70,13 +74,15 @@ const Cards = () => {
                 {user ? (
                   user.online_card.length !== 0 ? (
                     user.online_card.map((el, i) => {
-                      <tr key={i}>
-                        <td>#{el.id}</td>
-                        <td>{el.selected_card}</td>
-                        <td>{el.date}</td>
-                        <td>--status</td>
-                        <td>--action</td>
-                      </tr>;
+                      return (
+                        <tr key={i}>
+                          <td>#{el.id}</td>
+                          <td>{el.selected_card}</td>
+                          <td>{el.date}</td>
+                          <td>--status</td>
+                          <td>--action</td>
+                        </tr>
+                      );
                     })
                   ) : (
                     <tr>

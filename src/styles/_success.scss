@@ -15,11 +15,12 @@
   h1 {
     font-size: 4rem;
     color: $base-green;
+    text-align: center;
   }
 }
 
 .wrapper {
-  width: 100px;
+  width: 10rem;
   margin: 4em auto 0;
 }
 
@@ -36,5 +37,33 @@
   }
   100% {
     stroke-dashoffset: 0;
+  }
+}
+
+// MEDIA
+
+@media screen and (max-width: 900px) {
+  .success {
+    h1 {
+      font-size: 3rem;
+      padding: 0 2rem;
+    }
+  }
+  .wrapper {
+    width: 8rem;
+    margin: 4em auto 0;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .success {
+    h1 {
+      font-size: 2.6rem;
+      padding: 0 2rem;
+    }
+  }
+  .wrapper {
+    width: 7rem;
+    margin: 4em auto 0;
   }
 }

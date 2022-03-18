@@ -1,5 +1,5 @@
 // IMPORT MODULES
-import React, { useCallback, useContext, useState } from "react";
+import React, { useContext } from "react";
 import { UserContext } from "../backend/UserContext";
 
 // IMPORT COMPONENTS
@@ -37,7 +37,62 @@ const Base = () => {
                   <th>Статус</th>
                   <th>Действие</th>
                 </tr>
+
+                {user ? (
+                  user.online_credit.length !== 0 ? (
+                    user.online_credit.map((el, i) => {
+                      return (
+                        <tr key={i}>
+                          <td>#{el.id}</td>
+                          <td>{el.type}</td>
+                          <td>{el.date}</td>
+                          <td>--status</td>
+                          <td>--action</td>
+                        </tr>
+                      );
+                    })
+                  ) : user ? (
+                    user.online_card.length !== 0 ? (
+                      ""
+                    ) : (
+                      <tr>
+                        <td>Заявок нет</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                    )
+                  ) : null
+                ) : user ? (
+                  user.online_card.length !== 0 ? (
+                    ""
+                  ) : (
+                    <tr>
+                      <td>Заявок нет</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  )
+                ) : null}
                 {user
+                  ? user.online_card.length !== 0
+                    ? user.online_card.map((el, i) => {
+                        return (
+                          <tr key={i}>
+                            <td>#{el.id}</td>
+                            <td>{el.selected_card}</td>
+                            <td>{el.date}</td>
+                            <td>--status</td>
+                            <td>--action</td>
+                          </tr>
+                        );
+                      })
+                    : null
+                  : null}
+                {/* {user
                   ? user.online_credit.length !== 0
                     ? user.online_credit.map((el, i) => {
                         return (
@@ -65,16 +120,8 @@ const Base = () => {
                         </tr>
                       );
                     })
-                  ) : (
-                    <tr>
-                      <td>Заявок нет</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                  )
-                ) : (
+                  ) : user.online_credit.length !== 0 ? null
+                 : (
                   <tr>
                     <td>Заявок нет</td>
                     <td></td>
@@ -82,7 +129,7 @@ const Base = () => {
                     <td></td>
                     <td></td>
                   </tr>
-                )}
+                )} */}
               </tbody>
             </table>
           </div>

@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import CustomSelect from "../components/global/CustomSelect";
 import Breadcrumb from "../components/global/Breadcrumb";
 import Loader from "../components/global/Loader";
+import Success from "../components/global/Success";
 
 // IMPORT FUNCTIONS
 import { sendMessage } from "../backend/sendMessage";
@@ -14,6 +15,7 @@ import mail from "../icons/mail-black.svg";
 import send from "../icons/send.svg";
 
 const ContactUs = () => {
+  const [success, setSuccess] = useState(false);
   const token = localStorage.getItem("userToken");
   const postUrl = "http://95.85.124.85:8000/api/message";
   const formData = new FormData();
@@ -33,6 +35,9 @@ const ContactUs = () => {
   }, [topic, inputValid]);
   return (
     <section className="contact-us">
+      {success ? (
+        <Success message={"Ваше сообщение успешно отправлено!"} />
+      ) : null}
       <Breadcrumb
         image={mail}
         link={"/home/contact-us"}
@@ -90,12 +95,23 @@ const ContactUs = () => {
                     disabled={!btnEnabled}
                     className="sign-btn cu-btn"
                     onClick={() => {
+                      setIsLoading(true);
                       formData.append("subject", topic);
                       formData.append("message", inputValid.message);
-                      sendMessage(postUrl, token, formData, (e) => {
-                        setIsLoading(e);
-                      });
-                      setIsLoading(true);
+                      sendMessage(
+                        postUrl,
+                        token,
+                        formData,
+                        (e) => {
+                          setIsLoading(e);
+                        },
+                        () => {
+                          setSuccess(true);
+                          setTimeout(() => {
+                            setSuccess(false);
+                          }, 2000);
+                        }
+                      );
                     }}
                   >
                     <div>

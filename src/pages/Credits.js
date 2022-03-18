@@ -28,7 +28,7 @@ const Credits = () => {
 
   return (
     <section className="cards">
-      {success ? <Success message={"ASDASDASD"} /> : null}
+      {success ? <Success message={"Ваш запрос успешно отправлен!"} /> : null}
       <Breadcrumb image={credit} link={"/home/credits"} linkTitle={"Кредиты"} />
       <CreditModal
         setModalOpen={setModalOpen}
@@ -71,13 +71,15 @@ const Credits = () => {
                 {user ? (
                   user.online_credit.length !== 0 ? (
                     user.online_credit.map((el, i) => {
-                      <tr key={i}>
-                        <td>#{el.id}</td>
-                        <td>{el.type}</td>
-                        <td>{el.date}</td>
-                        <td>--status</td>
-                        <td>--action</td>
-                      </tr>;
+                      return (
+                        <tr key={i}>
+                          <td>#{el.id}</td>
+                          <td>{el.type}</td>
+                          <td>{el.date}</td>
+                          <td>--status</td>
+                          <td>--action</td>
+                        </tr>
+                      );
                     })
                   ) : (
                     <tr>

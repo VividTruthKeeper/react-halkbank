@@ -10,7 +10,13 @@ import next_reverse from "../../icons/next-reverse.svg";
 import { sendRequestCard } from "../../backend/sendRequestCard";
 import { getUserInfo } from "../../backend/getUserInfo";
 
-const CardStage6 = ({ setStage, data, setLoader, setModalOpen }) => {
+const CardStage6 = ({
+  setStage,
+  data,
+  setLoader,
+  setModalOpen,
+  setSuccess,
+}) => {
   const { setUser } = useContext(UserContext);
   const token = localStorage.getItem("userToken");
   const postUrl = "http://95.85.124.85:8000/api/online_card";
@@ -118,8 +124,14 @@ const CardStage6 = ({ setStage, data, setLoader, setModalOpen }) => {
           onClick={() => {
             setLoader(true);
             setModalOpen(false);
-            sendRequestCard(postUrl, token, data, setLoader);
-            getUserInfo(getUrl, token, setUser, () => null);
+            sendRequestCard(postUrl, token, data, () => {
+              setSuccess(true);
+              setLoader(false);
+              setTimeout(() => {
+                setSuccess(false);
+                getUserInfo(getUrl, token, setUser, () => null);
+              }, 2000);
+            });
           }}
         >
           <div>

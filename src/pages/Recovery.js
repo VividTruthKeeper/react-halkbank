@@ -1,10 +1,11 @@
 // IMPORT MODULES
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { UserContext } from "../backend/UserContext";
 
 // IMPORT COMPONENTS
 import Breadcrumb from "../components/global/Breadcrumb";
 import Loader from "../components/global/Loader";
+import Success from "../components/global/Success";
 
 // IMPORT IMAGES
 import recovery from "../icons/recovery.svg";
@@ -17,6 +18,9 @@ import { ValidateEmail } from "../validators/ValidateEmail";
 import { changePassword } from "../backend/changePassword";
 
 const Recovery = () => {
+  const inp1 = useRef();
+  const inp2 = useRef();
+  const inp3 = useRef();
   const [success, setSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const postUrl = "http://95.85.124.85:8000/api/me";
@@ -46,6 +50,7 @@ const Recovery = () => {
 
   return (
     <section className="p-recovery">
+      {success ? <Success message={"Ваш пароль успешно изменен!"} /> : null}
       <Breadcrumb
         image={recovery}
         link={"/home/recovery"}
@@ -68,6 +73,9 @@ const Recovery = () => {
                     disabled={!btnEnabled}
                     className="sign-btn cu-btn"
                     onClick={() => {
+                      inp1.current.value = "";
+                      inp2.current.value = "";
+                      inp3.current.value = "";
                       setIsLoading(true);
                       formData.append("email", inputValid.email);
                       formData.append("password", inputValid.new);
@@ -99,24 +107,42 @@ const Recovery = () => {
                   <div className="input-block">
                     <label htmlFor="email">E-mail</label>
                     <input
+                      ref={inp3}
                       type="text"
                       id="email"
                       autoComplete="true"
                       onChange={(e) => {
-                        if (ValidateEmail(e.target.value)) {
-                          setInputValid({
-                            ...inputValid,
-                            email: e.target.value,
-                          });
+                        setValidate(true);
+                        if (ValidateEmail(e.target.value) && user) {
+                          if (user.email === e.target.value) {
+                            setInputValid({
+                              ...inputValid,
+                              email: e.target.value,
+                            });
+                          } else {
+                            setInputValid({ ...inputValid, email: false });
+                          }
                         } else {
                           setInputValid({ ...inputValid, email: false });
                         }
                       }}
                     />
+                    {validate ? (
+                      <span
+                        className={
+                          inputValid.email ? "pass-check" : "pass-check active"
+                        }
+                      >
+                        Введен неверный E-mail
+                      </span>
+                    ) : (
+                      ""
+                    )}
                   </div>
                   <div className="input-block rel-block">
                     <label htmlFor="new-p">Новый пароль</label>
                     <input
+                      ref={inp1}
                       autoComplete="false"
                       type={isPassword ? "password" : "text"}
                       id="new-p"
@@ -154,6 +180,7 @@ const Recovery = () => {
                   <div className="input-block">
                     <label htmlFor="confirm-p">Повторите новый пароль</label>
                     <input
+                      ref={inp2}
                       autoComplete="false"
                       type={isPassword ? "password" : "text"}
                       id="confirm-p"
@@ -177,11 +204,6 @@ const Recovery = () => {
                     )}
                   </div>
                 </div>
-                {success ? (
-                  <h1 className="success">Ваш пароль успешно изменен!</h1>
-                ) : (
-                  ""
-                )}
               </form>
             </div>
           ) : (

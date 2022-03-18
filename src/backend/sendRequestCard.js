@@ -2,7 +2,10 @@ import axios from "axios";
 // import { getDate } from "../helpers/Date";
 
 export const sendRequestCard = (url, token, data, setLoader) => {
-  let today = new Date().toLocaleDateString();
+  let today = new Date();
+  let dd = String(today.getDate()).padStart(2, "0");
+  let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  let yyyy = today.getFullYear();
   const form = new FormData();
   data.file.map((el) => {
     form.append("file[]", el);
@@ -24,13 +27,15 @@ export const sendRequestCard = (url, token, data, setLoader) => {
   form.append("selected_time", data.selected_time);
   form.append("the_codeword", data.the_codeword);
   form.append("sms_notification", data.sms_notification);
-  // form.append("date", `today`);
+  form.append("date", `${dd}.${mm}.${yyyy}`);
 
   axios
     .post(`${url}?token=${token}`, form)
     .then((res) => {
       window.open(res.request.responseURL, "_blank").focus();
-      setLoader(false);
+      if (setLoader) {
+        setLoader(false);
+      }
     })
     .catch(() => {
       setLoader(false);

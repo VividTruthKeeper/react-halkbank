@@ -2,6 +2,12 @@ import axios from "axios";
 
 export const sendRequest = (url, token, data, setState, setLoader) => {
   const form = new FormData();
+
+  let today = new Date();
+  let dd = String(today.getDate()).padStart(2, "0");
+  let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  let yyyy = today.getFullYear();
+
   data.file.map((el) => {
     form.append("file[]", el);
   });
@@ -22,6 +28,7 @@ export const sendRequest = (url, token, data, setState, setLoader) => {
   form.append("amount_of_salary", data.salary);
   form.append("position", data.position);
   form.append("work_experience", data.exp);
+  form.append("date", `${dd}.${mm}.${yyyy}`);
   axios
     .post(`${url}?token=${token}`, form)
     .then((res) => {

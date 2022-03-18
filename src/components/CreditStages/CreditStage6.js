@@ -121,17 +121,15 @@ const CreditStage6 = ({
               postUrl,
               token,
               data,
-              (res) => {
-                if (res.headers.status === "200") {
-                  setSuccess(true);
-                  setTimeout(() => {
-                    setSuccess(false);
-                  }, 2000);
-                }
+              () => {
+                setSuccess(true);
+                setTimeout(() => {
+                  setSuccess(false);
+                  getUserInfo(getUrl, token, setUser, () => null);
+                }, 2000);
               },
               setLoader
             );
-            getUserInfo(getUrl, token, setUser, () => null);
           }}
         >
           <div>

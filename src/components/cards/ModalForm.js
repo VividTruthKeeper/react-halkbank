@@ -21,7 +21,14 @@ import CardStage3 from "../CardStages/CardStage3";
 import CardStage4 from "../CardStages/CardStage4";
 import CardStage6 from "../CardStages/CardStage6";
 
-const ModalForm = ({ modalOpen, setModalOpen, stage, setStage, setLoader }) => {
+const ModalForm = ({
+  modalOpen,
+  setModalOpen,
+  stage,
+  setStage,
+  setLoader,
+  setSuccess,
+}) => {
   const window = useRef();
   const [data, setData] = useState({});
 
@@ -148,6 +155,7 @@ const ModalForm = ({ modalOpen, setModalOpen, stage, setStage, setLoader }) => {
                   setData={setData}
                   setLoader={setLoader}
                   setModalOpen={setModalOpen}
+                  setSuccess={setSuccess}
                 />
               ) : (
                 ""

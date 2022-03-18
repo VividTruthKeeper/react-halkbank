@@ -17,6 +17,9 @@ export const changePassword = (
       setState(res.data.user);
       setIsLoading(false);
       setSuccess(true);
+      setTimeout(() => {
+        setSuccess(false);
+      }, 2000);
       if (tokenSaved) {
         localStorage.setItem("userToken", res.data.token);
       }
