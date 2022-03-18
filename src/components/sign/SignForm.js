@@ -80,7 +80,7 @@ const SignForm = ({
           <div className="captcha">
             <h1>CAPTCHA</h1>
           </div>
-          <div className="forget">
+          {/* <div className="forget">
             <h3
               onClick={() => {
                 setRecoveryOpen(true);
@@ -88,7 +88,7 @@ const SignForm = ({
             >
               Забыли пароль?
             </h3>
-          </div>
+          </div> */}
         </div>
         <div className="sign-bottom">
           <button

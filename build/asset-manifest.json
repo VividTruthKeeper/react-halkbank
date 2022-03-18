@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.af8195a2.css",
-    "main.js": "/static/js/main.511f649d.js",
+    "main.js": "/static/js/main.77107f23.js",
     "static/media/logo-transp.svg": "/static/media/logo-transp.a903424d2393e17072667328738f6631.svg",
     "static/media/logo-bg.jpg": "/static/media/logo-bg.1d55df78b7376108f96c.jpg",
     "static/media/credit-card.jpg": "/static/media/credit-card.ff2990f7d50439a8f34d.jpg",
@@ -67,10 +67,10 @@
     "static/media/arrow-down.svg": "/static/media/arrow-down.2ec2ec0ddf677f60c1aa23e6d1abdc8d.svg",
     "static/media/arrow.svg": "/static/media/arrow.c8492a68102634ab2875008b3e67164c.svg",
     "main.af8195a2.css.map": "/static/css/main.af8195a2.css.map",
-    "main.511f649d.js.map": "/static/js/main.511f649d.js.map"
+    "main.77107f23.js.map": "/static/js/main.77107f23.js.map"
   },
   "entrypoints": [
     "static/css/main.af8195a2.css",
-    "static/js/main.511f649d.js"
+    "static/js/main.77107f23.js"
   ]
 }
