@@ -9,8 +9,6 @@ export const sendMessage = (url, token, data, stateSetter, loader) => {
       loader();
     })
     .catch(() => {
-      {
-        stateSetter(false);
-      }
+      stateSetter(false);
     });
 };
