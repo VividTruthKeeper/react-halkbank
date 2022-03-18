@@ -25,7 +25,7 @@ const RegForm = () => {
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const checkFirstLoad = useRef(true);
-  const postUrl = "http://shahsyotag.halkbank.gov.tm:8000//api/signup";
+  const postUrl = "http://shahsyotag.halkbank.gov.tm:8000/api/signup";
   const form = new FormData();
   const [formData, setFormData] = useState();
   const { user, setUser } = useContext(UserContext);

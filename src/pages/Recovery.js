@@ -23,7 +23,7 @@ const Recovery = () => {
   const inp3 = useRef();
   const [success, setSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const postUrl = "http://shahsyotag.halkbank.gov.tm:8000//api/me";
+  const postUrl = "http://shahsyotag.halkbank.gov.tm:8000/api/me";
   const userToken = localStorage.getItem("userToken");
   const { user, setUser } = useContext(UserContext);
   const [isPassword, setIsPassword] = useState(true);

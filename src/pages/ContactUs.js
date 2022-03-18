@@ -17,7 +17,7 @@ import send from "../icons/send.svg";
 const ContactUs = () => {
   const [success, setSuccess] = useState(false);
   const token = localStorage.getItem("userToken");
-  const postUrl = "http://shahsyotag.halkbank.gov.tm:8000//api/message";
+  const postUrl = "http://shahsyotag.halkbank.gov.tm:8000/api/message";
   const formData = new FormData();
   const [topic, setTopic] = useState(false);
   const [isLoading, setIsLoading] = useState(false);

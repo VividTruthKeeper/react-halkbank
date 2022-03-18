@@ -27,7 +27,7 @@ import Home from "./pages/Home";
 import Loader from "./components/global/Loader";
 
 const App = () => {
-  const loginUrl = "http://shahsyotag.halkbank.gov.tm:8000//api/me";
+  const loginUrl = "http://shahsyotag.halkbank.gov.tm:8000/api/me";
   const [user, setUser] = useState();
   const [loaderActive, setLoaderActive] = useState(false);
   const providerValue = useMemo(() => ({ user, setUser }), [user, setUser]);
