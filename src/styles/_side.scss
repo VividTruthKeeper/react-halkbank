@@ -15,6 +15,7 @@
 .side {
   height: 100%;
   max-width: 0rem;
+  min-width: 0rem;
   width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
@@ -119,6 +120,21 @@
   cursor: pointer;
 }
 // MEDIA
+
+@media screen and (max-width: 1500px) {
+  body {
+    overflow-x: hidden;
+  }
+  .side.active {
+    min-width: 30rem;
+    transition: 0.4s all ease;
+  }
+  .side-inner ul h2,
+  .side-inner ul a,
+  .side-inner ul button {
+    padding: 2.9rem 3.5rem;
+  }
+}
 
 @media screen and (max-width: 1300px) {
   .side-quit {
