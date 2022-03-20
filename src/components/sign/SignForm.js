@@ -9,6 +9,9 @@ import up from "../../icons/clipboard.svg";
 // IMPORT COMPONENTS
 import Loader from "../../components/global/Loader";
 
+// IMPORT HELPERS
+import { ValidateEmail } from "../../validators/ValidateEmail";
+
 const SignForm = ({
   setRecoveryOpen,
   setFormData,
@@ -20,11 +23,12 @@ const SignForm = ({
   const [inputValid, setInputValid] = useState({
     login: null,
     password: null,
+    email: null,
   });
   const [btnEnabled, setBtnEnabled] = useState(false);
 
   useEffect(() => {
-    if (inputValid.login && inputValid.password) {
+    if (inputValid.login && inputValid.password && inputValid.email) {
       setBtnEnabled(true);
     } else {
       setBtnEnabled(false);
@@ -56,6 +60,23 @@ const SignForm = ({
                   setInputValid({ ...inputValid, login: e.target.value });
                 } else {
                   setInputValid({ ...inputValid, login: null });
+                }
+              }}
+            />
+          </div>
+          <div className="input-block">
+            <label htmlFor="email">E-mail</label>
+            <input
+              autoComplete="true"
+              required
+              type="email"
+              id="email"
+              name="email"
+              onChange={(e) => {
+                if (ValidateEmail(e.target.value)) {
+                  setInputValid({ ...inputValid, email: e.target.value });
+                } else {
+                  setInputValid({ ...inputValid, email: null });
                 }
               }}
             />
@@ -99,6 +120,7 @@ const SignForm = ({
               setIsLoading(true);
               data.append("username", inputValid.login);
               data.append("password", inputValid.password);
+              data.append("email", inputValid.email);
               setFormData(data);
             }}
           >
