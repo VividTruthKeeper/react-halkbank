@@ -12,7 +12,7 @@ import Footer from "../components/global/Footer";
 import Side from "../components/global/Side";
 
 const Home = ({ ChildEl }) => {
-  const [sideOpen, setSideOpen] = useState(false);
+  const [sideOpen, setSideOpen] = useState(true);
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
   useEffect(() => {
