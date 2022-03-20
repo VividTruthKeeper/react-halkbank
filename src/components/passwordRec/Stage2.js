@@ -42,7 +42,7 @@ const Stage2 = ({ setRecoveryOpen, setRecStage, data, setData, setLoader }) => {
     }
   }, [input]);
 
-  const postUrl = "http://shahsyotag.halkbank.gov.tm:8000/api/me";
+  const postUrl = "http://shahsyotag.halkbank.gov.tm/app/api/me";
 
   return (
     <div className="recovery-block recovery-2">
