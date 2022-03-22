@@ -50,10 +50,10 @@ const LoggedNav = ({ setSideOpen }) => {
             <Link to="/" className="nav-logo">
               <img src={hb} alt="Halk Bank" />
             </Link>
-            <div className="nav-title">
+            <Link to="/" className="nav-title">
               <h1>Халкбанк</h1>
               <h4>"Главная ценность Банка-наши Клиенты"</h4>
-            </div>
+            </Link>
           </div>
           <div className="nav__right">
             <ul
