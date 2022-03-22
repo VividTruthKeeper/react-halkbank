@@ -9,6 +9,7 @@ import next_reverse from "../../icons/next-reverse.svg";
 // IMPORT HELPERS
 import { sendRequestCard } from "../../backend/sendRequestCard";
 import { getUserInfo } from "../../backend/getUserInfo";
+import { reformatDate } from "../../helpers/reformatDate";
 
 const CardStage6 = ({
   setStage,
@@ -40,7 +41,7 @@ const CardStage6 = ({
           </li>
           <li>
             <p>Дата рождения:</p>
-            <h4>{data.birthdate ? data.birthdate : "-"}</h4>
+            <h4>{data.birthdate ? reformatDate(data.birthdate) : "-"}</h4>
           </li>
           <li>
             <p>Мобильный телефон:</p>
@@ -86,7 +87,11 @@ const CardStage6 = ({
           </li>
           <li>
             <p>Дата прихода в банк:</p>
-            <h4>{data.date_arrival_bank ? data.date_arrival_bank : "-"}</h4>
+            <h4>
+              {data.date_arrival_bank
+                ? reformatDate(data.date_arrival_bank)
+                : "-"}
+            </h4>
           </li>
           <li>
             <p>Выбранное время:</p>
@@ -100,9 +105,10 @@ const CardStage6 = ({
       </div>
       <div className="cu-bottom cd-6-bottom">
         <button
+          type="button"
           className="sign-btn reg-btn"
           onClick={() => {
-            setStage(1);
+            setStage(4);
           }}
         >
           <div>
@@ -111,7 +117,7 @@ const CardStage6 = ({
             </div>
             <h3
               onClick={() => {
-                setStage(1);
+                setStage(4);
               }}
             >
               Редактировать

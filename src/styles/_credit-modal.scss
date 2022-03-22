@@ -354,6 +354,20 @@
     font-size: 1.8rem;
   }
 }
+.card-stage-4-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.cd-2-title,
+.card-stage-3-bottom,
+.card-stage-4-bottom {
+  .reg-btn {
+    max-width: 20rem;
+  }
+}
 
 @media screen and (max-width: 1000px) {
   .cs-2-right-middle {

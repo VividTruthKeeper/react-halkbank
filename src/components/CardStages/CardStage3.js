@@ -6,18 +6,19 @@ import { getDate } from "../../helpers/Date";
 
 // IMPORT IMAGES
 import next from "../../icons/next.svg";
+import next_reverse from "../../icons/next-reverse.svg";
 
 // IMPORT COMPONENTS
 import CustomSelect from "../global/CustomSelect";
 
 const CardStage3 = ({ setStage, data, setData }) => {
   const [inputValid, setInputValid] = useState({
-    region: false,
-    affiliate: false,
-    date: false,
-    time: false,
-    code: false,
-    sms: false,
+    region: data.region ? data.region : null,
+    affiliate: data.branch ? data.branch : null,
+    date: data.date_arrival_bank ? data.date_arrival_bank : null,
+    time: data.selected_time ? data.selected_time : null,
+    code: data.the_codeword ? data.the_codeword : null,
+    sms: data.sms_notification ? data.sms_notification : null,
   });
   const [btnEnabled, setBtnEnabled] = useState(false);
 
@@ -54,6 +55,7 @@ const CardStage3 = ({ setStage, data, setData }) => {
                 setInputValid({ ...inputValid, region: state })
               }
               eTarget={true}
+              defaultValue={inputValid.region}
             />
           </div>
           <div className="input-block">
@@ -71,6 +73,7 @@ const CardStage3 = ({ setStage, data, setData }) => {
                 setInputValid({ ...inputValid, affiliate: state })
               }
               eTarget={true}
+              defaultValue={inputValid.affiliate}
             />
           </div>
           <div className="input-block">
@@ -83,6 +86,7 @@ const CardStage3 = ({ setStage, data, setData }) => {
               id="date"
               name="date"
               max={getDate(18)}
+              defaultValue={inputValid.date}
               onChange={(e) => {
                 if (e.target.value !== "") {
                   setInputValid({ ...inputValid, date: e.target.value });
@@ -107,6 +111,7 @@ const CardStage3 = ({ setStage, data, setData }) => {
                 setInputValid({ ...inputValid, time: state })
               }
               eTarget={true}
+              defaultValue={inputValid.time}
             />
           </div>
           <div className="input-block">
@@ -118,6 +123,7 @@ const CardStage3 = ({ setStage, data, setData }) => {
               id="code"
               name="code"
               placeholder="amanamanow12"
+              defaultValue={inputValid.code}
               onChange={(e) => {
                 if (e.target.value !== "") {
                   setInputValid({ ...inputValid, code: e.target.value });
@@ -134,6 +140,7 @@ const CardStage3 = ({ setStage, data, setData }) => {
               type="checkbox"
               id="sms"
               name="sms"
+              checked={inputValid.sms ? inputValid.sms : false}
               onChange={(e) => {
                 setInputValid({ ...inputValid, sms: e.target.checked });
               }}
@@ -142,12 +149,27 @@ const CardStage3 = ({ setStage, data, setData }) => {
           </div>
         </div>
         <div className="cu-bottom card-stage-3-bottom">
-          <h4>
-            <p>
-              Все поля с символом ( <span>*</span> ) обязательны для заполнения
-            </p>
-            <p>Все поля доожны быть заполненны латиницей</p>
-          </h4>
+          <button
+            type="button"
+            className="sign-btn reg-btn"
+            onClick={() => {
+              setStage(2);
+            }}
+          >
+            <div>
+              <div className="btn-img">
+                <img src={next_reverse} alt="logout" />
+              </div>
+              <h3
+                onClick={() => {
+                  setStage(2);
+                }}
+              >
+                Редактировать
+              </h3>
+            </div>
+          </button>
+
           <button
             type="button"
             disabled={!btnEnabled}

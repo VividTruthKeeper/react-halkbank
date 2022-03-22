@@ -9,20 +9,25 @@ import { getDate } from "../../helpers/Date";
 
 // IMPORT IMAGES
 import next from "../../icons/next.svg";
+import next_reverse from "../../icons/next-reverse.svg";
 
 const CardStage2 = ({ setStage, data, setData }) => {
   const { user } = useContext(UserContext);
   const [inputValid, setInputValid] = useState({
-    surname: user ? user.surname : null,
-    name: user ? user.name : null,
-    fathers: user ? user.middle_name : null,
-    date: user ? user.date_birth : null,
-    passport: user ? user.passport : null,
-    p_address: user ? user.place_passport : null,
-    address: user ? user.address_residence : null,
-    mail: user ? user.email : null,
-    mobile: user ? user.mobile_phone : null,
-    home: user ? user.home_phone : null,
+    surname: data.surname ? data.surname : user ? user.surname : null,
+    name: data.name ? data.name : user ? user.name : null,
+    fathers: data.fathers ? data.fathers : user ? user.middle_name : null,
+    date: data.surname ? data.surname : user ? user.date_birth : null,
+    passport: data.passport ? data.passport : user ? user.passport : null,
+    p_address: data.p_address
+      ? data.p_address
+      : user
+      ? user.place_passport
+      : null,
+    address: data.address ? data.address : user ? user.address_residence : null,
+    mail: data.mail ? data.mail : user ? user.email : null,
+    mobile: data.mobile ? data.mobile : user ? user.mobile_phone : null,
+    home: data.home ? data.home : user ? user.home_phone : null,
   });
   const [btnEnabled, setBtnEnabled] = useState(false);
 
@@ -220,9 +225,26 @@ const CardStage2 = ({ setStage, data, setData }) => {
         </div>
         <div className="form-bottom">
           <div className="cu-bottom cd-2-title">
-            <h4>
-              Все поля с символом ( <span>*</span> ) обязательны для заполнения
-            </h4>
+            <button
+              type="button"
+              className="sign-btn reg-btn"
+              onClick={() => {
+                setStage(1);
+              }}
+            >
+              <div>
+                <div className="btn-img">
+                  <img src={next_reverse} alt="logout" />
+                </div>
+                <h3
+                  onClick={() => {
+                    setStage(1);
+                  }}
+                >
+                  Редактировать
+                </h3>
+              </div>
+            </button>
             <button
               type="button"
               disabled={!btnEnabled}

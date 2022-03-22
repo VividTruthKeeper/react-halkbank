@@ -8,6 +8,7 @@ import React, { useState, useRef, useEffect } from "react";
 import remove from "../../icons/remove.svg";
 import next from "../../icons/next.svg";
 import arrow from "../../icons/arrow.svg";
+import next_reverse from "../../icons/next-reverse.svg";
 
 const CardStage4 = ({ setStage, data, setData }) => {
   const [files, setFiles] = useState({
@@ -146,6 +147,26 @@ const CardStage4 = ({ setStage, data, setData }) => {
           </div>
         </div>
         <div className="cu-bottom card-stage-4-bottom">
+          <button
+            type="button"
+            className="sign-btn reg-btn"
+            onClick={() => {
+              setStage(3);
+            }}
+          >
+            <div>
+              <div className="btn-img">
+                <img src={next_reverse} alt="logout" />
+              </div>
+              <h3
+                onClick={() => {
+                  setStage(3);
+                }}
+              >
+                Редактировать
+              </h3>
+            </div>
+          </button>
           <button
             type="button"
             disabled={!btnEnabled}

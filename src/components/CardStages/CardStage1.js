@@ -9,7 +9,9 @@ import credit from "../../images/credit-card.jpg";
 import next from "../../icons/next.svg";
 
 const CardStage1 = ({ setStage, data, setData }) => {
-  const [inputValid, setInputValid] = useState(false);
+  const [inputValid, setInputValid] = useState(
+    data.selected_card ? data.selected_card : false
+  );
   return (
     <section className="card-stage-1">
       <form>
@@ -26,6 +28,7 @@ const CardStage1 = ({ setStage, data, setData }) => {
             }}
             eTarget={true}
             placeholder="Вид карты"
+            defaultValue={inputValid}
           />
         </div>
         <div className="card-description">
@@ -62,6 +65,7 @@ const CardStage1 = ({ setStage, data, setData }) => {
         </div>
         <div className="card-button">
           <button
+            type="button"
             disabled={!inputValid}
             type="button"
             className="sign-btn cd-btn"
