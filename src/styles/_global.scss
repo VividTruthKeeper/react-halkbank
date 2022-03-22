@@ -168,6 +168,26 @@ input[type="range"]:focus::-ms-fill-upper {
   background: $base-green;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #e5e5e5;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $base-green;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $dark-green;
+}
+
 // MEDIA
 @media screen and (max-width: 1200px) {
   .container {
