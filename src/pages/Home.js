@@ -3,9 +3,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../backend/UserContext";
 import { useNavigate } from "react-router-dom";
 
-// IMPORT HELPERS
-// import { getUserInfo } from "../backend/getUserInfo";
-
 // IMPORT COMPONENTS
 import LoggedNav from "../components/global/LoggedNav";
 import Footer from "../components/global/Footer";
@@ -15,6 +12,9 @@ const Home = ({ ChildEl }) => {
   const [sideOpen, setSideOpen] = useState(true);
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   useEffect(() => {
     if (!user) {
       navigate("/sign-in");
