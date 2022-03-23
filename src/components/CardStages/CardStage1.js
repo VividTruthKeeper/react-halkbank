@@ -67,7 +67,6 @@ const CardStage1 = ({ setStage, data, setData }) => {
           <button
             type="button"
             disabled={!inputValid}
-            type="button"
             className="sign-btn cd-btn"
             onClick={() => {
               setStage(2);
