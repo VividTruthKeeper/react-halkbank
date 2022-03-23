@@ -188,6 +188,14 @@ input[type="range"]:focus::-ms-fill-upper {
   background: $dark-green;
 }
 
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
 // MEDIA
 @media screen and (max-width: 1200px) {
   .container {

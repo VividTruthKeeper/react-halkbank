@@ -76,7 +76,27 @@ const Credits = () => {
                           <td>#{el.id}</td>
                           <td>{el.type}</td>
                           <td>{el.date}</td>
-                          <td>--status</td>
+                          <td
+                            className={
+                              el.status === "5"
+                                ? "red"
+                                : el.status === ("4" || "2")
+                                ? "green"
+                                : ""
+                            }
+                          >
+                            {el.status === "1"
+                              ? "Отправлено"
+                              : el.status === "2"
+                              ? "Принята"
+                              : el.status === "3"
+                              ? "На стадии рассмотрения"
+                              : el.status === "4"
+                              ? "Утверждено"
+                              : el.status === "5"
+                              ? "Отказано"
+                              : ""}
+                          </td>
                           <td>--action</td>
                         </tr>
                       );
