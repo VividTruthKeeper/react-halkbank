@@ -1,5 +1,5 @@
 // IMPORT MODULES
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 // IMPORT IMAGES
 import minus from "../../icons/minus.svg";
@@ -12,15 +12,25 @@ import logo from "../../icons/logo-transp.svg";
 // IMPORT IMAGES
 import next_reverse from "../../icons/next-reverse.svg";
 
-const CreditStage2 = ({ setStage, data, setData }) => {
+const CreditStage2 = ({ setStage, data, setData, cardData }) => {
   const [inputValue, setInputValue] = useState(
     data.inputValue ? data.inputValue : 3000
   );
-  const [radio, setRadio] = useState(2);
-  const [
-    monthlyPayment,
-    //  setMonthlyPayment
-  ] = useState(252.5);
+  const [radio, setRadio] = useState(1);
+  const [monthlyPayment, setMonthlyPayment] = useState(
+    (
+      inputValue / (radio * 12) +
+      (inputValue / (radio * 12)) * cardData.card1.percent
+    ).toFixed(2)
+  );
+  useEffect(() => {
+    setMonthlyPayment(
+      (
+        inputValue / (radio * 12) +
+        (inputValue / (radio * 12)) * cardData.card1.percent
+      ).toFixed(2)
+    );
+  }, [inputValue, radio]);
   const input = useRef();
   return (
     <section className="cs-2">
@@ -40,7 +50,7 @@ const CreditStage2 = ({ setStage, data, setData }) => {
                 >
                   <img src={minus} alt="minus" />
                 </div>
-                <h6>{inputValue}</h6>
+                <h6>{Math.ceil(inputValue)}</h6>
                 <div
                   className="data-img"
                   onClick={() => {
@@ -67,7 +77,7 @@ const CreditStage2 = ({ setStage, data, setData }) => {
           <div className="credit-term input-block">
             <label>Срок кредита</label>
             <div className="term-inputs">
-              <label htmlFor="term2" className={radio === 2 ? "active" : ""}>
+              <label htmlFor="term2" className={radio === 1 ? "active" : ""}>
                 1 год
                 <input
                   type="radio"
@@ -75,12 +85,12 @@ const CreditStage2 = ({ setStage, data, setData }) => {
                   id="term2"
                   onClick={(e) => {
                     if (e.target.checked === true) {
-                      setRadio(2);
+                      setRadio(1);
                     }
                   }}
                 />
               </label>
-              <label htmlFor="term3" className={radio === 3 ? "active" : ""}>
+              <label htmlFor="term3" className={radio === 2 ? "active" : ""}>
                 2 год
                 <input
                   type="radio"
@@ -88,12 +98,12 @@ const CreditStage2 = ({ setStage, data, setData }) => {
                   id="term3"
                   onClick={(e) => {
                     if (e.target.checked === true) {
-                      setRadio(3);
+                      setRadio(2);
                     }
                   }}
                 />
               </label>
-              <label htmlFor="term4" className={radio === 4 ? "active" : ""}>
+              <label htmlFor="term4" className={radio === 3 ? "active" : ""}>
                 3 года
                 <input
                   type="radio"
@@ -101,12 +111,12 @@ const CreditStage2 = ({ setStage, data, setData }) => {
                   id="term4"
                   onClick={(e) => {
                     if (e.target.checked === true) {
-                      setRadio(4);
+                      setRadio(3);
                     }
                   }}
                 />
               </label>
-              <label htmlFor="term1" className={radio === 1 ? "active" : ""}>
+              <label htmlFor="term1" className={radio === 4 ? "active" : ""}>
                 4 года
                 <input
                   type="radio"
@@ -114,7 +124,7 @@ const CreditStage2 = ({ setStage, data, setData }) => {
                   id="term1"
                   onClick={(e) => {
                     if (e.target.checked === true) {
-                      setRadio(1);
+                      setRadio(4);
                     }
                   }}
                 />
@@ -167,32 +177,54 @@ const CreditStage2 = ({ setStage, data, setData }) => {
             <div className="cs-2-right-top">
               <h6>Ежемесячный платеж</h6>
               <div className="payment">
-                <div className="data-img">
+                <div
+                  className="data-img"
+                  onClick={() => {
+                    setInputValue(
+                      ((parseInt(monthlyPayment) - 1) * radio * 12) /
+                        (1 + cardData.card1.percent)
+                    );
+                  }}
+                >
                   <img src={minus2} alt="minus" />
                 </div>
                 <h5>{monthlyPayment} TMT</h5>
-                <div className="data-img">
+                <div
+                  className="data-img"
+                  onClick={() => {
+                    setInputValue(
+                      ((parseInt(monthlyPayment) + 1) * radio * 12) /
+                        (1 + cardData.card1.percent)
+                    );
+                  }}
+                >
                   <img src={plus2} alt="plus" />
                 </div>
               </div>
               <div className="percent">
                 <h6>Процентная ставка</h6>
-                <h5>1 %</h5>
+                <h5>{cardData.card1.percent * 100} %</h5>
               </div>
             </div>
             <div className="cs-2-right-middle">
               <div className="cs-2-right-middle-content">
                 <h6>Процентный платеж</h6>
-                <h5>2.50 TMT</h5>
+                <h5>
+                  {(
+                    (inputValue / (radio * 12)) *
+                    cardData.card1.percent
+                  ).toFixed(2)}{" "}
+                  TMT
+                </h5>
               </div>
               <div className="cs-2-right-middle-content">
                 <h6>Платеж для погашения основной суммы:</h6>
-                <h5>250.00 TMT</h5>
+                <h5>{(inputValue / (radio * 12)).toFixed(2)} TMT</h5>
               </div>
             </div>
             <div className="cs-2-right-bottom">
               <h6>Необходимая заработная плата для кредита:</h6>
-              <h5>505.00 TMT</h5>
+              <h5>{monthlyPayment * 2} TMT</h5>
             </div>
           </div>
         </div>

@@ -32,6 +32,14 @@ const CreditModal = ({
 }) => {
   const window = useRef();
   const [data, setData] = useState({});
+  const [
+    cardData,
+    //  setCardData
+  ] = useState({
+    card1: {
+      percent: 0.01,
+    },
+  });
   return (
     <section
       className={modalOpen ? "modal credit-modal active" : "modal credit-modal"}
@@ -151,6 +159,7 @@ const CreditModal = ({
                   setStage={setStage}
                   data={data}
                   setData={setData}
+                  cardData={cardData}
                 />
               ) : stage === 3 ? (
                 <CreditStage3
