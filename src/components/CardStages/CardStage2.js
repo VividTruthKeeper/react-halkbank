@@ -17,7 +17,7 @@ const CardStage2 = ({ setStage, data, setData }) => {
     surname: data.surname ? data.surname : user ? user.surname : null,
     name: data.name ? data.name : user ? user.name : null,
     fathers: data.fathers ? data.fathers : user ? user.middle_name : null,
-    date: data.surname ? data.surname : user ? user.date_birth : null,
+    date: data.date ? data.date : user ? user.date_birth : null,
     passport: data.passport ? data.passport : user ? user.passport : null,
     p_address: data.p_address
       ? data.p_address

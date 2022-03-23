@@ -1,5 +1,5 @@
 // IMPORT MODULES
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 // IMPORT IMAGES
 import remove from "../../icons/remove.svg";
