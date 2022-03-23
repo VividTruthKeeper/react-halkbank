@@ -484,8 +484,14 @@
     font-size: 1.2rem;
   }
   .cd-bottom-4 p,
-  .check-block label {
+  .check-block label,
+  .cd-bottom-4 label,
+  .cd-4-files li h4 {
     font-size: 1.2rem;
+  }
+
+  .cd-4-files li {
+    padding: 1.4rem 1rem;
   }
   .modal-window {
     padding: 2rem;

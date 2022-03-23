@@ -9,6 +9,7 @@ import next_reverse from "../../icons/next-reverse.svg";
 // IMPORT HELPERS
 import { sendRequest } from "../../backend/sendRequest";
 import { getUserInfo } from "../../backend/getUserInfo";
+import { reformatDate } from "../../helpers/reformatDate";
 
 const CreditStage6 = ({
   setStage,
@@ -39,7 +40,7 @@ const CreditStage6 = ({
           </li>
           <li>
             <p>Дата рождения:</p>
-            <h4>{data.birth ? data.birth : "-"}</h4>
+            <h4>{data.birth ? reformatDate(data.birth) : "-"}</h4>
           </li>
           <li>
             <p>Мобильный телефон:</p>

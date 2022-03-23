@@ -194,7 +194,10 @@
 }
 
 .cs-2-bottom {
-  justify-content: flex-start;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  justify-content: space-between;
 }
 
 .cs-2 {
@@ -387,7 +390,21 @@
     padding: 2rem 1rem;
   }
 }
+
+@media screen and (max-width: 720px) {
+  .cd-2-title,
+  .card-stage-3-bottom,
+  .card-stage-4-bottom {
+    .reg-btn {
+      max-width: unset;
+    }
+  }
+}
+
 @media screen and (max-width: 700px) {
+  .cs-2-bottom {
+    flex-direction: column;
+  }
   .cs-2-right-middle {
     grid-template-columns: 1fr;
     border: none;
