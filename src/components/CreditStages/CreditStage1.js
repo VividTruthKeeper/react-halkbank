@@ -9,7 +9,7 @@ import arrow from "../../icons/arrow.svg";
 import next from "../../icons/next.svg";
 
 const CreditStage1 = ({ setStage, data, setData }) => {
-  const [input, setInput] = useState(undefined);
+  const [input, setInput] = useState(data.type ? data.type : null);
   const [dropdown, setDropdown] = useState({
     one: true,
     two: false,
@@ -30,6 +30,7 @@ const CreditStage1 = ({ setStage, data, setData }) => {
             stateSetter={(e) => {
               setInput(e);
             }}
+            defaultValue={input}
           />
         </div>
         <div className="cs-1-middle">

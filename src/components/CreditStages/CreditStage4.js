@@ -3,18 +3,19 @@ import React, { useState, useEffect } from "react";
 
 // IMPORT IMAGES
 import next from "../../icons/next.svg";
+import next_reverse from "../../icons/next-reverse.svg";
 
 // IMPORT COMPONENTS
 import CustomSelect from "../global/CustomSelect";
 
 const CreditStage4 = ({ setStage, data, setData }) => {
   const [inputValid, setInputValid] = useState({
-    workplace: false,
-    salary: false,
-    position: false,
-    experience: false,
-    region: false,
-    affiliate: false,
+    workplace: data.workplace ? data.workplace : null,
+    salary: data.salary ? data.salary : null,
+    position: data.position ? data.position : null,
+    experience: data.exp ? data.exp : null,
+    region: data.region ? data.region : null,
+    affiliate: data.branch ? data.branch : null,
   });
   const [btnEnabled, setBtnEnabled] = useState(false);
 
@@ -45,6 +46,7 @@ const CreditStage4 = ({ setStage, data, setData }) => {
               type="text"
               id="workplace"
               name="workplace"
+              defaultValue={inputValid.workplace}
               placeholder='TPTB "HALKBANK"'
               onChange={(e) => {
                 setInputValid({ ...inputValid, workplace: e.target.value });
@@ -59,6 +61,7 @@ const CreditStage4 = ({ setStage, data, setData }) => {
               type="text"
               id="salary"
               name="salary"
+              defaultValue={inputValid.salary}
               placeholder="4000"
               onChange={(e) => {
                 setInputValid({ ...inputValid, salary: e.target.value });
@@ -73,6 +76,7 @@ const CreditStage4 = ({ setStage, data, setData }) => {
               type="text"
               id="position"
               name="position"
+              defaultValue={inputValid.position}
               onChange={(e) => {
                 setInputValid({ ...inputValid, position: e.target.value });
               }}
@@ -86,6 +90,7 @@ const CreditStage4 = ({ setStage, data, setData }) => {
               type="text"
               id="experience"
               name="experience"
+              defaultValue={inputValid.experience}
               placeholder="Более 6 месяцев"
               onChange={(e) => {
                 setInputValid({ ...inputValid, experience: e.target.value });
@@ -107,6 +112,7 @@ const CreditStage4 = ({ setStage, data, setData }) => {
                 setInputValid({ ...inputValid, region: state })
               }
               eTarget={true}
+              defaultValue={inputValid.region}
             />
           </div>
           <div className="input-block">
@@ -124,15 +130,31 @@ const CreditStage4 = ({ setStage, data, setData }) => {
                 setInputValid({ ...inputValid, affiliate: state })
               }
               eTarget={true}
+              defaultValue={inputValid.affiliate}
             />
           </div>
         </div>
         <div className="cu-bottom card-stage-3-bottom cs-4-bottom">
-          <h4>
-            <p>
-              Все поля с символом ( <span>*</span> ) обязательны для заполнения
-            </p>
-          </h4>
+          <button
+            type="button"
+            className="sign-btn reg-btn"
+            onClick={() => {
+              setStage(3);
+            }}
+          >
+            <div>
+              <div className="btn-img">
+                <img src={next_reverse} alt="logout" />
+              </div>
+              <h3
+                onClick={() => {
+                  setStage(3);
+                }}
+              >
+                Редактировать
+              </h3>
+            </div>
+          </button>
           <button
             type="button"
             disabled={!btnEnabled}

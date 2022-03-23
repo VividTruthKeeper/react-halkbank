@@ -1,26 +1,20 @@
 // IMPORT MODULES
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 // IMPORT IMAGES
 import remove from "../../icons/remove.svg";
 import next from "../../icons/next.svg";
 import arrow from "../../icons/arrow.svg";
+import next_reverse from "../../icons/next-reverse.svg";
 
 const CreditStage5 = ({ setStage, data, setData }) => {
-  const [files, setFiles] = useState({
-    input1: undefined,
-    input2: undefined,
-    input3: undefined,
-  });
+  const [files, setFiles] = useState(data.file ? data.file : []);
 
-  const input1 = useRef();
-  const input2 = useRef();
-  const input3 = useRef();
   const [btnEnabled, setBtnEnabled] = useState(false);
   const [dropdown, setDropdown] = useState(false);
 
   useEffect(() => {
-    if (files.input1 || files.input2 || files.input3) {
+    if (files.length > 0) {
       setBtnEnabled(true);
     } else {
       setBtnEnabled(false);
@@ -29,164 +23,100 @@ const CreditStage5 = ({ setStage, data, setData }) => {
   return (
     <section className="card-stage-4">
       <form>
-        <div
-          className="data-block docs"
-          onClick={() => {
-            setDropdown(!dropdown);
-          }}
-        >
-          <div className="data-title">
-            <h4>Требования и документы</h4>
-            <div className="data-img">
-              <img src={arrow} alt="arrow" />
-            </div>
-          </div>
+        <div className="cd-top-4">
+          <h2>
+            Для оформления заявки на получения кредита загрузите требуемые
+            документы.
+          </h2>
           <div
-            className={
-              dropdown ? "data-dropdown docs active" : "data-dropdown docs"
-            }
+            className="data-block docs"
+            onClick={() => {
+              setDropdown(!dropdown);
+            }}
           >
-            <h5>Lorem ipsum dolor sit.</h5>
-            <h5 className="left right">Lorem ipsum dolor sit.</h5>
-            <h5>Lorem ipsum dolor sit.</h5>
+            <div className="data-title">
+              <h4>Требования и документы</h4>
+              <div className="data-img">
+                <img src={arrow} alt="arrow" />
+              </div>
+            </div>
+            <div
+              className={
+                dropdown ? "data-dropdown docs active" : "data-dropdown docs"
+              }
+            >
+              <h5>Lorem ipsum dolor sit.</h5>
+              <h5 className="left right">Lorem ipsum dolor sit.</h5>
+              <h5>Lorem ipsum dolor sit.</h5>
+            </div>
           </div>
         </div>
         <div className="cd-bottom-4">
-          <div
-            className={
-              files.input1 ? (files.input1[0] ? "file filled" : "file") : "file"
-            }
-          >
+          <div>
+            <label htmlFor="file">Загрузить файл</label>
             <input
-              ref={input1}
+              id="file"
               type="file"
               onChange={(e) => {
-                setFiles({ ...files, input1: e.target.files });
+                setFiles([...files, e.target.files[0]]);
+                e.target.value = "";
               }}
             />
-            <p>
-              {files.input1
-                ? files.input1[0]
-                  ? files.input1[0].name
-                  : "Загрузить файл"
-                : "Загрузить файл"}
-            </p>
-            <div
-              className="remove"
-              onClick={() => {
-                setFiles({ ...files, input1: undefined });
-                input1.current.value = null;
-              }}
-            >
-              <img src={remove} alt="remove" />
-            </div>
-          </div>
-          <div
-            className={
-              files.input2 ? (files.input2[0] ? "file filled" : "file") : "file"
-            }
-          >
-            <input
-              ref={input2}
-              type="file"
-              onChange={(e) => {
-                setFiles({ ...files, input2: e.target.files });
-              }}
-            />
-            <p>
-              {files.input2
-                ? files.input2[0]
-                  ? files.input2[0].name
-                  : "Загрузить файл"
-                : "Загрузить файл"}
-            </p>
-            <div
-              className="remove"
-              onClick={() => {
-                setFiles({ ...files, input2: undefined });
-                input2.current.value = null;
-              }}
-            >
-              <img src={remove} alt="remove" />
-            </div>
-          </div>
-          <div
-            className={
-              files.input3 ? (files.input3[0] ? "file filled" : "file") : "file"
-            }
-          >
-            <input
-              ref={input3}
-              type="file"
-              onChange={(e) => {
-                setFiles({ ...files, input3: e.target.files });
-              }}
-            />
-            <p>
-              {files.input3
-                ? files.input3[0]
-                  ? files.input3[0].name
-                  : "Загрузить файл"
-                : "Загрузить файл"}
-            </p>
-            <div
-              className="remove"
-              onClick={() => {
-                setFiles({ ...files, input3: undefined });
-                input3.current.value = null;
-              }}
-            >
-              <img src={remove} alt="remove" />
-            </div>
           </div>
         </div>
+        <ul className="cd-4-files">
+          {files !== []
+            ? files.map((el, i) => {
+                if (el) {
+                  return (
+                    <li key={i}>
+                      <h4>{el.name}</h4>
+                      <div
+                        className="remove"
+                        onClick={() => {
+                          setFiles(
+                            files.filter((file) => {
+                              return file !== el;
+                            })
+                          );
+                        }}
+                      >
+                        <img src={remove} alt="remove" />
+                      </div>
+                    </li>
+                  );
+                }
+              })
+            : null}
+        </ul>
         <div className="cu-bottom card-stage-4-bottom">
+          <button
+            type="button"
+            className="sign-btn reg-btn"
+            onClick={() => {
+              setStage(4);
+            }}
+          >
+            <div>
+              <div className="btn-img">
+                <img src={next_reverse} alt="logout" />
+              </div>
+              <h3
+                onClick={() => {
+                  setStage(4);
+                }}
+              >
+                Редактировать
+              </h3>
+            </div>
+          </button>
           <button
             type="button"
             disabled={!btnEnabled}
             className="sign-btn cu-btn"
             onClick={() => {
+              setData({ ...data, file: files });
               setStage(6);
-              if (files.input1 && files.input2 && files.input3) {
-                setData({
-                  ...data,
-                  file: [files.input1[0], files.input2[0], files.input3[0]],
-                });
-              } else if (files.input1 && files.input2) {
-                setData({
-                  ...data,
-                  file: [files.input1[0], files.input2[0]],
-                });
-              } else if (files.input1 && files.input3) {
-                setData({
-                  ...data,
-                  file: [files.input1[0], files.input3[0]],
-                });
-              } else if (files.input2 && files.input3) {
-                setData({
-                  ...data,
-                  file: [files.input2[0], files.input3[0]],
-                });
-              } else {
-                if (files.input1) {
-                  setData({
-                    ...data,
-                    file: [files.input1[0]],
-                  });
-                }
-                if (files.input2) {
-                  setData({
-                    ...data,
-                    file: [files.input2[0]],
-                  });
-                }
-                if (files.input3) {
-                  setData({
-                    ...data,
-                    file: [files.input3[0]],
-                  });
-                }
-              }
             }}
           >
             <div>

@@ -95,7 +95,7 @@ const CreditStage6 = ({
         <button
           className="sign-btn reg-btn"
           onClick={() => {
-            setStage(1);
+            setStage(5);
           }}
         >
           <div>
@@ -104,7 +104,7 @@ const CreditStage6 = ({
             </div>
             <h3
               onClick={() => {
-                setStage(1);
+                setStage(5);
               }}
             >
               Редактировать

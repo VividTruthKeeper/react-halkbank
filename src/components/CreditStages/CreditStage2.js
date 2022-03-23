@@ -9,11 +9,14 @@ import plus2 from "../../icons/plus-white.svg";
 import next from "../../icons/next.svg";
 import logo from "../../icons/logo-transp.svg";
 
-// IMPORT COMPONENTS
+// IMPORT IMAGES
+import next_reverse from "../../icons/next-reverse.svg";
 
-const CreditStage2 = ({ setStage }) => {
-  const [inputValue, setInputValue] = useState(3000);
-  const [radio, setRadio] = useState(1);
+const CreditStage2 = ({ setStage, data, setData }) => {
+  const [inputValue, setInputValue] = useState(
+    data.inputValue ? data.inputValue : 3000
+  );
+  const [radio, setRadio] = useState(2);
   const [
     monthlyPayment,
     //  setMonthlyPayment
@@ -53,8 +56,8 @@ const CreditStage2 = ({ setStage }) => {
                 id="sum"
                 min="1"
                 max="6000"
-                ref={input}
                 defaultValue={inputValue}
+                ref={input}
                 onChange={(e) => {
                   setInputValue(e.target.value);
                 }}
@@ -64,19 +67,6 @@ const CreditStage2 = ({ setStage }) => {
           <div className="credit-term input-block">
             <label>Срок кредита</label>
             <div className="term-inputs">
-              <label htmlFor="term1" className={radio === 1 ? "active" : ""}>
-                6 месяцев
-                <input
-                  type="radio"
-                  name="term"
-                  id="term1"
-                  onClick={(e) => {
-                    if (e.target.checked === true) {
-                      setRadio(1);
-                    }
-                  }}
-                />
-              </label>
               <label htmlFor="term2" className={radio === 2 ? "active" : ""}>
                 1 год
                 <input
@@ -116,13 +106,47 @@ const CreditStage2 = ({ setStage }) => {
                   }}
                 />
               </label>
+              <label htmlFor="term1" className={radio === 1 ? "active" : ""}>
+                4 года
+                <input
+                  type="radio"
+                  name="term"
+                  id="term1"
+                  onClick={(e) => {
+                    if (e.target.checked === true) {
+                      setRadio(1);
+                    }
+                  }}
+                />
+              </label>
             </div>
           </div>
           <div className="card-button cs-2-bottom">
             <button
               type="button"
+              className="sign-btn reg-btn"
+              onClick={() => {
+                setStage(1);
+              }}
+            >
+              <div>
+                <div className="btn-img">
+                  <img src={next_reverse} alt="logout" />
+                </div>
+                <h3
+                  onClick={() => {
+                    setStage(1);
+                  }}
+                >
+                  Редактировать
+                </h3>
+              </div>
+            </button>
+            <button
+              type="button"
               className="sign-btn cd-btn"
               onClick={() => {
+                setData({ ...data, inputValue: inputValue });
                 setStage(3);
               }}
             >
