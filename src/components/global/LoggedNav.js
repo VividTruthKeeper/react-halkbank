@@ -133,8 +133,8 @@ const LoggedNav = ({ setSideOpen }) => {
               </div>
               <h4>
                 {user ? (
-                  user.name ? (
-                    `${user.name} ${user.surname}`
+                  user.username ? (
+                    `${user.username}`
                   ) : (
                     <Loader />
                   )
