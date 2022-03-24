@@ -70,6 +70,7 @@
     padding: 2rem;
     height: 5rem;
     font-size: 1.6rem;
+    width: 100%;
   }
 }
 
@@ -115,6 +116,19 @@
 }
 
 @media screen and (max-width: 850px) {
+  .reg {
+    input {
+      font-size: 1.4rem;
+    }
+  }
+  .reg-input-block.rel-block {
+    max-height: unset;
+    height: 100%;
+
+    .rel-img {
+      top: 30%;
+    }
+  }
   .reg-input-wrapper,
   .reg-btns {
     grid-template-columns: 1fr;
@@ -128,7 +142,7 @@
   }
 
   .reg {
-    padding: 3rem;
+    padding: 2rem;
   }
 
   .reg-btns h2 {
@@ -136,8 +150,32 @@
   }
 }
 
+@media screen and (max-width: 607px) {
+  .reg-input-block.rel-block {
+    .rel-img {
+      top: 27%;
+    }
+  }
+}
+
 @media screen and (max-width: 550px) {
   .split {
     grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .reg-input-block.rel-block {
+    .rel-img {
+      top: 23%;
+    }
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .reg-input-block.rel-block {
+    .rel-img {
+      top: 20%;
+    }
   }
 }

@@ -5,6 +5,7 @@ import { UserContext } from "../../backend/UserContext";
 
 // IMPORT IMAGES
 import up from "../../icons/clipboard-white.svg";
+import eye from "../../icons/eye.svg";
 
 // IMPORT COMPONENTS
 import CustomSelect from "../global/CustomSelect";
@@ -22,6 +23,7 @@ import { ValidatePhoneNumber } from "../../validators/ValidatePhoneNumber";
 import { getDate } from "../../helpers/Date";
 
 const RegForm = () => {
+  const [isPassword, setIsPassword] = useState(true);
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const checkFirstLoad = useRef(true);
@@ -433,13 +435,24 @@ const RegForm = () => {
                 ""
               )}
             </div>
-            <div className="reg-input-block">
+            <div className="reg-input-block rel-block">
+              <div
+                className="rel-img"
+                onClick={() => {
+                  setIsPassword(!isPassword);
+                }}
+              >
+                <img src={eye} alt="eye" />
+              </div>
               <label htmlFor="pass">
                 Пароль<span>*</span>
               </label>
               <input
                 autoComplete="false"
-                type="password"
+                type={isPassword ? "password" : "text"}
+                onCopy={(e) => {
+                  e.preventDefault();
+                }}
                 name="pass"
                 id="pass"
                 required
@@ -472,6 +485,9 @@ const RegForm = () => {
                 Повторите пароль<span>*</span>
               </label>
               <input
+                onPaste={(e) => {
+                  e.preventDefault();
+                }}
                 autoComplete="false"
                 type="password"
                 name="repeat-pass"
