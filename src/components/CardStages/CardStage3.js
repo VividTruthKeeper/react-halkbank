@@ -82,10 +82,9 @@ const CardStage3 = ({ setStage, data, setData }) => {
             </label>
             <input
               type="date"
-              min="1900-01-01"
+              min={getDate(0)}
               id="date"
               name="date"
-              max={getDate(18)}
               defaultValue={inputValid.date}
               onChange={(e) => {
                 if (e.target.value !== "") {
