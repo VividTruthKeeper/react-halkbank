@@ -11,7 +11,6 @@ import { ValidatePhoneNumber } from "../validators/ValidatePhoneNumber";
 
 // IMPORT IMAGES
 import userImg from "../icons/user-black.svg";
-import change from "../icons/change.svg";
 
 const Profile = () => {
   const { user } = useContext(UserContext);
@@ -27,26 +26,26 @@ const Profile = () => {
     mobile: true,
     home: true,
   });
-  const [btnEnabled, setBtnEnabled] = useState(false);
+  // const [btnEnabled, setBtnEnabled] = useState(false);
 
-  useEffect(() => {
-    if (
-      inputValid.surname === true &&
-      inputValid.name === true &&
-      inputValid.fathers === true &&
-      inputValid.date === true &&
-      inputValid.passport === true &&
-      inputValid.p_address === true &&
-      inputValid.address === true &&
-      inputValid.mail === true &&
-      inputValid.mobile === true &&
-      inputValid.home === true
-    ) {
-      setBtnEnabled(true);
-    } else {
-      setBtnEnabled(false);
-    }
-  }, [inputValid]);
+  // useEffect(() => {
+  //   if (
+  //     inputValid.surname === true &&
+  //     inputValid.name === true &&
+  //     inputValid.fathers === true &&
+  //     inputValid.date === true &&
+  //     inputValid.passport === true &&
+  //     inputValid.p_address === true &&
+  //     inputValid.address === true &&
+  //     inputValid.mail === true &&
+  //     inputValid.mobile === true &&
+  //     inputValid.home === true
+  //   ) {
+  //     setBtnEnabled(true);
+  //   } else {
+  //     setBtnEnabled(false);
+  //   }
+  // }, [inputValid]);
   return (
     <section className="profile">
       <Breadcrumb
