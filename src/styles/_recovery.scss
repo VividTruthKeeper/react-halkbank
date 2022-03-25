@@ -1,5 +1,11 @@
 .p-recovery-inner {
   padding: 5rem 0;
+  .rel-block {
+    max-height: unset;
+  }
+  .pass-check-margined {
+    margin-top: 1.4rem;
+  }
 }
 
 .p-recovery-title {
@@ -13,6 +19,11 @@
   h2 {
     font-size: 2.2rem;
   }
+}
+
+.input-block-outer {
+  max-width: 34rem;
+  width: 100%;
 }
 
 .rel-block {
@@ -35,7 +46,7 @@
   cursor: pointer;
   display: block;
   position: absolute;
-  top: 70%;
+  top: 60%;
   left: calc(100% - 3rem);
   z-index: 5;
 }
@@ -96,7 +107,8 @@
     display: grid;
     grid-template-columns: 1fr;
 
-    .input-block {
+    .input-block,
+    .input-block-outer {
       max-width: unset;
     }
   }
@@ -106,19 +118,19 @@
     max-height: unset;
   }
 
-  .p-input-img {
-    top: 37%;
-  }
+  // .p-input-img {
+  //   top: 37%;
+  // }
 }
 
-@media screen and (max-width: 500px) {
-  .p-input-img {
-    top: 34%;
-  }
-}
+// @media screen and (max-width: 500px) {
+//   .p-input-img {
+//     top: 34%;
+//   }
+// }
 
-@media screen and (max-width: 361px) {
-  .p-input-img {
-    top: 31%;
-  }
-}
+// @media screen and (max-width: 361px) {
+//   .p-input-img {
+//     top: 31%;
+//   }
+// }

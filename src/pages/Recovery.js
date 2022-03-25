@@ -148,34 +148,41 @@ const Recovery = () => {
                       ""
                     )}
                   </div>
-                  <div className="input-block rel-block">
-                    <label htmlFor="new-p">Новый пароль</label>
-                    <input
-                      ref={inp1}
-                      autoComplete="false"
-                      type={isPassword ? "password" : "text"}
-                      id="new-p"
-                      onChange={(e) => {
-                        setValidate(true);
-                        if (ValidatePassword(e.target.value)) {
-                          setInputValid({ ...inputValid, new: e.target.value });
-                        } else {
-                          setInputValid({ ...inputValid, new: false });
-                        }
-                      }}
-                    />
-                    <div
-                      className="p-input-img"
-                      onClick={() => {
-                        setIsPassword(!isPassword);
-                      }}
-                    >
-                      <img src={eye} alt="reveal/hide" />
+                  <div className="input-block-outer">
+                    <div className="input-block rel-block">
+                      <label htmlFor="new-p">Новый пароль</label>
+                      <input
+                        ref={inp1}
+                        autoComplete="false"
+                        type={isPassword ? "password" : "text"}
+                        id="new-p"
+                        onChange={(e) => {
+                          setValidate(true);
+                          if (ValidatePassword(e.target.value)) {
+                            setInputValid({
+                              ...inputValid,
+                              new: e.target.value,
+                            });
+                          } else {
+                            setInputValid({ ...inputValid, new: false });
+                          }
+                        }}
+                      />
+                      <div
+                        className="p-input-img"
+                        onClick={() => {
+                          setIsPassword(!isPassword);
+                        }}
+                      >
+                        <img src={eye} alt="reveal/hide" />
+                      </div>
                     </div>
                     {validate ? (
                       <span
                         className={
-                          inputValid.new ? "pass-check" : "pass-check active"
+                          inputValid.new
+                            ? "pass-check pass-check-margined"
+                            : "pass-check pass-check-margined active"
                         }
                       >
                         Пароль должен содержать не менее 1 цифры, 1 заглавной и
