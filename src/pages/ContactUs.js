@@ -14,10 +14,13 @@ import { sendMessage } from "../backend/sendMessage";
 import mail from "../icons/mail-black.svg";
 import send from "../icons/send.svg";
 
+// URL
+import { destination } from "../destinationUrl";
+
 const ContactUs = () => {
   const [success, setSuccess] = useState(false);
   const token = localStorage.getItem("userToken");
-  const postUrl = "http://shahsyotag.halkbank.gov.tm/app/api/message";
+  const postUrl = destination + "/message";
   const formData = new FormData();
   const [topic, setTopic] = useState(false);
   const [isLoading, setIsLoading] = useState(false);

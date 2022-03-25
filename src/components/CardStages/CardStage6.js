@@ -11,6 +11,9 @@ import { sendRequestCard } from "../../backend/sendRequestCard";
 import { getUserInfo } from "../../backend/getUserInfo";
 import { reformatDate } from "../../helpers/reformatDate";
 
+// URL
+import { destination } from "../../destinationUrl";
+
 const CardStage6 = ({
   setStage,
   data,
@@ -20,8 +23,8 @@ const CardStage6 = ({
 }) => {
   const { setUser } = useContext(UserContext);
   const token = localStorage.getItem("userToken");
-  const postUrl = "http://shahsyotag.halkbank.gov.tm/app/api/online_card";
-  const getUrl = "http://shahsyotag.halkbank.gov.tm/app/api/me";
+  const postUrl = destination + "/online_card";
+  const getUrl = destination + "/me";
 
   return (
     <section className="card-stage-6">

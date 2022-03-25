@@ -26,12 +26,15 @@ import { getDate } from "../../helpers/Date";
 // SITEKEY
 import { sitekey } from "../../recaptcha";
 
+// URL
+import { destination } from "../../destinationUrl";
+
 const RegForm = () => {
   const [isPassword, setIsPassword] = useState(true);
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const checkFirstLoad = useRef(true);
-  const postUrl = "http://shahsyotag.halkbank.gov.tm/app/api/signup";
+  const postUrl = destination + "/signup";
   const form = new FormData();
   const [formData, setFormData] = useState();
   const { user, setUser } = useContext(UserContext);

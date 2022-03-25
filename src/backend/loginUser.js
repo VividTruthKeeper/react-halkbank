@@ -1,7 +1,11 @@
 // IMPORT MODULES
 import axios from "axios";
 import { getUserInfo } from "./getUserInfo";
-const getUrl = "http://shahsyotag.halkbank.gov.tm/app/api/me";
+
+// URL
+import { destination } from "../destinationUrl";
+
+const getUrl = destination + "/me";
 
 export const loginUser = (
   url,

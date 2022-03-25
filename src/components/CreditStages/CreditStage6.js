@@ -11,6 +11,9 @@ import { sendRequest } from "../../backend/sendRequest";
 import { getUserInfo } from "../../backend/getUserInfo";
 import { reformatDate } from "../../helpers/reformatDate";
 
+// URL
+import { destination } from "../../destinationUrl";
+
 const CreditStage6 = ({
   setStage,
   data,
@@ -20,8 +23,8 @@ const CreditStage6 = ({
 }) => {
   const { setUser } = useContext(UserContext);
   const token = localStorage.getItem("userToken");
-  const postUrl = "http://shahsyotag.halkbank.gov.tm/app/api/online_credit";
-  const getUrl = "http://shahsyotag.halkbank.gov.tm/app/api/me";
+  const postUrl = destination + "/online_credit";
+  const getUrl = destination + "/me";
   return (
     <section className="card-stage-6">
       <div className="cd-6-top">

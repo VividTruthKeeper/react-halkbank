@@ -11,6 +11,9 @@ import Next from "../../icons/arrow-circle-right.svg";
 import { ValidatePassword } from "../../validators/ValidatePassword";
 import { forgotPassword } from "../../backend/forgotPassword";
 
+// URL
+import { destination } from "../../destinationUrl";
+
 const Stage2 = ({ setRecoveryOpen, setRecStage, data, setData, setLoader }) => {
   const [inputValid, setInputValid] = useState({
     newPassword: false,
@@ -42,7 +45,7 @@ const Stage2 = ({ setRecoveryOpen, setRecStage, data, setData, setLoader }) => {
     }
   }, [input]);
 
-  const postUrl = "http://shahsyotag.halkbank.gov.tm/app/api/me";
+  const postUrl = destination + "/me";
 
   return (
     <div className="recovery-block recovery-2">

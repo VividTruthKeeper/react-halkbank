@@ -26,8 +26,11 @@ import Home from "./pages/Home";
 // IMPORT COMPONENTS
 import Loader from "./components/global/Loader";
 
+// URL
+import { destination } from "./destinationUrl";
+
 const App = () => {
-  const loginUrl = "http://shahsyotag.halkbank.gov.tm/app/api/me";
+  const loginUrl = destination + "/me";
   const [user, setUser] = useState();
   const [loaderActive, setLoaderActive] = useState(false);
   const providerValue = useMemo(() => ({ user, setUser }), [user, setUser]);

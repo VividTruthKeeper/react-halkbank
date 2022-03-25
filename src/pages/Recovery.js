@@ -21,13 +21,16 @@ import { changePassword } from "../backend/changePassword";
 // SITEKEY
 import { sitekey } from "../recaptcha";
 
+// URL
+import { destination } from "../destinationUrl";
+
 const Recovery = () => {
   const inp1 = useRef();
   const inp2 = useRef();
   const inp3 = useRef();
   const [success, setSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const postUrl = "http://shahsyotag.halkbank.gov.tm/app/api/me";
+  const postUrl = destination + "/me";
   const userToken = localStorage.getItem("userToken");
   const { user, setUser } = useContext(UserContext);
   const [isPassword, setIsPassword] = useState(true);

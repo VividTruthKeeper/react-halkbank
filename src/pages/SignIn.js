@@ -15,11 +15,14 @@ import Footer from "../components/global/Footer";
 import SignForm from "../components/sign/SignForm";
 import PasswordRec from "../components/sign/PasswordRec";
 
+// URL
+import { destination } from "../destinationUrl";
+
 const SignIn = () => {
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const checkFirstLoad = useRef(true);
-  const postUrl = "http://shahsyotag.halkbank.gov.tm/app/api/login";
+  const postUrl = destination + "/login";
   const [formData, setFormData] = useState();
   const { user, setUser } = useContext(UserContext);
   const [recoveryOpen, setRecoveryOpen] = useState(false);
