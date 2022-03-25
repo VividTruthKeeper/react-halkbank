@@ -1,6 +1,7 @@
 // IMPORT MODULES
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import ReCAPTCHA from "react-google-recaptcha";
 
 // IMPORT IMAGES
 import logout from "../../icons/logout.svg";
@@ -11,6 +12,9 @@ import Loader from "../../components/global/Loader";
 
 // IMPORT HELPERS
 import { ValidateEmail } from "../../validators/ValidateEmail";
+
+// SITEKEY
+import { sitekey } from "../../recaptcha";
 
 const SignForm = ({
   setRecoveryOpen,
@@ -24,11 +28,17 @@ const SignForm = ({
     login: null,
     password: null,
     email: null,
+    captcha: false,
   });
   const [btnEnabled, setBtnEnabled] = useState(false);
 
   useEffect(() => {
-    if (inputValid.login && inputValid.password && inputValid.email) {
+    if (
+      inputValid.login &&
+      inputValid.password &&
+      inputValid.email &&
+      inputValid.captcha
+    ) {
       setBtnEnabled(true);
     } else {
       setBtnEnabled(false);
@@ -99,7 +109,13 @@ const SignForm = ({
             {error ? <span>Неверные имя пользователя или пароль</span> : ""}
           </div>
           <div className="captcha">
-            <h1>CAPTCHA</h1>
+            <ReCAPTCHA
+              className="captcha"
+              sitekey={sitekey}
+              onChange={(e) => {
+                setInputValid({ ...inputValid, captcha: true });
+              }}
+            />
           </div>
           {/* <div className="forget">
             <h3

@@ -1,6 +1,7 @@
 // IMPORT MODULES
 import React, { useState, useEffect, useContext, useRef } from "react";
 import { UserContext } from "../backend/UserContext";
+import ReCAPTCHA from "react-google-recaptcha";
 
 // IMPORT COMPONENTS
 import Breadcrumb from "../components/global/Breadcrumb";
@@ -17,6 +18,9 @@ import { ValidatePassword } from "../validators/ValidatePassword";
 import { ValidateEmail } from "../validators/ValidateEmail";
 import { changePassword } from "../backend/changePassword";
 
+// SITEKEY
+import { sitekey } from "../recaptcha";
+
 const Recovery = () => {
   const inp1 = useRef();
   const inp2 = useRef();
@@ -32,6 +36,7 @@ const Recovery = () => {
     email: false,
     new: false,
     match: false,
+    captcha: false,
   });
   const [btnEnabled, setBtnEnabled] = useState(false);
   const formData = new FormData();
@@ -40,7 +45,8 @@ const Recovery = () => {
     if (
       inputValid.email &&
       inputValid.new === inputValid.match &&
-      inputValid.new
+      inputValid.new &&
+      inputValid.captcha
     ) {
       setBtnEnabled(true);
     } else {
@@ -203,6 +209,14 @@ const Recovery = () => {
                       ""
                     )}
                   </div>
+                </div>
+                <div className="captcha-block">
+                  <ReCAPTCHA
+                    sitekey={sitekey}
+                    onChange={() => {
+                      setInputValid({ ...inputValid, captcha: true });
+                    }}
+                  />
                 </div>
               </form>
             </div>

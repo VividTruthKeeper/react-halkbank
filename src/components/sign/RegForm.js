@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../backend/UserContext";
+import ReCAPTCHA from "react-google-recaptcha";
 
 // IMPORT IMAGES
 import up from "../../icons/clipboard-white.svg";
@@ -21,6 +22,9 @@ import { ValidateEmail } from "../../validators/ValidateEmail";
 import { ValidateUserName } from "../../validators/ValidateUserName";
 import { ValidatePhoneNumber } from "../../validators/ValidatePhoneNumber";
 import { getDate } from "../../helpers/Date";
+
+// SITEKEY
+import { sitekey } from "../../recaptcha";
 
 const RegForm = () => {
   const [isPassword, setIsPassword] = useState(true);
@@ -51,6 +55,7 @@ const RegForm = () => {
     user: null,
     password: null,
     match: false,
+    captcha: false,
   });
 
   const [ppSerie, setPpSerie] = useState(null);
@@ -84,7 +89,8 @@ const RegForm = () => {
       inputValid.homeTel &&
       inputValid.user &&
       inputValid.password &&
-      inputValid.match
+      inputValid.match &&
+      inputValid.captcha
     ) {
       setBtnEnabled(true);
     } else {
@@ -526,7 +532,13 @@ const RegForm = () => {
           ""
         )}
         <div className="reg-btns">
-          <h1>CAPTCHA</h1>
+          <ReCAPTCHA
+            className="captcha"
+            sitekey={sitekey}
+            onChange={(e) => {
+              setInputValid({ ...inputValid, captcha: true });
+            }}
+          />
           <h2>
             Все поля с символом ( <span>*</span> ) обязательны для заполнения
             Все поля доожны быть заполненны латиницей
