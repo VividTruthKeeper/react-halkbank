@@ -31,6 +31,10 @@ const CreditStage2 = ({ setStage, data, setData, cardData }) => {
       ).toFixed(2)
     );
   }, [inputValue, radio]);
+
+  useEffect(() => {
+    input.current.value = inputValue;
+  }, [inputValue]);
   const input = useRef();
   return (
     <section className="cs-2">
@@ -64,7 +68,7 @@ const CreditStage2 = ({ setStage, data, setData, cardData }) => {
               <input
                 type="range"
                 id="sum"
-                min="1"
+                min="100"
                 max="6000"
                 defaultValue={inputValue}
                 ref={input}
@@ -180,10 +184,16 @@ const CreditStage2 = ({ setStage, data, setData, cardData }) => {
                 <div
                   className="data-img"
                   onClick={() => {
-                    setInputValue(
+                    if (
                       ((parseInt(monthlyPayment) - 1) * radio * 12) /
-                        (1 + cardData.card1.percent)
-                    );
+                        (1 + cardData.card1.percent) >
+                      100
+                    ) {
+                      setInputValue(
+                        ((parseInt(monthlyPayment) - 1) * radio * 12) /
+                          (1 + cardData.card1.percent)
+                      );
+                    }
                   }}
                 >
                   <img src={minus2} alt="minus" />
@@ -192,10 +202,16 @@ const CreditStage2 = ({ setStage, data, setData, cardData }) => {
                 <div
                   className="data-img"
                   onClick={() => {
-                    setInputValue(
+                    if (
                       ((parseInt(monthlyPayment) + 1) * radio * 12) /
-                        (1 + cardData.card1.percent)
-                    );
+                        (1 + cardData.card1.percent) <
+                      6000
+                    ) {
+                      setInputValue(
+                        ((parseInt(monthlyPayment) + 1) * radio * 12) /
+                          (1 + cardData.card1.percent)
+                      );
+                    }
                   }}
                 >
                   <img src={plus2} alt="plus" />
