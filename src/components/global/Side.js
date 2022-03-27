@@ -54,7 +54,7 @@ const Side = ({ sideOpen, setSideOpen }) => {
                 <div
                   className="side-quit"
                   onClick={() => {
-                    setSideOpen(false);
+                    setSideOpen(!sideOpen);
                   }}
                 >
                   <img src={close} alt="close" />
