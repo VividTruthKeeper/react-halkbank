@@ -1,1 +1,1 @@
-export const destination = "http://shahsyotag.halkbank.gov.tm/app/api";
+export const destination = "https://shahsyotag.halkbank.gov.tm/app/api";
