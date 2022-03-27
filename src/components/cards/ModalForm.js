@@ -11,9 +11,6 @@ import { ReactComponent as Receipt } from "../../icons/receipt.svg";
 import { ReactComponent as Task } from "../../icons/task.svg";
 import { ReactComponent as Lines } from "../../icons/lines.svg";
 
-// IMPORT HELPERS
-import { handleOutClick } from "../../helpers/handleOutClick";
-
 // IMPORT COMPONENTS
 import CardStage1 from "../CardStages/CardStage1";
 import CardStage2 from "../CardStages/CardStage2";
@@ -33,14 +30,7 @@ const ModalForm = ({
   const [data, setData] = useState({});
 
   return (
-    <section
-      className={modalOpen ? "modal active" : "modal"}
-      onClick={(e) => {
-        if (handleOutClick(e.target, window.current)) {
-          setModalOpen(false);
-        }
-      }}
-    >
+    <section className={modalOpen ? "modal active" : "modal"}>
       <div className="modal-container">
         <div className="modal-inner" ref={window}>
           <div className="modal-window">

@@ -11,9 +11,6 @@ import { ReactComponent as Img4 } from "../../icons/credit4.svg";
 import { ReactComponent as Img5 } from "../../icons/credit5.svg";
 import { ReactComponent as Img6 } from "../../icons/credit6.svg";
 
-// IMPORT HELPERS
-import { handleOutClick } from "../../helpers/handleOutClick";
-
 // IMPORT COMPONENTS
 import CreditStage1 from "../CreditStages/CreditStage1";
 import CreditStage2 from "../CreditStages/CreditStage2";
@@ -43,11 +40,6 @@ const CreditModal = ({
   return (
     <section
       className={modalOpen ? "modal credit-modal active" : "modal credit-modal"}
-      onClick={(e) => {
-        if (handleOutClick(e.target, window.current)) {
-          setModalOpen(false);
-        }
-      }}
     >
       <div className="modal-container">
         <div className="modal-inner" ref={window}>
