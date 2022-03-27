@@ -11,10 +11,9 @@ import Loader from "./Loader";
 import hb from "../../images/logo.jpg";
 import lang from "../../icons/lang.svg";
 import arrow from "../../icons/arrow-down.svg";
-import menu from "../../icons/menu.svg";
 import userImg from "../../icons/user.svg";
 
-const LoggedNav = ({ setSideOpen }) => {
+const LoggedNav = ({ sideOpen, setSideOpen, animator, setAnimator }) => {
   const { user, setUser } = useContext(UserContext);
   const langBlock = useRef();
   const userBlock = useRef();
@@ -24,6 +23,7 @@ const LoggedNav = ({ setSideOpen }) => {
   const [langOpen, setLangOpen] = useState(false);
   const [language, setLanguage] = useState("РУС");
   const [profile, setProfile] = useState(false);
+
   return (
     <nav
       className="nav logged-nav"
@@ -42,10 +42,14 @@ const LoggedNav = ({ setSideOpen }) => {
             <div
               className="nav-menu"
               onClick={() => {
-                setSideOpen((prevState) => !prevState);
+                setSideOpen(!sideOpen);
               }}
             >
-              <img src={menu} alt="menu" />
+              <div className={sideOpen ? "line-block active" : "line-block"}>
+                <div className="lines line-1"></div>
+                <div className="lines line-2"></div>
+                <div className="lines line-3"></div>
+              </div>
             </div>
             <Link to="/" className="nav-logo">
               <img src={hb} alt="Halk Bank" />

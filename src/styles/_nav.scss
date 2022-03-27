@@ -1,3 +1,81 @@
+.line-block {
+  position: relative;
+  width: 3rem;
+  height: 2rem;
+  transform: rotate(0deg);
+  transition: all 0.3s ease;
+
+  &::after {
+    opacity: 0;
+    display: block;
+    content: "";
+    left: 0;
+    border-radius: 0.5rem;
+    position: absolute;
+    background: $base-green;
+    height: 0.261rem;
+    width: 3rem;
+    transform: rotate(0deg);
+    transition: all 0.3s ease;
+  }
+
+  .lines {
+    left: 0;
+    border-radius: 0.5rem;
+    position: absolute;
+    background: $base-green;
+    height: 0.26rem;
+  }
+
+  .line-1 {
+    top: 0;
+    width: 3rem;
+  }
+
+  .line-2 {
+    transform: rotate(0deg);
+    top: 50%;
+    width: 2rem;
+    transition: all 0.3s ease;
+  }
+
+  .line-3 {
+    top: 100%;
+    width: 3rem;
+  }
+
+  &.active {
+    transform: rotate(90deg);
+    transition: all 0.3s ease;
+
+    &::after {
+      opacity: 1;
+      left: -48%;
+      transform: rotate(-90deg);
+      transition: all 0.3s ease;
+    }
+
+    .line-1 {
+      height: 0.3rem;
+      top: -23%;
+      transition: all 0.3s ease;
+    }
+
+    .line-3 {
+      height: 0.3rem;
+      top: 116%;
+    }
+
+    .line-2 {
+      top: 46%;
+      width: 3rem;
+      left: 50%;
+      transform: rotate(-90deg);
+      transition: all 0.3s ease;
+    }
+  }
+}
+
 .nav {
   .line {
     width: 100%;

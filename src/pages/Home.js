@@ -26,7 +26,7 @@ const Home = ({ ChildEl }) => {
       <Side sideOpen={sideOpen} setSideOpen={setSideOpen} />
       <div className="home-content">
         <div className="home-inner">
-          <LoggedNav setSideOpen={setSideOpen} />
+          <LoggedNav sideOpen={sideOpen} setSideOpen={setSideOpen} />
           {/* RENDER PAGE DEPENDING ON URL */}
           <ChildEl />
         </div>
