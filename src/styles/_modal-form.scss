@@ -1,12 +1,10 @@
 .modal-container {
   max-width: 85%;
-  // padding: 0 3rem;
   margin: auto 0;
 }
 
 .modal {
   display: flex;
-  // align-items: center;
   justify-content: center;
   position: fixed;
   top: 0;
@@ -17,6 +15,7 @@
   pointer-events: none;
   transition: 0.4s all ease;
   height: 100vh;
+  padding: 5rem 0;
   overflow-y: auto;
 
   &.active {
@@ -29,7 +28,6 @@
 .modal-inner {
   display: flex;
   align-items: center;
-  // padding: 10% 0;
 }
 
 .modal-window {
