@@ -11,6 +11,8 @@ import Success from "../components/global/Success";
 // IMPORT IMAGES
 import credit from "../icons/credit-black.svg";
 import add from "../icons/add.svg";
+import allert from "../icons/info-circle.svg";
+import nul from "../icons/null.svg";
 
 const Credits = () => {
   const [success, setSuccess] = useState(false);
@@ -80,7 +82,7 @@ const Credits = () => {
                             className={
                               el.status === "5"
                                 ? "red"
-                                : el.status === ("4" || "2")
+                                : el.status === "4" || el.status === "2"
                                 ? "green"
                                 : ""
                             }
@@ -97,7 +99,22 @@ const Credits = () => {
                               ? "Отказано"
                               : ""}
                           </td>
-                          <td>--action</td>
+                          <td>
+                            {el.status === "5" ? (
+                              <div className="reject">
+                                <div className="reason">
+                                  <h4>{el.action}</h4>
+                                </div>
+                                <img src={allert} alt="reject" />
+                              </div>
+                            ) : el.status !== "4" && el.status !== "2" ? (
+                              <div>
+                                <img src={nul} alt="null" />
+                              </div>
+                            ) : (
+                              ""
+                            )}
+                          </td>
                         </tr>
                       );
                     })
