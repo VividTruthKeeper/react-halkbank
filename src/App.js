@@ -17,6 +17,7 @@ import ContactUs from "./pages/ContactUs";
 import Recovery from "./pages/Recovery";
 import Profile from "./pages/Profile";
 import SuccessPage from "./pages/SuccessPage";
+import ErrorPage from "./pages/ErrorPage";
 
 // IMPORT PAGES
 import Main from "./pages/Main";
@@ -63,6 +64,7 @@ const App = () => {
           <Route path="/home/recovery" element={<Home ChildEl={Recovery} />} />
           <Route path="/home/profile" element={<Home ChildEl={Profile} />} />
           <Route path="/success" element={<SuccessPage />} />
+          <Route path="/error" element={<ErrorPage />} />
         </Routes>
       </div>
     </UserContext.Provider>
