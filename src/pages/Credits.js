@@ -7,6 +7,7 @@ import Breadcrumb from "../components/global/Breadcrumb";
 import CreditModal from "../components/credits/CreditModal";
 import Loader from "../components/global/Loader";
 import Success from "../components/global/Success";
+import Error from "../components/global/Error";
 
 // IMPORT IMAGES
 import credit from "../icons/credit-black.svg";
@@ -15,6 +16,7 @@ import allert from "../icons/info-circle.svg";
 import nul from "../icons/null.svg";
 
 const Credits = () => {
+  const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const { user } = useContext(UserContext);
   const [modalOpen, setModalOpen] = useState(false);
@@ -31,6 +33,7 @@ const Credits = () => {
   return (
     <section className="cards">
       {success ? <Success message={"Ваш запрос успешно отправлен!"} /> : null}
+      {error ? <Error message={"Не удалось отправить запрос"} /> : null}
       <Breadcrumb image={credit} link={"/home/credits"} linkTitle={"Кредиты"} />
       <CreditModal
         setModalOpen={setModalOpen}
@@ -40,6 +43,7 @@ const Credits = () => {
         loader={loader}
         setLoader={setLoader}
         setSuccess={setSuccess}
+        setError={setError}
       />
       {loader ? <Loader /> : null}
       <div className="container">

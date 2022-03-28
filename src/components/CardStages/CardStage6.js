@@ -20,6 +20,7 @@ const CardStage6 = ({
   setLoader,
   setModalOpen,
   setSuccess,
+  setError,
 }) => {
   const { setUser } = useContext(UserContext);
   const token = localStorage.getItem("userToken");
@@ -133,14 +134,20 @@ const CardStage6 = ({
           onClick={() => {
             setLoader(true);
             setModalOpen(false);
-            sendRequestCard(postUrl, token, data, () => {
-              setSuccess(true);
-              setLoader(false);
-              setTimeout(() => {
-                setSuccess(false);
-                getUserInfo(getUrl, token, setUser, () => null);
-              }, 2000);
-            });
+            sendRequestCard(
+              postUrl,
+              token,
+              data,
+              () => {
+                setSuccess(true);
+                setLoader(false);
+                setTimeout(() => {
+                  setSuccess(false);
+                  getUserInfo(getUrl, token, setUser, () => null);
+                }, 2000);
+              },
+              setError
+            );
           }}
         >
           <div>

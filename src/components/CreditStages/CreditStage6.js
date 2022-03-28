@@ -20,6 +20,7 @@ const CreditStage6 = ({
   setModalOpen,
   setLoader,
   setSuccess,
+  setError,
 }) => {
   const { setUser } = useContext(UserContext);
   const token = localStorage.getItem("userToken");
@@ -132,7 +133,8 @@ const CreditStage6 = ({
                   getUserInfo(getUrl, token, setUser, () => null);
                 }, 2000);
               },
-              setLoader
+              setLoader,
+              setError
             );
           }}
         >

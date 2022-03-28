@@ -1,7 +1,7 @@
 import axios from "axios";
 // import { getDate } from "../helpers/Date";
 
-export const sendRequestCard = (url, token, data, setLoader) => {
+export const sendRequestCard = (url, token, data, setLoader, setError) => {
   let today = new Date();
   let dd = String(today.getDate()).padStart(2, "0");
   let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
@@ -32,12 +32,16 @@ export const sendRequestCard = (url, token, data, setLoader) => {
   axios
     .post(`${url}?token=${token}`, form)
     .then((res) => {
-      window.open(res.request.responseURL, "_blank").focus();
+      window.open(res.request.responseURL, "_self").focus();
       if (setLoader) {
         setLoader(false);
       }
     })
     .catch(() => {
       setLoader(false);
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 2000);
     });
 };

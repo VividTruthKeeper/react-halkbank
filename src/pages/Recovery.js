@@ -7,6 +7,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import Breadcrumb from "../components/global/Breadcrumb";
 import Loader from "../components/global/Loader";
 import Success from "../components/global/Success";
+import Error from "../components/global/Error";
 
 // IMPORT IMAGES
 import recovery from "../icons/recovery.svg";
@@ -29,6 +30,7 @@ const Recovery = () => {
   const inp2 = useRef();
   const inp3 = useRef();
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const postUrl = destination + "/me";
   const userToken = localStorage.getItem("userToken");
@@ -59,6 +61,7 @@ const Recovery = () => {
 
   return (
     <section className="p-recovery">
+      {error ? <Error message={"Не удалось поменять пароль"} /> : null}
       {success ? <Success message={"Ваш пароль успешно изменен!"} /> : null}
       <Breadcrumb
         image={recovery}
@@ -98,7 +101,7 @@ const Recovery = () => {
                         setUser,
                         true,
                         userToken,
-                        () => null,
+                        setError,
                         setIsLoading,
                         setSuccess
                       );

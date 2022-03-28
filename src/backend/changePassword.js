@@ -25,7 +25,10 @@ export const changePassword = (
       }
     })
     .catch((err) => {
-      setError(err.response.data.error);
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 2000);
       setIsLoading(false);
       setSuccess(false);
     });

@@ -1,6 +1,13 @@
 import axios from "axios";
 
-export const sendRequest = (url, token, data, setState, setLoader) => {
+export const sendRequest = (
+  url,
+  token,
+  data,
+  setState,
+  setLoader,
+  setError
+) => {
   const form = new FormData();
 
   let today = new Date();
@@ -38,9 +45,13 @@ export const sendRequest = (url, token, data, setState, setLoader) => {
       }
     })
     .catch((err) => {
-      console.log(err);
       if (setLoader) {
         setLoader(false);
       }
+
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 2000);
     });
 };

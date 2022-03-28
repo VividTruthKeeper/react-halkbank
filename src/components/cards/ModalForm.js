@@ -25,6 +25,7 @@ const ModalForm = ({
   setStage,
   setLoader,
   setSuccess,
+  setError,
 }) => {
   const window = useRef();
   const [data, setData] = useState({});
@@ -146,6 +147,7 @@ const ModalForm = ({
                   setLoader={setLoader}
                   setModalOpen={setModalOpen}
                   setSuccess={setSuccess}
+                  setError={setError}
                 />
               ) : (
                 ""

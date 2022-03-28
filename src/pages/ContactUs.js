@@ -7,6 +7,7 @@ import CustomSelect from "../components/global/CustomSelect";
 import Breadcrumb from "../components/global/Breadcrumb";
 import Loader from "../components/global/Loader";
 import Success from "../components/global/Success";
+import Error from "../components/global/Error";
 
 // IMPORT FUNCTIONS
 import { sendMessage } from "../backend/sendMessage";
@@ -23,6 +24,7 @@ import { destination } from "../destinationUrl";
 
 const ContactUs = () => {
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
   const token = localStorage.getItem("userToken");
   const postUrl = destination + "/message";
   const formData = new FormData();
@@ -42,6 +44,7 @@ const ContactUs = () => {
   }, [topic, inputValid]);
   return (
     <section className="contact-us">
+      {error ? <Error message={"Не удалось отправить сообщение"} /> : null}
       {success ? (
         <Success message={"Ваше сообщение успешно отправлено!"} />
       ) : null}
@@ -130,7 +133,8 @@ const ContactUs = () => {
                           setTimeout(() => {
                             setSuccess(false);
                           }, 2000);
-                        }
+                        },
+                        setError
                       );
                     }}
                   >
