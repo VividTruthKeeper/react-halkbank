@@ -109,13 +109,14 @@ const SignForm = ({
             {error ? <span>Неверные имя пользователя или пароль</span> : ""}
           </div>
           <div className="captcha">
-            <ReCAPTCHA
+            {/* <ReCAPTCHA
               className="captcha"
               sitekey={sitekey}
               onChange={(e) => {
                 setInputValid({ ...inputValid, captcha: true });
               }}
-            />
+            /> */}
+            <h1>Captcha</h1>
           </div>
           {/* <div className="forget">
             <h3
