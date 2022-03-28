@@ -108,7 +108,7 @@ const SignForm = ({
             />
             {error ? <span>Неверные имя пользователя или пароль</span> : ""}
           </div>
-          <div className="captcha">
+          <div className="captcha-wrapper">
             <ReCAPTCHA
               className="captcha"
               sitekey={sitekey}

@@ -220,14 +220,14 @@ const Recovery = () => {
                     )}
                   </div>
                 </div>
-                <div className="captcha-block">
+                <div className="captcha-wrapper">
                   <ReCAPTCHA
+                    className="captcha"
                     sitekey={sitekey}
                     onChange={() => {
                       setInputValid({ ...inputValid, captcha: true });
                     }}
                   />
-                  {/* <h1>Captcha</h1> */}
                 </div>
               </form>
             </div>

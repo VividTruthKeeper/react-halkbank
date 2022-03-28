@@ -1,5 +1,6 @@
 // IMPORT MODULES
 import React, { useState, useEffect } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 
 // IMPORT COMPONENTS
 import CustomSelect from "../components/global/CustomSelect";
@@ -13,6 +14,9 @@ import { sendMessage } from "../backend/sendMessage";
 // IMPORT IMAGES
 import mail from "../icons/mail-black.svg";
 import send from "../icons/send.svg";
+
+// SITEKEY
+import { sitekey } from "../recaptcha";
 
 // URL
 import { destination } from "../destinationUrl";
@@ -92,7 +96,15 @@ const ContactUs = () => {
                   ></textarea>
                 </div>
                 <div className="cu-bottom">
-                  <h1>CAPTCHA</h1>
+                  <div className="captcha-wrapper">
+                    <ReCAPTCHA
+                      className="captcha"
+                      sitekey={sitekey}
+                      onChange={() => {
+                        setInputValid({ ...inputValid, captcha: true });
+                      }}
+                    />
+                  </div>
                   <button
                     type="submit"
                     disabled={!btnEnabled}

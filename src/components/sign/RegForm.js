@@ -536,13 +536,15 @@ const RegForm = () => {
         )}
         <div className="reg-btns">
           {/* <h1>Captcha</h1> */}
-          <ReCAPTCHA
-            className="captcha"
-            sitekey={sitekey}
-            onChange={(e) => {
-              setInputValid({ ...inputValid, captcha: true });
-            }}
-          />
+          <div className="captcha-wrapper">
+            <ReCAPTCHA
+              className="captcha"
+              sitekey={sitekey}
+              onChange={(e) => {
+                setInputValid({ ...inputValid, captcha: true });
+              }}
+            />
+          </div>
           <h2>
             Все поля с символом ( <span>*</span> ) обязательны для заполнения
             Все поля доожны быть заполненны латиницей
