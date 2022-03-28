@@ -92,8 +92,8 @@ const RegForm = () => {
       inputValid.homeTel &&
       inputValid.user &&
       inputValid.password &&
-      inputValid.match
-      // inputValid.captcha
+      inputValid.match &&
+      inputValid.captcha
     ) {
       setBtnEnabled(true);
     } else {
@@ -535,14 +535,14 @@ const RegForm = () => {
           ""
         )}
         <div className="reg-btns">
-          <h1>Captcha</h1>
-          {/* <ReCAPTCHA
+          {/* <h1>Captcha</h1> */}
+          <ReCAPTCHA
             className="captcha"
             sitekey={sitekey}
             onChange={(e) => {
               setInputValid({ ...inputValid, captcha: true });
             }}
-          /> */}
+          />
           <h2>
             Все поля с символом ( <span>*</span> ) обязательны для заполнения
             Все поля доожны быть заполненны латиницей

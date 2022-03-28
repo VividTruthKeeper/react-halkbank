@@ -48,8 +48,8 @@ const Recovery = () => {
     if (
       inputValid.email &&
       inputValid.new === inputValid.match &&
-      inputValid.new
-      // inputValid.captcha
+      inputValid.new &&
+      inputValid.captcha
     ) {
       setBtnEnabled(true);
     } else {
@@ -221,13 +221,13 @@ const Recovery = () => {
                   </div>
                 </div>
                 <div className="captcha-block">
-                  {/* <ReCAPTCHA
+                  <ReCAPTCHA
                     sitekey={sitekey}
                     onChange={() => {
                       setInputValid({ ...inputValid, captcha: true });
                     }}
-                  /> */}
-                  <h1>Captcha</h1>
+                  />
+                  {/* <h1>Captcha</h1> */}
                 </div>
               </form>
             </div>
