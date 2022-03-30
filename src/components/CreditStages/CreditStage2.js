@@ -12,29 +12,44 @@ import logo from "../../icons/logo-transp.svg";
 // IMPORT IMAGES
 import next_reverse from "../../icons/next-reverse.svg";
 
-const CreditStage2 = ({ setStage, data, setData, cardData }) => {
-  const [inputValue, setInputValue] = useState(
-    data.inputValue ? data.inputValue : 3000
-  );
+const CreditStage2 = ({ setStage, data, setData, creditData, id }) => {
+  const [max, setMax] = useState(6000);
+  const [bet, setBet] = useState(1);
+  const [inputValue, setInputValue] = useState(max / 2);
   const [radio, setRadio] = useState(1);
   const [monthlyPayment, setMonthlyPayment] = useState(
     (
       inputValue / (radio * 12) +
-      (inputValue / (radio * 12)) * cardData.card1.percent
+      (inputValue / (radio * 12)) * (bet / 100)
     ).toFixed(2)
   );
   useEffect(() => {
     setMonthlyPayment(
       (
         inputValue / (radio * 12) +
-        (inputValue / (radio * 12)) * cardData.card1.percent
+        (inputValue / (radio * 12)) * (bet / 100)
       ).toFixed(2)
     );
   }, [inputValue, radio]);
 
   useEffect(() => {
+    setInputValue(max / 2);
+  }, [max]);
+
+  useEffect(() => {
     input.current.value = inputValue;
   }, [inputValue]);
+
+  useEffect(() => {
+    if (creditData) {
+      creditData.data.map((el) => {
+        if (el.id === id) {
+          setBet(el.bet);
+          setMax(el.sum);
+        }
+      });
+    }
+  }, [creditData]);
   const input = useRef();
   return (
     <section className="cs-2">
@@ -69,7 +84,7 @@ const CreditStage2 = ({ setStage, data, setData, cardData }) => {
                 type="range"
                 id="sum"
                 min="100"
-                max="6000"
+                max={max}
                 defaultValue={inputValue}
                 ref={input}
                 onChange={(e) => {
@@ -116,19 +131,6 @@ const CreditStage2 = ({ setStage, data, setData, cardData }) => {
                   onClick={(e) => {
                     if (e.target.checked === true) {
                       setRadio(3);
-                    }
-                  }}
-                />
-              </label>
-              <label htmlFor="term1" className={radio === 4 ? "active" : ""}>
-                4 года
-                <input
-                  type="radio"
-                  name="term"
-                  id="term1"
-                  onClick={(e) => {
-                    if (e.target.checked === true) {
-                      setRadio(4);
                     }
                   }}
                 />
@@ -186,12 +188,12 @@ const CreditStage2 = ({ setStage, data, setData, cardData }) => {
                   onClick={() => {
                     if (
                       ((parseInt(monthlyPayment) - 1) * radio * 12) /
-                        (1 + cardData.card1.percent) >
+                        (1 + bet / 100) >
                       100
                     ) {
                       setInputValue(
                         ((parseInt(monthlyPayment) - 1) * radio * 12) /
-                          (1 + cardData.card1.percent)
+                          (1 + bet / 100)
                       );
                     }
                   }}
@@ -204,12 +206,12 @@ const CreditStage2 = ({ setStage, data, setData, cardData }) => {
                   onClick={() => {
                     if (
                       ((parseInt(monthlyPayment) + 1) * radio * 12) /
-                        (1 + cardData.card1.percent) <
-                      6000
+                        (1 + bet / 100) <
+                      max
                     ) {
                       setInputValue(
                         ((parseInt(monthlyPayment) + 1) * radio * 12) /
-                          (1 + cardData.card1.percent)
+                          (1 + bet / 100)
                       );
                     }
                   }}
@@ -219,18 +221,14 @@ const CreditStage2 = ({ setStage, data, setData, cardData }) => {
               </div>
               <div className="percent">
                 <h6>Процентная ставка</h6>
-                <h5>{cardData.card1.percent * 100} %</h5>
+                <h5>{bet} %</h5>
               </div>
             </div>
             <div className="cs-2-right-middle">
               <div className="cs-2-right-middle-content">
                 <h6>Процентный платеж</h6>
                 <h5>
-                  {(
-                    (inputValue / (radio * 12)) *
-                    cardData.card1.percent
-                  ).toFixed(2)}{" "}
-                  TMT
+                  {((inputValue / (radio * 12)) * (bet / 100)).toFixed(2)} TMT
                 </h5>
               </div>
               <div className="cs-2-right-middle-content">

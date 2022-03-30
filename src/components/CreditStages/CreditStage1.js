@@ -1,5 +1,5 @@
 // IMPORT MODULES
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // IMPORT COMPONENTS
 import CustomSelect from "../global/CustomSelect";
@@ -8,19 +8,29 @@ import CustomSelect from "../global/CustomSelect";
 import arrow from "../../icons/arrow.svg";
 import next from "../../icons/next.svg";
 
-const CreditStage1 = ({ setStage, data, setData }) => {
+const CreditStage1 = ({ setStage, data, setData, creditData, id, setId }) => {
   const [input, setInput] = useState(data.type ? data.type : null);
   const [dropdown, setDropdown] = useState({
     one: true,
     two: false,
   });
+
+  useEffect(() => {
+    if (input !== "" && creditData) {
+      creditData.data.map((el) => {
+        if (Object.values(el).includes(input)) {
+          setId(el.id);
+        }
+      });
+    }
+  }, [input]);
   return (
     <section className="cs-1">
       <form>
         <div className="cs-1-top">
           <label htmlFor="credit-type">Выберите вид кредита</label>
           <CustomSelect
-            items={["Кредит для молодоженов"]}
+            items={creditData ? creditData.data.map((el) => el.name) : [""]}
             customId={"credit-type"}
             name={"credit-type"}
             blockName={"cs-1-top-block"}
@@ -53,30 +63,61 @@ const CreditStage1 = ({ setStage, data, setData }) => {
             >
               <div className="dropdown-inner bottom">
                 <h6>Срок</h6>
-                <h2>до 3 лет</h2>
+                <h2>
+                  до{" "}
+                  {creditData
+                    ? creditData.data.map((el) => (el.id === id ? el.term : ""))
+                    : ""}{" "}
+                  лет
+                </h2>
               </div>
               <div className="dropdown-inner left right bottom">
                 <h6>Сумма кредита</h6>
-                <h2>до 6000 манат</h2>
+                <h2>
+                  {creditData
+                    ? creditData.data.map((el) => (el.id === id ? el.sum : ""))
+                    : ""}
+                </h2>
               </div>
               <div className="dropdown-inner bottom">
                 <h6>Ставка</h6>
-                <h2>1 %</h2>
+                <h2>
+                  {creditData
+                    ? creditData.data.map((el) => (el.id === id ? el.bet : ""))
+                    : ""}{" "}
+                  %
+                </h2>
               </div>
               <div className="dropdown-inner ">
                 <h6>Обеспечение возврата кредита</h6>
-                <h2>2 поручителя</h2>
+                <h2>
+                  {creditData
+                    ? creditData.data.map((el) =>
+                        el.id === id ? el.securing_return : ""
+                      )
+                    : ""}
+                </h2>
               </div>
               <div className="dropdown-inner left right">
                 <h6>Источник погашения кредита</h6>
                 <h2>
-                  50% от зарплаты заемщика и поручителя для погашения кредита и
-                  процентов по нему (или 50% от общего семейного)
+                  {creditData
+                    ? creditData.data.map((el) =>
+                        el.id === id ? el.source_of_repayment : ""
+                      )
+                    : ""}
                 </h2>
               </div>
               <div className="dropdown-inner">
                 <h6>Способ погашения</h6>
-                <h2>Наличным или безналичным способом</h2>
+                <h2>
+                  {" "}
+                  {creditData
+                    ? creditData.data.map((el) =>
+                        el.id === id ? el.repayment_method : ""
+                      )
+                    : ""}
+                </h2>
               </div>
             </div>
           </div>

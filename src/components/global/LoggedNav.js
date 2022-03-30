@@ -45,7 +45,7 @@ const LoggedNav = ({ sideOpen, setSideOpen, animator, setAnimator }) => {
                 setSideOpen(!sideOpen);
               }}
             >
-              <div className={sideOpen ? "line-block active" : "line-block"}>
+              <div className={sideOpen ? "lines-block active" : "lines-block"}>
                 <div className="lines line-1"></div>
                 <div className="lines line-2"></div>
                 <div className="lines line-3"></div>

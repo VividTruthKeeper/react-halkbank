@@ -1,6 +1,7 @@
 // IMPORT MODULES
 import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../backend/UserContext";
+import axios from "axios";
 
 // IMPORT COMPONENTS
 import Breadcrumb from "../components/global/Breadcrumb";
@@ -8,6 +9,9 @@ import CreditModal from "../components/credits/CreditModal";
 import Loader from "../components/global/Loader";
 import Success from "../components/global/Success";
 import Error from "../components/global/Error";
+
+// IMPORT HELPERS
+import { dataDestination } from "../destinationUrl";
 
 // IMPORT IMAGES
 import credit from "../icons/credit-black.svg";
@@ -22,6 +26,7 @@ const Credits = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [stage, setStage] = useState(1);
   const [loader, setLoader] = useState(false);
+  const [creditData, setCreditData] = useState();
   useEffect(() => {
     if (modalOpen) {
       document.body.style.overflowY = "hidden";
@@ -29,6 +34,21 @@ const Credits = () => {
       document.body.style.overflowY = "visible";
     }
   }, [modalOpen]);
+
+  useEffect(() => {
+    let isMounted = true;
+    axios
+      .get(`${dataDestination}/credit_data`)
+      .then((res) => {
+        if (isMounted) {
+          setCreditData(res.data);
+        }
+      })
+      .catch();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   return (
     <section className="cards">
@@ -44,6 +64,7 @@ const Credits = () => {
         setLoader={setLoader}
         setSuccess={setSuccess}
         setError={setError}
+        creditData={creditData}
       />
       {loader ? <Loader /> : null}
       <div className="container">
