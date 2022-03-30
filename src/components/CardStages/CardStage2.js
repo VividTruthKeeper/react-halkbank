@@ -241,7 +241,7 @@ const CardStage2 = ({ setStage, data, setData }) => {
                     setStage(1);
                   }}
                 >
-                  Редактировать
+                  Назад
                 </h3>
               </div>
             </button>

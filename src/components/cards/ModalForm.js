@@ -1,5 +1,6 @@
 // IMPORT MODULES
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import axios from "axios";
 
 // IMPORT IMAGES
 import exit from "../../icons/exit.svg";
@@ -18,6 +19,9 @@ import CardStage3 from "../CardStages/CardStage3";
 import CardStage4 from "../CardStages/CardStage4";
 import CardStage6 from "../CardStages/CardStage6";
 
+// IMPORT HELPERS
+import { dataDestination } from "../../destinationUrl";
+
 const ModalForm = ({
   modalOpen,
   setModalOpen,
@@ -29,6 +33,23 @@ const ModalForm = ({
 }) => {
   const window = useRef();
   const [data, setData] = useState({});
+  const [cardData, setCardData] = useState();
+
+  useEffect(() => {
+    let isMounted = true;
+    axios
+      .get(`${dataDestination}/card_data`)
+      .then((res) => {
+        if (isMounted) {
+          setCardData(res.data);
+        }
+      })
+      .catch();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   return (
     <section className={modalOpen ? "modal active" : "modal"}>
@@ -132,7 +153,12 @@ const ModalForm = ({
             </div>
             <div className="modal-bottom">
               {stage === 1 ? (
-                <CardStage1 setStage={setStage} data={data} setData={setData} />
+                <CardStage1
+                  setStage={setStage}
+                  data={data}
+                  setData={setData}
+                  cardData={cardData}
+                />
               ) : stage === 2 ? (
                 <CardStage2 setStage={setStage} data={data} setData={setData} />
               ) : stage === 3 ? (

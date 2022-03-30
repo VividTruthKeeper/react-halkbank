@@ -151,7 +151,7 @@ const CreditStage4 = ({ setStage, data, setData }) => {
                   setStage(3);
                 }}
               >
-                Редактировать
+                Назад
               </h3>
             </div>
           </button>

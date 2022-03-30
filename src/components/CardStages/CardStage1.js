@@ -1,5 +1,5 @@
 // IMPORT MODULES
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // IMPORT COMPONENTS
 import CustomSelect from "../global/CustomSelect";
@@ -8,17 +8,38 @@ import CustomSelect from "../global/CustomSelect";
 import credit from "../../images/credit-card.jpg";
 import next from "../../icons/next.svg";
 
-const CardStage1 = ({ setStage, data, setData }) => {
+const CardStage1 = ({ setStage, data, setData, cardData }) => {
   const [inputValid, setInputValid] = useState(
     data.selected_card ? data.selected_card : false
   );
+  const [id, setId] = useState(1);
+  const [img, setImg] = useState(credit);
+  useEffect(() => {
+    if (inputValid !== "" && cardData) {
+      cardData.data.map((el) => {
+        if (Object.values(el).includes(inputValid)) {
+          setId(el.id);
+        }
+      });
+    }
+  }, [inputValid]);
+
+  useEffect(() => {
+    if (cardData) {
+      cardData.data.map((el) => {
+        if (el.id === id) {
+          setImg(el.image.path);
+        }
+      });
+    }
+  }, [id]);
   return (
     <section className="card-stage-1">
       <form>
         <div className="input-block">
           <label htmlFor="card">Выберите вид карты</label>
           <CustomSelect
-            items={["Зарплатная карта", "Кредитная карта"]}
+            items={cardData ? cardData.data.map((el) => el.name) : [""]}
             customId={"card"}
             blockName={"card-1-select"}
             elName={"card-1-select-el"}
@@ -34,32 +55,55 @@ const CardStage1 = ({ setStage, data, setData }) => {
         <div className="card-description">
           <div className="cd-top">
             <div className="cd-img">
-              <img src={credit} alt="card" />
+              <img src={img} alt="card" />
             </div>
             <div className="cd-text">
-              <h2>HalkBank - Зарплатная карта</h2>
+              <h2>
+                HalkBank -{" "}
+                {cardData
+                  ? cardData.data.map((el) => (el.id === id ? el.name : ""))
+                  : "Зарплатная карта"}
+              </h2>
               <h3>
-                Банковская карта, на которую зачисляется заработная плата
-                клиента. Открывается на основании договора между банком и
-                предприятием. Эта карта предоставляет полный перечень услуг по
-                безналичному платежу в терминалах, перевод денежных средств с
-                одной зарплатной карты на другую, а также получению наличных
-                денежных средств в банкоматах на территории Туркменистана.
+                {cardData
+                  ? cardData.data.map((el) => (el.id === id ? el.text : ""))
+                  : "Банковская карта, на которую зачисляется заработная плата клиента. Открывается на основании договора между банком и предприятием. Эта карта предоставляет полный перечень услуг по безналичному платежу в терминалах, перевод денежных средств с одной зарплатной карты на другую, а также получению наличных денежных средств в банкоматах на территории Туркменистана."}
               </h3>
             </div>
           </div>
           <div className="cd-bottom">
             <div className="cd-bottom-content">
               <h3>Срок действия карты</h3>
-              <h2>30 лет</h2>
+              <h2>
+                {cardData
+                  ? cardData.data.map((el) => (el.id === id ? el.term : ""))
+                  : "30"}{" "}
+                лет
+              </h2>
             </div>
             <div className="cd-bottom-content">
               <h3>Процентная ставка</h3>
-              <h2>0%</h2>
+              <h2>
+                {" "}
+                {cardData
+                  ? cardData.data.map((el) =>
+                      el.id === id ? el.interest_rate : ""
+                    )
+                  : "0"}{" "}
+                %
+              </h2>
             </div>
             <div className="cd-bottom-content">
               <h3>Стоимость карты</h3>
-              <h2>23 маната</h2>
+              <h2>
+                {" "}
+                {cardData
+                  ? cardData.data.map((el) =>
+                      el.id === id ? el.card_cost : ""
+                    )
+                  : "23"}{" "}
+                маната
+              </h2>
             </div>
           </div>
         </div>
