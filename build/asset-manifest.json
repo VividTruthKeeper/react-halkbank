@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.6469501d.css",
-    "main.js": "/static/js/main.6878398a.js",
+    "main.css": "/static/css/main.18a42a9d.css",
+    "main.js": "/static/js/main.f1e2544f.js",
     "static/media/logo-transp.svg": "/static/media/logo-transp.a903424d2393e17072667328738f6631.svg",
     "static/media/logo-bg.jpg": "/static/media/logo-bg.1d55df78b7376108f96c.jpg",
     "static/media/credit-card.jpg": "/static/media/credit-card.ff2990f7d50439a8f34d.jpg",
@@ -67,11 +67,11 @@
     "static/media/arrow-gray.svg": "/static/media/arrow-gray.c688e9bf277186332d33431cd6f52c8e.svg",
     "static/media/arrow-down.svg": "/static/media/arrow-down.2ec2ec0ddf677f60c1aa23e6d1abdc8d.svg",
     "static/media/arrow.svg": "/static/media/arrow.c8492a68102634ab2875008b3e67164c.svg",
-    "main.6469501d.css.map": "/static/css/main.6469501d.css.map",
-    "main.6878398a.js.map": "/static/js/main.6878398a.js.map"
+    "main.18a42a9d.css.map": "/static/css/main.18a42a9d.css.map",
+    "main.f1e2544f.js.map": "/static/js/main.f1e2544f.js.map"
   },
   "entrypoints": [
-    "static/css/main.6469501d.css",
-    "static/js/main.6878398a.js"
+    "static/css/main.18a42a9d.css",
+    "static/js/main.f1e2544f.js"
   ]
 }
