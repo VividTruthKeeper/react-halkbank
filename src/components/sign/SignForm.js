@@ -6,6 +6,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 // IMPORT IMAGES
 import logout from "../../icons/logout.svg";
 import up from "../../icons/clipboard.svg";
+import eye from "../../icons/eye.svg";
 
 // IMPORT COMPONENTS
 import Loader from "../../components/global/Loader";
@@ -16,13 +17,7 @@ import { ValidateEmail } from "../../validators/ValidateEmail";
 // SITEKEY
 import { sitekey } from "../../recaptcha";
 
-const SignForm = ({
-  setRecoveryOpen,
-  setFormData,
-  error,
-  isLoading,
-  setIsLoading,
-}) => {
+const SignForm = ({ setFormData, error, isLoading, setIsLoading }) => {
   const data = new FormData();
   const [inputValid, setInputValid] = useState({
     login: null,
@@ -31,6 +26,7 @@ const SignForm = ({
     captcha: false,
   });
   const [btnEnabled, setBtnEnabled] = useState(false);
+  const [password, setPassword] = useState(true);
 
   useEffect(() => {
     if (
@@ -91,21 +87,31 @@ const SignForm = ({
               }}
             />
           </div>
-          <div className="input-block">
-            <label htmlFor="password">Введите пароль</label>
-            <input
-              autoComplete="true"
-              required
-              type="password"
-              id="password"
-              onChange={(e) => {
-                if (e.target.value.length >= 8) {
-                  setInputValid({ ...inputValid, password: e.target.value });
-                } else {
-                  setInputValid({ ...inputValid, password: null });
-                }
-              }}
-            />
+          <div className="input-block-outer">
+            <div className="input-block">
+              <label htmlFor="password">Введите пароль</label>
+              <input
+                autoComplete="true"
+                required
+                type={password ? "password" : "text"}
+                id="password"
+                onChange={(e) => {
+                  if (e.target.value.length >= 8) {
+                    setInputValid({ ...inputValid, password: e.target.value });
+                  } else {
+                    setInputValid({ ...inputValid, password: null });
+                  }
+                }}
+              />
+              <div
+                className="p-input-img"
+                onClick={() => {
+                  setPassword(!password);
+                }}
+              >
+                <img src={eye} alt="reveal/hide" />
+              </div>
+            </div>
             {error ? <span>Неверные имя пользователя или пароль</span> : ""}
           </div>
           <div className="captcha-wrapper">
@@ -116,7 +122,6 @@ const SignForm = ({
                 setInputValid({ ...inputValid, captcha: true });
               }}
             />
-            {/* <h1>Captcha</h1> */}
           </div>
           {/* <div className="forget">
             <h3

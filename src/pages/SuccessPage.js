@@ -1,5 +1,5 @@
 // IMPORT MODULES
-import react, { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 // IMPORT COMPONENTS
