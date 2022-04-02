@@ -2,12 +2,13 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Routes, Route } from "react-router-dom";
 import { UserContext } from "./backend/UserContext";
+import { LanguageContext } from "./backend/LanguageContext";
 
 // IMPORT FUNCTIONS
 import { getUserInfo } from "./backend/getUserInfo";
 
 // IMPORT STYLES
-import "./styles/style.scss";
+import "./scss/style.scss";
 
 // IMPORT INNER PAGES
 import Base from "./pages/Base";
@@ -34,8 +35,13 @@ import { destination } from "./destinationUrl";
 const App = () => {
   const loginUrl = destination + "/me";
   const [user, setUser] = useState();
+  const [locale, setLocale] = useState("TUK");
   const [loaderActive, setLoaderActive] = useState(false);
   const providerValue = useMemo(() => ({ user, setUser }), [user, setUser]);
+  const languageValue = useMemo(
+    () => ({ locale, setLocale }),
+    [locale, setLocale]
+  );
   useEffect(() => {
     const userToken = localStorage.getItem("userToken");
     setLoaderActive(true);
@@ -47,27 +53,32 @@ const App = () => {
   }, []);
 
   return (
-    <UserContext.Provider value={providerValue}>
-      <div className="App">
-        {loaderActive ? <Loader /> : ""}
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/home" element={<Home ChildEl={Base} />} />
-          <Route path="/home/cards" element={<Home ChildEl={Cards} />} />
-          <Route path="/home/credits" element={<Home ChildEl={Credits} />} />
-          <Route
-            path="/home/contact-us"
-            element={<Home ChildEl={ContactUs} />}
-          />
-          <Route path="/home/recovery" element={<Home ChildEl={Recovery} />} />
-          <Route path="/home/profile" element={<Home ChildEl={Profile} />} />
-          <Route path="/success" element={<SuccessPage />} />
-          <Route path="/error" element={<ErrorPage />} />
-        </Routes>
-      </div>
-    </UserContext.Provider>
+    <LanguageContext.Provider value={languageValue}>
+      <UserContext.Provider value={providerValue}>
+        <div className="App">
+          {loaderActive ? <Loader /> : ""}
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/home" element={<Home ChildEl={Base} />} />
+            <Route path="/home/cards" element={<Home ChildEl={Cards} />} />
+            <Route path="/home/credits" element={<Home ChildEl={Credits} />} />
+            <Route
+              path="/home/contact-us"
+              element={<Home ChildEl={ContactUs} />}
+            />
+            <Route
+              path="/home/recovery"
+              element={<Home ChildEl={Recovery} />}
+            />
+            <Route path="/home/profile" element={<Home ChildEl={Profile} />} />
+            <Route path="/success" element={<SuccessPage />} />
+            <Route path="/error" element={<ErrorPage />} />
+          </Routes>
+        </div>
+      </UserContext.Provider>
+    </LanguageContext.Provider>
   );
 };
 

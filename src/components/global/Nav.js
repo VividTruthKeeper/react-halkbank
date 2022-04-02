@@ -1,6 +1,7 @@
 // IMPORT MODULES
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { LanguageContext } from "../../backend/LanguageContext";
 
 // IMPORT IMAGES
 import hb from "../../images/logo.jpg";
@@ -11,9 +12,10 @@ const Nav = () => {
   const handleLanguage = (lang) => {
     setLanguage(lang);
   };
+  const { locale, setLocale } = useContext(LanguageContext);
 
   const [langOpen, setLangOpen] = useState(false);
-  const [language, setLanguage] = useState("РУС");
+  const [language, setLanguage] = useState(locale);
   return (
     <nav className="nav">
       <div className="container">
@@ -23,8 +25,12 @@ const Nav = () => {
               <img src={hb} alt="Halk Bank" />
             </Link>
             <Link to="/" className="nav-title">
-              <h1>Халкбанк</h1>
-              <h4>"Главная ценность Банка-наши Клиенты"</h4>
+              <h1>{locale === "РУС" ? "Халкбанк" : "Halkbank"}</h1>
+              <h4>
+                {locale === "РУС"
+                  ? '"Главная ценность Банка-наши Клиенты"'
+                  : '"Bankyň esasy gymmatlygy Müşderilerdir"'}
+              </h4>
             </Link>
           </div>
           <div className="nav__right">
@@ -51,6 +57,7 @@ const Nav = () => {
                     className="lang-el"
                     onClick={(e) => {
                       handleLanguage(e.target.innerText);
+                      setLocale(e.target.innerText);
                     }}
                   >
                     РУС
@@ -59,14 +66,7 @@ const Nav = () => {
                     className="lang-el"
                     onClick={(e) => {
                       handleLanguage(e.target.innerText);
-                    }}
-                  >
-                    ENG
-                  </li>
-                  <li
-                    className="lang-el"
-                    onClick={(e) => {
-                      handleLanguage(e.target.innerText);
+                      setLocale(e.target.innerText);
                     }}
                   >
                     TUK

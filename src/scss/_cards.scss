@@ -1,0 +1,38 @@
+.card-title {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.cards-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-bottom: 5rem;
+
+  .spinner {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+.card-btn {
+  max-width: 22.6rem;
+  justify-self: right;
+  display: flex;
+  align-items: center;
+}
+
+// MEDIA
+
+@media screen and (max-width: 720px) {
+  .card-title {
+    grid-template-columns: 1fr;
+
+    * {
+      justify-self: center;
+      text-align: center;
+    }
+  }
+}

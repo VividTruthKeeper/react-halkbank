@@ -1,14 +1,20 @@
 // IMPORT MODULES
-import React from "react";
+import React, { useContext } from "react";
+import { LanguageContext } from "../../backend/LanguageContext";
 
 const Footer = () => {
+  const { locale } = useContext(LanguageContext);
   return (
     <footer className="footer">
       <div className="container">
         <div className="footer-inner">
           <h2>
             © TPTB "HALKBANK", 2013-2019 All rights reserved |{" "}
-            <span>Политика Конфиденциальности</span>
+            <span>
+              {locale === "РУС"
+                ? "Политика Конфиденциальности"
+                : "Gizlinlik syýasaty"}
+            </span>
           </h2>
         </div>
       </div>
