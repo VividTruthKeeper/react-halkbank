@@ -1,6 +1,7 @@
 // IMPORT MODULES
 import React, { useState, useEffect, useContext, useRef } from "react";
 import { UserContext } from "../backend/UserContext";
+import { LanguageContext } from "../backend/LanguageContext";
 import ReCAPTCHA from "react-google-recaptcha";
 
 // IMPORT COMPONENTS
@@ -26,6 +27,7 @@ import { sitekey } from "../recaptcha";
 import { destination } from "../destinationUrl";
 
 const Recovery = () => {
+  const { locale } = useContext(LanguageContext);
   const inp1 = useRef();
   const inp2 = useRef();
   const inp3 = useRef();
@@ -61,12 +63,28 @@ const Recovery = () => {
 
   return (
     <section className="p-recovery">
-      {error ? <Error message={"Не удалось поменять пароль"} /> : null}
-      {success ? <Success message={"Ваш пароль успешно изменен!"} /> : null}
+      {error ? (
+        <Error
+          message={
+            locale === "TUK"
+              ? "Açar söz çalşylmady"
+              : "Не удалось поменять пароль"
+          }
+        />
+      ) : null}
+      {success ? (
+        <Success
+          message={
+            locale === "TUK"
+              ? "Açar söz çalşyldy!"
+              : "Ваш пароль успешно изменен!"
+          }
+        />
+      ) : null}
       <Breadcrumb
         image={recovery}
         link={"/home/recovery"}
-        linkTitle={"Смена пароля"}
+        linkTitle={locale === "TUK" ? "Açar sözüni çalyşmak" : "Смена пароля"}
       />
       <div className="container">
         {isLoading ? <Loader /> : ""}
@@ -79,7 +97,11 @@ const Recovery = () => {
                 }}
               >
                 <div className="cu-bottom p-recovery-title">
-                  <h2>Поменять пароль</h2>
+                  <h2>
+                    {locale === "TUK"
+                      ? "Açar sözüni çalyşmak"
+                      : "Поменять пароля"}
+                  </h2>
                   <button
                     type="submit"
                     disabled={!btnEnabled}
@@ -111,7 +133,11 @@ const Recovery = () => {
                       <div className="btn-img">
                         <img src={change} alt="logout" />
                       </div>
-                      <h3>Сохранить изменения</h3>
+                      <h3>
+                        {locale === "TUK"
+                          ? "Ýatda sakla"
+                          : "Сохранить изменения"}
+                      </h3>
                     </div>
                   </button>
                 </div>
@@ -145,7 +171,9 @@ const Recovery = () => {
                           inputValid.email ? "pass-check" : "pass-check active"
                         }
                       >
-                        Введен неверный E-mail
+                        {locale === "TUK"
+                          ? "Nädogry email girizildi"
+                          : "Введен неверный E-mail"}
                       </span>
                     ) : (
                       ""
@@ -153,7 +181,9 @@ const Recovery = () => {
                   </div>
                   <div className="input-block-outer">
                     <div className="input-block rel-block">
-                      <label htmlFor="new-p">Новый пароль</label>
+                      <label htmlFor="new-p">
+                        {locale === "TUK" ? "Täze açar söz" : "Новый пароль"}
+                      </label>
                       <input
                         ref={inp1}
                         autoComplete="false"
@@ -188,16 +218,20 @@ const Recovery = () => {
                             : "pass-check pass-check-margined active"
                         }
                       >
-                        Пароль должен содержать не менее 1 цифры, 1 заглавной и
-                        1 прописной буквы, 1 особого знака, и быть не менее 8 и
-                        не более 15 символов в длину.
+                        {locale === "TUK"
+                          ? "Açar sözi  8 belgiden az bolmadyk we 15 belgiden kän bolmadyk we iň azyndan 1 san, 1 baş harp we 1 setir harp, 1 ýörite bellikden ybarat bolmalydyr. "
+                          : "Пароль должен содержать не менее 1 цифры, 1 заглавной и 1 прописной буквы, 1 особого знака, и быть не менее 8 и не более 15 символов в длину."}
                       </span>
                     ) : (
                       ""
                     )}
                   </div>
                   <div className="input-block">
-                    <label htmlFor="confirm-p">Повторите новый пароль</label>
+                    <label htmlFor="confirm-p">
+                      {locale === "TUK"
+                        ? "Açar sözi gaýtalaň"
+                        : "Повторите пароль"}
+                    </label>
                     <input
                       ref={inp2}
                       autoComplete="false"
@@ -216,7 +250,9 @@ const Recovery = () => {
                             : "pass-check active"
                         }
                       >
-                        Пароли должны совпадать
+                        {locale === "TUK"
+                          ? "Açar sözler gabat gelmeli"
+                          : "Пароли должны совпадать"}
                       </span>
                     ) : (
                       ""
@@ -236,8 +272,9 @@ const Recovery = () => {
             </div>
           ) : (
             <h2>
-              Чтобы поменять пароль ваш аккаунт должен быть активирован.
-              Пожалуйста, попробуйте позже
+              {locale === "TUK"
+                ? "Açar sözüni çalyşmak üçin siziň akkaundyňyz aktiwleşdirilmeli. Az wagtdan gaýtadan synanşyp görüň."
+                : "Чтобы поменять пароль ваш аккаунт должен быть активирован. Пожалуйста, попробуйте позже"}
             </h2>
           )
         ) : (

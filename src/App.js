@@ -35,7 +35,11 @@ import { destination } from "./destinationUrl";
 const App = () => {
   const loginUrl = destination + "/me";
   const [user, setUser] = useState();
-  const [locale, setLocale] = useState("TUK");
+  const [locale, setLocale] = useState(
+    localStorage.getItem("userLanguage")
+      ? localStorage.getItem("userLanguage")
+      : "TUK"
+  );
   const [loaderActive, setLoaderActive] = useState(false);
   const providerValue = useMemo(() => ({ user, setUser }), [user, setUser]);
   const languageValue = useMemo(
@@ -43,12 +47,16 @@ const App = () => {
     [locale, setLocale]
   );
   useEffect(() => {
+    const userLanguage = localStorage.getItem("userLanguage");
     const userToken = localStorage.getItem("userToken");
     setLoaderActive(true);
     if (userToken) {
       getUserInfo(loginUrl, userToken, setUser, setLoaderActive);
     } else {
       setLoaderActive(false);
+    }
+    if (userLanguage) {
+      setLocale(userLanguage);
     }
   }, []);
 

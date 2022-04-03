@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom";
 import Success from "../components/global/Success";
 
 const SuccessPage = () => {
+  const lang = localStorage.getItem("userLanguage")
+    ? localStorage.getItem("userLanguage")
+    : "TUK";
   const navigate = useNavigate();
   useEffect(() => {
     setTimeout(() => {
@@ -14,7 +17,13 @@ const SuccessPage = () => {
   }, []);
   return (
     <section className="success-page">
-      <Success message={"Ваш запрос успешно отправлен!"} />
+      <Success
+        message={
+          lang === "TUK"
+            ? "Ýüzlenme ugradyldy!"
+            : "Ваш запрос успешно отправлен!"
+        }
+      />
     </section>
   );
 };

@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom";
 import Error from "../components/global/Error";
 
 const ErrorPage = () => {
+  const lang = localStorage.getItem("userLanguage")
+    ? localStorage.getItem("userLanguage")
+    : "TUK";
   const navigate = useNavigate();
   useEffect(() => {
     setTimeout(() => {
@@ -14,7 +17,13 @@ const ErrorPage = () => {
   }, []);
   return (
     <section className="success-page">
-      <Error message={"Не удалось отправить запрос"} />
+      <Error
+        message={
+          lang === "TUK"
+            ? "Ýüzlenme ugradylmady"
+            : "Не удалось отправить запрос"
+        }
+      />
     </section>
   );
 };

@@ -1,6 +1,7 @@
 // IMPORT MODULES
 import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../backend/UserContext";
+import { LanguageContext } from "../backend/LanguageContext";
 
 // IMPORT COMPONENTS
 import Breadcrumb from "../components/global/Breadcrumb";
@@ -16,6 +17,7 @@ import allert from "../icons/info-circle.svg";
 import nul from "../icons/null.svg";
 
 const Cards = () => {
+  const { locale } = useContext(LanguageContext);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const { user } = useContext(UserContext);
@@ -31,12 +33,28 @@ const Cards = () => {
   }, [modalOpen]);
   return (
     <section className="cards">
-      {error ? <Error message={"Не удалось отправить запрос"} /> : null}
-      {success ? <Success message={"Ваш запрос успешно отправлен!"} /> : null}
+      {error ? (
+        <Error
+          message={
+            locale === "TUK"
+              ? "Ýüzlenme ugradylmady"
+              : "Не удалось отправить запрос"
+          }
+        />
+      ) : null}
+      {success ? (
+        <Success
+          message={
+            locale === "TUK"
+              ? "Ýüzlenme ugradyldy!"
+              : "Ваш запрос успешно отправлен!"
+          }
+        />
+      ) : null}
       <Breadcrumb
         image={card}
         link={"/home/cards"}
-        linkTitle={"Пластиковые карты"}
+        linkTitle={locale === "TUK" ? "Plastik kartlar" : "Пластиковые карты"}
       />
       <ModalForm
         setModalOpen={setModalOpen}
@@ -52,7 +70,11 @@ const Cards = () => {
       <div className="container">
         <div className="cards-inner">
           <div className="card-title">
-            <h2 className="cards-title">Онлайн-заявка для получения карты</h2>
+            <h2 className="cards-title">
+              {locale === "TUK"
+                ? "Kart almak üçin onlaýn-ýüzlenme"
+                : "Онлайн-заявка для получения карты"}
+            </h2>
             <button
               type="button"
               className="card-btn sign-btn"
@@ -64,7 +86,9 @@ const Cards = () => {
               <div className="card-img">
                 <img src={add} alt="add" />
               </div>
-              <h3>Заполнить заявку</h3>
+              <h3>
+                {locale === "TUK" ? "Ýüzlenme doldurmak" : "Заполнить заявку"}
+              </h3>
             </button>
           </div>
           <div className="home-table-wrapper">
@@ -72,10 +96,10 @@ const Cards = () => {
               <tbody>
                 <tr className="table-head">
                   <th>ID</th>
-                  <th>Тип</th>
-                  <th>Дата</th>
-                  <th>Статус</th>
-                  <th>Действие</th>
+                  <th>{locale === "TUK" ? "Görnüşi" : "Тип"}</th>
+                  <th>{locale === "TUK" ? "Senesi" : "Дата"}</th>
+                  <th>{locale === "TUK" ? "Ýagdaýy" : "Статус"}</th>
+                  <th>{locale === "TUK" ? "Amal" : "Действие"}</th>
                 </tr>
                 {user ? (
                   user.online_card.length !== 0 ? (
@@ -95,15 +119,25 @@ const Cards = () => {
                             }
                           >
                             {el.status === "1"
-                              ? "Отправлено"
+                              ? locale === "TUK"
+                                ? "Ugradyldy"
+                                : "Отправлено"
                               : el.status === "2"
-                              ? "Принята"
+                              ? locale === "TUK"
+                                ? "Kabul edildi"
+                                : "Принята"
                               : el.status === "3"
-                              ? "На стадии рассмотрения"
+                              ? locale === "TUK"
+                                ? "Görülyar"
+                                : "На стадии рассмотрения"
                               : el.status === "4"
-                              ? "Карта выпущена"
+                              ? locale === "TUK"
+                                ? "Kart çykaryldy"
+                                : "Карта выпущена"
                               : el.status === "5"
-                              ? "Отказано"
+                              ? locale === "TUK"
+                                ? "Ret edildi"
+                                : "Отказано"
                               : ""}
                           </td>
                           <td>
@@ -127,7 +161,11 @@ const Cards = () => {
                     })
                   ) : (
                     <tr>
-                      <td>Заявок на карты нет</td>
+                      <td>
+                        {locale === "TUK"
+                          ? "Tabşyrlan ýüzlenme ýok"
+                          : "Заявок на карты нет"}
+                      </td>
                       <td></td>
                       <td></td>
                       <td></td>
@@ -136,7 +174,11 @@ const Cards = () => {
                   )
                 ) : (
                   <tr>
-                    <td>Заявок на карты нет</td>
+                    <td>
+                      {locale === "TUK"
+                        ? "Tabşyrlan ýüzlenme ýok"
+                        : "Заявок на карты нет"}
+                    </td>
                     <td></td>
                     <td></td>
                     <td></td>

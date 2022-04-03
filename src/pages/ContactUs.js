@@ -1,6 +1,7 @@
 // IMPORT MODULES
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
+import { LanguageContext } from "../backend/LanguageContext";
 
 // IMPORT COMPONENTS
 import CustomSelect from "../components/global/CustomSelect";
@@ -23,6 +24,7 @@ import { sitekey } from "../recaptcha";
 import { destination } from "../destinationUrl";
 
 const ContactUs = () => {
+  const { locale } = useContext(LanguageContext);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const token = localStorage.getItem("userToken");
@@ -32,11 +34,12 @@ const ContactUs = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [inputValid, setInputValid] = useState({
     message: false,
+    captcha: false,
   });
   const [btnEnabled, setBtnEnabled] = useState(false);
 
   useEffect(() => {
-    if (topic && inputValid.message) {
+    if (topic && inputValid.message && inputValid.captcha) {
       setBtnEnabled(true);
     } else {
       setBtnEnabled(false);
@@ -44,18 +47,34 @@ const ContactUs = () => {
   }, [topic, inputValid]);
   return (
     <section className="contact-us">
-      {error ? <Error message={"Не удалось отправить сообщение"} /> : null}
+      {error ? (
+        <Error
+          message={
+            locale === "TUK"
+              ? "Hat ugradylmady"
+              : "Не удалось отправить сообщение"
+          }
+        />
+      ) : null}
       {success ? (
-        <Success message={"Ваше сообщение успешно отправлено!"} />
+        <Success
+          message={
+            locale === "TUK"
+              ? "Hat ugradyldy!"
+              : "Ваше сообщение успешно отправлено!"
+          }
+        />
       ) : null}
       <Breadcrumb
         image={mail}
         link={"/home/contact-us"}
-        linkTitle={"Написать письмо "}
+        linkTitle={locale === "TUK" ? "Hat ýazmak" : "Написать письмо"}
       />
       <div className="container">
         <div className="contact-us-inner">
-          <h2 className="cu-title">Написать письмо</h2>
+          <h2 className="cu-title">
+            {locale === "TUK" ? "Hat ýazmak" : "Написать письмо"}
+          </h2>
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -66,11 +85,21 @@ const ContactUs = () => {
             ) : (
               <div className="form-wrapper">
                 <div className="input-block">
-                  <label htmlFor="topic">Тема письма</label>
+                  <label htmlFor="topic">
+                    {locale === "TUK" ? "Hatyň temasy" : "Тема письма"}
+                  </label>
                   <CustomSelect
-                    placeholder={"Выберите тему письма"}
+                    placeholder={
+                      locale === "TUK"
+                        ? "Hatyň temasyny saýlaň"
+                        : "Выберите тему письма"
+                    }
                     name={"topic"}
-                    items={["Пластиковые карты", "Кредиты"]}
+                    items={
+                      locale === "TUK"
+                        ? ["Plastik kartlar", "Karzlar"]
+                        : ["Пластиковые карты", "Кредиты"]
+                    }
                     stateSetter={(e) => {
                       setTopic(e);
                     }}
@@ -80,12 +109,16 @@ const ContactUs = () => {
                   />
                 </div>
                 <div className="input-block">
-                  <label htmlFor="msg">Сообщение</label>
+                  <label htmlFor="msg">
+                    {locale === "TUK" ? "Hat" : "Сообщение"}
+                  </label>
                   <textarea
                     name="msg"
                     id="msg"
                     rows="10"
-                    placeholder="Ваше сообщение"
+                    placeholder={
+                      locale === "TUK" ? "Siziň hatyňyz" : "Ваше сообщение"
+                    }
                     onChange={(e) => {
                       if (e.target.value !== "") {
                         setInputValid({
@@ -118,7 +151,7 @@ const ContactUs = () => {
                       formData.append("message", inputValid.message);
                       let today = new Date();
                       let dd = String(today.getDate()).padStart(2, "0");
-                      let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+                      let mm = String(today.getMonth() + 1).padStart(2, "0");
                       let yyyy = today.getFullYear();
                       formData.append("date", `${dd}.${mm}.${yyyy}`);
                       sendMessage(
@@ -139,7 +172,9 @@ const ContactUs = () => {
                     }}
                   >
                     <div>
-                      <h3>Отправить письмо</h3>
+                      <h3>
+                        {locale === "TUK" ? "Haty ugrat" : "Отправить письмо"}
+                      </h3>
                       <div className="btn-img">
                         <img src={send} alt="logout" />
                       </div>

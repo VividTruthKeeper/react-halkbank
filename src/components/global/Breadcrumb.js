@@ -1,11 +1,13 @@
 // IMPORT MODULES
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { LanguageContext } from "../../backend/LanguageContext";
 
 // IMPORT IMAGES
 import home from "../../icons/home.svg";
 
 const Breadcrumb = ({ image, link, linkTitle }) => {
+  const { locale } = useContext(LanguageContext);
   return (
     <div className="breadcrumb">
       <div className="container">
@@ -17,7 +19,7 @@ const Breadcrumb = ({ image, link, linkTitle }) => {
             <div className="br-image">
               <img src={home} alt="home" />
             </div>
-            <span>Главная</span>
+            <span>{locale === "TUK" ? "Baş sahypa" : "Главная"}</span>
           </Link>
           {image ? <h6>/</h6> : ""}
           {link ? (

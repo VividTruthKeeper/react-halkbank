@@ -1,6 +1,7 @@
 // IMPORT MODULES
 import React, { useContext } from "react";
 import { UserContext } from "../backend/UserContext";
+import { LanguageContext } from "../backend/LanguageContext";
 
 // IMPORT COMPONENTS
 import Breadcrumb from "../components/global/Breadcrumb";
@@ -11,6 +12,7 @@ import allert from "../icons/info-circle.svg";
 import nul from "../icons/null.svg";
 
 const Base = () => {
+  const { locale } = useContext(LanguageContext);
   const { user } = useContext(UserContext);
   return (
     <section className="cards">
@@ -18,7 +20,7 @@ const Base = () => {
       <div className="container">
         <div className="cards-inner">
           <h2 className="cards-title">
-            Добро пожаловать,{" "}
+            {locale === "TUK" ? "Hoş geldiňiz" : "Добро пожаловать"},{" "}
             <span id="user">
               {user ? (
                 user.name ? (
@@ -36,10 +38,10 @@ const Base = () => {
               <tbody>
                 <tr className="table-head">
                   <th>ID</th>
-                  <th>Тип</th>
-                  <th>Дата</th>
-                  <th>Статус</th>
-                  <th>Действие</th>
+                  <th>{locale === "TUK" ? "Görnüşi" : "Тип"}</th>
+                  <th>{locale === "TUK" ? "Senesi" : "Дата"}</th>
+                  <th>{locale === "TUK" ? "Ýagdaýy" : "Статус"}</th>
+                  <th>{locale === "TUK" ? "Amal" : "Действие"}</th>
                 </tr>
 
                 {user ? (
@@ -60,15 +62,25 @@ const Base = () => {
                             }
                           >
                             {el.status === "1"
-                              ? "Отправлено"
+                              ? locale === "TUK"
+                                ? "Ugradyldy"
+                                : "Отправлено"
                               : el.status === "2"
-                              ? "Принята"
+                              ? locale === "TUK"
+                                ? "Kabul edildi"
+                                : "Принята"
                               : el.status === "3"
-                              ? "На стадии рассмотрения"
+                              ? locale === "TUK"
+                                ? "Görülyar"
+                                : "На стадии рассмотрения"
                               : el.status === "4"
-                              ? "Утверждено"
+                              ? locale === "TUK"
+                                ? "Tassyklandy"
+                                : "Утверждено"
                               : el.status === "5"
-                              ? "Отказано"
+                              ? locale === "TUK"
+                                ? "Ret edildi"
+                                : "Отказано"
                               : ""}
                           </td>
                           <td>
@@ -95,7 +107,11 @@ const Base = () => {
                       ""
                     ) : (
                       <tr>
-                        <td>Заявок нет</td>
+                        <td>
+                          {locale === "TUK"
+                            ? "Tabşyrlan ýüzlenme ýok"
+                            : "Заявок нет"}
+                        </td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -108,7 +124,11 @@ const Base = () => {
                     ""
                   ) : (
                     <tr>
-                      <td>Заявок нет</td>
+                      <td>
+                        {locale === "TUK"
+                          ? "Tabşyrlan ýüzlenme ýok"
+                          : "Заявок на карты нет"}
+                      </td>
                       <td></td>
                       <td></td>
                       <td></td>
@@ -134,15 +154,25 @@ const Base = () => {
                               }
                             >
                               {el.status === "1"
-                                ? "Отправлено"
+                                ? locale === "TUK"
+                                  ? "Ugradyldy"
+                                  : "Отправлено"
                                 : el.status === "2"
-                                ? "Принята"
+                                ? locale === "TUK"
+                                  ? "Kabul edildi"
+                                  : "Принята"
                                 : el.status === "3"
-                                ? "На стадии рассмотрения"
+                                ? locale === "TUK"
+                                  ? "Görülyar"
+                                  : "На стадии рассмотрения"
                                 : el.status === "4"
-                                ? "Карта выпущена"
+                                ? locale === "TUK"
+                                  ? "Kart çykaryldy"
+                                  : "Карта выпущена"
                                 : el.status === "5"
-                                ? "Отказано"
+                                ? locale === "TUK"
+                                  ? "Ret edildi"
+                                  : "Отказано"
                                 : ""}
                             </td>
                             <td>
@@ -166,44 +196,6 @@ const Base = () => {
                       })
                     : null
                   : null}
-                {/* {user
-                  ? user.online_credit.length !== 0
-                    ? user.online_credit.map((el, i) => {
-                        return (
-                          <tr key={i}>
-                            <td>#{el.id}</td>
-                            <td>{el.type}</td>
-                            <td>{el.date}</td>
-                            <td>--status</td>
-                            <td>--action</td>
-                          </tr>
-                        );
-                      })
-                    : null
-                  : null}
-                {user ? (
-                  user.online_card.length !== 0 ? (
-                    user.online_card.map((el, i) => {
-                      return (
-                        <tr key={i}>
-                          <td>#{el.id}</td>
-                          <td>{el.selected_card}</td>
-                          <td>{el.date}</td>
-                          <td>--status</td>
-                          <td>--action</td>
-                        </tr>
-                      );
-                    })
-                  ) : user.online_credit.length !== 0 ? null
-                 : (
-                  <tr>
-                    <td>Заявок нет</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                )} */}
               </tbody>
             </table>
           </div>

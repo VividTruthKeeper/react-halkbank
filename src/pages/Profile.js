@@ -1,6 +1,7 @@
 // IMPORT MODULES
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { UserContext } from "../backend/UserContext";
+import { LanguageContext } from "../backend/LanguageContext";
 
 // IMPORT COMPONENTS
 import Breadcrumb from "../components/global/Breadcrumb";
@@ -13,6 +14,7 @@ import { ValidatePhoneNumber } from "../validators/ValidatePhoneNumber";
 import userImg from "../icons/user-black.svg";
 
 const Profile = () => {
+  const { locale } = useContext(LanguageContext);
   const { user } = useContext(UserContext);
   const [inputValid, setInputValid] = useState({
     surname: true,
@@ -26,56 +28,29 @@ const Profile = () => {
     mobile: true,
     home: true,
   });
-  // const [btnEnabled, setBtnEnabled] = useState(false);
 
-  // useEffect(() => {
-  //   if (
-  //     inputValid.surname === true &&
-  //     inputValid.name === true &&
-  //     inputValid.fathers === true &&
-  //     inputValid.date === true &&
-  //     inputValid.passport === true &&
-  //     inputValid.p_address === true &&
-  //     inputValid.address === true &&
-  //     inputValid.mail === true &&
-  //     inputValid.mobile === true &&
-  //     inputValid.home === true
-  //   ) {
-  //     setBtnEnabled(true);
-  //   } else {
-  //     setBtnEnabled(false);
-  //   }
-  // }, [inputValid]);
   return (
     <section className="profile">
       <Breadcrumb
         image={userImg}
         link={"/home/profile"}
-        linkTitle={"Данные профиля"}
+        linkTitle={locale === "TUK" ? "Profiliň maglumaty" : "Данные профиля"}
       />
       <div className="container">
         <div className="profile-inner">
           <form>
             <div className="form-top">
               <div className="cu-bottom profile-title">
-                <h2 className="profile-title">Данные профиля</h2>
-                {/* <button
-                  type="button"
-                  disabled={!btnEnabled}
-                  className="sign-btn cu-btn"
-                >
-                  <div>
-                    <div className="btn-img">
-                      <img src={change} alt="logout" />
-                    </div>
-                    <h3>Сохранить изменения</h3>
-                  </div>
-                </button> */}
+                <h2 className="profile-title">
+                  {locale === "TUK" ? "Profiliň maglumaty" : "Данные профиля"}
+                </h2>
               </div>
             </div>
             <div className="form-bottom">
               <div className="input-block">
-                <label htmlFor="surname">Фамилия</label>
+                <label htmlFor="surname">
+                  {locale === "TUK" ? "Familiýasy" : "Фамилия"}
+                </label>
                 <input
                   readOnly
                   type="text"
@@ -91,7 +66,7 @@ const Profile = () => {
                 />
               </div>
               <div className="input-block">
-                <label htmlFor="name">Имя</label>
+                <label htmlFor="name">{locale === "TUK" ? "Ady" : "Имя"}</label>
                 <input
                   readOnly
                   type="text"
@@ -107,7 +82,9 @@ const Profile = () => {
                 />
               </div>
               <div className="input-block">
-                <label htmlFor="fathers">Отчество</label>
+                <label htmlFor="fathers">
+                  {locale === "TUK" ? "Atasynyň ady" : "Отчество"}
+                </label>
                 <input
                   readOnly
                   type="text"
@@ -123,7 +100,9 @@ const Profile = () => {
                 />
               </div>
               <div className="input-block">
-                <label htmlFor="date">Дата рождения</label>
+                <label htmlFor="date">
+                  {locale === "TUK" ? "Doglan senesi" : "Дата рождения"}
+                </label>
                 <input
                   readOnly
                   type="date"
@@ -139,7 +118,11 @@ const Profile = () => {
                 />
               </div>
               <div className="input-block">
-                <label htmlFor="passport">Паспортные данные</label>
+                <label htmlFor="passport">
+                  {locale === "TUK"
+                    ? "Pasport maglumatlary"
+                    : "Паспортные данные"}
+                </label>
                 <input
                   readOnly
                   type="text"
@@ -155,7 +138,11 @@ const Profile = () => {
                 />
               </div>
               <div className="input-block">
-                <label htmlFor="p-address">Место выдачи паспорта</label>
+                <label htmlFor="p-address">
+                  {locale === "TUK"
+                    ? "Pasportyň berlen ýeri"
+                    : "Место выдачи паспорта"}
+                </label>
                 <input
                   readOnly
                   type="text"
@@ -171,7 +158,9 @@ const Profile = () => {
                 />
               </div>
               <div className="input-block">
-                <label htmlFor="address">Адрес проживания</label>
+                <label htmlFor="address">
+                  {locale === "TUK" ? "Ýaşaýan salgysy" : "Адрес проживания"}
+                </label>
                 <input
                   readOnly
                   type="text"
@@ -187,7 +176,9 @@ const Profile = () => {
                 />
               </div>
               <div className="input-block">
-                <label htmlFor="mail">Электронная почта</label>
+                <label htmlFor="mail">
+                  {locale === "TUK" ? "Email" : "Электронная почта"}
+                </label>
                 <input
                   readOnly
                   type="email"
@@ -203,7 +194,9 @@ const Profile = () => {
                 />
               </div>
               <div className="input-block">
-                <label htmlFor="mobile">Мобильный телефон</label>
+                <label htmlFor="mobile">
+                  {locale === "TUK" ? "Mobil telefon" : "Мобильный телефон"}
+                </label>
                 <input
                   readOnly
                   type="text"
@@ -219,7 +212,9 @@ const Profile = () => {
                 />
               </div>
               <div className="input-block">
-                <label htmlFor="homeTel">Домашний телефон</label>
+                <label htmlFor="homeTel">
+                  {locale === "TUK" ? "Öý telefon" : "Домашний телефон"}
+                </label>
                 <input
                   readOnly
                   type="text"

@@ -91,6 +91,7 @@ const LoggedNav = ({ sideOpen, setSideOpen }) => {
                     onClick={(e) => {
                       handleLanguage(e.target.innerText);
                       setLocale(e.target.innerText);
+                      localStorage.setItem("userLanguage", e.target.innerText);
                     }}
                   >
                     РУС
@@ -100,6 +101,7 @@ const LoggedNav = ({ sideOpen, setSideOpen }) => {
                     onClick={(e) => {
                       handleLanguage(e.target.innerText);
                       setLocale(e.target.innerText);
+                      localStorage.setItem("userLanguage", e.target.innerText);
                     }}
                   >
                     TUK
