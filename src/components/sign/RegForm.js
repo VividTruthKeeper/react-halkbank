@@ -22,6 +22,7 @@ import { ValidateEmail } from "../../validators/ValidateEmail";
 import { ValidateUserName } from "../../validators/ValidateUserName";
 import { ValidatePhoneNumber } from "../../validators/ValidatePhoneNumber";
 import { getDate } from "../../helpers/Date";
+import { LanguageContext } from "../../backend/LanguageContext";
 
 // SITEKEY
 import { sitekey } from "../../recaptcha";
@@ -30,6 +31,7 @@ import { sitekey } from "../../recaptcha";
 import { destination } from "../../destinationUrl";
 
 const RegForm = () => {
+  const { locale } = useContext(LanguageContext);
   const [isPassword, setIsPassword] = useState(true);
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -127,11 +129,14 @@ const RegForm = () => {
       >
         {isLoading ? <Loader /> : ""}
         <div className="reg-top">
-          <h2 className="reg-title">Регистрация</h2>
+          <h2 className="reg-title">
+            {locale === "TUK" ? "Hasaba almak" : "Регистрация"}
+          </h2>
           <div className="reg-input-wrapper">
             <div className="reg-input-block">
               <label htmlFor="surname">
-                Фамилия<span>*</span>
+                {locale === "TUK" ? "Familiýasy" : "Фамилия"}
+                <span>*</span>
               </label>
               <input
                 autoComplete="false"
@@ -152,7 +157,8 @@ const RegForm = () => {
             </div>
             <div className="reg-input-block">
               <label htmlFor="name">
-                Имя<span>*</span>
+                {locale === "TUK" ? "Ady" : "Имя"}
+                <span>*</span>
               </label>
               <input
                 autoComplete="false"
@@ -173,7 +179,8 @@ const RegForm = () => {
             </div>
             <div className="reg-input-block">
               <label htmlFor="fname">
-                Отчество<span>*</span>
+                {locale === "TUK" ? "Atasynyň ady" : "Отчество"}
+                <span>*</span>
               </label>
               <input
                 autoComplete="false"
@@ -194,7 +201,8 @@ const RegForm = () => {
             </div>
             <div className="reg-input-block">
               <label htmlFor="date">
-                Дата рождения<span>*</span>
+                {locale === "TUK" ? "Doglan senesi" : "Дата рождения"}
+                <span>*</span>
               </label>
               <input
                 autoComplete="false"
@@ -218,7 +226,8 @@ const RegForm = () => {
             <div className="reg-input-block split">
               <div className="split-block">
                 <label htmlFor="serie">
-                  Серия паспорта<span>*</span>
+                  {locale === "TUK" ? "Pasportyň seriýasy" : "Серия паспорта"}
+                  <span>*</span>
                 </label>
                 <CustomSelect
                   items={["I", "A", "E"]}
@@ -249,12 +258,14 @@ const RegForm = () => {
               </div>
               <div className="split-block">
                 <label htmlFor="num">
-                  Номер паспорта<span>*</span>
+                  {locale === "TUK" ? "Pasportyň belgisi" : "Номер паспорта"}
+                  <span>*</span>
                 </label>
                 <input
                   autoComplete="false"
                   type="text"
                   name="num"
+                  maxLength={6}
                   placeholder="212121"
                   id="num"
                   required
@@ -271,7 +282,10 @@ const RegForm = () => {
             </div>
             <div className="reg-input-block">
               <label htmlFor="place">
-                Место выдачи паспорта<span>*</span>
+                {locale === "TUK"
+                  ? "Pasportyň berlen ýeri"
+                  : "Место выдачи паспорта"}
+                <span>*</span>
               </label>
               <input
                 autoComplete="false"
@@ -292,7 +306,8 @@ const RegForm = () => {
             </div>
             <div className="reg-input-block">
               <label htmlFor="address">
-                Адрес проживания<span>*</span>
+                {locale === "TUK" ? "Ýaşaýan salgysy" : "Адрес проживания"}
+                <span>*</span>
               </label>
               <input
                 autoComplete="false"
@@ -313,7 +328,8 @@ const RegForm = () => {
             </div>
             <div className="reg-input-block">
               <label htmlFor="email">
-                Электронная почта<span>*</span>
+                {locale === "TUK" ? "Email" : "Электронная почта"}
+                <span>*</span>
               </label>
               <input
                 autoComplete="false"
@@ -337,7 +353,9 @@ const RegForm = () => {
                     inputValid.email ? "pass-check" : "pass-check active"
                   }
                 >
-                  Введен неверный email
+                  {locale === "TUK"
+                    ? "Nädogry email girizildi"
+                    : "Введен неверный email"}
                 </span>
               ) : (
                 ""
@@ -345,7 +363,8 @@ const RegForm = () => {
             </div>
             <div className="reg-input-block">
               <label htmlFor="mobile">
-                Мобильный телефон<span>*</span>
+                {locale === "TUK" ? "Mobil telefon" : "Мобильный телефон"}
+                <span>*</span>
               </label>
               <input
                 autoComplete="false"
@@ -369,7 +388,9 @@ const RegForm = () => {
                     inputValid.mobileTel ? "pass-check" : "pass-check active"
                   }
                 >
-                  Введен неверный номер
+                  {locale === "TUK"
+                    ? "Nädogry belgi girizildi"
+                    : "Введен неверный номер"}
                 </span>
               ) : (
                 ""
@@ -377,7 +398,8 @@ const RegForm = () => {
             </div>
             <div className="reg-input-block">
               <label htmlFor="hometel">
-                Домашний телефон<span>*</span>
+                {locale === "TUK" ? "Öý telefon" : "Домашний телефон"}
+                <span>*</span>
               </label>
               <input
                 autoComplete="false"
@@ -401,7 +423,9 @@ const RegForm = () => {
                     inputValid.homeTel ? "pass-check" : "pass-check active"
                   }
                 >
-                  Введен неверный номер
+                  {locale === "TUK"
+                    ? "Nädogry belgi girizildi"
+                    : "Введен неверный номер"}
                 </span>
               ) : (
                 ""
@@ -410,11 +434,16 @@ const RegForm = () => {
           </div>
         </div>
         <div className="reg-top reg-bottom">
-          <h2 className="reg-title">Данные пользователя</h2>
+          <h2 className="reg-title">
+            {locale === "TUK"
+              ? "Ulanyjynyň maglumatlary"
+              : "Данные пользователя"}
+          </h2>
           <div className="reg-input-wrapper">
             <div className="reg-input-block">
               <label htmlFor="user">
-                Пользователь<span>*</span>
+                {locale === "TUK" ? "Ulanyjy" : "Пользователь"}
+                <span>*</span>
               </label>
               <input
                 autoComplete="false"
@@ -438,52 +467,60 @@ const RegForm = () => {
                     inputValid.user ? "pass-check" : "pass-check active"
                   }
                 >
-                  Имя пользователя не может содержать особых знаков, кроме "_"
+                  {locale === "TUK"
+                    ? 'Ulanyjy adynda "_" -dan başga ýörite belgiler bolup bilmez.'
+                    : `Имя пользователя не может содержать особых знаков, кроме "_"`}
                 </span>
               ) : (
                 ""
               )}
             </div>
-            <div className="reg-input-block rel-block">
-              <div
-                className="rel-img"
-                onClick={() => {
-                  setIsPassword(!isPassword);
-                }}
-              >
-                <img src={eye} alt="eye" />
+            <div className="input-block-outer sp-outer">
+              <div className="reg-input-block rel-block">
+                <div
+                  className="rel-img"
+                  onClick={() => {
+                    setIsPassword(!isPassword);
+                  }}
+                >
+                  <img src={eye} alt="eye" />
+                </div>
+                <label htmlFor="pass">
+                  {locale === "TUK" ? "Açar sözi" : "Пароль"}
+                  <span>*</span>
+                </label>
+                <input
+                  autoComplete="false"
+                  type={isPassword ? "password" : "text"}
+                  onCopy={(e) => {
+                    e.preventDefault();
+                  }}
+                  name="pass"
+                  id="pass"
+                  required
+                  onChange={(e) => {
+                    setValidateBottom(true);
+                    setPasswords({ ...passwords, p1: e.target.value });
+                    if (ValidatePassword(e.target.value)) {
+                      setInputValid({
+                        ...inputValid,
+                        password: e.target.value,
+                      });
+                    } else {
+                      setInputValid({ ...inputValid, password: null });
+                    }
+                  }}
+                />
               </div>
-              <label htmlFor="pass">
-                Пароль<span>*</span>
-              </label>
-              <input
-                autoComplete="false"
-                type={isPassword ? "password" : "text"}
-                onCopy={(e) => {
-                  e.preventDefault();
-                }}
-                name="pass"
-                id="pass"
-                required
-                onChange={(e) => {
-                  setValidateBottom(true);
-                  setPasswords({ ...passwords, p1: e.target.value });
-                  if (ValidatePassword(e.target.value)) {
-                    setInputValid({ ...inputValid, password: e.target.value });
-                  } else {
-                    setInputValid({ ...inputValid, password: null });
-                  }
-                }}
-              />
               {validateBottom ? (
                 <span
                   className={
                     inputValid.password ? "pass-check" : "pass-check active"
                   }
                 >
-                  Пароль должен содержать не менее 1 цифры, 1 заглавной и 1
-                  прописной буквы, 1 особого знака, и быть не менее 8 и не более
-                  15 символов в длину.
+                  {locale === "TUK"
+                    ? "Açar sözi  8 belgiden az bolmadyk we 15 belgiden kän bolmadyk we iň azyndan 1 san, 1 baş harp we 1 setir harp, 1 ýörite bellikden ybarat bolmalydyr. "
+                    : "Пароль должен содержать не менее 1 цифры, 1 заглавной и 1 прописной буквы, 1 особого знака, и быть не менее 8 и не более 15 символов в длину."}
                 </span>
               ) : (
                 ""
@@ -491,7 +528,8 @@ const RegForm = () => {
             </div>
             <div className="reg-input-block">
               <label htmlFor="repeat-pass">
-                Повторите пароль<span>*</span>
+                {locale === "TUK" ? "Açar sözi gaýtalaň" : "Повторите пароль"}
+                <span>*</span>
               </label>
               <input
                 onPaste={(e) => {
@@ -513,7 +551,9 @@ const RegForm = () => {
                     inputValid.match ? "pass-check" : "pass-check active"
                   }
                 >
-                  Пароли должны совпадать
+                  {locale === "TUK"
+                    ? "Açar sözler gabat gelmeli"
+                    : "Пароли должны совпадать"}
                 </span>
               ) : (
                 ""
@@ -524,10 +564,16 @@ const RegForm = () => {
         {error ? (
           error === "The email has already been taken." ? (
             <h3 className="error">
-              Этот адресс электронной почты уже используется
+              {locale === "TUK"
+                ? "Bu email salgysy eýýäm ulanylýar"
+                : "Этот адресс электронной почты уже используется"}
             </h3>
           ) : error === "The username has already been taken." ? (
-            <h3 className="error">Это имя пользователя уже используется</h3>
+            <h3 className="error">
+              {locale === "TUK"
+                ? "Bu ulanyjy ady eýýäm ulanylýar"
+                : "Это имя пользователя уже используется"}
+            </h3>
           ) : (
             ""
           )
@@ -535,7 +581,6 @@ const RegForm = () => {
           ""
         )}
         <div className="reg-btns">
-          {/* <h1>Captcha</h1> */}
           <div className="captcha-wrapper">
             <ReCAPTCHA
               className="captcha"
@@ -545,10 +590,18 @@ const RegForm = () => {
               }}
             />
           </div>
-          <h2>
-            Все поля с символом ( <span>*</span> ) обязательны для заполнения
-            Все поля доожны быть заполненны латиницей
-          </h2>
+          {locale === "TUK" ? (
+            <h2>
+              ( <span>*</span> ) belgili ähli meýdançalar hökman
+              doldurylmalydyrlar. Ähli meýdançalar latin harplary bilen
+              ýazylmaly.
+            </h2>
+          ) : (
+            <h2>
+              Все поля с символом ( <span>*</span> ) обязательны для заполнения
+              Все поля доожны быть заполненны латиницей
+            </h2>
+          )}
           <button
             type="submit"
             disabled={!btnEnabled}
@@ -575,7 +628,9 @@ const RegForm = () => {
             }}
           >
             <div>
-              <h3>Зарегистрироваться</h3>
+              <h3>
+                {locale === "TUK" ? "Hasaba almak" : "Зарегистрироваться"}
+              </h3>
               <div className="btn-img">
                 <img src={up} alt="logout" />
               </div>

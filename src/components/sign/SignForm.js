@@ -1,5 +1,5 @@
 // IMPORT MODULES
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
 
@@ -13,11 +13,13 @@ import Loader from "../../components/global/Loader";
 
 // IMPORT HELPERS
 import { ValidateEmail } from "../../validators/ValidateEmail";
+import { LanguageContext } from "../../backend/LanguageContext";
 
 // SITEKEY
 import { sitekey } from "../../recaptcha";
 
 const SignForm = ({ setFormData, error, isLoading, setIsLoading }) => {
+  const { locale } = useContext(LanguageContext);
   const data = new FormData();
   const [inputValid, setInputValid] = useState({
     login: null,
@@ -50,11 +52,13 @@ const SignForm = ({ setFormData, error, isLoading, setIsLoading }) => {
         }}
       >
         <div className="sign-top">
-          <h2>Вход</h2>
+          <h2>{locale === "TUK" ? "Hasaba gir" : "Вход"}</h2>
         </div>
         <div className="sign-mid">
           <div className="input-block">
-            <label htmlFor="login">Логин</label>
+            <label htmlFor="login">
+              {locale === "РУС" ? "Логин" : "Ulanyjy"}
+            </label>
             <input
               autoComplete="true"
               required
@@ -89,7 +93,9 @@ const SignForm = ({ setFormData, error, isLoading, setIsLoading }) => {
           </div>
           <div className="input-block-outer">
             <div className="input-block">
-              <label htmlFor="password">Введите пароль</label>
+              <label htmlFor="password">
+                {locale === "РУС" ? "Введите пароль" : "Açar sözi"}
+              </label>
               <input
                 autoComplete="true"
                 required
@@ -112,7 +118,15 @@ const SignForm = ({ setFormData, error, isLoading, setIsLoading }) => {
                 <img src={eye} alt="reveal/hide" />
               </div>
             </div>
-            {error ? <span>Неверные имя пользователя или пароль</span> : ""}
+            {error ? (
+              <span>
+                {locale === "РУС"
+                  ? "Введены неверные данные"
+                  : "Nädogry maglumatlar girizildi"}
+              </span>
+            ) : (
+              ""
+            )}
           </div>
           <div className="captcha-wrapper">
             <ReCAPTCHA
@@ -147,7 +161,7 @@ const SignForm = ({ setFormData, error, isLoading, setIsLoading }) => {
             }}
           >
             <div>
-              <h3>Войти</h3>
+              <h3>{locale === "РУС" ? "Войти" : "Ulgama gir"}</h3>
               <div className="btn-img">
                 <img src={logout} alt="logout" />
               </div>
@@ -155,7 +169,9 @@ const SignForm = ({ setFormData, error, isLoading, setIsLoading }) => {
           </button>
           <Link to="/sign-up" className="sign-btn reg-btn">
             <div>
-              <h3>Зарегистрироваться</h3>
+              <h3>
+                {locale === "РУС" ? "Зарегистрироваться" : "Hasaba almak"}
+              </h3>
               <div className="btn-img">
                 <img src={up} alt="logout" />
               </div>
