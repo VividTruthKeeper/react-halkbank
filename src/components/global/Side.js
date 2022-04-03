@@ -3,6 +3,7 @@ import React, { useState, useEffect, useContext, useRef } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../backend/UserContext";
 import { deleteUser } from "../../backend/deleteUser";
+import { LanguageContext } from "../../backend/LanguageContext";
 
 // IMPORT IMAGES
 import card from "../../icons/card.svg";
@@ -16,6 +17,7 @@ import close from "../../icons/close.svg";
 
 const Side = ({ sideOpen, setSideOpen }) => {
   const inner = useRef();
+  const { locale } = useContext(LanguageContext);
   const { setUser } = useContext(UserContext);
   const [linkStage, setLinkStage] = useState(0);
 
@@ -50,7 +52,9 @@ const Side = ({ sideOpen, setSideOpen }) => {
           <div className="list-wrapper">
             <ul>
               <li className="side-top-li">
-                <h2 className="side-title">Разделы</h2>
+                <h2 className="side-title">
+                  {locale === "TUK" ? "Bölümler" : "Разделы"}
+                </h2>
                 <div
                   className="side-quit"
                   onClick={() => {
@@ -70,7 +74,9 @@ const Side = ({ sideOpen, setSideOpen }) => {
                   <div className="link-img">
                     <img src={card} alt="link" />
                   </div>
-                  <span>Пластиковые карты</span>
+                  <span>
+                    {locale === "TUK" ? "Plastik kartlar" : "Пластиковые карты"}
+                  </span>
                 </Link>
               </li>
               <li
@@ -83,7 +89,7 @@ const Side = ({ sideOpen, setSideOpen }) => {
                   <div className="link-img">
                     <img src={credit} alt="link" />
                   </div>
-                  <span>Кредиты</span>
+                  <span>{locale === "TUK" ? "Karzlar" : "Кредиты"}</span>
                 </Link>
               </li>
               <li
@@ -96,13 +102,17 @@ const Side = ({ sideOpen, setSideOpen }) => {
                   <div className="link-img">
                     <img src={mail} alt="link" />
                   </div>
-                  <span>Написать письмо</span>
+                  <span>
+                    {locale === "TUK" ? "Hat ýazmak" : "Написать письмо"}
+                  </span>
                 </Link>
               </li>
             </ul>
             <ul>
               <li>
-                <h2 className="side-title">Профиль</h2>
+                <h2 className="side-title">
+                  {locale === "TUK" ? "Profil" : "Профиль"}
+                </h2>
               </li>
               <li
                 className={linkStage === 4 ? "active" : ""}
@@ -114,7 +124,9 @@ const Side = ({ sideOpen, setSideOpen }) => {
                   <div className="link-img">
                     <img src={user} alt="link" />
                   </div>
-                  <span>Данные профиля</span>
+                  <span>
+                    {locale === "TUK" ? "Profiliň maglumaty" : "Данные профиля"}
+                  </span>
                 </Link>
               </li>
               <li
@@ -127,7 +139,9 @@ const Side = ({ sideOpen, setSideOpen }) => {
                   <div className="link-img">
                     <img src={password} alt="link" />
                   </div>
-                  <span>Смена пароля</span>
+                  <span>
+                    {locale === "TUK" ? "Açar sözüni çalyşmak" : "Смена пароля"}
+                  </span>
                 </Link>
               </li>
               <li>
@@ -141,7 +155,7 @@ const Side = ({ sideOpen, setSideOpen }) => {
                   <div className="link-img">
                     <img src={quit} alt="link" />
                   </div>
-                  <span>Выход</span>
+                  <span>{locale === "TUK" ? "Çykmak" : "Выход"}</span>
                 </button>
               </li>
             </ul>
@@ -150,7 +164,11 @@ const Side = ({ sideOpen, setSideOpen }) => {
             <div className="footer-img">
               <img src={arrow} alt="arrow" />
             </div>
-            <span>Вернутся на главный сайт</span>
+            <span>
+              {locale === "TUK"
+                ? "Baş sahypa dolanmak"
+                : "Вернутся на главный сайт"}
+            </span>
           </Link>
         </div>
       </div>

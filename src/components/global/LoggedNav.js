@@ -3,6 +3,7 @@ import React, { useState, useContext, useRef } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../backend/UserContext";
 import { deleteUser } from "../../backend/deleteUser";
+import { LanguageContext } from "../../backend/LanguageContext";
 
 // IMPORT COMPONENTS
 import Loader from "./Loader";
@@ -13,7 +14,8 @@ import lang from "../../icons/lang.svg";
 import arrow from "../../icons/arrow-down.svg";
 import userImg from "../../icons/user.svg";
 
-const LoggedNav = ({ sideOpen, setSideOpen, animator, setAnimator }) => {
+const LoggedNav = ({ sideOpen, setSideOpen }) => {
+  const { locale, setLocale } = useContext(LanguageContext);
   const { user, setUser } = useContext(UserContext);
   const langBlock = useRef();
   const userBlock = useRef();
@@ -21,7 +23,7 @@ const LoggedNav = ({ sideOpen, setSideOpen, animator, setAnimator }) => {
     setLanguage(lang);
   };
   const [langOpen, setLangOpen] = useState(false);
-  const [language, setLanguage] = useState("РУС");
+  const [language, setLanguage] = useState(locale);
   const [profile, setProfile] = useState(false);
 
   return (
@@ -55,8 +57,12 @@ const LoggedNav = ({ sideOpen, setSideOpen, animator, setAnimator }) => {
               <img src={hb} alt="Halk Bank" />
             </Link>
             <Link to="/" className="nav-title">
-              <h1>Халкбанк</h1>
-              <h4>"Главная ценность Банка-наши Клиенты"</h4>
+              <h1>{locale === "РУС" ? "Халкбанк" : "Halkbank"}</h1>
+              <h4>
+                {locale === "РУС"
+                  ? '"Главная ценность Банка-наши Клиенты"'
+                  : '"Bankyň esasy gymmatlygy Müşderilerdir"'}
+              </h4>
             </Link>
           </div>
           <div className="nav__right">
@@ -84,6 +90,7 @@ const LoggedNav = ({ sideOpen, setSideOpen, animator, setAnimator }) => {
                     className="lang-el"
                     onClick={(e) => {
                       handleLanguage(e.target.innerText);
+                      setLocale(e.target.innerText);
                     }}
                   >
                     РУС
@@ -92,14 +99,7 @@ const LoggedNav = ({ sideOpen, setSideOpen, animator, setAnimator }) => {
                     className="lang-el"
                     onClick={(e) => {
                       handleLanguage(e.target.innerText);
-                    }}
-                  >
-                    ENG
-                  </li>
-                  <li
-                    className="lang-el"
-                    onClick={(e) => {
-                      handleLanguage(e.target.innerText);
+                      setLocale(e.target.innerText);
                     }}
                   >
                     TUK
@@ -117,7 +117,11 @@ const LoggedNav = ({ sideOpen, setSideOpen, animator, setAnimator }) => {
               <div className="user-dropdown">
                 <ul>
                   <li>
-                    <Link to="/home/profile">Данные профиля</Link>
+                    <Link to="/home/profile">
+                      {locale === "TUK"
+                        ? "Profiliň maglumaty"
+                        : "Данные профиля"}
+                    </Link>
                   </li>
                   <li>
                     <button
@@ -127,7 +131,7 @@ const LoggedNav = ({ sideOpen, setSideOpen, animator, setAnimator }) => {
                         setUser(null);
                       }}
                     >
-                      Выход
+                      {locale === "TUK" ? "Çykmak" : "Выход"}
                     </button>
                   </li>
                 </ul>
