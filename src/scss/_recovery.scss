@@ -45,7 +45,7 @@
 }
 
 .rel-block {
-  // position: relative;
+  position: relative;
   max-height: 7.8rem;
   input {
     background: #f2f2f2;
@@ -62,7 +62,6 @@
 }
 
 .sp-outer {
-  position: relative;
   gap: 2rem;
   max-width: unset;
 }
