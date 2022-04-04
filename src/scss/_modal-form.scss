@@ -17,6 +17,7 @@
   height: 100vh;
   padding: 5rem 0;
   overflow-y: auto;
+  z-index: 10000;
 
   &.active {
     opacity: 1;
@@ -36,7 +37,7 @@
   background: #fff;
   padding: 5rem;
   padding-top: 2.8rem;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .modal-top {
