@@ -1,6 +1,7 @@
 // IMPORT MODULES
 import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../../backend/UserContext";
+import { LanguageContext } from "../../backend/LanguageContext";
 
 // IMPORT VALIDATORS
 import { ValidateEmail } from "../../validators/ValidateEmail";
@@ -12,6 +13,7 @@ import next from "../../icons/next.svg";
 import next_reverse from "../../icons/next-reverse.svg";
 
 const CardStage2 = ({ setStage, data, setData }) => {
+  const { locale } = useContext(LanguageContext);
   const { user } = useContext(UserContext);
   const [inputValid, setInputValid] = useState({
     surname: data.surname ? data.surname : user ? user.surname : null,
@@ -54,7 +56,8 @@ const CardStage2 = ({ setStage, data, setData }) => {
         <div className="form-top">
           <div className="input-block">
             <label htmlFor="surname">
-              Фамилия<span>*</span>
+              {locale === "TUK" ? "Familiýasy" : "Фамилия"}
+              <span>*</span>
             </label>
             <input
               type="text"
@@ -71,7 +74,8 @@ const CardStage2 = ({ setStage, data, setData }) => {
           </div>
           <div className="input-block">
             <label htmlFor="name">
-              Имя<span>*</span>
+              {locale === "TUK" ? "Ady" : "Имя"}
+              <span>*</span>
             </label>
             <input
               type="text"
@@ -88,7 +92,8 @@ const CardStage2 = ({ setStage, data, setData }) => {
           </div>
           <div className="input-block">
             <label htmlFor="fathers">
-              Отчество<span>*</span>
+              {locale === "TUK" ? "Atasynyň ady" : "Отчество"}
+              <span>*</span>
             </label>
             <input
               type="text"
@@ -105,7 +110,8 @@ const CardStage2 = ({ setStage, data, setData }) => {
           </div>
           <div className="input-block">
             <label htmlFor="date">
-              Дата рождения<span>*</span>
+              {locale === "TUK" ? "Doglan senesi" : "Дата рождения"}
+              <span>*</span>
             </label>
             <input
               type="date"
@@ -124,7 +130,8 @@ const CardStage2 = ({ setStage, data, setData }) => {
           </div>
           <div className="input-block">
             <label htmlFor="passport">
-              Паспортные данные<span>*</span>
+              {locale === "TUK" ? "Pasport maglumatlary" : "Паспортные данные"}
+              <span>*</span>
             </label>
             <input
               type="text"
@@ -141,7 +148,10 @@ const CardStage2 = ({ setStage, data, setData }) => {
           </div>
           <div className="input-block">
             <label htmlFor="p-address">
-              Место выдачи паспорта<span>*</span>
+              {locale === "TUK"
+                ? "Pasportyň berlen ýeri"
+                : "Место выдачи паспорта"}
+              <span>*</span>
             </label>
             <input
               type="text"
@@ -158,7 +168,8 @@ const CardStage2 = ({ setStage, data, setData }) => {
           </div>
           <div className="input-block">
             <label htmlFor="address">
-              Адрес проживания<span>*</span>
+              {locale === "TUK" ? "Ýaşaýan salgysy" : "Адрес проживания"}
+              <span>*</span>
             </label>
             <input
               type="text"
@@ -175,7 +186,8 @@ const CardStage2 = ({ setStage, data, setData }) => {
           </div>
           <div className="input-block">
             <label htmlFor="mail">
-              Электронная почта<span>*</span>
+              {locale === "TUK" ? "Email" : "Электронная почта"}
+              <span>*</span>
             </label>
             <input
               type="email"
@@ -192,7 +204,8 @@ const CardStage2 = ({ setStage, data, setData }) => {
           </div>
           <div className="input-block">
             <label htmlFor="mobile">
-              Мобильный телефон<span>*</span>
+              {locale === "TUK" ? "Mobil telefon" : "Мобильный телефон"}
+              <span>*</span>
             </label>
             <input
               type="text"
@@ -208,7 +221,9 @@ const CardStage2 = ({ setStage, data, setData }) => {
             />
           </div>
           <div className="input-block">
-            <label htmlFor="homeTel">Домашний телефон</label>
+            <label htmlFor="homeTel">
+              {locale === "TUK" ? "Öý telefon" : "Домашний телефон"}
+            </label>
             <input
               type="text"
               id="homeTel"
@@ -241,7 +256,7 @@ const CardStage2 = ({ setStage, data, setData }) => {
                     setStage(1);
                   }}
                 >
-                  Назад
+                  {locale === "TUK" ? "Yza" : "Назад"}
                 </h3>
               </div>
             </button>
@@ -267,7 +282,7 @@ const CardStage2 = ({ setStage, data, setData }) => {
               }}
             >
               <div>
-                <h3>Продолжить</h3>
+                <h3>{locale === "TUK" ? "Dowam et" : "Продолжить"}</h3>
                 <div className="btn-img">
                   <img src={next} alt="logout" />
                 </div>

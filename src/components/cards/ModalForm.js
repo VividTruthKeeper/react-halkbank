@@ -1,5 +1,6 @@
 // IMPORT MODULES
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
+import { LanguageContext } from "../../backend/LanguageContext";
 import axios from "axios";
 
 // IMPORT IMAGES
@@ -32,6 +33,7 @@ const ModalForm = ({
   setError,
 }) => {
   const window = useRef();
+  const { locale } = useContext(LanguageContext);
   const [data, setData] = useState({});
   const [cardData, setCardData] = useState();
 
@@ -42,6 +44,7 @@ const ModalForm = ({
       .then((res) => {
         if (isMounted) {
           setCardData(res.data);
+          console.log(res.data);
         }
       })
       .catch();
@@ -57,7 +60,11 @@ const ModalForm = ({
         <div className="modal-inner" ref={window}>
           <div className="modal-window">
             <div className="modal-top">
-              <h2>Онлайн заявка для получения карты</h2>
+              <h2>
+                {locale === "TUK"
+                  ? "Kart almak üçin onlaýn-ýüzlenme"
+                  : "Онлайн-заявка для получения карты"}
+              </h2>
               <button
                 type="button"
                 className="exit-btn"
@@ -73,7 +80,11 @@ const ModalForm = ({
             <div className="modal-middle">
               <div className="icon-block active">
                 <Card className="modal-icon" />
-                <h3 className="icon-title">Выберите вид карты</h3>
+                <h3 className="icon-title">
+                  {locale === "TUK"
+                    ? "Kartyň görnüşini saýlaň"
+                    : "Выберите вид карты"}
+                </h3>
               </div>
               <div className={stage > 1 ? "line-block active" : "line-block"}>
                 <Lines className="lines" />
@@ -81,7 +92,9 @@ const ModalForm = ({
               </div>
               <div className={stage > 1 ? "icon-block active" : "icon-block"}>
                 <Document className="modal-icon" />
-                <h3 className="icon-title">Личные данные</h3>
+                <h3 className="icon-title">
+                  {locale === "TUK" ? "Şahsy maglumatlar" : "Личные данные"}
+                </h3>
               </div>
               <div className={stage > 2 ? "line-block active" : "line-block"}>
                 <Lines className="lines" />
@@ -89,7 +102,11 @@ const ModalForm = ({
               </div>
               <div className={stage > 2 ? "icon-block active" : "icon-block"}>
                 <Edit className="modal-icon" />
-                <h3 className="icon-title">Данные для карты</h3>
+                <h3 className="icon-title">
+                  {locale === "TUK"
+                    ? "Kart üçin maglumatlar"
+                    : "Данные для карты"}
+                </h3>
               </div>
               <div className={stage > 3 ? "line-block active" : "line-block"}>
                 <Lines className="lines" />
@@ -97,7 +114,11 @@ const ModalForm = ({
               </div>
               <div className={stage > 3 ? "icon-block active" : "icon-block"}>
                 <Note className="modal-icon" />
-                <h3 className="icon-title">Требования и документы</h3>
+                <h3 className="icon-title">
+                  {locale === "TUK"
+                    ? "Talaplar we resminamalar"
+                    : "Требования и документы"}
+                </h3>
               </div>
               <div className={stage > 4 ? "line-block active" : "line-block"}>
                 <Lines className="lines" />
@@ -105,7 +126,9 @@ const ModalForm = ({
               </div>
               <div className={stage > 4 ? "icon-block active" : "icon-block"}>
                 <Task className="modal-icon" />
-                <h3 className="icon-title">Отправка</h3>
+                <h3 className="icon-title">
+                  {locale === "TUK" ? "Ugratmak" : "Отправка"}
+                </h3>
               </div>
               <div className={stage > 5 ? "line-block active" : "line-block"}>
                 <Lines className="lines" />
@@ -113,39 +136,59 @@ const ModalForm = ({
               </div>
               <div className={stage > 5 ? "icon-block active" : "icon-block"}>
                 <Receipt className="modal-icon" />
-                <h3 className="icon-title">Оплата</h3>
+                <h3 className="icon-title">
+                  {locale === "TUK" ? "Töleg" : "Оплата"}
+                </h3>
               </div>
             </div>
             <div className="modal-middle modal-middle-mobile">
               {stage === 1 ? (
                 <div className="icon-block active">
                   <Card className="modal-icon" />
-                  <h3 className="icon-title">Выберите вид карты</h3>
+                  <h3 className="icon-title">
+                    {locale === "TUK"
+                      ? "Kartyň görnüşini saýlaň"
+                      : "Выберите вид карты"}
+                  </h3>
                 </div>
               ) : stage === 2 ? (
                 <div className="icon-block active">
                   <Document className="modal-icon" />
-                  <h3 className="icon-title">Личные данные</h3>
+                  <h3 className="icon-title">
+                    {locale === "TUK" ? "Şahsy maglumatlar" : "Личные данные"}
+                  </h3>
                 </div>
               ) : stage === 3 ? (
                 <div className="icon-block active">
                   <Edit className="modal-icon" />
-                  <h3 className="icon-title">Данные для карты</h3>
+                  <h3 className="icon-title">
+                    {locale === "TUK"
+                      ? "Kart üçin maglumatlar"
+                      : "Данные для карты"}
+                  </h3>
                 </div>
               ) : stage === 4 ? (
                 <div className="icon-block active">
                   <Note className="modal-icon" />
-                  <h3 className="icon-title">Требования и документы</h3>
+                  <h3 className="icon-title">
+                    {locale === "TUK"
+                      ? "Talaplar we resminamalar"
+                      : "Требования и документы"}
+                  </h3>
                 </div>
               ) : stage === 5 ? (
                 <div className="icon-block active">
                   <Task className="modal-icon" />
-                  <h3 className="icon-title">Отправка</h3>
+                  <h3 className="icon-title">
+                    {locale === "TUK" ? "Ugratmak" : "Отправка"}
+                  </h3>
                 </div>
               ) : stage === 6 ? (
                 <div className="icon-block active">
                   <Receipt className="modal-icon" />
-                  <h3 className="icon-title">Оплата</h3>
+                  <h3 className="icon-title">
+                    {locale === "TUK" ? "Töleg" : "Оплата"}
+                  </h3>
                 </div>
               ) : (
                 ""

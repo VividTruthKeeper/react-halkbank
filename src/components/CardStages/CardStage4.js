@@ -1,5 +1,6 @@
 // IMPORT MODULES
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { LanguageContext } from "../../backend/LanguageContext";
 
 // IMPORT IMAGES
 import remove from "../../icons/remove.svg";
@@ -8,6 +9,7 @@ import arrow from "../../icons/arrow.svg";
 import next_reverse from "../../icons/next-reverse.svg";
 
 const CardStage4 = ({ setStage, data, setData }) => {
+  const { locale } = useContext(LanguageContext);
   const [files, setFiles] = useState(data.file ? data.file : []);
 
   const [btnEnabled, setBtnEnabled] = useState(false);
@@ -25,8 +27,9 @@ const CardStage4 = ({ setStage, data, setData }) => {
       <form>
         <div className="cd-top-4">
           <h2>
-            Для оформления заявки на получения кредита загрузите требуемые
-            документы.
+            {locale === "TUK"
+              ? "Karz almak üçin ýüzlenmäni resmileşdirmek üçin talap edilýän resminamalary ýükläň"
+              : "Для оформления заявки на получения кредита загрузите требуемые документы."}
           </h2>
           <div
             className="data-block docs"
@@ -35,7 +38,11 @@ const CardStage4 = ({ setStage, data, setData }) => {
             }}
           >
             <div className="data-title">
-              <h4>Требования и документы</h4>
+              <h4>
+                {locale === "TUK"
+                  ? "Talaplar we resminamalar"
+                  : "Требования и документы"}
+              </h4>
               <div className="data-img">
                 <img src={arrow} alt="arrow" />
               </div>
@@ -53,7 +60,9 @@ const CardStage4 = ({ setStage, data, setData }) => {
         </div>
         <div className="cd-bottom-4">
           <div>
-            <label htmlFor="file">Загрузить файл</label>
+            <label htmlFor="file">
+              {locale === "TUK" ? "Faýl ýükläň" : "Загрузить файл"}
+            </label>
             <input
               id="file"
               type="file"
@@ -106,7 +115,7 @@ const CardStage4 = ({ setStage, data, setData }) => {
                   setStage(3);
                 }}
               >
-                Назад
+                {locale === "TUK" ? "Yza" : "Назад"}
               </h3>
             </div>
           </button>
@@ -120,7 +129,7 @@ const CardStage4 = ({ setStage, data, setData }) => {
             }}
           >
             <div>
-              <h3>Продолжить</h3>
+              <h3>{locale === "TUK" ? "Dowam et" : "Продолжить"}</h3>
               <div className="btn-img">
                 <img src={next} alt="logout" />
               </div>

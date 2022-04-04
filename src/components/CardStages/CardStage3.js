@@ -1,5 +1,8 @@
 // IMPORT MODULES
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { LanguageContext } from "../../backend/LanguageContext";
+import { branchData } from "../../localization/branchData";
+import { timeSheet } from "../../data/timeSheet";
 
 // IMPORT VALIDATORS
 import { getDate } from "../../helpers/Date";
@@ -12,6 +15,8 @@ import next_reverse from "../../icons/next-reverse.svg";
 import CustomSelect from "../global/CustomSelect";
 
 const CardStage3 = ({ setStage, data, setData }) => {
+  const { locale } = useContext(LanguageContext);
+  const branch = branchData();
   const [inputValid, setInputValid] = useState({
     region: data.region ? data.region : null,
     affiliate: data.branch ? data.branch : null,
@@ -42,33 +47,71 @@ const CardStage3 = ({ setStage, data, setData }) => {
         <div className="card-stage-3-top">
           <div className="input-block">
             <label htmlFor="region">
-              Регион<span>*</span>
+              {locale === "TUK" ? "Welaýat" : "Регион"}
+              <span>*</span>
             </label>
             <CustomSelect
-              items={["Ашхабад", "Мары"]}
+              items={locale === "TUK" ? branch.regions.TUK : branch.regions.RUS}
               customId={"region"}
               blockName={"card-3-select"}
               elName={"card-3-select-el"}
               name={"region"}
-              placeholder="Выберите регион"
-              stateSetter={(state) =>
-                setInputValid({ ...inputValid, region: state })
+              placeholder={
+                locale === "TUK" ? "Welaýaty saýlaň" : "Выберите регион"
               }
+              stateSetter={(state) => {
+                setInputValid({ ...inputValid, region: state });
+              }}
               eTarget={true}
               defaultValue={inputValid.region}
             />
           </div>
           <div className="input-block">
             <label htmlFor="affiliate">
-              Филиал<span>*</span>
+              {locale === "TUK" ? "Filial" : "Филиал"}
+              <span>*</span>
             </label>
             <CustomSelect
-              items={["1", "2"]}
+              items={
+                inputValid.region === "Город Ашхабад" ||
+                inputValid.region === "Aşgabat şäheri"
+                  ? locale === "TUK"
+                    ? branch.Ashgabat.TUK
+                    : branch.Ashgabat.RUS
+                  : inputValid.region === "Ахалский регион" ||
+                    inputValid.region === "Ahal"
+                  ? locale === "TUK"
+                    ? branch.Ahal.TUK
+                    : branch.Ahal.RUS
+                  : inputValid.region === "Балканский регион" ||
+                    inputValid.region === "Balkan"
+                  ? locale === "TUK"
+                    ? branch.Balkan.TUK
+                    : branch.Balkan.RUS
+                  : inputValid.region === "Дашогузский регион" ||
+                    inputValid.region === "Daşoguz"
+                  ? locale === "TUK"
+                    ? branch.Dashoguz.TUK
+                    : branch.Dashoguz.RUS
+                  : inputValid.region === "Лебапский регион" ||
+                    inputValid.region === "Lebap"
+                  ? locale === "TUK"
+                    ? branch.Lebap.TUK
+                    : branch.Lebap.RUS
+                  : inputValid.region === "Марыйский регион" ||
+                    inputValid.region === "Mary"
+                  ? locale === "TUK"
+                    ? branch.Mary.TUK
+                    : branch.Mary.RUS
+                  : [""]
+              }
               customId={"affiliate"}
               blockName={"card-3-select"}
               elName={"card-3-select-el"}
               name={"affiliate"}
-              placeholder="Выберите филиал"
+              placeholder={
+                locale === "TUK" ? "Şahamçany saýlaň" : "Выберите филиал"
+              }
               stateSetter={(state) =>
                 setInputValid({ ...inputValid, affiliate: state })
               }
@@ -78,7 +121,10 @@ const CardStage3 = ({ setStage, data, setData }) => {
           </div>
           <div className="input-block">
             <label htmlFor="date">
-              Выбрать дату прихода в банк<span>*</span>
+              {locale === "TUK"
+                ? "Banka gelmek gününi saýlaň"
+                : "Выбрать дату прихода в банк"}
+              <span>*</span>
             </label>
             <input
               type="date"
@@ -97,15 +143,18 @@ const CardStage3 = ({ setStage, data, setData }) => {
           </div>
           <div className="input-block">
             <label htmlFor="time">
-              Выбрать приемлемое время<span>*</span>
+              {locale === "TUK"
+                ? "Banka gelmek gününi saýlaň"
+                : "Выбрать приемлемое время"}
+              <span>*</span>
             </label>
             <CustomSelect
-              items={["1", "2"]}
+              items={timeSheet}
               customId={"time"}
               blockName={"card-3-select"}
               elName={"card-3-select-el"}
               name={"time"}
-              placeholder="Выберите время"
+              placeholder={locale === "TUK" ? "Wagty saýlaň" : "Выберите время"}
               stateSetter={(state) =>
                 setInputValid({ ...inputValid, time: state })
               }
@@ -115,7 +164,8 @@ const CardStage3 = ({ setStage, data, setData }) => {
           </div>
           <div className="input-block">
             <label htmlFor="code">
-              Кодовое слово<span>*</span>
+              {locale === "TUK" ? "Gizlin söz" : "Кодовое слово"}
+              <span>*</span>
             </label>
             <input
               type="text"
@@ -144,8 +194,23 @@ const CardStage3 = ({ setStage, data, setData }) => {
                 setInputValid({ ...inputValid, sms: e.target.checked });
               }}
             />
-            <label htmlFor="sms">SMS - подключение</label>
+            <label htmlFor="sms">
+              {locale === "TUK" ? "SMS-birikdirme" : "SMS - подключение"}
+            </label>
           </div>
+          {locale === "TUK" ? (
+            inputValid.sms ? (
+              <h3 className="green">Nomeriňize SMS iberiler</h3>
+            ) : (
+              ""
+            )
+          ) : inputValid.sms ? (
+            <h3 className="green">
+              На ваш номер будет отправлено СМС-уведомление
+            </h3>
+          ) : (
+            ""
+          )}
         </div>
         <div className="cu-bottom card-stage-3-bottom">
           <button
@@ -164,7 +229,7 @@ const CardStage3 = ({ setStage, data, setData }) => {
                   setStage(2);
                 }}
               >
-                Назад
+                {locale === "TUK" ? "Yza" : "Назад"}
               </h3>
             </div>
           </button>
@@ -187,7 +252,7 @@ const CardStage3 = ({ setStage, data, setData }) => {
             }}
           >
             <div>
-              <h3>Продолжить</h3>
+              <h3>{locale === "TUK" ? "Dowam et" : "Продолжить"}</h3>
               <div className="btn-img">
                 <img src={next} alt="logout" />
               </div>

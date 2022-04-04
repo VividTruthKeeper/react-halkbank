@@ -1,5 +1,6 @@
 // IMPORT MODULES
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { LanguageContext } from "../../backend/LanguageContext";
 
 // IMPORT COMPONENTS
 import CustomSelect from "../global/CustomSelect";
@@ -9,6 +10,7 @@ import credit from "../../images/credit-card.jpg";
 import next from "../../icons/next.svg";
 
 const CardStage1 = ({ setStage, data, setData, cardData }) => {
+  const { locale } = useContext(LanguageContext);
   const [inputValid, setInputValid] = useState(
     data.selected_card ? data.selected_card : false
   );
@@ -17,7 +19,12 @@ const CardStage1 = ({ setStage, data, setData, cardData }) => {
   useEffect(() => {
     if (inputValid !== "" && cardData) {
       cardData.data.map((el) => {
-        if (Object.values(el).includes(inputValid)) {
+        if (
+          Object.values(el).includes(inputValid) ||
+          Object.values(JSON.parse(el.translations[0].attribute_data)).includes(
+            inputValid
+          )
+        ) {
           setId(el.id);
         }
       });
@@ -37,9 +44,21 @@ const CardStage1 = ({ setStage, data, setData, cardData }) => {
     <section className="card-stage-1">
       <form>
         <div className="input-block">
-          <label htmlFor="card">Выберите вид карты</label>
+          <label htmlFor="card">
+            {locale === "TUK"
+              ? "Kartyň görnüşini saýlaň"
+              : "Выберите вид карты"}
+          </label>
           <CustomSelect
-            items={cardData ? cardData.data.map((el) => el.name) : [""]}
+            items={
+              cardData
+                ? locale !== "TUK"
+                  ? cardData.data.map(
+                      (el) => JSON.parse(el.translations[0].attribute_data).name
+                    )
+                  : cardData.data.map((el) => el.name)
+                : [""]
+            }
             customId={"card"}
             blockName={"card-1-select"}
             elName={"card-1-select-el"}
@@ -48,7 +67,7 @@ const CardStage1 = ({ setStage, data, setData, cardData }) => {
               setInputValid(e);
             }}
             eTarget={true}
-            placeholder="Вид карты"
+            placeholder={locale === "TUK" ? "Kartyň görnüşi" : "Вид карты"}
             defaultValue={inputValid}
           />
         </div>
@@ -61,28 +80,46 @@ const CardStage1 = ({ setStage, data, setData, cardData }) => {
               <h2>
                 HalkBank -{" "}
                 {cardData
-                  ? cardData.data.map((el) => (el.id === id ? el.name : ""))
+                  ? locale !== "TUK"
+                    ? cardData.data.map((el) =>
+                        el.id === id
+                          ? JSON.parse(el.translations[0].attribute_data).name
+                          : ""
+                      )
+                    : cardData.data.map((el) => (el.id === id ? el.name : ""))
+                  : locale === "TUK"
+                  ? "Aýlyk karty"
                   : "Зарплатная карта"}
               </h2>
               <h3>
                 {cardData
-                  ? cardData.data.map((el) => (el.id === id ? el.text : ""))
+                  ? locale !== "TUK"
+                    ? cardData.data.map((el) =>
+                        el.id === id
+                          ? JSON.parse(el.translations[0].attribute_data).text
+                          : ""
+                      )
+                    : cardData.data.map((el) => (el.id === id ? el.text : ""))
+                  : locale === "TUK"
+                  ? "Müşderiniň bankymyzdan alan karz pul serişdeleri “Karz kartyna geçirilýär . Müşderi “Karz karty” bank karty üsti bilen ähli nagt däl hasaplaşyk töleglerini amala aşyrýar."
                   : "Банковская карта, на которую зачисляется заработная плата клиента. Открывается на основании договора между банком и предприятием. Эта карта предоставляет полный перечень услуг по безналичному платежу в терминалах, перевод денежных средств с одной зарплатной карты на другую, а также получению наличных денежных средств в банкоматах на территории Туркменистана."}
               </h3>
             </div>
           </div>
           <div className="cd-bottom">
             <div className="cd-bottom-content">
-              <h3>Срок действия карты</h3>
+              <h3>
+                {locale === "TUK" ? "Kartyň möhleti" : "Срок действия карты"}
+              </h3>
               <h2>
                 {cardData
                   ? cardData.data.map((el) => (el.id === id ? el.term : ""))
                   : "30"}{" "}
-                лет
+                {locale === "TUK" ? "ýyl" : "лет"}
               </h2>
             </div>
             <div className="cd-bottom-content">
-              <h3>Процентная ставка</h3>
+              <h3>{locale === "TUK" ? "Göterim" : "Процентная ставка"}</h3>
               <h2>
                 {" "}
                 {cardData
@@ -94,7 +131,7 @@ const CardStage1 = ({ setStage, data, setData, cardData }) => {
               </h2>
             </div>
             <div className="cd-bottom-content">
-              <h3>Стоимость карты</h3>
+              <h3>{locale === "TUK" ? "Kartyň bahasy" : "Стоимость карты"}</h3>
               <h2>
                 {" "}
                 {cardData
@@ -102,7 +139,7 @@ const CardStage1 = ({ setStage, data, setData, cardData }) => {
                       el.id === id ? el.card_cost : ""
                     )
                   : "23"}{" "}
-                маната
+                {locale === "TUK" ? "manat" : "маната"}
               </h2>
             </div>
           </div>
@@ -118,7 +155,7 @@ const CardStage1 = ({ setStage, data, setData, cardData }) => {
             }}
           >
             <div>
-              <h3>Продолжить</h3>
+              <h3>{locale === "TUK" ? "Dowam et" : "Продолжить"}</h3>
               <div className="btn-img">
                 <img src={next} alt="logout" />
               </div>

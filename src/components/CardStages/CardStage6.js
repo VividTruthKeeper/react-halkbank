@@ -1,6 +1,7 @@
 // IMPORT MODULES
 import React, { useContext } from "react";
 import { UserContext } from "../../backend/UserContext";
+import { LanguageContext } from "../../backend/LanguageContext";
 
 // IMPORT IMAGES
 import next from "../../icons/next.svg";
@@ -22,6 +23,7 @@ const CardStage6 = ({
   setSuccess,
   setError,
 }) => {
+  const { locale } = useContext(LanguageContext);
   const { setUser } = useContext(UserContext);
   const token = localStorage.getItem("userToken");
   const postUrl = destination + "/online_card";
@@ -32,65 +34,86 @@ const CardStage6 = ({
       <div className="cd-6-top">
         <ul className="cd-6-list">
           <li>
-            <p>Фамилия:</p>
+            <p>{locale === "TUK" ? "Familiýasy" : "Фамилия"}:</p>
             <h4>{data.surname ? data.surname : "-"}</h4>
           </li>
           <li>
-            <p>Имя:</p>
+            <p>{locale === "TUK" ? "Ady" : "Имя"}:</p>
             <h4>{data.name ? data.name : "-"}</h4>
           </li>
           <li>
-            <p>Отчество:</p>
+            <p>{locale === "TUK" ? "Atasynyň ady" : "Отчество"}:</p>
             <h4>{data.middlename ? data.middlename : "-"}</h4>
           </li>
           <li>
-            <p>Дата рождения:</p>
+            <p>{locale === "TUK" ? "Doglan senesi" : "Дата рождения"}:</p>
             <h4>{data.birthdate ? reformatDate(data.birthdate) : "-"}</h4>
           </li>
           <li>
-            <p>Мобильный телефон:</p>
+            <p>{locale === "TUK" ? "Mobil telefon" : "Мобильный телефон"}:</p>
             <h4>{data.phone_number ? data.phone_number : "-"}</h4>
           </li>
           <li>
-            <p>Домашний телефон:</p>
+            <p>{locale === "TUK" ? "Öý telefon" : "Домашний телефон"}:</p>
             <h4>{data.home_phone_number ? data.home_phone_number : "-"}</h4>
           </li>
           <li>
-            <p>Эл. адрес:</p>
+            <p>{locale === "TUK" ? "Email" : "Эл. адрес"}:</p>
             <h4>{data.email ? data.email : "-"}</h4>
           </li>
           <li>
-            <p>SMS оповещение:</p>
+            <p>{locale === "TUK" ? "SMS-birikdirme" : "SMS - подключение"}:</p>
             <h4>
-              {data.sms_notification
-                ? data.sms_notification === true
-                  ? "Да"
-                  : "Нет"
-                : "-"}
+              {locale === "TUK"
+                ? data.sms_notification
+                  ? "Hawa"
+                  : "Ýok"
+                : data.sms_notification
+                ? "Да"
+                : "Нет"}
+              {/* {data.sms_notification
+                ? locale === "RUS"
+                  ? data.sms_notification === true
+                    ? "Да"
+                    : "Нет"
+                  : data.sms_notification === true
+                  ? "Hawa"
+                  : "Ýok"
+                : "-"} */}
             </h4>
           </li>
           <li>
-            <p>Серия паспорта:</p>
+            <p>{locale === "TUK" ? "Pasportyň seriýasy" : "Серия паспорта"}:</p>
             <h4>{data.passport_series ? data.passport_series : "-"}</h4>
           </li>
           <li>
-            <p>Кем выдан паспорт:</p>
+            <p>
+              {locale === "TUK"
+                ? "Pasport kim tarapyndan berildi"
+                : "Кем выдан паспорт"}
+              :
+            </p>
             <h4>{data.passport_by ? data.passport_by : "-"}</h4>
           </li>
           <li>
-            <p>Адрес прописки:</p>
+            <p>{locale === "TUK" ? "Ýaşaýan salgysy" : "Адрес прописки"}:</p>
             <h4>{data.place_of_residence ? data.place_of_residence : "-"}</h4>
           </li>
           <li>
-            <p>Регион:</p>
+            <p>{locale === "TUK" ? "Welaýat" : "Регион"}:</p>
             <h4>{data.region ? data.region : "-"}</h4>
           </li>
           <li>
-            <p>Филиал:</p>
+            <p>{locale === "TUK" ? "Filial" : "Филиал"}:</p>
             <h4>{data.branch ? data.branch : "-"}</h4>
           </li>
           <li>
-            <p>Дата прихода в банк:</p>
+            <p>
+              {locale === "TUK"
+                ? "Banka gelmek gününi saýlaň "
+                : "Дата прихода в банк"}
+              :
+            </p>
             <h4>
               {data.date_arrival_bank
                 ? reformatDate(data.date_arrival_bank)
@@ -98,11 +121,11 @@ const CardStage6 = ({
             </h4>
           </li>
           <li>
-            <p>Выбранное время:</p>
+            <p>{locale === "TUK" ? "Saýlanan wagt" : "Выбранное время"}:</p>
             <h4>{data.selected_time ? data.selected_time : "-"}</h4>
           </li>
           <li>
-            <p>Кодовое слово:</p>
+            <p>{locale === "TUK" ? "Gizlin söz" : "Кодовое слово"}:</p>
             <h4>{data.the_codeword ? data.the_codeword : "-"}</h4>
           </li>
         </ul>
@@ -124,7 +147,7 @@ const CardStage6 = ({
                 setStage(4);
               }}
             >
-              Редактировать
+              {locale === "TUK" ? "Redaktirlemek" : "Редактировать"}
             </h3>
           </div>
         </button>
@@ -151,7 +174,7 @@ const CardStage6 = ({
           }}
         >
           <div>
-            <h3>Подтверждаю</h3>
+            <h3>{locale === "TUK" ? "Tassyklaýaryn" : "Подтверждаю"}</h3>
             <div className="btn-img">
               <img src={next} alt="logout" />
             </div>
