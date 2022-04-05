@@ -29,7 +29,7 @@ const CreditStage2 = ({ setStage, data, setData, creditData, id }) => {
     setMonthlyPayment(
       (
         inputValue / (radio * 12) +
-        (inputValue / (radio * 12)) * (bet / 100)
+        ((inputValue * (bet / 100)) / 365) * 30
       ).toFixed(2)
     );
   }, [inputValue, radio]);
@@ -44,6 +44,7 @@ const CreditStage2 = ({ setStage, data, setData, creditData, id }) => {
 
   useEffect(() => {
     if (creditData) {
+      console.log(creditData);
       creditData.data.map((el) => {
         if (el.id === id) {
           setBet(el.bet);
@@ -193,41 +194,61 @@ const CreditStage2 = ({ setStage, data, setData, creditData, id }) => {
                 {locale === "TUK" ? "Her aý tölegi" : "Ежемесячный платеж"}
               </h6>
               <div className="payment">
-                <div
+                {/* <div
                   className="data-img"
                   onClick={() => {
                     if (
-                      ((parseInt(monthlyPayment) - 1) * radio * 12) /
-                        (1 + bet / 100) >
+                      (parseInt(monthlyPayment) -
+                        (
+                          ((inputValue * bet) / 100 / (radio * 365)) *
+                          (radio * 30)
+                        ).toFixed(2)) *
+                        12 -
+                        1 >
                       100
                     ) {
                       setInputValue(
-                        ((parseInt(monthlyPayment) - 1) * radio * 12) /
-                          (1 + bet / 100)
+                        (parseInt(monthlyPayment) -
+                          (
+                            ((inputValue * bet) / 100 / (radio * 365)) *
+                            (radio * 30)
+                          ).toFixed(2)) *
+                          12 -
+                          1
                       );
                     }
                   }}
                 >
                   <img src={minus2} alt="minus" />
-                </div>
+                </div> */}
                 <h5>{monthlyPayment} TMT</h5>
-                <div
+                {/* <div
                   className="data-img"
                   onClick={() => {
                     if (
-                      ((parseInt(monthlyPayment) + 1) * radio * 12) /
-                        (1 + bet / 100) <
+                      (parseInt(monthlyPayment) +
+                        1 -
+                        (
+                          ((inputValue * bet) / 100 / (radio * 365)) *
+                          (radio * 30)
+                        ).toFixed(2)) *
+                        12 <
                       max
                     ) {
                       setInputValue(
-                        ((parseInt(monthlyPayment) + 1) * radio * 12) /
-                          (1 + bet / 100)
+                        (parseInt(monthlyPayment) +
+                          1 -
+                          (
+                            ((inputValue * bet) / 100 / (radio * 365)) *
+                            (radio * 30)
+                          ).toFixed(2)) *
+                          12
                       );
                     }
                   }}
                 >
                   <img src={plus2} alt="plus" />
-                </div>
+                </div> */}
               </div>
               <div className="percent">
                 <h6>
@@ -240,7 +261,7 @@ const CreditStage2 = ({ setStage, data, setData, creditData, id }) => {
               <div className="cs-2-right-middle-content">
                 <h6>{locale === "TUK" ? "Pul ýygymy" : "Процентный платеж"}</h6>
                 <h5>
-                  {((inputValue / (radio * 12)) * (bet / 100)).toFixed(2)} TMT
+                  {(((inputValue * (bet / 100)) / 365) * 30).toFixed(2)} TMT
                 </h5>
               </div>
               <div className="cs-2-right-middle-content">
