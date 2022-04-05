@@ -44,7 +44,6 @@ const CreditStage2 = ({ setStage, data, setData, creditData, id }) => {
 
   useEffect(() => {
     if (creditData) {
-      console.log(creditData);
       creditData.data.map((el) => {
         if (el.id === id) {
           setBet(el.bet);
