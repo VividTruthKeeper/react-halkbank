@@ -1,5 +1,6 @@
 // IMPORT MODULES
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { LanguageContext } from "../../backend/LanguageContext";
 
 // IMPORT COMPONENTS
 import CustomSelect from "../global/CustomSelect";
@@ -9,6 +10,7 @@ import arrow from "../../icons/arrow.svg";
 import next from "../../icons/next.svg";
 
 const CreditStage1 = ({ setStage, data, setData, creditData, id, setId }) => {
+  const { locale } = useContext(LanguageContext);
   const [input, setInput] = useState(data.type ? data.type : null);
   const [dropdown, setDropdown] = useState({
     one: true,
@@ -18,7 +20,14 @@ const CreditStage1 = ({ setStage, data, setData, creditData, id, setId }) => {
   useEffect(() => {
     if (input !== "" && creditData) {
       creditData.data.map((el) => {
-        if (Object.values(el).includes(input)) {
+        if (
+          Object.values(el).includes(input) ||
+          Object.values(
+            JSON.parse(
+              el.translations.find((els) => els.locale === "ru").attribute_data
+            )
+          ).includes(input)
+        ) {
           setId(el.id);
         }
       });
@@ -28,15 +37,32 @@ const CreditStage1 = ({ setStage, data, setData, creditData, id, setId }) => {
     <section className="cs-1">
       <form>
         <div className="cs-1-top">
-          <label htmlFor="credit-type">Выберите вид кредита</label>
+          <label htmlFor="credit-type">
+            {locale === "TUK"
+              ? "Karzyň görnüşini saýlaň"
+              : "Выберите вид кредита"}
+          </label>
           <CustomSelect
-            items={creditData ? creditData.data.map((el) => el.name) : [""]}
+            items={
+              creditData
+                ? locale !== "TUK"
+                  ? creditData.data
+                      .map((el) =>
+                        JSON.parse(
+                          el.translations.find((els) => els.locale === "ru")
+                            .attribute_data
+                        )
+                      )
+                      .map((item) => item.name)
+                  : creditData.data.map((el) => el.name)
+                : [""]
+            }
             customId={"credit-type"}
             name={"credit-type"}
             blockName={"cs-1-top-block"}
             elName={"cs-1-top-input"}
             eTarget={true}
-            placeholder={"Кредит для молодоженов"}
+            placeholder={locale === "TUK" ? "Karzyň görnüşi" : "Вид кредита"}
             stateSetter={(e) => {
               setInput(e);
             }}
@@ -51,7 +77,11 @@ const CreditStage1 = ({ setStage, data, setData, creditData, id, setId }) => {
             }}
           >
             <div className="data-title">
-              <h4>Информация о сроке кредита</h4>
+              <h4>
+                {locale === "TUK"
+                  ? "Karzyň möhleti barada maglumat"
+                  : "Информация о сроке кредита"}
+              </h4>
               <div className="data-img">
                 <img src={arrow} alt="arrow" />
               </div>
@@ -62,17 +92,17 @@ const CreditStage1 = ({ setStage, data, setData, creditData, id, setId }) => {
               }
             >
               <div className="dropdown-inner bottom">
-                <h6>Срок</h6>
+                <h6>{locale === "TUK" ? "Karzyň möhleti " : "Срок кредита"}</h6>
                 <h2>
-                  до{" "}
+                  {locale === "TUK" ? "" : "до"}{" "}
                   {creditData
                     ? creditData.data.map((el) => (el.id === id ? el.term : ""))
                     : ""}{" "}
-                  лет
+                  {locale === "TUK" ? "ýyla çenli" : "лет"}
                 </h2>
               </div>
               <div className="dropdown-inner left right bottom">
-                <h6>Сумма кредита</h6>
+                <h6>{locale === "TUK" ? "Karzyň möçberi" : "Сумма кредита"}</h6>
                 <h2>
                   {creditData
                     ? creditData.data.map((el) => (el.id === id ? el.sum : ""))
@@ -80,7 +110,7 @@ const CreditStage1 = ({ setStage, data, setData, creditData, id, setId }) => {
                 </h2>
               </div>
               <div className="dropdown-inner bottom">
-                <h6>Ставка</h6>
+                <h6>{locale === "TUK" ? "Göterim" : "Ставка"}</h6>
                 <h2>
                   {creditData
                     ? creditData.data.map((el) => (el.id === id ? el.bet : ""))
@@ -89,33 +119,75 @@ const CreditStage1 = ({ setStage, data, setData, creditData, id, setId }) => {
                 </h2>
               </div>
               <div className="dropdown-inner ">
-                <h6>Обеспечение возврата кредита</h6>
+                <h6>
+                  {locale === "TUK"
+                    ? "Karzyň üzülmegini üpjün etmek"
+                    : "Обеспечение возврата кредита"}
+                </h6>
                 <h2>
                   {creditData
-                    ? creditData.data.map((el) =>
-                        el.id === id ? el.securing_return : ""
-                      )
+                    ? locale !== "TUK"
+                      ? creditData.data.map((el) =>
+                          el.id === id
+                            ? JSON.parse(
+                                el.translations.find(
+                                  (els) => els.locale === "ru"
+                                ).attribute_data
+                              ).securing_return
+                            : ""
+                        )
+                      : creditData.data.map((el) =>
+                          el.id === id ? el.securing_return : ""
+                        )
                     : ""}
                 </h2>
               </div>
               <div className="dropdown-inner left right">
-                <h6>Источник погашения кредита</h6>
+                <h6>
+                  {locale === "TUK"
+                    ? "Karzy üzmegiň çeşmesi"
+                    : "Источник погашения кредита"}
+                </h6>
                 <h2>
                   {creditData
-                    ? creditData.data.map((el) =>
-                        el.id === id ? el.source_of_repayment : ""
-                      )
+                    ? locale !== "TUK"
+                      ? creditData.data.map((el) =>
+                          el.id === id
+                            ? JSON.parse(
+                                el.translations.find(
+                                  (els) => els.locale === "ru"
+                                ).attribute_data
+                              ).source_of_repayment
+                            : ""
+                        )
+                      : creditData.data.map((el) =>
+                          el.id === id ? el.source_of_repayment : ""
+                        )
                     : ""}
                 </h2>
               </div>
               <div className="dropdown-inner">
-                <h6>Способ погашения</h6>
+                <h6>
+                  {locale === "TUK"
+                    ? "Karzy üzmegiň usuly"
+                    : "Способ погашения"}
+                </h6>
                 <h2>
                   {" "}
                   {creditData
-                    ? creditData.data.map((el) =>
-                        el.id === id ? el.repayment_method : ""
-                      )
+                    ? locale !== "TUK"
+                      ? creditData.data.map((el) =>
+                          el.id === id
+                            ? JSON.parse(
+                                el.translations.find(
+                                  (els) => els.locale === "ru"
+                                ).attribute_data
+                              ).repayment_method
+                            : ""
+                        )
+                      : creditData.data.map((el) =>
+                          el.id === id ? el.repayment_method : ""
+                        )
                     : ""}
                 </h2>
               </div>
@@ -128,7 +200,11 @@ const CreditStage1 = ({ setStage, data, setData, creditData, id, setId }) => {
             }}
           >
             <div className="data-title">
-              <h4>Требования и документы</h4>
+              <h4>
+                {locale === "TUK"
+                  ? "Talaplar we resminamalar"
+                  : "Требования и документы"}
+              </h4>
               <div className="data-img">
                 <img src={arrow} alt="arrow" />
               </div>
@@ -157,7 +233,7 @@ const CreditStage1 = ({ setStage, data, setData, creditData, id, setId }) => {
             }}
           >
             <div>
-              <h3>Продолжить</h3>
+              <h3>{locale === "TUK" ? "Dowam et" : "Продолжить"}</h3>
               <div className="btn-img">
                 <img src={next} alt="logout" />
               </div>

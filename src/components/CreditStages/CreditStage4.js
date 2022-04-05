@@ -1,5 +1,8 @@
 // IMPORT MODULES
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { LanguageContext } from "../../backend/LanguageContext";
+import { branchData } from "../../localization/branchData";
+import { timeSheet } from "../../data/timeSheet";
 
 // IMPORT IMAGES
 import next from "../../icons/next.svg";
@@ -9,6 +12,8 @@ import next_reverse from "../../icons/next-reverse.svg";
 import CustomSelect from "../global/CustomSelect";
 
 const CreditStage4 = ({ setStage, data, setData }) => {
+  const { locale } = useContext(LanguageContext);
+  const branch = branchData();
   const [inputValid, setInputValid] = useState({
     workplace: data.workplace ? data.workplace : null,
     salary: data.salary ? data.salary : null,
@@ -40,7 +45,8 @@ const CreditStage4 = ({ setStage, data, setData }) => {
         <div className="card-stage-3-top">
           <div className="input-block">
             <label htmlFor="workplace">
-              Место работы<span>*</span>
+              {locale === "TUK" ? "Iş ýeri" : "Место работы"}
+              <span>*</span>
             </label>
             <input
               type="text"
@@ -55,7 +61,8 @@ const CreditStage4 = ({ setStage, data, setData }) => {
           </div>
           <div className="input-block">
             <label htmlFor="salary">
-              Сумма зарплаты<span>*</span>
+              {locale === "TUK" ? "Aýlyk haky" : "Сумма зарплаты"}
+              <span>*</span>
             </label>
             <input
               type="text"
@@ -70,7 +77,8 @@ const CreditStage4 = ({ setStage, data, setData }) => {
           </div>
           <div className="input-block">
             <label htmlFor="position">
-              Должность<span>*</span>
+              {locale === "TUK" ? "Wezipesi" : "Должность"}
+              <span>*</span>
             </label>
             <input
               type="text"
@@ -84,14 +92,17 @@ const CreditStage4 = ({ setStage, data, setData }) => {
           </div>
           <div className="input-block">
             <label htmlFor="experience">
-              Стаж с последнего места работы<span>*</span>
+              {locale === "TUK"
+                ? "Soňky iş ýeri boýunça tejribe"
+                : "Стаж с последнего места работы"}
+              <span>*</span>
             </label>
             <input
               type="text"
               id="experience"
               name="experience"
               defaultValue={inputValid.experience}
-              placeholder="Более 6 месяцев"
+              placeholder={locale === "TUK" ? "6 aýdan köp" : "Более 6 месяцев"}
               onChange={(e) => {
                 setInputValid({ ...inputValid, experience: e.target.value });
               }}
@@ -99,15 +110,18 @@ const CreditStage4 = ({ setStage, data, setData }) => {
           </div>
           <div className="input-block">
             <label htmlFor="region">
-              Регион<span>*</span>
+              {locale === "TUK" ? "Welaýat" : "Регион"}
+              <span>*</span>
             </label>
             <CustomSelect
-              items={["Ашхабад", "Мары"]}
+              items={locale === "TUK" ? branch.regions.TUK : branch.regions.RUS}
               customId={"region"}
               blockName={"card-3-select"}
               elName={"card-3-select-el"}
               name={"region"}
-              placeholder="Выберите регион"
+              placeholder={
+                locale === "TUK" ? "Welaýaty saýlaň" : "Выберите регион"
+              }
               stateSetter={(state) =>
                 setInputValid({ ...inputValid, region: state })
               }
@@ -117,15 +131,50 @@ const CreditStage4 = ({ setStage, data, setData }) => {
           </div>
           <div className="input-block">
             <label htmlFor="affiliate">
-              Филиал<span>*</span>
+              {locale === "TUK" ? "Filial" : "Филиал"}
+              <span>*</span>
             </label>
             <CustomSelect
-              items={["1", "2"]}
+              items={
+                inputValid.region === "Город Ашхабад" ||
+                inputValid.region === "Aşgabat şäheri"
+                  ? locale === "TUK"
+                    ? branch.Ashgabat.TUK
+                    : branch.Ashgabat.RUS
+                  : inputValid.region === "Ахалский регион" ||
+                    inputValid.region === "Ahal"
+                  ? locale === "TUK"
+                    ? branch.Ahal.TUK
+                    : branch.Ahal.RUS
+                  : inputValid.region === "Балканский регион" ||
+                    inputValid.region === "Balkan"
+                  ? locale === "TUK"
+                    ? branch.Balkan.TUK
+                    : branch.Balkan.RUS
+                  : inputValid.region === "Дашогузский регион" ||
+                    inputValid.region === "Daşoguz"
+                  ? locale === "TUK"
+                    ? branch.Dashoguz.TUK
+                    : branch.Dashoguz.RUS
+                  : inputValid.region === "Лебапский регион" ||
+                    inputValid.region === "Lebap"
+                  ? locale === "TUK"
+                    ? branch.Lebap.TUK
+                    : branch.Lebap.RUS
+                  : inputValid.region === "Марыйский регион" ||
+                    inputValid.region === "Mary"
+                  ? locale === "TUK"
+                    ? branch.Mary.TUK
+                    : branch.Mary.RUS
+                  : [""]
+              }
               customId={"affiliate"}
               blockName={"card-3-select"}
               elName={"card-3-select-el"}
               name={"affiliate"}
-              placeholder="Выберите филиал"
+              placeholder={
+                locale === "TUK" ? "Filialy saýlaň" : "Выберите филиал"
+              }
               stateSetter={(state) =>
                 setInputValid({ ...inputValid, affiliate: state })
               }
@@ -151,7 +200,7 @@ const CreditStage4 = ({ setStage, data, setData }) => {
                   setStage(3);
                 }}
               >
-                Назад
+                {locale === "TUK" ? "Yza" : "Назад"}
               </h3>
             </div>
           </button>
@@ -173,7 +222,7 @@ const CreditStage4 = ({ setStage, data, setData }) => {
             }}
           >
             <div>
-              <h3>Продолжить</h3>
+              <h3>{locale === "TUK" ? "Dowam et" : "Продолжить"}</h3>
               <div className="btn-img">
                 <img src={next} alt="logout" />
               </div>

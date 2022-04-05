@@ -44,7 +44,6 @@ const ModalForm = ({
       .then((res) => {
         if (isMounted) {
           setCardData(res.data);
-          console.log(res.data);
         }
       })
       .catch();
