@@ -25,6 +25,7 @@ import Main from "./pages/Main";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
+import PaymentResult from "./pages/PaymentResult";
 
 // IMPORT COMPONENTS
 import Loader from "./components/global/Loader";
@@ -67,7 +68,8 @@ const App = () => {
           {loaderActive ? <Loader /> : ""}
           <Routes>
             <Route path="/" element={<Main />} />
-            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/sign-in" element={<SignIn stage={1} />} />
+            <Route path="/sign-in-direct" element={<SignIn stage={2} />} />
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/home" element={<Home ChildEl={Base} />} />
             <Route path="/home/cards" element={<Home ChildEl={Cards} />} />
@@ -81,6 +83,7 @@ const App = () => {
               element={<Home ChildEl={Recovery} />}
             />
             <Route path="/home/profile" element={<Home ChildEl={Profile} />} />
+            <Route path="/payment-result" element={<PaymentResult />} />
             <Route path="/success" element={<SuccessPage />} />
             <Route path="/error" element={<ErrorPage />} />
           </Routes>

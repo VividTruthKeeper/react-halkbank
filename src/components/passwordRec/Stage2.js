@@ -1,61 +1,73 @@
 // IMPORT MODULES
 import React, { useState, useEffect } from "react";
 
-// IMPORT COMPONENTS
-import Success from "../global/Success";
-
 // IMPORT IMAGES
 import Next from "../../icons/arrow-circle-right.svg";
 
 // IMPORT HELPERS
 import { ValidatePassword } from "../../validators/ValidatePassword";
-import { forgotPassword } from "../../backend/forgotPassword";
+import { reset } from "../../backend/restore";
 
-// URL
-import { destination } from "../../destinationUrl";
-
-const Stage2 = ({ setRecoveryOpen, setRecStage, data, setData, setLoader }) => {
+const Stage2 = ({
+  setRecoveryOpen,
+  setRecStage,
+  data,
+  setData,
+  setLoader,
+  setSuccess,
+}) => {
   const [inputValid, setInputValid] = useState({
     newPassword: false,
     confirm: false,
-    match: false,
+    code: "",
   });
   const form = new FormData();
-  const [success, setSuccess] = useState(false);
+
   const [valid, setValid] = useState(false);
-  const [input, setInput] = useState({
-    new: "",
-    confirm: "",
-  });
+  const [error, setError] = useState(false);
 
   const [btnEnabled, setBtnEnabled] = useState(false);
   useEffect(() => {
-    if (inputValid.newPassword && inputValid.confirm && inputValid.match) {
+    if (inputValid.newPassword === inputValid.confirm && inputValid.code) {
       setBtnEnabled(true);
     } else {
       setBtnEnabled(false);
     }
   }, [inputValid]);
 
-  useEffect(() => {
-    if (input.new === input.confirm) {
-      setInputValid({ ...inputValid, match: true });
-    } else {
-      setInputValid({ ...inputValid, match: false });
-    }
-  }, [input]);
-
-  const postUrl = destination + "/me";
-
   return (
     <div className="recovery-block recovery-2">
-      {success ? <Success message={"Пароль успешно изменен"} /> : null}
       <form
         onSubmit={(e) => {
           e.preventDefault();
         }}
       >
         <h2 className="form-title">Новый пароль</h2>
+        <div className="reg-input-block rec-input">
+          <label htmlFor="code">
+            Код активации<span>*</span>
+          </label>
+          <input
+            autoComplete="false"
+            type="text"
+            id="code"
+            name="code"
+            required
+            onChange={(e) => {
+              setValid(true);
+              if (e.target.value.length > 0) {
+                setInputValid({ ...inputValid, code: e.target.value });
+              }
+            }}
+          />
+          {error ? (
+            <span className={error ? "pass-check" : "pass-check active"}>
+              Введен неверный код
+            </span>
+          ) : (
+            ""
+          )}
+        </div>
         <div className="reg-input-block rec-input">
           <label htmlFor="new-pass">
             Введите пароль<span>*</span>
@@ -67,7 +79,6 @@ const Stage2 = ({ setRecoveryOpen, setRecStage, data, setData, setLoader }) => {
             name="new-pass"
             required
             onChange={(e) => {
-              setInput({ ...input, new: e.target.value });
               setValid(true);
               if (ValidatePassword(e.target.value)) {
                 setInputValid({
@@ -107,24 +118,27 @@ const Stage2 = ({ setRecoveryOpen, setRecStage, data, setData, setLoader }) => {
             name="confirm"
             required
             onChange={(e) => {
-              setInput({ ...input, confirm: e.target.value });
               setValid(true);
               if (e.target.value.length >= 8) {
                 setInputValid({
                   ...inputValid,
-                  confirm: true,
+                  confirm: e.target.value,
                 });
               } else {
                 setInputValid({
                   ...inputValid,
-                  confirm: false,
+                  confirm: e.target.value,
                 });
               }
             }}
           />
           {valid ? (
             <span
-              className={inputValid.match ? "pass-check" : "pass-check active"}
+              className={
+                inputValid.newPassword === inputValid.confirm
+                  ? "pass-check"
+                  : "pass-check active"
+              }
             >
               Пароли должны совпадать
             </span>
@@ -140,23 +154,18 @@ const Stage2 = ({ setRecoveryOpen, setRecStage, data, setData, setLoader }) => {
             onClick={() => {
               setData({ ...data, password: inputValid.newPassword });
               setLoader(true);
-              form.append("email", data.email);
               form.append("password", data.password);
               form.append("password_confirmation", data.password);
-              forgotPassword(
-                postUrl,
-                form,
-                () => {
-                  setSuccess(true);
-                  setTimeout(() => {
-                    setSuccess(false);
-                  }, 2000);
-                  setRecoveryOpen(false);
-                  setRecStage(1);
-                  setLoader(false);
-                },
-                setLoader
-              );
+              form.append("code", inputValid.code);
+
+              reset(form, setLoader, setError, () => {
+                setSuccess(true);
+                setTimeout(() => {
+                  setSuccess(false);
+                }, 2000);
+                setRecStage(1);
+                setRecoveryOpen(false);
+              });
             }}
           >
             <div>

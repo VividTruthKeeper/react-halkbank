@@ -1,20 +1,27 @@
 // IMPORT MODULES
 import React, { useState } from "react";
 
+// IMPort
+import Loader from "../global/Loader";
+
 // IMPORT IMAGES
 import Next from "../../icons/arrow-circle-right.svg";
 
 // IMPORT HELPER
 import { ValidateEmail } from "../../validators/ValidateEmail";
+import { restore } from "../../backend/restore";
 
-const Stage1 = ({ setRecStage, data, setData }) => {
+const Stage1 = ({ setRecStage }) => {
   const [inputValid, setInputValid] = useState({
     email: false,
   });
-
+  const data = new FormData();
+  const [loader, setLoader] = useState(false);
+  const [error, setError] = useState(false);
   const [validate, setValidate] = useState(false);
   return (
     <div className="recovery-block recovery-1">
+      {loader ? <Loader /> : ""}
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -47,12 +54,14 @@ const Stage1 = ({ setRecStage, data, setData }) => {
               }
             }}
           />
-          {validate && (
+          {validate || error ? (
             <span
               className={inputValid.email ? "pass-check" : "pass-check active"}
             >
               Введен неверный email
             </span>
+          ) : (
+            ""
           )}
         </div>
         <div className="rec-btn">
@@ -61,8 +70,12 @@ const Stage1 = ({ setRecStage, data, setData }) => {
             type="button"
             className="sign-btn"
             onClick={() => {
-              setData({ ...data, email: inputValid.email });
-              setRecStage((prevStage) => prevStage + 1);
+              // setData({ ...data, email: inputValid.email });
+              data.append("email", inputValid.email);
+              setLoader(true);
+              restore(data, setLoader, setError, () => {
+                setRecStage((prevStage) => prevStage + 1);
+              });
             }}
           >
             <div>

@@ -10,6 +10,7 @@ import { loginUser } from "../backend/loginUser";
 import LogoBg from "../components/global/LogoBg";
 import Nav from "../components/global/Nav";
 import Footer from "../components/global/Footer";
+import Success from "../components/global/Success";
 
 // IMPORT PERSONAL COMPONENTS
 import SignForm from "../components/sign/SignForm";
@@ -18,14 +19,15 @@ import PasswordRec from "../components/sign/PasswordRec";
 // URL
 import { destination } from "../destinationUrl";
 
-const SignIn = () => {
+const SignIn = ({ stage }) => {
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const checkFirstLoad = useRef(true);
   const postUrl = destination + "/login";
   const [formData, setFormData] = useState();
   const { user, setUser } = useContext(UserContext);
-  const [recoveryOpen, setRecoveryOpen] = useState(false);
+  const [recoveryOpen, setRecoveryOpen] = useState(stage === 2 ? true : false);
+  const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
     if (user) {
@@ -44,9 +46,13 @@ const SignIn = () => {
   }, [formData]);
   return (
     <section className="sign-in">
+      {success ? <Success message={"Пароль успешно изменен!"} /> : null}
       <PasswordRec
+        setSuccess={setSuccess}
         recoveryOpen={recoveryOpen}
         setRecoveryOpen={setRecoveryOpen}
+        setIsLoading={setIsLoading}
+        stage={stage}
       />
       <Nav />
       <LogoBg />

@@ -32,7 +32,7 @@ export const sendRequestCard = (url, token, data, setLoader, setError) => {
   axios
     .post(`${url}?token=${token}`, form)
     .then((res) => {
-      window.open(res.data, "_blank").focus();
+      window.open(res.data, "_self").focus();
       if (setLoader) {
         setLoader(false);
       }

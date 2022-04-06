@@ -14,13 +14,19 @@ import Loader from "../../components/global/Loader";
 // IMPORT HELPERS
 import { ValidateEmail } from "../../validators/ValidateEmail";
 import { LanguageContext } from "../../backend/LanguageContext";
-
 // SITEKEY
 import { sitekey } from "../../recaptcha";
 
-const SignForm = ({ setFormData, error, isLoading, setIsLoading }) => {
+const SignForm = ({
+  setFormData,
+  error,
+  isLoading,
+  setIsLoading,
+  setRecoveryOpen,
+}) => {
   const { locale } = useContext(LanguageContext);
   const data = new FormData();
+
   const [inputValid, setInputValid] = useState({
     login: null,
     password: null,
@@ -137,7 +143,7 @@ const SignForm = ({ setFormData, error, isLoading, setIsLoading }) => {
               }}
             />
           </div>
-          {/* <div className="forget">
+          <div className="forget">
             <h3
               onClick={() => {
                 setRecoveryOpen(true);
@@ -145,7 +151,7 @@ const SignForm = ({ setFormData, error, isLoading, setIsLoading }) => {
             >
               Забыли пароль?
             </h3>
-          </div> */}
+          </div>
         </div>
         <div className="sign-bottom">
           <button

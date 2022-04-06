@@ -8,9 +8,10 @@ import Stage2 from "../passwordRec/Stage2";
 // IMPORT COMPONENTS
 import Loader from "../global/Loader";
 
-const PasswordRec = ({ recoveryOpen, setRecoveryOpen }) => {
-  const [recStage, setRecStage] = useState(1);
+const PasswordRec = ({ recoveryOpen, setRecoveryOpen, setSuccess, stage }) => {
+  const [recStage, setRecStage] = useState(stage ? stage : 1);
   const [data, setData] = useState({});
+
   const [loader, setLoader] = useState(false);
   const ref = useRef();
   return (
@@ -34,6 +35,7 @@ const PasswordRec = ({ recoveryOpen, setRecoveryOpen }) => {
               data={data}
               setData={setData}
               setLoader={setLoader}
+              setSuccess={setSuccess}
             />
           ) : (
             ""
