@@ -2,6 +2,7 @@ import axios from "axios";
 // import { getDate } from "../helpers/Date";
 
 export const sendRequestCard = (url, token, data, setLoader, setError) => {
+  console.log(url);
   let today = new Date();
   let dd = String(today.getDate()).padStart(2, "0");
   let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
@@ -28,11 +29,10 @@ export const sendRequestCard = (url, token, data, setLoader, setError) => {
   form.append("the_codeword", data.the_codeword);
   form.append("sms_notification", data.sms_notification);
   form.append("date", `${dd}.${mm}.${yyyy}`);
-
   axios
     .post(`${url}?token=${token}`, form)
     .then((res) => {
-      window.open(res.request.responseURL, "_self").focus();
+      window.open(res.data, "_blank").focus();
       if (setLoader) {
         setLoader(false);
       }
