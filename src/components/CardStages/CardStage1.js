@@ -11,6 +11,7 @@ import next from "../../icons/next.svg";
 
 const CardStage1 = ({ setStage, data, setData, cardData }) => {
   const { locale } = useContext(LanguageContext);
+  // const [price, setPrice] = useState(0);
   const [inputValid, setInputValid] = useState(
     data.selected_card ? data.selected_card : false
   );
@@ -26,6 +27,7 @@ const CardStage1 = ({ setStage, data, setData, cardData }) => {
           )
         ) {
           setId(el.id);
+          // setPrice(el.card_cost);
         }
       });
     }
@@ -152,6 +154,7 @@ const CardStage1 = ({ setStage, data, setData, cardData }) => {
             onClick={() => {
               setStage(2);
               setData({ ...data, selected_card: inputValid });
+              setData({ ...data, price: id });
             }}
           >
             <div>

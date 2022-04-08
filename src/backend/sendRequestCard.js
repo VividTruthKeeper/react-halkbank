@@ -2,10 +2,9 @@ import axios from "axios";
 // import { getDate } from "../helpers/Date";
 
 export const sendRequestCard = (url, token, data, setLoader, setError) => {
-  console.log(url);
   let today = new Date();
   let dd = String(today.getDate()).padStart(2, "0");
-  let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  let mm = String(today.getMonth() + 1).padStart(2, "0");
   let yyyy = today.getFullYear();
   const form = new FormData();
   data.file.map((el) => {
@@ -29,6 +28,8 @@ export const sendRequestCard = (url, token, data, setLoader, setError) => {
   form.append("the_codeword", data.the_codeword);
   form.append("sms_notification", data.sms_notification);
   form.append("date", `${dd}.${mm}.${yyyy}`);
+
+  form.append("price", data.price);
   axios
     .post(`${url}?token=${token}`, form)
     .then((res) => {
