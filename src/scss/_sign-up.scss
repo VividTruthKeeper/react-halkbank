@@ -113,9 +113,19 @@
   .reg-input-wrapper {
     grid-template-columns: 1fr 1fr;
   }
+  .reg-input-block input {
+    font-size: 1.4rem;
+  }
+
+  .form-title {
+    font-size: 1.6rem;
+  }
 }
 
 @media screen and (max-width: 850px) {
+  .reg-input-block input {
+    font-size: 1.2rem;
+  }
   .reg {
     input {
       font-size: 1.4rem;

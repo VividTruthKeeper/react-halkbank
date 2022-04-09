@@ -54,7 +54,7 @@ const Stage1 = ({ setRecStage }) => {
               }
             }}
           />
-          {validate || error ? (
+          {error || validate ? (
             <span
               className={inputValid.email ? "pass-check" : "pass-check active"}
             >

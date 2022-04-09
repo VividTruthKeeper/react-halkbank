@@ -152,10 +152,8 @@ const Stage2 = ({
             type="button"
             className="sign-btn"
             onClick={() => {
-              setData({ ...data, password: inputValid.newPassword });
               setLoader(true);
-              form.append("password", data.password);
-              form.append("password_confirmation", data.password);
+              form.append("password", inputValid.newPassword);
               form.append("code", inputValid.code);
 
               reset(form, setLoader, setError, () => {
