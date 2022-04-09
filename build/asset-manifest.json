@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.bec8b9f7.css",
-    "main.js": "/static/js/main.f4b132d9.js",
+    "main.css": "/static/css/main.7873a1a7.css",
+    "main.js": "/static/js/main.d61836de.js",
     "static/media/logo-transp.svg": "/static/media/logo-transp.a903424d2393e17072667328738f6631.svg",
     "static/media/logo-bg.jpg": "/static/media/logo-bg.1d55df78b7376108f96c.jpg",
     "static/media/credit-card.jpg": "/static/media/credit-card.ff2990f7d50439a8f34d.jpg",
@@ -67,11 +67,11 @@
     "static/media/arrow-gray.svg": "/static/media/arrow-gray.c688e9bf277186332d33431cd6f52c8e.svg",
     "static/media/arrow-down.svg": "/static/media/arrow-down.2ec2ec0ddf677f60c1aa23e6d1abdc8d.svg",
     "static/media/arrow.svg": "/static/media/arrow.c8492a68102634ab2875008b3e67164c.svg",
-    "main.bec8b9f7.css.map": "/static/css/main.bec8b9f7.css.map",
-    "main.f4b132d9.js.map": "/static/js/main.f4b132d9.js.map"
+    "main.7873a1a7.css.map": "/static/css/main.7873a1a7.css.map",
+    "main.d61836de.js.map": "/static/js/main.d61836de.js.map"
   },
   "entrypoints": [
-    "static/css/main.bec8b9f7.css",
-    "static/js/main.f4b132d9.js"
+    "static/css/main.7873a1a7.css",
+    "static/js/main.d61836de.js"
   ]
 }
