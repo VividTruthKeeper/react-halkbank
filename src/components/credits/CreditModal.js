@@ -33,6 +33,7 @@ const CreditModal = ({
   const { locale } = useContext(LanguageContext);
   const window = useRef();
   const [data, setData] = useState({});
+
   const [id, setId] = useState(1);
   return (
     <section

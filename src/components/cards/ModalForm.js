@@ -35,6 +35,10 @@ const ModalForm = ({
   const window = useRef();
   const { locale } = useContext(LanguageContext);
   const [data, setData] = useState({});
+  const [req, setReq] = useState({
+    rus: "",
+    tuk: "",
+  });
   const [cardData, setCardData] = useState();
 
   useEffect(() => {
@@ -200,13 +204,21 @@ const ModalForm = ({
                   data={data}
                   setData={setData}
                   cardData={cardData}
+                  req={req}
+                  setReq={setReq}
                 />
               ) : stage === 2 ? (
                 <CardStage2 setStage={setStage} data={data} setData={setData} />
               ) : stage === 3 ? (
                 <CardStage3 setStage={setStage} data={data} setData={setData} />
               ) : stage === 4 ? (
-                <CardStage4 setStage={setStage} data={data} setData={setData} />
+                <CardStage4
+                  setStage={setStage}
+                  data={data}
+                  setData={setData}
+                  req={req}
+                  setReq={setReq}
+                />
               ) : stage === 5 ? (
                 <CardStage6
                   setStage={setStage}

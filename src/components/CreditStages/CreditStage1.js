@@ -11,11 +11,16 @@ import next from "../../icons/next.svg";
 
 const CreditStage1 = ({ setStage, data, setData, creditData, id, setId }) => {
   const { locale } = useContext(LanguageContext);
+  const [req, setReq] = useState({
+    rus: "",
+    tuk: "",
+  });
   const [input, setInput] = useState(data.type ? data.type : null);
   const [dropdown, setDropdown] = useState({
     one: true,
     two: false,
   });
+  const parser = new DOMParser();
 
   useEffect(() => {
     if (input !== "" && creditData) {
@@ -29,6 +34,11 @@ const CreditStage1 = ({ setStage, data, setData, creditData, id, setId }) => {
           ).includes(input)
         ) {
           setId(el.id);
+          setReq({
+            ...req,
+            tuk: el.documents,
+            rus: JSON.parse(el.translations[0].attribute_data).documents,
+          });
         }
       });
     }
@@ -216,9 +226,21 @@ const CreditStage1 = ({ setStage, data, setData, creditData, id, setId }) => {
                   : "data-dropdown docs"
               }
             >
-              <h5>Lorem ipsum dolor sit.</h5>
-              <h5 className="left right">Lorem ipsum dolor sit.</h5>
-              <h5>Lorem ipsum dolor sit.</h5>
+              <div className="text-block">
+                {
+                  locale === "TUK"
+                    ? parser
+                        .parseFromString(req.tuk, "text/html")
+                        .getElementsByTagName("p")[0]
+                    : // .innerText.split(". ")
+                      // .map((el, i) => <p key={i}>- {el}</p>)
+                      parser
+                        .parseFromString(req.rus, "text/html")
+                        .getElementsByTagName("p")[0]
+                  // .innerText.split(". ")
+                  // .map((el, i) => <p key={i}>- {el}</p>)
+                }
+              </div>
             </div>
           </div>
         </div>

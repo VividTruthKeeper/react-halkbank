@@ -8,12 +8,13 @@ import next from "../../icons/next.svg";
 import arrow from "../../icons/arrow.svg";
 import next_reverse from "../../icons/next-reverse.svg";
 
-const CardStage4 = ({ setStage, data, setData }) => {
+const CardStage4 = ({ setStage, data, setData, req, setReq }) => {
   const { locale } = useContext(LanguageContext);
   const [files, setFiles] = useState(data.file ? data.file : []);
 
   const [btnEnabled, setBtnEnabled] = useState(false);
   const [dropdown, setDropdown] = useState(false);
+  const parser = new DOMParser();
 
   useEffect(() => {
     if (files.length > 0) {
@@ -52,9 +53,19 @@ const CardStage4 = ({ setStage, data, setData }) => {
                 dropdown ? "data-dropdown docs active" : "data-dropdown docs"
               }
             >
-              <h5>Lorem ipsum dolor sit.</h5>
-              <h5 className="left right">Lorem ipsum dolor sit.</h5>
-              <h5>Lorem ipsum dolor sit.</h5>
+              <div className="text-block">
+                {locale === "TUK"
+                  ? parser
+                      .parseFromString(req.tuk, "text/html")
+                      .getElementsByTagName("p")[0]
+                      .innerText.split(". ")
+                      .map((el, i) => <p key={i}>- {el}</p>)
+                  : parser
+                      .parseFromString(req.rus, "text/html")
+                      .getElementsByTagName("p")[0]
+                      .innerText.split(". ")
+                      .map((el, i) => <p key={i}>- {el}</p>)}
+              </div>
             </div>
           </div>
         </div>

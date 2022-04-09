@@ -46,15 +46,16 @@
 }
 
 .data-dropdown {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  .text-block {
+    padding: 4rem 2rem;
+  }
   background: #f2f2f2;
   border-radius: 0.5rem;
   border-top: none;
   border: none;
   max-height: 0;
   transition: 0.4s all ease;
-  overflow: hidden;
+  overflow: auto;
 
   &.active {
     max-height: 50rem;
@@ -105,22 +106,13 @@
 }
 
 .data-dropdown {
+  p {
+    font-size: 1.6rem;
+    display: block;
+  }
   &.docs {
     &.active {
-      max-height: 10rem;
-    }
-    h5 {
-      padding: 3rem;
-      font-size: 1.6rem;
-      text-align: center;
-      font-weight: normal;
-
-      &.right {
-        border-right: 0.1rem solid #e5e5e5;
-      }
-      &.left {
-        border-left: 0.1rem solid #e5e5e5;
-      }
+      max-height: 50rem;
     }
   }
 }
@@ -303,17 +295,27 @@
     gap: 1rem;
   }
   .data-dropdown {
+    display: grid;
     grid-template-columns: 1fr;
+
+    gap: 1rem;
     background: none;
+    .text-block {
+      padding: 3rem 2rem;
+    }
     gap: 1rem;
     margin-top: 1rem;
+
+    p {
+      font-size: 1.4rem;
+    }
 
     &.active {
       max-height: 70rem;
     }
   }
   .dropdown-inner {
-    border: 0.1rem solid #e5e5e5;
+    border: 0.1rem solid #e5e5e5 !important;
     border-radius: 0.5rem;
     height: 100%;
     padding: 1.5rem 1rem;
@@ -323,6 +325,12 @@
     h2 {
       font-size: 1.6rem;
     }
+
+    &.right,
+    &.left,
+    &.bottom {
+      border: none;
+    }
   }
   .cs-2 form {
     display: flex;
@@ -330,10 +338,6 @@
   }
 
   .data-dropdown.docs {
-    h5 {
-      border: 0.1rem solid #e5e5e5;
-      border-radius: 0.5rem;
-    }
     &.active {
       max-height: 40rem;
     }
@@ -382,12 +386,20 @@
   .cs-1 form {
     gap: 2rem;
   }
-  .data-dropdown.active {
-    border: none;
+
+  .dropdown-inner {
+    h2 {
+      font-size: 1.4rem;
+    }
   }
-  .data-dropdown.docs h5 {
-    font-size: 1.2rem;
-    padding: 2rem 1rem;
+
+  .data-dropdown.docs {
+    .text-block {
+      padding: 2rem 1rem;
+    }
+    p {
+      font-size: 1.2rem;
+    }
   }
 }
 
