@@ -5,9 +5,6 @@ export const restore = (data, setLoader, setError, onSuccess) => {
   axios
     .post(`${destination}/restore`, data)
     .then((res) => {
-      if (res.status != "200") {
-        setError(true);
-      }
       if (res.data.data === "success") {
         setLoader(false);
         onSuccess();
@@ -15,7 +12,7 @@ export const restore = (data, setLoader, setError, onSuccess) => {
         setError(true);
       }
     })
-    .catch(() => {
+    .catch((err) => {
       setLoader(false);
       setError(true);
     });

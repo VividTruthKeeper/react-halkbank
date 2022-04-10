@@ -149,7 +149,7 @@ const SignForm = ({
                 setRecoveryOpen(true);
               }}
             >
-              Забыли пароль?
+              {locale === "TUK" ? "Açar sözüni unutdym" : "Забыли пароль?"}
             </h3>
           </div>
         </div>

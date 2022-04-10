@@ -1,7 +1,8 @@
 // IMPORT MODULES
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { LanguageContext } from "../../backend/LanguageContext";
 
-// IMPort
+// IMPORT COMPONENTS
 import Loader from "../global/Loader";
 
 // IMPORT IMAGES
@@ -16,6 +17,7 @@ const Stage1 = ({ setRecStage }) => {
     email: false,
   });
   const data = new FormData();
+  const { locale } = useContext(LanguageContext);
   const [loader, setLoader] = useState(false);
   const [error, setError] = useState(false);
   const [validate, setValidate] = useState(false);
@@ -27,10 +29,13 @@ const Stage1 = ({ setRecStage }) => {
           e.preventDefault();
         }}
       >
-        <h2 className="form-title">Восстановление пароля</h2>
+        <h2 className="form-title">
+          {locale === "TUK" ? "Açar sözüni dikeltmek" : "Восстановление пароля"}
+        </h2>
         <div className="reg-input-block rec-input">
           <label htmlFor="mail">
-            Электронная почта<span>*</span>
+            {locale === "TUK" ? "Email" : "Электронная почта"}
+            <span>*</span>
           </label>
           <input
             type="email"
@@ -54,11 +59,11 @@ const Stage1 = ({ setRecStage }) => {
               }
             }}
           />
-          {error || validate ? (
-            <span
-              className={inputValid.email ? "pass-check" : "pass-check active"}
-            >
-              Введен неверный email
+          {validate || error ? (
+            <span className={!error ? "pass-check" : "pass-check active"}>
+              {locale === "TUK"
+                ? "Nädogry email girizildi"
+                : "Введен неверный email"}
             </span>
           ) : (
             ""
@@ -70,7 +75,6 @@ const Stage1 = ({ setRecStage }) => {
             type="button"
             className="sign-btn"
             onClick={() => {
-              // setData({ ...data, email: inputValid.email });
               data.append("email", inputValid.email);
               setLoader(true);
               restore(data, setLoader, setError, () => {
@@ -79,7 +83,7 @@ const Stage1 = ({ setRecStage }) => {
             }}
           >
             <div>
-              <h3>Отправить</h3>
+              <h3>{locale === "TUK" ? "Ugratmak" : "Отправить"}</h3>
               <div className="btn-img">
                 <img src={Next} alt="next" />
               </div>

@@ -1,5 +1,6 @@
 // IMPORT MODULES
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { LanguageContext } from "../../backend/LanguageContext";
 
 // IMPORT IMAGES
 import Next from "../../icons/arrow-circle-right.svg";
@@ -8,27 +9,24 @@ import Next from "../../icons/arrow-circle-right.svg";
 import { ValidatePassword } from "../../validators/ValidatePassword";
 import { reset } from "../../backend/restore";
 
-const Stage2 = ({
-  setRecoveryOpen,
-  setRecStage,
-  data,
-  setData,
-  setLoader,
-  setSuccess,
-}) => {
+const Stage2 = ({ setRecoveryOpen, setRecStage, setLoader, setSuccess }) => {
   const [inputValid, setInputValid] = useState({
     newPassword: false,
     confirm: false,
     code: "",
   });
   const form = new FormData();
-
+  const { locale } = useContext(LanguageContext);
   const [valid, setValid] = useState(false);
   const [error, setError] = useState(false);
 
   const [btnEnabled, setBtnEnabled] = useState(false);
   useEffect(() => {
-    if (inputValid.newPassword === inputValid.confirm && inputValid.code) {
+    if (
+      ValidatePassword(inputValid.newPassword ? inputValid.newPassword : "") &&
+      inputValid.newPassword === inputValid.confirm &&
+      inputValid.code
+    ) {
       setBtnEnabled(true);
     } else {
       setBtnEnabled(false);
@@ -42,10 +40,13 @@ const Stage2 = ({
           e.preventDefault();
         }}
       >
-        <h2 className="form-title">Новый пароль</h2>
+        <h2 className="form-title">
+          {locale === "TUK" ? "Täze açar sözi" : "Новый пароль"}
+        </h2>
         <div className="reg-input-block rec-input">
           <label htmlFor="code">
-            Код активации<span>*</span>
+            {locale === "TUK" ? "Işjeňleşdirme kody" : "Код активации"}
+            <span>*</span>
           </label>
           <input
             autoComplete="false"
@@ -55,14 +56,14 @@ const Stage2 = ({
             required
             onChange={(e) => {
               setValid(true);
-              if (e.target.value.length > 0) {
-                setInputValid({ ...inputValid, code: e.target.value });
-              }
+              setInputValid({ ...inputValid, code: e.target.value });
             }}
           />
           {error ? (
-            <span className={error ? "pass-check" : "pass-check active"}>
-              Введен неверный код
+            <span className={"pass-check active"}>
+              {locale === "TUK"
+                ? "Nädogry kod girizildi"
+                : "Введен неверный код"}
             </span>
           ) : (
             ""
@@ -70,7 +71,8 @@ const Stage2 = ({
         </div>
         <div className="reg-input-block rec-input">
           <label htmlFor="new-pass">
-            Введите пароль<span>*</span>
+            {locale === "TUK" ? "Açar sözüni giriziň" : "Введите пароль"}
+            <span>*</span>
           </label>
           <input
             autoComplete="false"
@@ -99,9 +101,9 @@ const Stage2 = ({
                 inputValid.newPassword ? "pass-check" : "pass-check active"
               }
             >
-              Пароль должен содержать не менее 1 цифры, 1 заглавной и 1
-              прописной буквы, 1 особого знака, и быть не менее 8 и не более 15
-              символов в длину.
+              {locale === "TUK"
+                ? "Açar sözi  8 belgiden az bolmadyk we 15 belgiden kän bolmadyk we iň azyndan 1 san, 1 baş harp we 1 setir harp, 1 ýörite bellikden ybarat bolmalydyr. "
+                : "Пароль должен содержать не менее 1 цифры, 1 заглавной и 1 прописной буквы, 1 особого знака, и быть не менее 8 и не более 15 символов в длину."}
             </span>
           ) : (
             ""
@@ -109,7 +111,8 @@ const Stage2 = ({
         </div>
         <div className="reg-input-block rec-input">
           <label htmlFor="confirm">
-            Повторите пароль<span>*</span>
+            {locale === "TUK" ? "Açar sözüni gaýtalaň" : "Повторите пароль"}
+            <span>*</span>
           </label>
           <input
             autoComplete="false"
@@ -119,17 +122,7 @@ const Stage2 = ({
             required
             onChange={(e) => {
               setValid(true);
-              if (e.target.value.length >= 8) {
-                setInputValid({
-                  ...inputValid,
-                  confirm: e.target.value,
-                });
-              } else {
-                setInputValid({
-                  ...inputValid,
-                  confirm: e.target.value,
-                });
-              }
+              setInputValid({ ...inputValid, confirm: e.target.value });
             }}
           />
           {valid ? (
@@ -140,7 +133,9 @@ const Stage2 = ({
                   : "pass-check active"
               }
             >
-              Пароли должны совпадать
+              {locale === "TUK"
+                ? "Açar sözler gabat gelmeli"
+                : "Пароли должны совпадать"}
             </span>
           ) : (
             ""
@@ -167,7 +162,7 @@ const Stage2 = ({
             }}
           >
             <div>
-              <h3>Изменить</h3>
+              <h3>{locale === "TUK" ? "Üýtget" : "Изменить"}</h3>
               <div className="btn-img">
                 <img src={Next} alt="next" />
               </div>
