@@ -18,18 +18,34 @@ const CardStage2 = ({ setStage, data, setData }) => {
   const [inputValid, setInputValid] = useState({
     surname: data.surname ? data.surname : user ? user.surname : null,
     name: data.name ? data.name : user ? user.name : null,
-    fathers: data.fathers ? data.fathers : user ? user.middle_name : null,
-    date: data.date ? data.date : user ? user.date_birth : null,
-    passport: data.passport ? data.passport : user ? user.passport : null,
-    p_address: data.p_address
-      ? data.p_address
+    fathers: data.middlename ? data.middlename : user ? user.middle_name : null,
+    date: data.birthdate ? data.birthdate : user ? user.date_birth : null,
+    passport: data.passport
+      ? data.passport_series
+      : user
+      ? user.passport
+      : null,
+    p_address: data.passport_by
+      ? data.passport_by
       : user
       ? user.place_passport
       : null,
-    address: data.address ? data.address : user ? user.address_residence : null,
-    mail: data.mail ? data.mail : user ? user.email : null,
-    mobile: data.mobile ? data.mobile : user ? user.mobile_phone : null,
-    home: data.home ? data.home : user ? user.home_phone : null,
+    address: data.place_of_residence
+      ? data.place_of_residence
+      : user
+      ? user.address_residence
+      : null,
+    mail: data.email ? data.email : user ? user.email : null,
+    mobile: data.phone_number
+      ? data.phone_number
+      : user
+      ? user.mobile_phone
+      : null,
+    home: data.home_phone_number
+      ? data.home_phone_number
+      : user
+      ? user.home_phone
+      : null,
   });
   const [btnEnabled, setBtnEnabled] = useState(false);
 

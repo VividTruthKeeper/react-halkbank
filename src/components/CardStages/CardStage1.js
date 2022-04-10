@@ -158,8 +158,7 @@ const CardStage1 = ({ setStage, data, setData, cardData, req, setReq }) => {
             className="sign-btn cd-btn"
             onClick={() => {
               setStage(2);
-              setData({ ...data, selected_card: inputValid });
-              setData({ ...data, price: price });
+              setData({ ...data, selected_card: inputValid, price: price });
             }}
           >
             <div>
