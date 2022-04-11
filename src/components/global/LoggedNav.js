@@ -126,7 +126,15 @@ const LoggedNav = ({ sideOpen, setSideOpen }) => {
                     </Link>
                   </li>
                   <li>
+                    <Link to="/home/recovery">
+                      {locale === "TUK"
+                        ? "Açar sözüni çalyşmak"
+                        : "Смена пароля"}
+                    </Link>
+                  </li>
+                  <li>
                     <button
+                      type="button"
                       className="sign-out-btn"
                       onClick={() => {
                         deleteUser();

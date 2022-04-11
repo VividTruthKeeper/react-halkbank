@@ -71,15 +71,6 @@ const CardStage6 = ({
                 : data.sms_notification
                 ? "Да"
                 : "Нет"}
-              {/* {data.sms_notification
-                ? locale === "RUS"
-                  ? data.sms_notification === true
-                    ? "Да"
-                    : "Нет"
-                  : data.sms_notification === true
-                  ? "Hawa"
-                  : "Ýok"
-                : "-"} */}
             </h4>
           </li>
           <li>
@@ -157,20 +148,7 @@ const CardStage6 = ({
           onClick={() => {
             setLoader(true);
             setModalOpen(false);
-            sendRequestCard(
-              postUrl,
-              token,
-              data,
-              () => {
-                setSuccess(true);
-                setLoader(false);
-                setTimeout(() => {
-                  setSuccess(false);
-                  getUserInfo(getUrl, token, setUser, () => null);
-                }, 2000);
-              },
-              setError
-            );
+            sendRequestCard(postUrl, token, data);
           }}
         >
           <div>

@@ -17,7 +17,7 @@ const CreditStage1 = ({ setStage, data, setData, creditData, id, setId }) => {
   });
   const [input, setInput] = useState(data.type ? data.type : null);
   const [dropdown, setDropdown] = useState({
-    one: true,
+    one: false,
     two: false,
   });
   const parser = new DOMParser();

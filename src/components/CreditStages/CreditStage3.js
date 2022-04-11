@@ -4,8 +4,6 @@ import { UserContext } from "../../backend/UserContext";
 import { LanguageContext } from "../../backend/LanguageContext";
 
 // IMPORT VALIDATORS
-import { ValidateEmail } from "../../validators/ValidateEmail";
-import { ValidatePhoneNumber } from "../../validators/ValidatePhoneNumber";
 import { getDate } from "../../helpers/Date";
 
 // IMPORT IMAGES
@@ -15,7 +13,10 @@ import next_reverse from "../../icons/next-reverse.svg";
 const CreditStage3 = ({ setStage, data, setData }) => {
   const { locale } = useContext(LanguageContext);
   const { user } = useContext(UserContext);
-  const [inputValid, setInputValid] = useState({
+  const [
+    inputValid,
+    //  setInputValid
+  ] = useState({
     surname: data.surname ? data.surname : user ? user.surname : null,
     name: data.name ? data.name : user ? user.name : null,
     fathers: data.fathers ? data.fathers : user ? user.middle_name : null,
@@ -60,16 +61,10 @@ const CreditStage3 = ({ setStage, data, setData }) => {
               <span>*</span>
             </label>
             <input
+              readOnly
               type="text"
               id="surname"
               defaultValue={inputValid.surname}
-              onChange={(e) => {
-                if (e.target.value !== "") {
-                  setInputValid({ ...inputValid, surname: e.target.value });
-                } else {
-                  setInputValid({ ...inputValid, surname: false });
-                }
-              }}
             />
           </div>
           <div className="input-block">
@@ -78,16 +73,10 @@ const CreditStage3 = ({ setStage, data, setData }) => {
               <span>*</span>
             </label>
             <input
+              readOnly
               type="text"
               id="name"
               defaultValue={inputValid.name}
-              onChange={(e) => {
-                if (e.target.value !== "") {
-                  setInputValid({ ...inputValid, name: e.target.value });
-                } else {
-                  setInputValid({ ...inputValid, name: false });
-                }
-              }}
             />
           </div>
           <div className="input-block">
@@ -96,16 +85,10 @@ const CreditStage3 = ({ setStage, data, setData }) => {
               <span>*</span>
             </label>
             <input
+              readOnly
               type="text"
               id="fathers"
               defaultValue={inputValid.fathers}
-              onChange={(e) => {
-                if (e.target.value !== "") {
-                  setInputValid({ ...inputValid, fathers: e.target.value });
-                } else {
-                  setInputValid({ ...inputValid, fathers: false });
-                }
-              }}
             />
           </div>
           <div className="input-block">
@@ -114,18 +97,12 @@ const CreditStage3 = ({ setStage, data, setData }) => {
               <span>*</span>
             </label>
             <input
+              readOnly
               type="date"
               id="date"
               defaultValue={inputValid.date}
               min="1900-01-01"
               max={getDate(18)}
-              onChange={(e) => {
-                if (e.target.value !== "") {
-                  setInputValid({ ...inputValid, date: e.target.value });
-                } else {
-                  setInputValid({ ...inputValid, date: false });
-                }
-              }}
             />
           </div>
           <div className="input-block">
@@ -134,16 +111,10 @@ const CreditStage3 = ({ setStage, data, setData }) => {
               <span>*</span>
             </label>
             <input
+              readOnly
               type="text"
               id="passport"
               defaultValue={inputValid.passport}
-              onChange={(e) => {
-                if (e.target.value !== "") {
-                  setInputValid({ ...inputValid, passport: e.target.value });
-                } else {
-                  setInputValid({ ...inputValid, passport: false });
-                }
-              }}
             />
           </div>
           <div className="input-block">
@@ -154,16 +125,10 @@ const CreditStage3 = ({ setStage, data, setData }) => {
               <span>*</span>
             </label>
             <input
+              readOnly
               type="text"
               id="p-address"
               defaultValue={inputValid.p_address}
-              onChange={(e) => {
-                if (e.target.value !== "") {
-                  setInputValid({ ...inputValid, p_address: e.target.value });
-                } else {
-                  setInputValid({ ...inputValid, p_address: false });
-                }
-              }}
             />
           </div>
           <div className="input-block">
@@ -172,16 +137,10 @@ const CreditStage3 = ({ setStage, data, setData }) => {
               <span>*</span>
             </label>
             <input
+              readOnly
               type="text"
               id="address"
               defaultValue={inputValid.address}
-              onChange={(e) => {
-                if (e.target.value !== "") {
-                  setInputValid({ ...inputValid, address: e.target.value });
-                } else {
-                  setInputValid({ ...inputValid, address: false });
-                }
-              }}
             />
           </div>
           <div className="input-block">
@@ -190,16 +149,10 @@ const CreditStage3 = ({ setStage, data, setData }) => {
               <span>*</span>
             </label>
             <input
+              readOnly
               type="email"
               id="mail"
               defaultValue={inputValid.mail}
-              onChange={(e) => {
-                if (ValidateEmail(e.target.value)) {
-                  setInputValid({ ...inputValid, mail: e.target.value });
-                } else {
-                  setInputValid({ ...inputValid, mail: false });
-                }
-              }}
             />
           </div>
           <div className="input-block">
@@ -208,16 +161,10 @@ const CreditStage3 = ({ setStage, data, setData }) => {
               <span>*</span>
             </label>
             <input
+              readOnly
               type="text"
               id="mobile"
               defaultValue={inputValid.mobile}
-              onChange={(e) => {
-                if (ValidatePhoneNumber(e.target.value)) {
-                  setInputValid({ ...inputValid, mobile: e.target.value });
-                } else {
-                  setInputValid({ ...inputValid, mobile: false });
-                }
-              }}
             />
           </div>
           <div className="input-block">
@@ -225,16 +172,10 @@ const CreditStage3 = ({ setStage, data, setData }) => {
               {locale === "TUK" ? "Öý telefon" : "Домашний телефон"}
             </label>
             <input
+              readOnly
               type="text"
               id="homeTel"
               defaultValue={inputValid.home}
-              onChange={(e) => {
-                if (ValidatePhoneNumber(e.target.value)) {
-                  setInputValid({ ...inputValid, home: e.target.value });
-                } else {
-                  setInputValid({ ...inputValid, home: false });
-                }
-              }}
             />
           </div>
         </div>
