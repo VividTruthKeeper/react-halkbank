@@ -65,6 +65,7 @@ const CreditStage5 = ({ setStage, data, setData }) => {
             <input
               id="file"
               type="file"
+              accept=".jpg, .jpeg, .docx, .doc, .pdf, .png"
               onChange={(e) => {
                 setFiles([...files, e.target.files[0]]);
                 e.target.value = "";
@@ -97,6 +98,12 @@ const CreditStage5 = ({ setStage, data, setData }) => {
               })
             : null}
         </ul>
+        <p className="alert">
+          {locale === "TUK"
+            ? "Hemme faýllar diňe görkezilen formatda bolmaly: "
+            : "Все файлы должны быть следующих форматов: "}
+          <span className="red">.jpg, .jpeg, .doc, .docx, .pdf, .png</span>
+        </p>
         <div className="cu-bottom card-stage-4-bottom">
           <button
             type="button"
@@ -128,7 +135,7 @@ const CreditStage5 = ({ setStage, data, setData }) => {
             }}
           >
             <div>
-              <h3>{locale === "TUK" ? "Продолжить" : "Продолжить"}</h3>
+              <h3>{locale === "TUK" ? "Dowam et" : "Продолжить"}</h3>
               <div className="btn-img">
                 <img src={next} alt="logout" />
               </div>

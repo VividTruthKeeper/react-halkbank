@@ -24,6 +24,7 @@ const Cards = () => {
   const [loader, setLoader] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [stage, setStage] = useState(1);
+  console.log(user);
   useEffect(() => {
     if (modalOpen) {
       document.body.style.overflowY = "hidden";
@@ -104,60 +105,62 @@ const Cards = () => {
                 {user ? (
                   user.online_card.length !== 0 ? (
                     user.online_card.map((el, i) => {
-                      return (
-                        <tr key={i}>
-                          <td>#{el.id}</td>
-                          <td>{el.selected_card}</td>
-                          <td>{el.date}</td>
-                          <td
-                            className={
-                              el.status === "5"
-                                ? "red"
-                                : el.status === "4" || el.status === "2"
-                                ? "green"
-                                : ""
-                            }
-                          >
-                            {el.status === "1"
-                              ? locale === "TUK"
-                                ? "Ugradyldy"
-                                : "Отправлено"
-                              : el.status === "2"
-                              ? locale === "TUK"
-                                ? "Kabul edildi"
-                                : "Принята"
-                              : el.status === "3"
-                              ? locale === "TUK"
-                                ? "Görülyar"
-                                : "На стадии рассмотрения"
-                              : el.status === "4"
-                              ? locale === "TUK"
-                                ? "Kart çykaryldy"
-                                : "Карта выпущена"
-                              : el.status === "5"
-                              ? locale === "TUK"
-                                ? "Ret edildi"
-                                : "Отказано"
-                              : ""}
-                          </td>
-                          <td>
-                            {el.status === "5" ? (
-                              <div className="reject">
-                                <div className="reason">
-                                  <h4>{el.action}</h4>
+                      if (el.payed) {
+                        return (
+                          <tr key={i}>
+                            <td>#{el.id}</td>
+                            <td>{el.selected_card}</td>
+                            <td>{el.date}</td>
+                            <td
+                              className={
+                                el.status === "5"
+                                  ? "red"
+                                  : el.status === "4" || el.status === "2"
+                                  ? "green"
+                                  : ""
+                              }
+                            >
+                              {el.status === "1"
+                                ? locale === "TUK"
+                                  ? "Ugradyldy"
+                                  : "Отправлено"
+                                : el.status === "2"
+                                ? locale === "TUK"
+                                  ? "Kabul edildi"
+                                  : "Принята"
+                                : el.status === "3"
+                                ? locale === "TUK"
+                                  ? "Görülyar"
+                                  : "На стадии рассмотрения"
+                                : el.status === "4"
+                                ? locale === "TUK"
+                                  ? "Kart çykaryldy"
+                                  : "Карта выпущена"
+                                : el.status === "5"
+                                ? locale === "TUK"
+                                  ? "Ret edildi"
+                                  : "Отказано"
+                                : ""}
+                            </td>
+                            <td>
+                              {el.status === "5" ? (
+                                <div className="reject">
+                                  <div className="reason">
+                                    <h4>{el.action}</h4>
+                                  </div>
+                                  <img src={allert} alt="reject" />
                                 </div>
-                                <img src={allert} alt="reject" />
-                              </div>
-                            ) : el.status !== "4" && el.status !== "2" ? (
-                              <div>
-                                <img src={nul} alt="null" />
-                              </div>
-                            ) : (
-                              ""
-                            )}
-                          </td>
-                        </tr>
-                      );
+                              ) : el.status !== "4" && el.status !== "2" ? (
+                                <div>
+                                  <img src={nul} alt="null" />
+                                </div>
+                              ) : (
+                                ""
+                              )}
+                            </td>
+                          </tr>
+                        );
+                      }
                     })
                   ) : (
                     <tr>

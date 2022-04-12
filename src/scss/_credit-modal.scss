@@ -3,7 +3,6 @@
   flex-direction: column;
   justify-content: flex-start;
   gap: 1.4rem;
-  max-width: 42rem;
   width: 100%;
 
   label {
@@ -11,7 +10,6 @@
   }
 
   .cs-1-top-block {
-    max-width: 42rem;
     width: 100%;
   }
 }
@@ -46,6 +44,10 @@
 }
 
 .data-dropdown {
+  &.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
   .text-block {
     padding: 4rem 2rem;
   }
@@ -294,7 +296,8 @@
   .cs-1-middle {
     gap: 1rem;
   }
-  .data-dropdown {
+  .data-dropdown,
+  .data-dropdown.grid {
     display: grid;
     grid-template-columns: 1fr;
 

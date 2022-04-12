@@ -20,7 +20,6 @@ const CreditStage1 = ({ setStage, data, setData, creditData, id, setId }) => {
     one: false,
     two: false,
   });
-  const parser = new DOMParser();
 
   useEffect(() => {
     if (input !== "" && creditData) {
@@ -98,7 +97,9 @@ const CreditStage1 = ({ setStage, data, setData, creditData, id, setId }) => {
             </div>
             <div
               className={
-                dropdown.one ? "data-dropdown active" : "data-dropdown"
+                dropdown.one
+                  ? "data-dropdown grid active"
+                  : "data-dropdown grid"
               }
             >
               <div className="dropdown-inner bottom">
@@ -226,21 +227,12 @@ const CreditStage1 = ({ setStage, data, setData, creditData, id, setId }) => {
                   : "data-dropdown docs"
               }
             >
-              <div className="text-block">
-                {
-                  locale === "TUK"
-                    ? parser
-                        .parseFromString(req.tuk, "text/html")
-                        .getElementsByTagName("p")[0]
-                    : // .innerText.split(". ")
-                      // .map((el, i) => <p key={i}>- {el}</p>)
-                      parser
-                        .parseFromString(req.rus, "text/html")
-                        .getElementsByTagName("p")[0]
-                  // .innerText.split(". ")
-                  // .map((el, i) => <p key={i}>- {el}</p>)
-                }
-              </div>
+              <div
+                className="text-block"
+                dangerouslySetInnerHTML={{
+                  __html: locale === "TUK" ? req.tuk : req.rus,
+                }}
+              ></div>
             </div>
           </div>
         </div>

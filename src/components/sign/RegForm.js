@@ -230,7 +230,7 @@ const RegForm = () => {
                   <span>*</span>
                 </label>
                 <CustomSelect
-                  items={["I", "A", "E"]}
+                  items={["I", "II", "III", "IV"]}
                   blockName={"select-block"}
                   elName={"select-el"}
                   customId={"serie"}

@@ -1,5 +1,5 @@
 // IMPORT MODULES
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState, useEffect, useContext, useRef, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../backend/UserContext";
 import { deleteUser } from "../../backend/deleteUser";
@@ -15,13 +15,21 @@ import user from "../../icons/user-square.svg";
 import arrow from "../../icons/arrow-back.svg";
 import close from "../../icons/close.svg";
 
+// HOOKS
+import useMediaQuery from "../../hooks/useMediaQuery";
+
 const Side = ({ sideOpen, setSideOpen }) => {
   const inner = useRef();
   const { locale } = useContext(LanguageContext);
   const { setUser } = useContext(UserContext);
   const [linkStage, setLinkStage] = useState(0);
-
+  const [closeOnInteract, setCloseOnInteract] = useState(false);
   const location = window.location.href;
+  const viewPortWidth = useMediaQuery("(max-width: 1300px)");
+
+  useEffect(() => {
+    setCloseOnInteract(viewPortWidth);
+  }, [viewPortWidth]);
 
   useEffect(() => {
     if (location.includes("cards")) {
@@ -70,7 +78,14 @@ const Side = ({ sideOpen, setSideOpen }) => {
                   setLinkStage(1);
                 }}
               >
-                <Link to="/home/cards">
+                <Link
+                  to="/home/cards"
+                  onClick={() => {
+                    if (closeOnInteract) {
+                      setSideOpen(true);
+                    }
+                  }}
+                >
                   <div className="link-img">
                     <img src={card} alt="link" />
                   </div>
@@ -85,7 +100,14 @@ const Side = ({ sideOpen, setSideOpen }) => {
                   setLinkStage(2);
                 }}
               >
-                <Link to="/home/credits">
+                <Link
+                  to="/home/credits"
+                  onClick={() => {
+                    if (closeOnInteract) {
+                      setSideOpen(true);
+                    }
+                  }}
+                >
                   <div className="link-img">
                     <img src={credit} alt="link" />
                   </div>
@@ -98,7 +120,14 @@ const Side = ({ sideOpen, setSideOpen }) => {
                   setLinkStage(3);
                 }}
               >
-                <Link to="/home/contact-us">
+                <Link
+                  to="/home/contact-us"
+                  onClick={() => {
+                    if (closeOnInteract) {
+                      setSideOpen(true);
+                    }
+                  }}
+                >
                   <div className="link-img">
                     <img src={mail} alt="link" />
                   </div>
@@ -120,7 +149,14 @@ const Side = ({ sideOpen, setSideOpen }) => {
                   setLinkStage(4);
                 }}
               >
-                <Link to="/home/profile">
+                <Link
+                  to="/home/profile"
+                  onClick={() => {
+                    if (closeOnInteract) {
+                      setSideOpen(true);
+                    }
+                  }}
+                >
                   <div className="link-img">
                     <img src={user} alt="link" />
                   </div>
@@ -135,7 +171,14 @@ const Side = ({ sideOpen, setSideOpen }) => {
                   setLinkStage(5);
                 }}
               >
-                <Link to="/home/recovery">
+                <Link
+                  to="/home/recovery"
+                  onClick={() => {
+                    if (closeOnInteract) {
+                      setSideOpen(true);
+                    }
+                  }}
+                >
                   <div className="link-img">
                     <img src={password} alt="link" />
                   </div>
@@ -160,7 +203,15 @@ const Side = ({ sideOpen, setSideOpen }) => {
               </li>
             </ul>
           </div>
-          <Link to="/" className="side-footer">
+          <Link
+            to="/"
+            className="side-footer"
+            onClick={() => {
+              if (closeOnInteract) {
+                setSideOpen(true);
+              }
+            }}
+          >
             <div className="footer-img">
               <img src={arrow} alt="arrow" />
             </div>

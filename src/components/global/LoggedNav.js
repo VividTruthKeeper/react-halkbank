@@ -125,13 +125,13 @@ const LoggedNav = ({ sideOpen, setSideOpen }) => {
                         : "Данные профиля"}
                     </Link>
                   </li>
-                  <li>
+                  {/* <li>
                     <Link to="/home/recovery">
                       {locale === "TUK"
                         ? "Açar sözüni çalyşmak"
                         : "Смена пароля"}
                     </Link>
-                  </li>
+                  </li> */}
                   <li>
                     <button
                       type="button"
