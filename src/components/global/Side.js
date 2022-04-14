@@ -61,7 +61,7 @@ const Side = ({ sideOpen, setSideOpen }) => {
             <ul>
               <li className="side-top-li">
                 <h2 className="side-title">
-                  {locale === "TUK" ? "Bölümler" : "Разделы"}
+                  {locale === "TKM" ? "Bölümler" : "Разделы"}
                 </h2>
                 <div
                   className="side-quit"
@@ -90,7 +90,7 @@ const Side = ({ sideOpen, setSideOpen }) => {
                     <img src={card} alt="link" />
                   </div>
                   <span>
-                    {locale === "TUK" ? "Plastik kartlar" : "Пластиковые карты"}
+                    {locale === "TKM" ? "Plastik kartlar" : "Пластиковые карты"}
                   </span>
                 </Link>
               </li>
@@ -111,7 +111,7 @@ const Side = ({ sideOpen, setSideOpen }) => {
                   <div className="link-img">
                     <img src={credit} alt="link" />
                   </div>
-                  <span>{locale === "TUK" ? "Karzlar" : "Кредиты"}</span>
+                  <span>{locale === "TKM" ? "Karzlar" : "Кредиты"}</span>
                 </Link>
               </li>
               <li
@@ -132,7 +132,7 @@ const Side = ({ sideOpen, setSideOpen }) => {
                     <img src={mail} alt="link" />
                   </div>
                   <span>
-                    {locale === "TUK" ? "Hat ýazmak" : "Написать письмо"}
+                    {locale === "TKM" ? "Hat ýazmak" : "Написать письмо"}
                   </span>
                 </Link>
               </li>
@@ -140,7 +140,7 @@ const Side = ({ sideOpen, setSideOpen }) => {
             <ul>
               <li>
                 <h2 className="side-title">
-                  {locale === "TUK" ? "Profil" : "Профиль"}
+                  {locale === "TKM" ? "Profil" : "Профиль"}
                 </h2>
               </li>
               <li
@@ -161,7 +161,7 @@ const Side = ({ sideOpen, setSideOpen }) => {
                     <img src={user} alt="link" />
                   </div>
                   <span>
-                    {locale === "TUK" ? "Profiliň maglumaty" : "Данные профиля"}
+                    {locale === "TKM" ? "Profiliň maglumaty" : "Данные профиля"}
                   </span>
                 </Link>
               </li>
@@ -183,7 +183,7 @@ const Side = ({ sideOpen, setSideOpen }) => {
                     <img src={password} alt="link" />
                   </div>
                   <span>
-                    {locale === "TUK" ? "Açar sözüni çalyşmak" : "Смена пароля"}
+                    {locale === "TKM" ? "Açar sözüni çalyşmak" : "Смена пароля"}
                   </span>
                 </Link>
               </li>
@@ -198,7 +198,7 @@ const Side = ({ sideOpen, setSideOpen }) => {
                   <div className="link-img">
                     <img src={quit} alt="link" />
                   </div>
-                  <span>{locale === "TUK" ? "Çykmak" : "Выход"}</span>
+                  <span>{locale === "TKM" ? "Çykmak" : "Выход"}</span>
                 </button>
               </li>
             </ul>
@@ -216,7 +216,7 @@ const Side = ({ sideOpen, setSideOpen }) => {
               <img src={arrow} alt="arrow" />
             </div>
             <span>
-              {locale === "TUK"
+              {locale === "TKM"
                 ? "Baş sahypa dolanmak"
                 : "Вернутся на главный сайт"}
             </span>

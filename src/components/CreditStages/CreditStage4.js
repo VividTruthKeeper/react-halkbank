@@ -45,7 +45,7 @@ const CreditStage4 = ({ setStage, data, setData }) => {
         <div className="card-stage-3-top">
           <div className="input-block">
             <label htmlFor="workplace">
-              {locale === "TUK" ? "Iş ýeri" : "Место работы"}
+              {locale === "TKM" ? "Iş ýeri" : "Место работы"}
               <span>*</span>
             </label>
             <input
@@ -61,7 +61,7 @@ const CreditStage4 = ({ setStage, data, setData }) => {
           </div>
           <div className="input-block">
             <label htmlFor="salary">
-              {locale === "TUK" ? "Aýlyk haky" : "Сумма зарплаты"}
+              {locale === "TKM" ? "Aýlyk haky" : "Сумма зарплаты"}
               <span>*</span>
             </label>
             <input
@@ -77,7 +77,7 @@ const CreditStage4 = ({ setStage, data, setData }) => {
           </div>
           <div className="input-block">
             <label htmlFor="position">
-              {locale === "TUK" ? "Wezipesi" : "Должность"}
+              {locale === "TKM" ? "Wezipesi" : "Должность"}
               <span>*</span>
             </label>
             <input
@@ -92,7 +92,7 @@ const CreditStage4 = ({ setStage, data, setData }) => {
           </div>
           <div className="input-block">
             <label htmlFor="experience">
-              {locale === "TUK"
+              {locale === "TKM"
                 ? "Soňky iş ýeri boýunça tejribe"
                 : "Стаж с последнего места работы"}
               <span>*</span>
@@ -102,7 +102,7 @@ const CreditStage4 = ({ setStage, data, setData }) => {
               id="experience"
               name="experience"
               defaultValue={inputValid.experience}
-              placeholder={locale === "TUK" ? "6 aýdan köp" : "Более 6 месяцев"}
+              placeholder={locale === "TKM" ? "6 aýdan köp" : "Более 6 месяцев"}
               onChange={(e) => {
                 setInputValid({ ...inputValid, experience: e.target.value });
               }}
@@ -110,17 +110,17 @@ const CreditStage4 = ({ setStage, data, setData }) => {
           </div>
           <div className="input-block">
             <label htmlFor="region">
-              {locale === "TUK" ? "Welaýat" : "Регион"}
+              {locale === "TKM" ? "Welaýat" : "Регион"}
               <span>*</span>
             </label>
             <CustomSelect
-              items={locale === "TUK" ? branch.regions.TUK : branch.regions.RUS}
+              items={locale === "TKM" ? branch.regions.TKM : branch.regions.RUS}
               customId={"region"}
               blockName={"card-3-select"}
               elName={"card-3-select-el"}
               name={"region"}
               placeholder={
-                locale === "TUK" ? "Welaýaty saýlaň" : "Выберите регион"
+                locale === "TKM" ? "Welaýaty saýlaň" : "Выберите регион"
               }
               stateSetter={(state) =>
                 setInputValid({ ...inputValid, region: state })
@@ -131,40 +131,40 @@ const CreditStage4 = ({ setStage, data, setData }) => {
           </div>
           <div className="input-block">
             <label htmlFor="affiliate">
-              {locale === "TUK" ? "Filial" : "Филиал"}
+              {locale === "TKM" ? "Filial" : "Филиал"}
               <span>*</span>
             </label>
             <CustomSelect
               items={
                 inputValid.region === "Город Ашхабад" ||
                 inputValid.region === "Aşgabat şäheri"
-                  ? locale === "TUK"
-                    ? branch.Ashgabat.TUK
+                  ? locale === "TKM"
+                    ? branch.Ashgabat.TKM
                     : branch.Ashgabat.RUS
                   : inputValid.region === "Ахалский регион" ||
                     inputValid.region === "Ahal"
-                  ? locale === "TUK"
-                    ? branch.Ahal.TUK
+                  ? locale === "TKM"
+                    ? branch.Ahal.TKM
                     : branch.Ahal.RUS
                   : inputValid.region === "Балканский регион" ||
                     inputValid.region === "Balkan"
-                  ? locale === "TUK"
-                    ? branch.Balkan.TUK
+                  ? locale === "TKM"
+                    ? branch.Balkan.TKM
                     : branch.Balkan.RUS
                   : inputValid.region === "Дашогузский регион" ||
                     inputValid.region === "Daşoguz"
-                  ? locale === "TUK"
-                    ? branch.Dashoguz.TUK
+                  ? locale === "TKM"
+                    ? branch.Dashoguz.TKM
                     : branch.Dashoguz.RUS
                   : inputValid.region === "Лебапский регион" ||
                     inputValid.region === "Lebap"
-                  ? locale === "TUK"
-                    ? branch.Lebap.TUK
+                  ? locale === "TKM"
+                    ? branch.Lebap.TKM
                     : branch.Lebap.RUS
                   : inputValid.region === "Марыйский регион" ||
                     inputValid.region === "Mary"
-                  ? locale === "TUK"
-                    ? branch.Mary.TUK
+                  ? locale === "TKM"
+                    ? branch.Mary.TKM
                     : branch.Mary.RUS
                   : [""]
               }
@@ -173,7 +173,7 @@ const CreditStage4 = ({ setStage, data, setData }) => {
               elName={"card-3-select-el"}
               name={"affiliate"}
               placeholder={
-                locale === "TUK" ? "Filialy saýlaň" : "Выберите филиал"
+                locale === "TKM" ? "Filialy saýlaň" : "Выберите филиал"
               }
               stateSetter={(state) =>
                 setInputValid({ ...inputValid, affiliate: state })
@@ -200,7 +200,7 @@ const CreditStage4 = ({ setStage, data, setData }) => {
                   setStage(3);
                 }}
               >
-                {locale === "TUK" ? "Yza" : "Назад"}
+                {locale === "TKM" ? "Yza" : "Назад"}
               </h3>
             </div>
           </button>
@@ -222,7 +222,7 @@ const CreditStage4 = ({ setStage, data, setData }) => {
             }}
           >
             <div>
-              <h3>{locale === "TUK" ? "Dowam et" : "Продолжить"}</h3>
+              <h3>{locale === "TKM" ? "Dowam et" : "Продолжить"}</h3>
               <div className="btn-img">
                 <img src={next} alt="logout" />
               </div>

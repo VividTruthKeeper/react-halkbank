@@ -44,7 +44,7 @@ const CreditModal = ({
           <div className="modal-window">
             <div className="modal-top">
               <h2>
-                {locale === "TUK"
+                {locale === "TKM"
                   ? "Karz almak üçin onlaýn-ýüzlenme"
                   : "Онлайн-заявка для получения кредита"}
               </h2>
@@ -64,7 +64,7 @@ const CreditModal = ({
               <div className="icon-block active">
                 <Img1 className="modal-icon" />
                 <h3 className="icon-title">
-                  {locale === "TUK"
+                  {locale === "TKM"
                     ? "Karzyň görnüşini saýlaň"
                     : "Выберите вид кредита"}
                 </h3>
@@ -76,7 +76,7 @@ const CreditModal = ({
               <div className={stage > 1 ? "icon-block active" : "icon-block"}>
                 <Img2 className="modal-icon" />
                 <h3 className="icon-title">
-                  {locale === "TUK"
+                  {locale === "TKM"
                     ? "Karzyň kalkulýatory"
                     : "Калькулятор кредита"}
                 </h3>
@@ -88,7 +88,7 @@ const CreditModal = ({
               <div className={stage > 2 ? "icon-block active" : "icon-block"}>
                 <Img3 className="modal-icon" />
                 <h3 className="icon-title">
-                  {locale === "TUK" ? "Şahsy maglumatlar" : "Личные данные"}
+                  {locale === "TKM" ? "Şahsy maglumatlar" : "Личные данные"}
                 </h3>
               </div>
               <div className={stage > 3 ? "line-block active" : "line-block"}>
@@ -98,7 +98,7 @@ const CreditModal = ({
               <div className={stage > 3 ? "icon-block active" : "icon-block"}>
                 <Img4 className="modal-icon" />
                 <h3 className="icon-title">
-                  {locale === "TUK"
+                  {locale === "TKM"
                     ? "Karz üçin maglumat"
                     : "Данные для кредита"}
                 </h3>
@@ -110,7 +110,7 @@ const CreditModal = ({
               <div className={stage > 4 ? "icon-block active" : "icon-block"}>
                 <Img5 className="modal-icon" />
                 <h3 className="icon-title">
-                  {locale === "TUK"
+                  {locale === "TKM"
                     ? "Talaplar we resminamalar"
                     : "Требования и документы"}
                 </h3>
@@ -122,7 +122,7 @@ const CreditModal = ({
               <div className={stage > 5 ? "icon-block active" : "icon-block"}>
                 <Img6 className="modal-icon" />
                 <h3 className="icon-title">
-                  {locale === "TUK" ? "Ugratmak" : "Отправка"}
+                  {locale === "TKM" ? "Ugratmak" : "Отправка"}
                 </h3>
               </div>
             </div>
@@ -131,7 +131,7 @@ const CreditModal = ({
                 <div className="icon-block active">
                   <Img1 className="modal-icon" />
                   <h3 className="icon-title">
-                    {locale === "TUK"
+                    {locale === "TKM"
                       ? "Karzyň görnüşini saýlaň"
                       : "Выберите вид кредита"}
                   </h3>
@@ -140,7 +140,7 @@ const CreditModal = ({
                 <div className="icon-block active">
                   <Img2 className="modal-icon" />
                   <h3 className="icon-title">
-                    {locale === "TUK"
+                    {locale === "TKM"
                       ? "Karzyň kalkulýatory"
                       : "Калькулятор кредита"}
                   </h3>
@@ -149,14 +149,14 @@ const CreditModal = ({
                 <div className="icon-block active">
                   <Img3 className="modal-icon" />
                   <h3 className="icon-title">
-                    {locale === "TUK" ? "Şahsy maglumatlar" : "Личные данные"}
+                    {locale === "TKM" ? "Şahsy maglumatlar" : "Личные данные"}
                   </h3>
                 </div>
               ) : stage === 4 ? (
                 <div className="icon-block active">
                   <Img4 className="modal-icon" />
                   <h3 className="icon-title">
-                    {locale === "TUK"
+                    {locale === "TKM"
                       ? "Karz üçin maglumat"
                       : "Данные для кредита"}
                   </h3>
@@ -165,7 +165,7 @@ const CreditModal = ({
                 <div className="icon-block active">
                   <Img5 className="modal-icon" />
                   <h3 className="icon-title">
-                    {locale === "TUK"
+                    {locale === "TKM"
                       ? "Talaplar we resminamalar"
                       : "Требования и документы"}
                   </h3>
@@ -174,7 +174,7 @@ const CreditModal = ({
                 <div className="icon-block active">
                   <Img6 className="modal-icon" />
                   <h3 className="icon-title">
-                    {locale === "TUK" ? "Ugratmak" : "Отправка"}
+                    {locale === "TKM" ? "Ugratmak" : "Отправка"}
                   </h3>
                 </div>
               ) : (
@@ -216,6 +216,8 @@ const CreditModal = ({
                   setStage={setStage}
                   data={data}
                   setData={setData}
+                  creditData={creditData}
+                  id={id}
                 />
               ) : stage === 6 ? (
                 <CreditStage6

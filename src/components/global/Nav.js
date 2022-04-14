@@ -71,7 +71,7 @@ const Nav = () => {
                       localStorage.setItem("userLanguage", e.target.innerText);
                     }}
                   >
-                    TUK
+                    TKM
                   </li>
                 </ul>
               </li>

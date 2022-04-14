@@ -39,7 +39,7 @@ const App = () => {
   const [locale, setLocale] = useState(
     localStorage.getItem("userLanguage")
       ? localStorage.getItem("userLanguage")
-      : "TUK"
+      : "TKM"
   );
   const [loaderActive, setLoaderActive] = useState(false);
   const providerValue = useMemo(() => ({ user, setUser }), [user, setUser]);

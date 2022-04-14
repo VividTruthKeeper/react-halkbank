@@ -44,14 +44,10 @@ export const sendRequest = (
         setLoader(false);
       }
     })
-    .catch((err) => {
+    .catch(() => {
       if (setLoader) {
         setLoader(false);
       }
-
       setError(true);
-      setTimeout(() => {
-        setError(false);
-      }, 2000);
     });
 };

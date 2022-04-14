@@ -12,7 +12,7 @@ export const main = () => {
         "Не принимайте различные соглашения без тщательного ознакомления",
       ],
     },
-    tuk: {
+    TKM: {
       title:
         "Internet çeşmeleri ulanylanda aşakdaky howpsuzlyk düzgünlerini berk berjaý etmeklik kompýuteriňizi ýa-da ykjam enjamyňyzy zyýanly programma üpjünçiliginden we gizlin şahsy maglumatlaryň aýan bolmagyndan goranmaga ýardam berer.",
       rules: [

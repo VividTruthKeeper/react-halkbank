@@ -57,25 +57,27 @@ const Credits = () => {
       {success ? (
         <Success
           message={
-            locale === "TUK"
+            locale === "TKM"
               ? "Ýüzlenme ugradyldy!"
               : "Ваш запрос успешно отправлен!"
           }
+          setSuccess={setSuccess}
         />
       ) : null}
       {error ? (
         <Error
           message={
-            locale === "TUK"
+            locale === "TKM"
               ? "Ýüzlenme ugradylmady"
               : "Не удалось отправить запрос"
           }
+          setError={setError}
         />
       ) : null}
       <Breadcrumb
         image={credit}
         link={"/home/credits"}
-        linkTitle={locale === "TUK" ? "Karzlar" : "Кредиты"}
+        linkTitle={locale === "TKM" ? "Karzlar" : "Кредиты"}
       />
       <CreditModal
         setModalOpen={setModalOpen}
@@ -93,7 +95,7 @@ const Credits = () => {
         <div className="cards-inner">
           <div className="card-title">
             <h2 className="cards-title">
-              {locale === "TUK"
+              {locale === "TKM"
                 ? "Karz almak üçin onlaýn-ýüzlenme"
                 : "Онлайн-заявка для получения кредита"}
             </h2>
@@ -109,7 +111,7 @@ const Credits = () => {
                 <img src={add} alt="add" />
               </div>
               <h3>
-                {locale === "TUK" ? "Ýüzlenme doldurmak" : "Заполнить заявку"}
+                {locale === "TKM" ? "Ýüzlenme doldurmak" : "Заполнить заявку"}
               </h3>
             </button>
           </div>
@@ -118,10 +120,10 @@ const Credits = () => {
               <tbody>
                 <tr className="table-head">
                   <th>ID</th>
-                  <th>{locale === "TUK" ? "Görnüşi" : "Тип"}</th>
-                  <th>{locale === "TUK" ? "Senesi" : "Дата"}</th>
-                  <th>{locale === "TUK" ? "Ýagdaýy" : "Статус"}</th>
-                  <th>{locale === "TUK" ? "Amal" : "Действие"}</th>
+                  <th>{locale === "TKM" ? "Görnüşi" : "Тип"}</th>
+                  <th>{locale === "TKM" ? "Senesi" : "Дата"}</th>
+                  <th>{locale === "TKM" ? "Ýagdaýy" : "Статус"}</th>
+                  <th>{locale === "TKM" ? "Amal" : "Действие"}</th>
                 </tr>
                 {user ? (
                   user.online_credit.length !== 0 ? (
@@ -141,23 +143,23 @@ const Credits = () => {
                             }
                           >
                             {el.status === "1"
-                              ? locale === "TUK"
+                              ? locale === "TKM"
                                 ? "Ugradyldy"
                                 : "Отправлено"
                               : el.status === "2"
-                              ? locale === "TUK"
+                              ? locale === "TKM"
                                 ? "Kabul edildi"
                                 : "Принята"
                               : el.status === "3"
-                              ? locale === "TUK"
+                              ? locale === "TKM"
                                 ? "Görülyar"
                                 : "На стадии рассмотрения"
                               : el.status === "4"
-                              ? locale === "TUK"
+                              ? locale === "TKM"
                                 ? "Tassyklandy"
                                 : "Утверждено"
                               : el.status === "5"
-                              ? locale === "TUK"
+                              ? locale === "TKM"
                                 ? "Ret edildi"
                                 : "Отказано"
                               : ""}
@@ -184,7 +186,7 @@ const Credits = () => {
                   ) : (
                     <tr>
                       <td>
-                        {locale === "TUK"
+                        {locale === "TKM"
                           ? "Tabşyrlan ýüzlenme ýok"
                           : "Заявок на кредиты нет"}
                       </td>
@@ -197,7 +199,7 @@ const Credits = () => {
                 ) : (
                   <tr>
                     <td>
-                      {locale === "TUK"
+                      {locale === "TKM"
                         ? "Tabşyrlan ýüzlenme ýok"
                         : "Заявок на кредиты нет"}
                     </td>

@@ -25,6 +25,16 @@ td {
   font-family: $font-family;
 }
 
+#back {
+  color: blue;
+  font-size: 1.6rem;
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 2rem 4rem;
+  border: 0.2rem solid #e5e5e5;
+}
+
 .container {
   max-width: 150rem;
   padding: 0 4rem;
@@ -34,6 +44,7 @@ td {
 body {
   min-height: 100vh;
   position: relative;
+  scroll-behavior: smooth;
 }
 
 button:disabled {

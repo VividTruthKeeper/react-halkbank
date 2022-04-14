@@ -1,6 +1,5 @@
 // IMPORT MODULES
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 
 // IMPORT COMPONENTS
 import Error from "../components/global/Error";
@@ -8,18 +7,12 @@ import Error from "../components/global/Error";
 const ErrorPage = () => {
   const lang = localStorage.getItem("userLanguage")
     ? localStorage.getItem("userLanguage")
-    : "TUK";
-  const navigate = useNavigate();
-  useEffect(() => {
-    setTimeout(() => {
-      navigate("/home");
-    }, 1900);
-  }, []);
+    : "TKM";
   return (
     <section className="success-page">
       <Error
         message={
-          lang === "TUK"
+          lang === "TKM"
             ? "Ýüzlenme ugradylmady"
             : "Не удалось отправить запрос"
         }

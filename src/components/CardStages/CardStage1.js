@@ -30,7 +30,7 @@ const CardStage1 = ({ setStage, data, setData, cardData, req, setReq }) => {
           setPrice(el.card_cost);
           setReq({
             ...req,
-            tuk: el.documents,
+            TKM: el.documents,
             rus: JSON.parse(el.translations[0].attribute_data).documents,
           });
         }
@@ -52,14 +52,14 @@ const CardStage1 = ({ setStage, data, setData, cardData, req, setReq }) => {
       <form>
         <div className="input-block">
           <label htmlFor="card">
-            {locale === "TUK"
+            {locale === "TKM"
               ? "Kartyň görnüşini saýlaň"
               : "Выберите вид карты"}
           </label>
           <CustomSelect
             items={
               cardData
-                ? locale !== "TUK"
+                ? locale !== "TKM"
                   ? cardData.data.map(
                       (el) => JSON.parse(el.translations[0].attribute_data).name
                     )
@@ -74,7 +74,7 @@ const CardStage1 = ({ setStage, data, setData, cardData, req, setReq }) => {
               setInputValid(e);
             }}
             eTarget={true}
-            placeholder={locale === "TUK" ? "Kartyň görnüşi" : "Вид карты"}
+            placeholder={locale === "TKM" ? "Kartyň görnüşi" : "Вид карты"}
             defaultValue={inputValid}
           />
         </div>
@@ -87,27 +87,27 @@ const CardStage1 = ({ setStage, data, setData, cardData, req, setReq }) => {
               <h2>
                 HalkBank -{" "}
                 {cardData
-                  ? locale !== "TUK"
+                  ? locale !== "TKM"
                     ? cardData.data.map((el) =>
                         el.id === id
                           ? JSON.parse(el.translations[0].attribute_data).name
                           : ""
                       )
                     : cardData.data.map((el) => (el.id === id ? el.name : ""))
-                  : locale === "TUK"
+                  : locale === "TKM"
                   ? "Aýlyk karty"
                   : "Зарплатная карта"}
               </h2>
               <h3>
                 {cardData
-                  ? locale !== "TUK"
+                  ? locale !== "TKM"
                     ? cardData.data.map((el) =>
                         el.id === id
                           ? JSON.parse(el.translations[0].attribute_data).text
                           : ""
                       )
                     : cardData.data.map((el) => (el.id === id ? el.text : ""))
-                  : locale === "TUK"
+                  : locale === "TKM"
                   ? "Müşderiniň bankymyzdan alan karz pul serişdeleri “Karz kartyna geçirilýär . Müşderi “Karz karty” bank karty üsti bilen ähli nagt däl hasaplaşyk töleglerini amala aşyrýar."
                   : "Банковская карта, на которую зачисляется заработная плата клиента. Открывается на основании договора между банком и предприятием. Эта карта предоставляет полный перечень услуг по безналичному платежу в терминалах, перевод денежных средств с одной зарплатной карты на другую, а также получению наличных денежных средств в банкоматах на территории Туркменистана."}
               </h3>
@@ -116,17 +116,39 @@ const CardStage1 = ({ setStage, data, setData, cardData, req, setReq }) => {
           <div className="cd-bottom">
             <div className="cd-bottom-content">
               <h3>
-                {locale === "TUK" ? "Kartyň möhleti" : "Срок действия карты"}
+                {locale === "TKM" ? "Kartyň möhleti" : "Срок действия карты"}
               </h3>
               <h2>
                 {cardData
-                  ? cardData.data.map((el) => (el.id === id ? el.term : ""))
-                  : "30"}{" "}
-                {locale === "TUK" ? "ýyl" : "лет"}
+                  ? cardData.data.map((el) => {
+                      if (el.id === id) {
+                        if (el.term === 1 || el.term === "1") {
+                          return `${el.term} ${
+                            locale === "TKM" ? "ýyl" : "год"
+                          }`;
+                        } else if (
+                          el.term === 2 ||
+                          el.term === "2" ||
+                          el.term === 3 ||
+                          el.term === "3" ||
+                          el.term === 4 ||
+                          el.term === "4"
+                        ) {
+                          return `${el.term} ${
+                            locale === "TKM" ? "ýyl" : "года"
+                          }`;
+                        } else {
+                          return `${el.term} ${
+                            locale === "TKM" ? "ýyl" : "лет"
+                          }`;
+                        }
+                      }
+                    })
+                  : "30"}
               </h2>
             </div>
             <div className="cd-bottom-content">
-              <h3>{locale === "TUK" ? "Göterim" : "Процентная ставка"}</h3>
+              <h3>{locale === "TKM" ? "Göterim" : "Процентная ставка"}</h3>
               <h2>
                 {" "}
                 {cardData
@@ -138,7 +160,7 @@ const CardStage1 = ({ setStage, data, setData, cardData, req, setReq }) => {
               </h2>
             </div>
             <div className="cd-bottom-content">
-              <h3>{locale === "TUK" ? "Kartyň bahasy" : "Стоимость карты"}</h3>
+              <h3>{locale === "TKM" ? "Kartyň bahasy" : "Стоимость карты"}</h3>
               <h2>
                 {" "}
                 {cardData
@@ -146,7 +168,7 @@ const CardStage1 = ({ setStage, data, setData, cardData, req, setReq }) => {
                       el.id === id ? el.card_cost : ""
                     )
                   : "23"}{" "}
-                {locale === "TUK" ? "manat" : "маната"}
+                {locale === "TKM" ? "manat" : "маната"}
               </h2>
             </div>
           </div>
@@ -162,7 +184,7 @@ const CardStage1 = ({ setStage, data, setData, cardData, req, setReq }) => {
             }}
           >
             <div>
-              <h3>{locale === "TUK" ? "Dowam et" : "Продолжить"}</h3>
+              <h3>{locale === "TKM" ? "Dowam et" : "Продолжить"}</h3>
               <div className="btn-img">
                 <img src={next} alt="logout" />
               </div>

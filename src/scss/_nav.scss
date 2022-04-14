@@ -19,6 +19,11 @@
     transition: all 0.3s ease;
   }
 
+  .cross {
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+
   .lines {
     left: 0;
     border-radius: 0.5rem;
@@ -47,6 +52,33 @@
   &.active {
     transform: rotate(90deg);
     transition: all 0.3s ease;
+
+    .cross {
+      width: 2rem;
+      height: 3rem;
+      position: relative;
+      opacity: 1;
+      transition: all 0.3s ease;
+
+      * {
+        width: 3.8rem;
+        height: 0.3rem;
+        position: absolute;
+        background-color: $base-green;
+        border-radius: 1rem;
+      }
+
+      .cross-1 {
+        top: 28%;
+        left: -22%;
+        transform: rotate(45deg);
+      }
+      .cross-2 {
+        top: 27%;
+        left: -17%;
+        transform: rotate(-45deg);
+      }
+    }
 
     &::after {
       opacity: 1;

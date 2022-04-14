@@ -28,7 +28,7 @@ const CardStage4 = ({ setStage, data, setData, req, setReq }) => {
       <form>
         <div className="cd-top-4">
           <h2>
-            {locale === "TUK"
+            {locale === "TKM"
               ? "Karz almak üçin ýüzlenmäni resmileşdirmek üçin talap edilýän resminamalary ýükläň"
               : "Для оформления заявки на получения кредита загрузите требуемые документы."}
           </h2>
@@ -40,7 +40,7 @@ const CardStage4 = ({ setStage, data, setData, req, setReq }) => {
           >
             <div className="data-title">
               <h4>
-                {locale === "TUK"
+                {locale === "TKM"
                   ? "Talaplar we resminamalar"
                   : "Требования и документы"}
               </h4>
@@ -56,7 +56,7 @@ const CardStage4 = ({ setStage, data, setData, req, setReq }) => {
               <div
                 className="text-block"
                 dangerouslySetInnerHTML={{
-                  __html: locale === "TUK" ? req.tuk : req.rus,
+                  __html: locale === "TKM" ? req.TKM : req.rus,
                 }}
               ></div>
             </div>
@@ -65,7 +65,7 @@ const CardStage4 = ({ setStage, data, setData, req, setReq }) => {
         <div className="cd-bottom-4">
           <div>
             <label htmlFor="file">
-              {locale === "TUK" ? "Faýl ýükläň" : "Загрузить файл"}
+              {locale === "TKM" ? "Faýl ýükläň" : "Загрузить файл"}
             </label>
             <input
               id="file"
@@ -119,7 +119,7 @@ const CardStage4 = ({ setStage, data, setData, req, setReq }) => {
                   setStage(3);
                 }}
               >
-                {locale === "TUK" ? "Yza" : "Назад"}
+                {locale === "TKM" ? "Yza" : "Назад"}
               </h3>
             </div>
           </button>
@@ -133,7 +133,7 @@ const CardStage4 = ({ setStage, data, setData, req, setReq }) => {
             }}
           >
             <div>
-              <h3>{locale === "TUK" ? "Dowam et" : "Продолжить"}</h3>
+              <h3>{locale === "TKM" ? "Dowam et" : "Продолжить"}</h3>
               <div className="btn-img">
                 <img src={next} alt="logout" />
               </div>

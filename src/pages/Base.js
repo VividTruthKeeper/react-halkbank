@@ -20,7 +20,7 @@ const Base = () => {
       <div className="container">
         <div className="cards-inner">
           <h2 className="cards-title">
-            {locale === "TUK" ? "Hoş geldiňiz" : "Добро пожаловать"},{" "}
+            {locale === "TKM" ? "Hoş geldiňiz" : "Добро пожаловать"},{" "}
             <span id="user">
               {user ? (
                 user.name ? (
@@ -38,10 +38,10 @@ const Base = () => {
               <tbody>
                 <tr className="table-head">
                   <th>ID</th>
-                  <th>{locale === "TUK" ? "Görnüşi" : "Тип"}</th>
-                  <th>{locale === "TUK" ? "Senesi" : "Дата"}</th>
-                  <th>{locale === "TUK" ? "Ýagdaýy" : "Статус"}</th>
-                  <th>{locale === "TUK" ? "Amal" : "Действие"}</th>
+                  <th>{locale === "TKM" ? "Görnüşi" : "Тип"}</th>
+                  <th>{locale === "TKM" ? "Senesi" : "Дата"}</th>
+                  <th>{locale === "TKM" ? "Ýagdaýy" : "Статус"}</th>
+                  <th>{locale === "TKM" ? "Amal" : "Действие"}</th>
                 </tr>
 
                 {user ? (
@@ -62,23 +62,23 @@ const Base = () => {
                             }
                           >
                             {el.status === "1"
-                              ? locale === "TUK"
+                              ? locale === "TKM"
                                 ? "Ugradyldy"
                                 : "Отправлено"
                               : el.status === "2"
-                              ? locale === "TUK"
+                              ? locale === "TKM"
                                 ? "Kabul edildi"
                                 : "Принята"
                               : el.status === "3"
-                              ? locale === "TUK"
+                              ? locale === "TKM"
                                 ? "Görülyar"
                                 : "На стадии рассмотрения"
                               : el.status === "4"
-                              ? locale === "TUK"
+                              ? locale === "TKM"
                                 ? "Tassyklandy"
                                 : "Утверждено"
                               : el.status === "5"
-                              ? locale === "TUK"
+                              ? locale === "TKM"
                                 ? "Ret edildi"
                                 : "Отказано"
                               : ""}
@@ -108,7 +108,7 @@ const Base = () => {
                     ) : (
                       <tr>
                         <td>
-                          {locale === "TUK"
+                          {locale === "TKM"
                             ? "Tabşyrlan ýüzlenme ýok"
                             : "Заявок нет"}
                         </td>
@@ -125,7 +125,7 @@ const Base = () => {
                   ) : (
                     <tr>
                       <td>
-                        {locale === "TUK"
+                        {locale === "TKM"
                           ? "Tabşyrlan ýüzlenme ýok"
                           : "Заявок на карты нет"}
                       </td>
@@ -155,23 +155,23 @@ const Base = () => {
                                 }
                               >
                                 {el.status === "1"
-                                  ? locale === "TUK"
+                                  ? locale === "TKM"
                                     ? "Ugradyldy"
                                     : "Отправлено"
                                   : el.status === "2"
-                                  ? locale === "TUK"
+                                  ? locale === "TKM"
                                     ? "Kabul edildi"
                                     : "Принята"
                                   : el.status === "3"
-                                  ? locale === "TUK"
+                                  ? locale === "TKM"
                                     ? "Görülyar"
                                     : "На стадии рассмотрения"
                                   : el.status === "4"
-                                  ? locale === "TUK"
+                                  ? locale === "TKM"
                                     ? "Kart çykaryldy"
                                     : "Карта выпущена"
                                   : el.status === "5"
-                                  ? locale === "TUK"
+                                  ? locale === "TKM"
                                     ? "Ret edildi"
                                     : "Отказано"
                                   : ""}

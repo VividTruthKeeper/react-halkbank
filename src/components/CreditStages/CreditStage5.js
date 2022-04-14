@@ -8,12 +8,15 @@ import next from "../../icons/next.svg";
 import arrow from "../../icons/arrow.svg";
 import next_reverse from "../../icons/next-reverse.svg";
 
-const CreditStage5 = ({ setStage, data, setData }) => {
+const CreditStage5 = ({ setStage, data, setData, creditData, id }) => {
   const [files, setFiles] = useState(data.file ? data.file : []);
   const { locale } = useContext(LanguageContext);
   const [btnEnabled, setBtnEnabled] = useState(false);
   const [dropdown, setDropdown] = useState(false);
-
+  const [req, setReq] = useState({
+    rus: "",
+    TKM: "",
+  });
   useEffect(() => {
     if (files.length > 0) {
       setBtnEnabled(true);
@@ -21,12 +24,26 @@ const CreditStage5 = ({ setStage, data, setData }) => {
       setBtnEnabled(false);
     }
   }, [files]);
+
+  useEffect(() => {
+    if (creditData) {
+      creditData.data.map((el) => {
+        if (el.id === id) {
+          setReq({
+            ...req,
+            TKM: el.documents,
+            rus: JSON.parse(el.translations[0].attribute_data).documents,
+          });
+        }
+      });
+    }
+  }, [creditData, id]);
   return (
     <section className="card-stage-4">
       <form>
         <div className="cd-top-4">
           <h2>
-            {locale === "TUK"
+            {locale === "TKM"
               ? "Karz almak üçin ýüzlenmäni resmileşdirmek üçin talap edilýän resminamalary ýükläň"
               : "Для оформления заявки на получения кредита загрузите требуемые документы."}
           </h2>
@@ -38,7 +55,7 @@ const CreditStage5 = ({ setStage, data, setData }) => {
           >
             <div className="data-title">
               <h4>
-                {locale === "TUK"
+                {locale === "TKM"
                   ? "Talaplar we resminamalar"
                   : "Требования и документы"}
               </h4>
@@ -51,16 +68,19 @@ const CreditStage5 = ({ setStage, data, setData }) => {
                 dropdown ? "data-dropdown docs active" : "data-dropdown docs"
               }
             >
-              <h5>Lorem ipsum dolor sit.</h5>
-              <h5 className="left right">Lorem ipsum dolor sit.</h5>
-              <h5>Lorem ipsum dolor sit.</h5>
+              <div
+                className="text-block"
+                dangerouslySetInnerHTML={{
+                  __html: locale === "TKM" ? req.TKM : req.rus,
+                }}
+              ></div>
             </div>
           </div>
         </div>
         <div className="cd-bottom-4">
           <div>
             <label htmlFor="file">
-              {locale === "TUK" ? "Faýl ýükläň" : "Загрузить файл"}
+              {locale === "TKM" ? "Faýl ýükläň" : "Загрузить файл"}
             </label>
             <input
               id="file"
@@ -99,7 +119,7 @@ const CreditStage5 = ({ setStage, data, setData }) => {
             : null}
         </ul>
         <p className="alert">
-          {locale === "TUK"
+          {locale === "TKM"
             ? "Hemme faýllar diňe görkezilen formatda bolmaly: "
             : "Все файлы должны быть следующих форматов: "}
           <span className="red">.jpg, .jpeg, .doc, .docx, .pdf, .png</span>
@@ -121,7 +141,7 @@ const CreditStage5 = ({ setStage, data, setData }) => {
                   setStage(4);
                 }}
               >
-                {locale === "TUK" ? "Yza" : "Назад"}
+                {locale === "TKM" ? "Yza" : "Назад"}
               </h3>
             </div>
           </button>
@@ -135,7 +155,7 @@ const CreditStage5 = ({ setStage, data, setData }) => {
             }}
           >
             <div>
-              <h3>{locale === "TUK" ? "Dowam et" : "Продолжить"}</h3>
+              <h3>{locale === "TKM" ? "Dowam et" : "Продолжить"}</h3>
               <div className="btn-img">
                 <img src={next} alt="logout" />
               </div>

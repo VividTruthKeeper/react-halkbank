@@ -66,25 +66,27 @@ const Recovery = () => {
       {error ? (
         <Error
           message={
-            locale === "TUK"
+            locale === "TKM"
               ? "Açar söz çalşylmady"
               : "Не удалось поменять пароль"
           }
+          setError={setError}
         />
       ) : null}
       {success ? (
         <Success
           message={
-            locale === "TUK"
+            locale === "TKM"
               ? "Açar söz çalşyldy!"
               : "Ваш пароль успешно изменен!"
           }
+          setSuccess={setSuccess}
         />
       ) : null}
       <Breadcrumb
         image={recovery}
         link={"/home/recovery"}
-        linkTitle={locale === "TUK" ? "Açar sözüni çalyşmak" : "Смена пароля"}
+        linkTitle={locale === "TKM" ? "Açar sözüni çalyşmak" : "Смена пароля"}
       />
       <div className="container">
         {isLoading ? <Loader /> : ""}
@@ -98,7 +100,7 @@ const Recovery = () => {
               >
                 <div className="cu-bottom p-recovery-title">
                   <h2>
-                    {locale === "TUK"
+                    {locale === "TKM"
                       ? "Açar sözüni çalyşmak"
                       : "Поменять пароля"}
                   </h2>
@@ -134,7 +136,7 @@ const Recovery = () => {
                         <img src={change} alt="logout" />
                       </div>
                       <h3>
-                        {locale === "TUK"
+                        {locale === "TKM"
                           ? "Ýatda sakla"
                           : "Сохранить изменения"}
                       </h3>
@@ -171,7 +173,7 @@ const Recovery = () => {
                           inputValid.email ? "pass-check" : "pass-check active"
                         }
                       >
-                        {locale === "TUK"
+                        {locale === "TKM"
                           ? "Nädogry email girizildi"
                           : "Введен неверный E-mail"}
                       </span>
@@ -182,11 +184,11 @@ const Recovery = () => {
                   <div className="input-block-outer">
                     <div className="input-block rel-block">
                       <label htmlFor="new-p">
-                        {locale === "TUK" ? "Täze açar söz" : "Новый пароль"}
+                        {locale === "TKM" ? "Täze açar söz" : "Новый пароль"}
                       </label>
                       <input
                         ref={inp1}
-                        autoComplete="false"
+                        autoComplete="true"
                         type={isPassword ? "password" : "text"}
                         id="new-p"
                         onChange={(e) => {
@@ -218,7 +220,7 @@ const Recovery = () => {
                             : "pass-check pass-check-margined active"
                         }
                       >
-                        {locale === "TUK"
+                        {locale === "TKM"
                           ? "Açar sözi  8 belgiden az bolmadyk we 15 belgiden kän bolmadyk we iň azyndan 1 san, 1 baş harp we 1 setir harp, 1 ýörite bellikden ybarat bolmalydyr. "
                           : "Пароль должен содержать не менее 1 цифры, 1 заглавной и 1 прописной буквы, 1 особого знака, и быть не менее 8 и не более 15 символов в длину."}
                       </span>
@@ -228,13 +230,13 @@ const Recovery = () => {
                   </div>
                   <div className="input-block">
                     <label htmlFor="confirm-p">
-                      {locale === "TUK"
+                      {locale === "TKM"
                         ? "Açar sözi gaýtalaň"
                         : "Повторите пароль"}
                     </label>
                     <input
                       ref={inp2}
-                      autoComplete="false"
+                      autoComplete="true"
                       type={isPassword ? "password" : "text"}
                       id="confirm-p"
                       onChange={(e) => {
@@ -250,7 +252,7 @@ const Recovery = () => {
                             : "pass-check active"
                         }
                       >
-                        {locale === "TUK"
+                        {locale === "TKM"
                           ? "Açar sözler gabat gelmeli"
                           : "Пароли должны совпадать"}
                       </span>
@@ -272,7 +274,7 @@ const Recovery = () => {
             </div>
           ) : (
             <h2>
-              {locale === "TUK"
+              {locale === "TKM"
                 ? "Açar sözüni çalyşmak üçin siziň akkaundyňyz aktiwleşdirilmeli. Az wagtdan gaýtadan synanşyp görüň."
                 : "Чтобы поменять пароль ваш аккаунт должен быть активирован. Пожалуйста, попробуйте позже"}
             </h2>

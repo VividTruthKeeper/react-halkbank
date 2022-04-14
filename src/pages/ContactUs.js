@@ -50,30 +50,32 @@ const ContactUs = () => {
       {error ? (
         <Error
           message={
-            locale === "TUK"
+            locale === "TKM"
               ? "Hat ugradylmady"
               : "Не удалось отправить сообщение"
           }
+          setError={setError}
         />
       ) : null}
       {success ? (
         <Success
           message={
-            locale === "TUK"
+            locale === "TKM"
               ? "Hat ugradyldy!"
               : "Ваше сообщение успешно отправлено!"
           }
+          setSuccess={setSuccess}
         />
       ) : null}
       <Breadcrumb
         image={mail}
         link={"/home/contact-us"}
-        linkTitle={locale === "TUK" ? "Hat ýazmak" : "Написать письмо"}
+        linkTitle={locale === "TKM" ? "Hat ýazmak" : "Написать письмо"}
       />
       <div className="container">
         <div className="contact-us-inner">
           <h2 className="cu-title">
-            {locale === "TUK" ? "Hat ýazmak" : "Написать письмо"}
+            {locale === "TKM" ? "Hat ýazmak" : "Написать письмо"}
           </h2>
           <form
             onSubmit={(e) => {
@@ -86,17 +88,17 @@ const ContactUs = () => {
               <div className="form-wrapper">
                 <div className="input-block">
                   <label htmlFor="topic">
-                    {locale === "TUK" ? "Hatyň temasy" : "Тема письма"}
+                    {locale === "TKM" ? "Hatyň temasy" : "Тема письма"}
                   </label>
                   <CustomSelect
                     placeholder={
-                      locale === "TUK"
+                      locale === "TKM"
                         ? "Hatyň temasyny saýlaň"
                         : "Выберите тему письма"
                     }
                     name={"topic"}
                     items={
-                      locale === "TUK"
+                      locale === "TKM"
                         ? ["Plastik kartlar", "Karzlar"]
                         : ["Пластиковые карты", "Кредиты"]
                     }
@@ -110,14 +112,14 @@ const ContactUs = () => {
                 </div>
                 <div className="input-block">
                   <label htmlFor="msg">
-                    {locale === "TUK" ? "Hat" : "Сообщение"}
+                    {locale === "TKM" ? "Hat" : "Сообщение"}
                   </label>
                   <textarea
                     name="msg"
                     id="msg"
                     rows="10"
                     placeholder={
-                      locale === "TUK" ? "Siziň hatyňyz" : "Ваше сообщение"
+                      locale === "TKM" ? "Siziň hatyňyz" : "Ваше сообщение"
                     }
                     onChange={(e) => {
                       if (e.target.value !== "") {
@@ -163,9 +165,6 @@ const ContactUs = () => {
                         },
                         () => {
                           setSuccess(true);
-                          setTimeout(() => {
-                            setSuccess(false);
-                          }, 2000);
                         },
                         setError
                       );
@@ -173,7 +172,7 @@ const ContactUs = () => {
                   >
                     <div>
                       <h3>
-                        {locale === "TUK" ? "Haty ugrat" : "Отправить письмо"}
+                        {locale === "TKM" ? "Haty ugrat" : "Отправить письмо"}
                       </h3>
                       <div className="btn-img">
                         <img src={send} alt="logout" />

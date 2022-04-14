@@ -19,7 +19,7 @@ const Breadcrumb = ({ image, link, linkTitle }) => {
             <div className="br-image">
               <img src={home} alt="home" />
             </div>
-            <span>{locale === "TUK" ? "Baş sahypa" : "Главная"}</span>
+            <span>{locale === "TKM" ? "Baş sahypa" : "Главная"}</span>
           </Link>
           {image ? <h6>/</h6> : ""}
           {link ? (

@@ -21,7 +21,7 @@ const TitleGrid = () => {
     <section className="titlegrid">
       <div className="titlegrid-inner">
         <h1>
-          {locale === "TUK" ? translation.tuk.title : translation.rus.title}
+          {locale === "TKM" ? translation.TKM.title : translation.rus.title}
         </h1>
         <ul>
           <li>
@@ -32,7 +32,7 @@ const TitleGrid = () => {
               <h3>
                 {locale === "РУС"
                   ? translation.rus.rules[0]
-                  : translation.tuk.rules[0]}
+                  : translation.TKM.rules[0]}
               </h3>
             </div>
           </li>
@@ -44,7 +44,7 @@ const TitleGrid = () => {
               <h3>
                 {locale === "РУС"
                   ? translation.rus.rules[1]
-                  : translation.tuk.rules[1]}
+                  : translation.TKM.rules[1]}
               </h3>
             </div>
           </li>
@@ -56,7 +56,7 @@ const TitleGrid = () => {
               <h3>
                 {locale === "РУС"
                   ? translation.rus.rules[2]
-                  : translation.tuk.rules[2]}
+                  : translation.TKM.rules[2]}
               </h3>
             </div>
           </li>
@@ -68,7 +68,7 @@ const TitleGrid = () => {
               <h3>
                 {locale === "РУС"
                   ? translation.rus.rules[3]
-                  : translation.tuk.rules[3]}
+                  : translation.TKM.rules[3]}
               </h3>
             </div>
           </li>
@@ -80,7 +80,7 @@ const TitleGrid = () => {
               <h3>
                 {locale === "РУС"
                   ? translation.rus.rules[4]
-                  : translation.tuk.rules[4]}
+                  : translation.TKM.rules[4]}
               </h3>
             </div>
           </li>
@@ -92,7 +92,7 @@ const TitleGrid = () => {
               <h3>
                 {locale === "РУС"
                   ? translation.rus.rules[5]
-                  : translation.tuk.rules[5]}
+                  : translation.TKM.rules[5]}
               </h3>
             </div>
           </li>

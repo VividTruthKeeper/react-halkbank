@@ -24,7 +24,6 @@ const Cards = () => {
   const [loader, setLoader] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [stage, setStage] = useState(1);
-  console.log(user);
   useEffect(() => {
     if (modalOpen) {
       document.body.style.overflowY = "hidden";
@@ -37,25 +36,27 @@ const Cards = () => {
       {error ? (
         <Error
           message={
-            locale === "TUK"
+            locale === "TKM"
               ? "Ýüzlenme ugradylmady"
               : "Не удалось отправить запрос"
           }
+          setError={setError}
         />
       ) : null}
       {success ? (
         <Success
           message={
-            locale === "TUK"
+            locale === "TKM"
               ? "Ýüzlenme ugradyldy!"
               : "Ваш запрос успешно отправлен!"
           }
+          setSuccess={setSuccess}
         />
       ) : null}
       <Breadcrumb
         image={card}
         link={"/home/cards"}
-        linkTitle={locale === "TUK" ? "Plastik kartlar" : "Пластиковые карты"}
+        linkTitle={locale === "TKM" ? "Plastik kartlar" : "Пластиковые карты"}
       />
       <ModalForm
         setModalOpen={setModalOpen}
@@ -72,7 +73,7 @@ const Cards = () => {
         <div className="cards-inner">
           <div className="card-title">
             <h2 className="cards-title">
-              {locale === "TUK"
+              {locale === "TKM"
                 ? "Kart almak üçin onlaýn-ýüzlenme"
                 : "Онлайн-заявка для получения карты"}
             </h2>
@@ -88,7 +89,7 @@ const Cards = () => {
                 <img src={add} alt="add" />
               </div>
               <h3>
-                {locale === "TUK" ? "Ýüzlenme doldurmak" : "Заполнить заявку"}
+                {locale === "TKM" ? "Ýüzlenme doldurmak" : "Заполнить заявку"}
               </h3>
             </button>
           </div>
@@ -97,10 +98,10 @@ const Cards = () => {
               <tbody>
                 <tr className="table-head">
                   <th>ID</th>
-                  <th>{locale === "TUK" ? "Görnüşi" : "Тип"}</th>
-                  <th>{locale === "TUK" ? "Senesi" : "Дата"}</th>
-                  <th>{locale === "TUK" ? "Ýagdaýy" : "Статус"}</th>
-                  <th>{locale === "TUK" ? "Amal" : "Действие"}</th>
+                  <th>{locale === "TKM" ? "Görnüşi" : "Тип"}</th>
+                  <th>{locale === "TKM" ? "Senesi" : "Дата"}</th>
+                  <th>{locale === "TKM" ? "Ýagdaýy" : "Статус"}</th>
+                  <th>{locale === "TKM" ? "Amal" : "Действие"}</th>
                 </tr>
                 {user ? (
                   user.online_card.length !== 0 ? (
@@ -121,23 +122,23 @@ const Cards = () => {
                               }
                             >
                               {el.status === "1"
-                                ? locale === "TUK"
+                                ? locale === "TKM"
                                   ? "Ugradyldy"
                                   : "Отправлено"
                                 : el.status === "2"
-                                ? locale === "TUK"
+                                ? locale === "TKM"
                                   ? "Kabul edildi"
                                   : "Принята"
                                 : el.status === "3"
-                                ? locale === "TUK"
+                                ? locale === "TKM"
                                   ? "Görülyar"
                                   : "На стадии рассмотрения"
                                 : el.status === "4"
-                                ? locale === "TUK"
+                                ? locale === "TKM"
                                   ? "Kart çykaryldy"
                                   : "Карта выпущена"
                                 : el.status === "5"
-                                ? locale === "TUK"
+                                ? locale === "TKM"
                                   ? "Ret edildi"
                                   : "Отказано"
                                 : ""}
@@ -165,7 +166,7 @@ const Cards = () => {
                   ) : (
                     <tr>
                       <td>
-                        {locale === "TUK"
+                        {locale === "TKM"
                           ? "Tabşyrlan ýüzlenme ýok"
                           : "Заявок на карты нет"}
                       </td>
@@ -178,7 +179,7 @@ const Cards = () => {
                 ) : (
                   <tr>
                     <td>
-                      {locale === "TUK"
+                      {locale === "TKM"
                         ? "Tabşyrlan ýüzlenme ýok"
                         : "Заявок на карты нет"}
                     </td>

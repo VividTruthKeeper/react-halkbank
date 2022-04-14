@@ -58,7 +58,7 @@ const SignForm = ({
         }}
       >
         <div className="sign-top">
-          <h2>{locale === "TUK" ? "Hasaba gir" : "Вход"}</h2>
+          <h2>{locale === "TKM" ? "Hasaba gir" : "Вход"}</h2>
         </div>
         <div className="sign-mid">
           <div className="input-block">
@@ -149,7 +149,7 @@ const SignForm = ({
                 setRecoveryOpen(true);
               }}
             >
-              {locale === "TUK" ? "Açar sözüni unutdym" : "Забыли пароль?"}
+              {locale === "TKM" ? "Açar sözüni unutdym" : "Забыли пароль?"}
             </h3>
           </div>
         </div>

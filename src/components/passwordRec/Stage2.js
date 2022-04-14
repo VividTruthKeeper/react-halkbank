@@ -41,15 +41,15 @@ const Stage2 = ({ setRecoveryOpen, setRecStage, setLoader, setSuccess }) => {
         }}
       >
         <h2 className="form-title">
-          {locale === "TUK" ? "Täze açar sözi" : "Новый пароль"}
+          {locale === "TKM" ? "Täze açar sözi" : "Новый пароль"}
         </h2>
         <div className="reg-input-block rec-input">
           <label htmlFor="code">
-            {locale === "TUK" ? "Işjeňleşdirme kody" : "Код активации"}
+            {locale === "TKM" ? "Işjeňleşdirme kody" : "Код активации"}
             <span>*</span>
           </label>
           <input
-            autoComplete="false"
+            autoComplete="true"
             type="text"
             id="code"
             name="code"
@@ -61,7 +61,7 @@ const Stage2 = ({ setRecoveryOpen, setRecStage, setLoader, setSuccess }) => {
           />
           {error ? (
             <span className={"pass-check active"}>
-              {locale === "TUK"
+              {locale === "TKM"
                 ? "Nädogry kod girizildi"
                 : "Введен неверный код"}
             </span>
@@ -71,11 +71,11 @@ const Stage2 = ({ setRecoveryOpen, setRecStage, setLoader, setSuccess }) => {
         </div>
         <div className="reg-input-block rec-input">
           <label htmlFor="new-pass">
-            {locale === "TUK" ? "Açar sözüni giriziň" : "Введите пароль"}
+            {locale === "TKM" ? "Açar sözüni giriziň" : "Введите пароль"}
             <span>*</span>
           </label>
           <input
-            autoComplete="false"
+            autoComplete="true"
             type="password"
             id="new-pass"
             name="new-pass"
@@ -101,7 +101,7 @@ const Stage2 = ({ setRecoveryOpen, setRecStage, setLoader, setSuccess }) => {
                 inputValid.newPassword ? "pass-check" : "pass-check active"
               }
             >
-              {locale === "TUK"
+              {locale === "TKM"
                 ? "Açar sözi  8 belgiden az bolmadyk we 15 belgiden kän bolmadyk we iň azyndan 1 san, 1 baş harp we 1 setir harp, 1 ýörite bellikden ybarat bolmalydyr. "
                 : "Пароль должен содержать не менее 1 цифры, 1 заглавной и 1 прописной буквы, 1 особого знака, и быть не менее 8 и не более 15 символов в длину."}
             </span>
@@ -111,11 +111,11 @@ const Stage2 = ({ setRecoveryOpen, setRecStage, setLoader, setSuccess }) => {
         </div>
         <div className="reg-input-block rec-input">
           <label htmlFor="confirm">
-            {locale === "TUK" ? "Açar sözüni gaýtalaň" : "Повторите пароль"}
+            {locale === "TKM" ? "Açar sözüni gaýtalaň" : "Повторите пароль"}
             <span>*</span>
           </label>
           <input
-            autoComplete="false"
+            autoComplete="true"
             type="password"
             id="confirm"
             name="confirm"
@@ -133,7 +133,7 @@ const Stage2 = ({ setRecoveryOpen, setRecStage, setLoader, setSuccess }) => {
                   : "pass-check active"
               }
             >
-              {locale === "TUK"
+              {locale === "TKM"
                 ? "Açar sözler gabat gelmeli"
                 : "Пароли должны совпадать"}
             </span>
@@ -162,7 +162,7 @@ const Stage2 = ({ setRecoveryOpen, setRecStage, setLoader, setSuccess }) => {
             }}
           >
             <div>
-              <h3>{locale === "TUK" ? "Üýtget" : "Изменить"}</h3>
+              <h3>{locale === "TKM" ? "Üýtget" : "Изменить"}</h3>
               <div className="btn-img">
                 <img src={Next} alt="next" />
               </div>

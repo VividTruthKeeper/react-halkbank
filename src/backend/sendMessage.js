@@ -11,15 +11,12 @@ export const sendMessage = (
 ) => {
   axios
     .post(`${url}?token=${token}`, data)
-    .then((res) => {
+    .then(() => {
       stateSetter(false);
       loader();
     })
     .catch(() => {
       stateSetter(false);
       setError(true);
-      setTimeout(() => {
-        setError(false);
-      }, 2000);
     });
 };

@@ -30,11 +30,11 @@ const Stage1 = ({ setRecStage }) => {
         }}
       >
         <h2 className="form-title">
-          {locale === "TUK" ? "Açar sözüni dikeltmek" : "Восстановление пароля"}
+          {locale === "TKM" ? "Açar sözüni dikeltmek" : "Восстановление пароля"}
         </h2>
         <div className="reg-input-block rec-input">
           <label htmlFor="mail">
-            {locale === "TUK" ? "Email" : "Электронная почта"}
+            {locale === "TKM" ? "Email" : "Электронная почта"}
             <span>*</span>
           </label>
           <input
@@ -61,7 +61,7 @@ const Stage1 = ({ setRecStage }) => {
           />
           {validate || error ? (
             <span className={!error ? "pass-check" : "pass-check active"}>
-              {locale === "TUK"
+              {locale === "TKM"
                 ? "Nädogry email girizildi"
                 : "Введен неверный email"}
             </span>
@@ -83,7 +83,7 @@ const Stage1 = ({ setRecStage }) => {
             }}
           >
             <div>
-              <h3>{locale === "TUK" ? "Ugratmak" : "Отправить"}</h3>
+              <h3>{locale === "TKM" ? "Ugratmak" : "Отправить"}</h3>
               <div className="btn-img">
                 <img src={Next} alt="next" />
               </div>

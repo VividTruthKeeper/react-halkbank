@@ -51,6 +51,10 @@ const LoggedNav = ({ sideOpen, setSideOpen }) => {
                 <div className="lines line-1"></div>
                 <div className="lines line-2"></div>
                 <div className="lines line-3"></div>
+                <div className="cross">
+                  <div className="cross-1"></div>
+                  <div className="cross-2"></div>
+                </div>
               </div>
             </div>
             <Link to="/" className="nav-logo">
@@ -104,7 +108,7 @@ const LoggedNav = ({ sideOpen, setSideOpen }) => {
                       localStorage.setItem("userLanguage", e.target.innerText);
                     }}
                   >
-                    TUK
+                    TKM
                   </li>
                 </ul>
               </li>
@@ -120,18 +124,18 @@ const LoggedNav = ({ sideOpen, setSideOpen }) => {
                 <ul>
                   <li>
                     <Link to="/home/profile">
-                      {locale === "TUK"
+                      {locale === "TKM"
                         ? "Profiliň maglumaty"
                         : "Данные профиля"}
                     </Link>
                   </li>
-                  {/* <li>
+                  <li>
                     <Link to="/home/recovery">
-                      {locale === "TUK"
+                      {locale === "TKM"
                         ? "Açar sözüni çalyşmak"
                         : "Смена пароля"}
                     </Link>
-                  </li> */}
+                  </li>
                   <li>
                     <button
                       type="button"
@@ -141,7 +145,7 @@ const LoggedNav = ({ sideOpen, setSideOpen }) => {
                         setUser(null);
                       }}
                     >
-                      {locale === "TUK" ? "Çykmak" : "Выход"}
+                      {locale === "TKM" ? "Çykmak" : "Выход"}
                     </button>
                   </li>
                 </ul>

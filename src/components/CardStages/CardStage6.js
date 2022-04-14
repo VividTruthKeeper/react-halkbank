@@ -34,37 +34,37 @@ const CardStage6 = ({
       <div className="cd-6-top">
         <ul className="cd-6-list">
           <li>
-            <p>{locale === "TUK" ? "Familiýasy" : "Фамилия"}:</p>
+            <p>{locale === "TKM" ? "Familiýasy" : "Фамилия"}:</p>
             <h4>{data.surname ? data.surname : "-"}</h4>
           </li>
           <li>
-            <p>{locale === "TUK" ? "Ady" : "Имя"}:</p>
+            <p>{locale === "TKM" ? "Ady" : "Имя"}:</p>
             <h4>{data.name ? data.name : "-"}</h4>
           </li>
           <li>
-            <p>{locale === "TUK" ? "Atasynyň ady" : "Отчество"}:</p>
+            <p>{locale === "TKM" ? "Atasynyň ady" : "Отчество"}:</p>
             <h4>{data.middlename ? data.middlename : "-"}</h4>
           </li>
           <li>
-            <p>{locale === "TUK" ? "Doglan senesi" : "Дата рождения"}:</p>
+            <p>{locale === "TKM" ? "Doglan senesi" : "Дата рождения"}:</p>
             <h4>{data.birthdate ? reformatDate(data.birthdate) : "-"}</h4>
           </li>
           <li>
-            <p>{locale === "TUK" ? "Mobil telefon" : "Мобильный телефон"}:</p>
+            <p>{locale === "TKM" ? "Mobil telefon" : "Мобильный телефон"}:</p>
             <h4>{data.phone_number ? data.phone_number : "-"}</h4>
           </li>
           <li>
-            <p>{locale === "TUK" ? "Öý telefon" : "Домашний телефон"}:</p>
+            <p>{locale === "TKM" ? "Öý telefon" : "Домашний телефон"}:</p>
             <h4>{data.home_phone_number ? data.home_phone_number : "-"}</h4>
           </li>
           <li>
-            <p>{locale === "TUK" ? "Email" : "Эл. адрес"}:</p>
+            <p>{locale === "TKM" ? "Email" : "Эл. адрес"}:</p>
             <h4>{data.email ? data.email : "-"}</h4>
           </li>
           <li>
-            <p>{locale === "TUK" ? "SMS-birikdirme" : "SMS - подключение"}:</p>
+            <p>{locale === "TKM" ? "SMS-birikdirme" : "SMS - подключение"}:</p>
             <h4>
-              {locale === "TUK"
+              {locale === "TKM"
                 ? data.sms_notification
                   ? "Hawa"
                   : "Ýok"
@@ -74,12 +74,12 @@ const CardStage6 = ({
             </h4>
           </li>
           <li>
-            <p>{locale === "TUK" ? "Pasportyň seriýasy" : "Серия паспорта"}:</p>
+            <p>{locale === "TKM" ? "Pasportyň seriýasy" : "Серия паспорта"}:</p>
             <h4>{data.passport_series ? data.passport_series : "-"}</h4>
           </li>
           <li>
             <p>
-              {locale === "TUK"
+              {locale === "TKM"
                 ? "Pasport kim tarapyndan berildi"
                 : "Кем выдан паспорт"}
               :
@@ -87,20 +87,20 @@ const CardStage6 = ({
             <h4>{data.passport_by ? data.passport_by : "-"}</h4>
           </li>
           <li>
-            <p>{locale === "TUK" ? "Ýaşaýan salgysy" : "Адрес прописки"}:</p>
+            <p>{locale === "TKM" ? "Ýaşaýan salgysy" : "Адрес прописки"}:</p>
             <h4>{data.place_of_residence ? data.place_of_residence : "-"}</h4>
           </li>
           <li>
-            <p>{locale === "TUK" ? "Welaýat" : "Регион"}:</p>
+            <p>{locale === "TKM" ? "Welaýat" : "Регион"}:</p>
             <h4>{data.region ? data.region : "-"}</h4>
           </li>
           <li>
-            <p>{locale === "TUK" ? "Filial" : "Филиал"}:</p>
+            <p>{locale === "TKM" ? "Filial" : "Филиал"}:</p>
             <h4>{data.branch ? data.branch : "-"}</h4>
           </li>
           <li>
             <p>
-              {locale === "TUK"
+              {locale === "TKM"
                 ? "Banka gelmek gününi saýlaň "
                 : "Дата прихода в банк"}
               :
@@ -112,11 +112,11 @@ const CardStage6 = ({
             </h4>
           </li>
           <li>
-            <p>{locale === "TUK" ? "Saýlanan wagt" : "Выбранное время"}:</p>
+            <p>{locale === "TKM" ? "Saýlanan wagt" : "Выбранное время"}:</p>
             <h4>{data.selected_time ? data.selected_time : "-"}</h4>
           </li>
           <li>
-            <p>{locale === "TUK" ? "Gizlin söz" : "Кодовое слово"}:</p>
+            <p>{locale === "TKM" ? "Gizlin söz" : "Кодовое слово"}:</p>
             <h4>{data.the_codeword ? data.the_codeword : "-"}</h4>
           </li>
         </ul>
@@ -138,7 +138,7 @@ const CardStage6 = ({
                 setStage(4);
               }}
             >
-              {locale === "TUK" ? "Redaktirlemek" : "Редактировать"}
+              {locale === "TKM" ? "Redaktirlemek" : "Редактировать"}
             </h3>
           </div>
         </button>
@@ -152,7 +152,7 @@ const CardStage6 = ({
           }}
         >
           <div>
-            <h3>{locale === "TUK" ? "Tassyklaýaryn" : "Подтверждаю"}</h3>
+            <h3>{locale === "TKM" ? "Tassyklaýaryn" : "Подтверждаю"}</h3>
             <div className="btn-img">
               <img src={next} alt="logout" />
             </div>

@@ -33,71 +33,71 @@ const CreditStage6 = ({
       <div className="cd-6-top">
         <ul className="cd-6-list">
           <li>
-            <p>{locale === "TUK" ? "Familiýasy" : "Фамилия"}:</p>
+            <p>{locale === "TKM" ? "Familiýasy" : "Фамилия"}:</p>
             <h4>{data.surname ? data.surname : "-"}</h4>
           </li>
           <li>
-            <p>{locale === "TUK" ? "Ady" : "Имя"}:</p>
+            <p>{locale === "TKM" ? "Ady" : "Имя"}:</p>
             <h4>{data.name ? data.name : "-"}</h4>
           </li>
           <li>
-            <p>{locale === "TUK" ? "Atasynyň ady" : "Отчество"}:</p>
+            <p>{locale === "TKM" ? "Atasynyň ady" : "Отчество"}:</p>
             <h4>{data.fathers ? data.fathers : "-"}</h4>
           </li>
           <li>
-            <p>{locale === "TUK" ? "Doglan senesi" : "Дата рождения"}:</p>
+            <p>{locale === "TKM" ? "Doglan senesi" : "Дата рождения"}:</p>
             <h4>{data.birth ? reformatDate(data.birth) : "-"}</h4>
           </li>
           <li>
-            <p>{locale === "TUK" ? "Mobil telefon" : "Мобильный телефон"}:</p>
+            <p>{locale === "TKM" ? "Mobil telefon" : "Мобильный телефон"}:</p>
             <h4>{data.mobile ? data.mobile : "-"}</h4>
           </li>
           <li>
-            <p>{locale === "TUK" ? "Öý telefon" : "Домашний телефон"}:</p>
+            <p>{locale === "TKM" ? "Öý telefon" : "Домашний телефон"}:</p>
             <h4>{data.home ? data.home : "-"}</h4>
           </li>
           <li>
-            <p>{locale === "TUK" ? "Email" : "Эл. адрес"}:</p>
+            <p>{locale === "TKM" ? "Email" : "Эл. адрес"}:</p>
             <h4>{data.email ? data.email : "-"}</h4>
           </li>
           <li>
-            <p>{locale === "TUK" ? "Pasportyň seriýasy" : "Серия паспорта"}:</p>
+            <p>{locale === "TKM" ? "Pasportyň seriýasy" : "Серия паспорта"}:</p>
             <h4>{data.passport ? data.passport : "-"}</h4>
           </li>
           <li>
             <p>
-              {locale === "TUK" ? "Кем выдан паспорт" : "Pasportyň berlen ýeri"}
+              {locale === "TKM" ? "Кем выдан паспорт" : "Pasportyň berlen ýeri"}
               :
             </p>
             <h4>{data.p_address ? data.p_address : "-"}</h4>
           </li>
           <li>
-            <p>{locale === "TUK" ? "Ýaşaýan salgysy" : "Адрес прописки"}:</p>
+            <p>{locale === "TKM" ? "Ýaşaýan salgysy" : "Адрес прописки"}:</p>
             <h4>{data.address ? data.address : "-"}</h4>
           </li>
           <li>
-            <p>{locale === "TUK" ? "Welaýat" : "Регион"}:</p>
+            <p>{locale === "TKM" ? "Welaýat" : "Регион"}:</p>
             <h4>{data.region ? data.region : "-"}</h4>
           </li>
           <li>
-            <p>{locale === "TUK" ? "Filial" : "Филиал"}:</p>
+            <p>{locale === "TKM" ? "Filial" : "Филиал"}:</p>
             <h4>{data.branch ? data.branch : "-"}</h4>
           </li>
           <li>
-            <p>{locale === "TUK" ? "Iş ýeri" : "Место работы"}:</p>
+            <p>{locale === "TKM" ? "Iş ýeri" : "Место работы"}:</p>
             <h4>{data.workplace ? data.workplace : "-"}</h4>
           </li>
           <li>
-            <p>{locale === "TUK" ? "Aýlyk haky" : "Сумма зарплаты"}:</p>
+            <p>{locale === "TKM" ? "Aýlyk haky" : "Сумма зарплаты"}:</p>
             <h4>{data.salary ? data.salary : "-"}</h4>
           </li>
           <li>
-            <p>{locale === "TUK" ? "Wezipesi" : "Должность"}:</p>
+            <p>{locale === "TKM" ? "Wezipesi" : "Должность"}:</p>
             <h4>{data.position ? data.position : "-"}</h4>
           </li>
           <li>
             <p>
-              {locale === "TUK"
+              {locale === "TKM"
                 ? "Soňky iş ýeri boýunça tejribe"
                 : "Стаж с последнего места работы"}
               :
@@ -122,7 +122,7 @@ const CreditStage6 = ({
                 setStage(5);
               }}
             >
-              {locale === "TUK" ? "Redaktirlemek" : "Редактировать"}
+              {locale === "TKM" ? "Redaktirlemek" : "Редактировать"}
             </h3>
           </div>
         </button>
@@ -139,7 +139,6 @@ const CreditStage6 = ({
               () => {
                 setSuccess(true);
                 setTimeout(() => {
-                  setSuccess(false);
                   getUserInfo(getUrl, token, setUser, () => null);
                 }, 2000);
               },
@@ -149,7 +148,7 @@ const CreditStage6 = ({
           }}
         >
           <div>
-            <h3>{locale === "TUK" ? "Tassyklaýaryn" : "Подтверждаю"}</h3>
+            <h3>{locale === "TKM" ? "Tassyklaýaryn" : "Подтверждаю"}</h3>
             <div className="btn-img">
               <img src={next} alt="logout" />
             </div>

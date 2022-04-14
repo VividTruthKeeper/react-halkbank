@@ -58,11 +58,11 @@ const CreditStage2 = ({ setStage, data, setData, creditData, id }) => {
       <form>
         <div className="cs-2-left">
           <h2 className="cs-2-title">
-            {locale === "TUK" ? "Karzyň kalkulýatory" : "Калькулятор кредита"}
+            {locale === "TKM" ? "Karzyň kalkulýatory" : "Калькулятор кредита"}
           </h2>
           <div className="input-block">
             <label htmlFor="sum">
-              {locale === "TUK" ? "Karzyň möçberi" : "Сумма кредита"}
+              {locale === "TKM" ? "Karzyň möçberi" : "Сумма кредита"}
             </label>
             <div className="cs-2-input">
               <div className="input-data">
@@ -101,11 +101,11 @@ const CreditStage2 = ({ setStage, data, setData, creditData, id }) => {
           </div>
           <div className="credit-term input-block">
             <label>
-              {locale === "TUK" ? "Karzyň möhleti" : "Срок кредита"}
+              {locale === "TKM" ? "Karzyň möhleti" : "Срок кредита"}
             </label>
             <div className="term-inputs">
               <label htmlFor="term2" className={radio === 1 ? "active" : ""}>
-                1 {locale === "TUK" ? "ýyl" : "год"}
+                1 {locale === "TKM" ? "ýyl" : "год"}
                 <input
                   type="radio"
                   name="term"
@@ -118,7 +118,7 @@ const CreditStage2 = ({ setStage, data, setData, creditData, id }) => {
                 />
               </label>
               <label htmlFor="term3" className={radio === 2 ? "active" : ""}>
-                2 {locale === "TUK" ? "ýyl" : "год"}
+                2 {locale === "TKM" ? "ýyl" : "год"}
                 <input
                   type="radio"
                   name="term"
@@ -131,7 +131,7 @@ const CreditStage2 = ({ setStage, data, setData, creditData, id }) => {
                 />
               </label>
               <label htmlFor="term4" className={radio === 3 ? "active" : ""}>
-                3 {locale === "TUK" ? "ýyl" : "года"}
+                3 {locale === "TKM" ? "ýyl" : "года"}
                 <input
                   type="radio"
                   name="term"
@@ -162,7 +162,7 @@ const CreditStage2 = ({ setStage, data, setData, creditData, id }) => {
                     setStage(1);
                   }}
                 >
-                  {locale === "TUK" ? "Yza" : "Назад"}
+                  {locale === "TKM" ? "Yza" : "Назад"}
                 </h3>
               </div>
             </button>
@@ -175,7 +175,7 @@ const CreditStage2 = ({ setStage, data, setData, creditData, id }) => {
               }}
             >
               <div>
-                <h3>{locale === "TUK" ? "Dowam et" : "Продолжить"}</h3>
+                <h3>{locale === "TKM" ? "Dowam et" : "Продолжить"}</h3>
                 <div className="btn-img">
                   <img src={next} alt="logout" />
                 </div>
@@ -190,7 +190,7 @@ const CreditStage2 = ({ setStage, data, setData, creditData, id }) => {
             </div>
             <div className="cs-2-right-top">
               <h6>
-                {locale === "TUK" ? "Her aý tölegi" : "Ежемесячный платеж"}
+                {locale === "TKM" ? "Her aý tölegi" : "Ежемесячный платеж"}
               </h6>
               <div className="payment">
                 {/* <div
@@ -251,21 +251,21 @@ const CreditStage2 = ({ setStage, data, setData, creditData, id }) => {
               </div>
               <div className="percent">
                 <h6>
-                  {locale === "TUK" ? "Göterim töleg" : "Процентная ставка"}
+                  {locale === "TKM" ? "Göterim töleg" : "Процентная ставка"}
                 </h6>
                 <h5>{bet} %</h5>
               </div>
             </div>
             <div className="cs-2-right-middle">
               <div className="cs-2-right-middle-content">
-                <h6>{locale === "TUK" ? "Pul ýygymy" : "Процентный платеж"}</h6>
+                <h6>{locale === "TKM" ? "Pul ýygymy" : "Процентный платеж"}</h6>
                 <h5>
                   {(((inputValue * (bet / 100)) / 365) * 30).toFixed(2)} TMT
                 </h5>
               </div>
               <div className="cs-2-right-middle-content">
                 <h6>
-                  {locale === "TUK"
+                  {locale === "TKM"
                     ? "Karzyň esasy bergisiniň töleg möçberi:"
                     : "Платеж для погашения основной суммы"}
                   :
@@ -275,7 +275,7 @@ const CreditStage2 = ({ setStage, data, setData, creditData, id }) => {
             </div>
             <div className="cs-2-right-bottom">
               <h6>
-                {locale === "TUK"
+                {locale === "TKM"
                   ? "Karz almak üçin bolmaly aýlyk zähmet haky"
                   : "Необходимая заработная плата для кредита"}
                 :

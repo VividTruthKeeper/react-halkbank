@@ -1,7 +1,7 @@
 export const branchData = () => {
   return {
     regions: {
-      TUK: ["Aşgabat şäheri", "Ahal", "Balkan", "Daşoguz", "Lebap", "Mary"],
+      TKM: ["Aşgabat şäheri", "Ahal", "Balkan", "Daşoguz", "Lebap", "Mary"],
       RUS: [
         "Город Ашхабад",
         "Ахалский регион",
@@ -12,7 +12,7 @@ export const branchData = () => {
       ],
     },
     Ashgabat: {
-      TUK: [
+      TKM: [
         "Merkezi diwan",
         "Bagtyýarlyk şahamça",
         "Berkararlyk şahamça",
@@ -32,7 +32,7 @@ export const branchData = () => {
       ],
     },
     Ahal: {
-      TUK: [
+      TKM: [
         "Ak bugdaý şahamça",
         "Bäherden şahamça",
         "Gökdepe şahamça",
@@ -46,11 +46,11 @@ export const branchData = () => {
       ],
     },
     Balkan: {
-      TUK: ["Balkan şahamça", "Türkmenbaşy şahamça", "Esenguly şahamça"],
+      TKM: ["Balkan şahamça", "Türkmenbaşy şahamça", "Esenguly şahamça"],
       RUS: ["Филиал Балкан", "Филиал Туркменбаши", "Филиал Эсенгулы"],
     },
     Dashoguz: {
-      TUK: [
+      TKM: [
         "Daşoguz şahamça",
         "Köneurgenç şahamça",
         "Ruhubelent şahamça",
@@ -64,7 +64,7 @@ export const branchData = () => {
       ],
     },
     Lebap: {
-      TUK: [
+      TKM: [
         "Lebap şahamça",
         "Dostluk şahamça",
         "Galkynyş şahamça",
@@ -84,7 +84,7 @@ export const branchData = () => {
       ],
     },
     Mary: {
-      TUK: [
+      TKM: [
         "Mary şahamça",
         "Ýöleten şahamça",
         "Murgap şahamça",

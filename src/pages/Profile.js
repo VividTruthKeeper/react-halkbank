@@ -34,7 +34,7 @@ const Profile = () => {
       <Breadcrumb
         image={userImg}
         link={"/home/profile"}
-        linkTitle={locale === "TUK" ? "Profiliň maglumaty" : "Данные профиля"}
+        linkTitle={locale === "TKM" ? "Profiliň maglumaty" : "Данные профиля"}
       />
       <div className="container">
         <div className="profile-inner">
@@ -42,14 +42,14 @@ const Profile = () => {
             <div className="form-top">
               <div className="cu-bottom profile-title">
                 <h2 className="profile-title">
-                  {locale === "TUK" ? "Profiliň maglumaty" : "Данные профиля"}
+                  {locale === "TKM" ? "Profiliň maglumaty" : "Данные профиля"}
                 </h2>
               </div>
             </div>
             <div className="form-bottom">
               <div className="input-block">
                 <label htmlFor="surname">
-                  {locale === "TUK" ? "Familiýasy" : "Фамилия"}
+                  {locale === "TKM" ? "Familiýasy" : "Фамилия"}
                 </label>
                 <input
                   readOnly
@@ -66,7 +66,7 @@ const Profile = () => {
                 />
               </div>
               <div className="input-block">
-                <label htmlFor="name">{locale === "TUK" ? "Ady" : "Имя"}</label>
+                <label htmlFor="name">{locale === "TKM" ? "Ady" : "Имя"}</label>
                 <input
                   readOnly
                   type="text"
@@ -83,7 +83,7 @@ const Profile = () => {
               </div>
               <div className="input-block">
                 <label htmlFor="fathers">
-                  {locale === "TUK" ? "Atasynyň ady" : "Отчество"}
+                  {locale === "TKM" ? "Atasynyň ady" : "Отчество"}
                 </label>
                 <input
                   readOnly
@@ -101,7 +101,7 @@ const Profile = () => {
               </div>
               <div className="input-block">
                 <label htmlFor="date">
-                  {locale === "TUK" ? "Doglan senesi" : "Дата рождения"}
+                  {locale === "TKM" ? "Doglan senesi" : "Дата рождения"}
                 </label>
                 <input
                   readOnly
@@ -119,7 +119,7 @@ const Profile = () => {
               </div>
               <div className="input-block">
                 <label htmlFor="passport">
-                  {locale === "TUK"
+                  {locale === "TKM"
                     ? "Pasport maglumatlary"
                     : "Паспортные данные"}
                 </label>
@@ -139,7 +139,7 @@ const Profile = () => {
               </div>
               <div className="input-block">
                 <label htmlFor="p-address">
-                  {locale === "TUK"
+                  {locale === "TKM"
                     ? "Pasportyň berlen ýeri"
                     : "Место выдачи паспорта"}
                 </label>
@@ -159,7 +159,7 @@ const Profile = () => {
               </div>
               <div className="input-block">
                 <label htmlFor="address">
-                  {locale === "TUK" ? "Ýaşaýan salgysy" : "Адрес проживания"}
+                  {locale === "TKM" ? "Ýaşaýan salgysy" : "Адрес проживания"}
                 </label>
                 <input
                   readOnly
@@ -177,7 +177,7 @@ const Profile = () => {
               </div>
               <div className="input-block">
                 <label htmlFor="mail">
-                  {locale === "TUK" ? "Email" : "Электронная почта"}
+                  {locale === "TKM" ? "Email" : "Электронная почта"}
                 </label>
                 <input
                   readOnly
@@ -195,7 +195,7 @@ const Profile = () => {
               </div>
               <div className="input-block">
                 <label htmlFor="mobile">
-                  {locale === "TUK" ? "Mobil telefon" : "Мобильный телефон"}
+                  {locale === "TKM" ? "Mobil telefon" : "Мобильный телефон"}
                 </label>
                 <input
                   readOnly
@@ -213,7 +213,7 @@ const Profile = () => {
               </div>
               <div className="input-block">
                 <label htmlFor="homeTel">
-                  {locale === "TUK" ? "Öý telefon" : "Домашний телефон"}
+                  {locale === "TKM" ? "Öý telefon" : "Домашний телефон"}
                 </label>
                 <input
                   readOnly

@@ -46,7 +46,9 @@ const SignIn = ({ stage }) => {
   }, [formData]);
   return (
     <section className="sign-in">
-      {success ? <Success message={"Пароль успешно изменен!"} /> : null}
+      {success ? (
+        <Success message={"Пароль успешно изменен!"} setSuccess={setSuccess} />
+      ) : null}
       <PasswordRec
         setSuccess={setSuccess}
         recoveryOpen={recoveryOpen}

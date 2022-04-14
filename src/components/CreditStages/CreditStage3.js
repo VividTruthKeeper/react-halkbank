@@ -57,7 +57,7 @@ const CreditStage3 = ({ setStage, data, setData }) => {
         <div className="form-top">
           <div className="input-block">
             <label htmlFor="surname">
-              {locale === "TUK" ? "Familiýasy" : "Фамилия"}
+              {locale === "TKM" ? "Familiýasy" : "Фамилия"}
               <span>*</span>
             </label>
             <input
@@ -69,7 +69,7 @@ const CreditStage3 = ({ setStage, data, setData }) => {
           </div>
           <div className="input-block">
             <label htmlFor="name">
-              {locale === "TUK" ? "Ady" : "Имя"}
+              {locale === "TKM" ? "Ady" : "Имя"}
               <span>*</span>
             </label>
             <input
@@ -81,7 +81,7 @@ const CreditStage3 = ({ setStage, data, setData }) => {
           </div>
           <div className="input-block">
             <label htmlFor="fathers">
-              {locale === "TUK" ? "Atasynyň ady" : "Отчество"}
+              {locale === "TKM" ? "Atasynyň ady" : "Отчество"}
               <span>*</span>
             </label>
             <input
@@ -93,7 +93,7 @@ const CreditStage3 = ({ setStage, data, setData }) => {
           </div>
           <div className="input-block">
             <label htmlFor="date">
-              {locale === "TUK" ? "Doglan senesi" : "Дата рождения"}
+              {locale === "TKM" ? "Doglan senesi" : "Дата рождения"}
               <span>*</span>
             </label>
             <input
@@ -107,7 +107,7 @@ const CreditStage3 = ({ setStage, data, setData }) => {
           </div>
           <div className="input-block">
             <label htmlFor="passport">
-              {locale === "TUK" ? "Pasport maglumatlary" : "Паспортные данные"}
+              {locale === "TKM" ? "Pasport maglumatlary" : "Паспортные данные"}
               <span>*</span>
             </label>
             <input
@@ -119,7 +119,7 @@ const CreditStage3 = ({ setStage, data, setData }) => {
           </div>
           <div className="input-block">
             <label htmlFor="p-address">
-              {locale === "TUK"
+              {locale === "TKM"
                 ? "Pasportyň berlen ýeri"
                 : "Место выдачи паспорта"}
               <span>*</span>
@@ -133,7 +133,7 @@ const CreditStage3 = ({ setStage, data, setData }) => {
           </div>
           <div className="input-block">
             <label htmlFor="address">
-              {locale === "TUK" ? "Ýaşaýan salgysy" : "Адрес проживания"}
+              {locale === "TKM" ? "Ýaşaýan salgysy" : "Адрес проживания"}
               <span>*</span>
             </label>
             <input
@@ -145,7 +145,7 @@ const CreditStage3 = ({ setStage, data, setData }) => {
           </div>
           <div className="input-block">
             <label htmlFor="mail">
-              {locale === "TUK" ? "Email" : "Электронная почта"}
+              {locale === "TKM" ? "Email" : "Электронная почта"}
               <span>*</span>
             </label>
             <input
@@ -157,7 +157,7 @@ const CreditStage3 = ({ setStage, data, setData }) => {
           </div>
           <div className="input-block">
             <label htmlFor="mobile">
-              {locale === "TUK" ? "Mobil telefon" : "Мобильный телефон"}
+              {locale === "TKM" ? "Mobil telefon" : "Мобильный телефон"}
               <span>*</span>
             </label>
             <input
@@ -169,7 +169,7 @@ const CreditStage3 = ({ setStage, data, setData }) => {
           </div>
           <div className="input-block">
             <label htmlFor="homeTel">
-              {locale === "TUK" ? "Öý telefon" : "Домашний телефон"}
+              {locale === "TKM" ? "Öý telefon" : "Домашний телефон"}
             </label>
             <input
               readOnly
@@ -197,7 +197,7 @@ const CreditStage3 = ({ setStage, data, setData }) => {
                     setStage(2);
                   }}
                 >
-                  {locale === "TUK" ? "Yza" : "Назад"}
+                  {locale === "TKM" ? "Yza" : "Назад"}
                 </h3>
               </div>
             </button>
@@ -223,7 +223,7 @@ const CreditStage3 = ({ setStage, data, setData }) => {
               }}
             >
               <div>
-                <h3>{locale === "TUK" ? "Dowam et" : "Продолжить"}</h3>
+                <h3>{locale === "TKM" ? "Dowam et" : "Продолжить"}</h3>
                 <div className="btn-img">
                   <img src={next} alt="logout" />
                 </div>
