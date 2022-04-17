@@ -12,7 +12,6 @@ import globe from "../../icons/globe.svg";
 import direct from "../../icons/direct.svg";
 import lock from "../../icons/lock.svg";
 import wifi from "../../icons/wifi.svg";
-import clipboard_close from "../../icons/clipboard-close.svg";
 
 const TitleGrid = () => {
   const { locale } = useContext(LanguageContext);

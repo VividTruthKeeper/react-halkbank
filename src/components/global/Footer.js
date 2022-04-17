@@ -9,7 +9,7 @@ const Footer = () => {
       <div className="container">
         <div className="footer-inner">
           <h2>
-            © TPTB "HALKBANK", 2013-2019 All rights reserved |{" "}
+            © TPTB "HALKBANK", 2013-2022 All rights reserved |{" "}
             <span>
               {locale === "РУС"
                 ? "Политика Конфиденциальности"

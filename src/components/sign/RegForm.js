@@ -226,7 +226,9 @@ const RegForm = () => {
             <div className="reg-input-block split">
               <div className="split-block">
                 <label htmlFor="serie">
-                  {locale === "TKM" ? "Pasportyň seriýasy" : "Серия паспорта"}
+                  {locale === "TKM"
+                    ? "Pasportyň seriýasy we belgisi"
+                    : "Серия и номер паспорта"}
                   <span>*</span>
                 </label>
                 <CustomSelect

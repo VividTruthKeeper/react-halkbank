@@ -61,12 +61,17 @@ const CreditStage6 = ({
             <h4>{data.email ? data.email : "-"}</h4>
           </li>
           <li>
-            <p>{locale === "TKM" ? "Pasportyň seriýasy" : "Серия паспорта"}:</p>
+            <p>
+              {locale === "TKM"
+                ? "Pasportyň seriýasy we belgisi"
+                : "Серия и номер паспорта"}
+              :
+            </p>
             <h4>{data.passport ? data.passport : "-"}</h4>
           </li>
           <li>
             <p>
-              {locale === "TKM" ? "Кем выдан паспорт" : "Pasportyň berlen ýeri"}
+              {locale === "TKM" ? "Pasportyň berlen ýeri" : "Кем выдан паспорт"}
               :
             </p>
             <h4>{data.p_address ? data.p_address : "-"}</h4>

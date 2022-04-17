@@ -74,7 +74,12 @@ const CardStage6 = ({
             </h4>
           </li>
           <li>
-            <p>{locale === "TKM" ? "Pasportyň seriýasy" : "Серия паспорта"}:</p>
+            <p>
+              {locale === "TKM"
+                ? "Pasportyň seriýasy"
+                : "Серия и номер паспорта"}
+              :
+            </p>
             <h4>{data.passport_series ? data.passport_series : "-"}</h4>
           </li>
           <li>
@@ -101,7 +106,7 @@ const CardStage6 = ({
           <li>
             <p>
               {locale === "TKM"
-                ? "Banka gelmek gününi saýlaň "
+                ? "Banka gelmek gününi saýlaň"
                 : "Дата прихода в банк"}
               :
             </p>

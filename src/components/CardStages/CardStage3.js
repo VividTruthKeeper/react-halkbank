@@ -144,8 +144,8 @@ const CardStage3 = ({ setStage, data, setData }) => {
           <div className="input-block">
             <label htmlFor="time">
               {locale === "TKM"
-                ? "Banka gelmek gününi saýlaň"
-                : "Выбрать приемлемое время"}
+                ? "Amatly wagty saýlaň"
+                : "Выберите удобное время"}
               <span>*</span>
             </label>
             <CustomSelect
@@ -200,14 +200,14 @@ const CardStage3 = ({ setStage, data, setData }) => {
           </div>
           {locale === "TKM" ? (
             inputValid.sms ? (
-              <h3 className="green">Nomeriňize SMS iberiler</h3>
+              <h3 className="green">
+                Siziň kartyňyz SMS hyzmatyna birikdiriler
+              </h3>
             ) : (
               ""
             )
           ) : inputValid.sms ? (
-            <h3 className="green">
-              На ваш номер будет отправлено СМС-уведомление
-            </h3>
+            <h3 className="green">Ваша карта будет подключена к СМС услуге</h3>
           ) : (
             ""
           )}

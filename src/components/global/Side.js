@@ -1,5 +1,5 @@
 // IMPORT MODULES
-import React, { useState, useEffect, useContext, useRef, useMemo } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../backend/UserContext";
 import { deleteUser } from "../../backend/deleteUser";

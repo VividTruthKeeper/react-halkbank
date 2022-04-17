@@ -29,11 +29,18 @@ const CreditStage5 = ({ setStage, data, setData, creditData, id }) => {
     if (creditData) {
       creditData.data.map((el) => {
         if (el.id === id) {
-          setReq({
-            ...req,
-            TKM: el.documents,
-            rus: JSON.parse(el.translations[0].attribute_data).documents,
-          });
+          if (JSON.parse(el.translations[0].attribute_data).documents) {
+            setReq({
+              ...req,
+              TKM: el.documents,
+              rus: JSON.parse(el.translations[0].attribute_data).documents,
+            });
+          } else if (JSON.parse(el.translations[1].attribute_data).documents)
+            setReq({
+              ...req,
+              TKM: el.documents,
+              rus: JSON.parse(el.translations[1].attribute_data).documents,
+            });
         }
       });
     }
