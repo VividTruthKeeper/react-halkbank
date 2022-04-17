@@ -1,6 +1,7 @@
 // IMPORT MODULES
 import React, { useState, useEffect, useContext } from "react";
 import { LanguageContext } from "../../backend/LanguageContext";
+import { maxFileSize } from "../../maxFileSize";
 
 // IMPORT IMAGES
 import remove from "../../icons/remove.svg";
@@ -8,13 +9,17 @@ import next from "../../icons/next.svg";
 import arrow from "../../icons/arrow.svg";
 import next_reverse from "../../icons/next-reverse.svg";
 
-const CardStage4 = ({ setStage, data, setData, req, setReq }) => {
+const CardStage4 = ({ setStage, data, setData, req }) => {
   const { locale } = useContext(LanguageContext);
   const [files, setFiles] = useState(data.file ? data.file : []);
 
   const [btnEnabled, setBtnEnabled] = useState(false);
   const [dropdown, setDropdown] = useState(false);
-  const parser = new DOMParser();
+  const [validSize, setValidSize] = useState(true);
+
+  //    Bytes <=    Megabytes
+  //      |      |||||||||||||||||
+  const maxSize = maxFileSize * 1024 * 1024;
 
   useEffect(() => {
     if (files.length > 0) {
@@ -70,9 +75,16 @@ const CardStage4 = ({ setStage, data, setData, req, setReq }) => {
             <input
               id="file"
               type="file"
+              accept=".jpg, .jpeg, .docx, .doc, .pdf, .png"
               onChange={(e) => {
-                setFiles([...files, e.target.files[0]]);
-                e.target.value = "";
+                if (e.target.files[0].size > maxSize) {
+                  setValidSize(false);
+                  e.target.value = "";
+                } else {
+                  setFiles([...files, e.target.files[0]]);
+                  e.target.value = "";
+                  setValidSize(true);
+                }
               }}
             />
           </div>
@@ -102,6 +114,17 @@ const CardStage4 = ({ setStage, data, setData, req, setReq }) => {
               })
             : null}
         </ul>
+        <p className="alert">
+          {locale === "TKM"
+            ? "Hemme faýllar diňe görkezilen formatda bolmaly: "
+            : "Все файлы должны быть следующих форматов: "}
+          <span className="red">.jpg, .jpeg, .doc, .docx, .pdf, .png</span>
+        </p>
+        <p className={!validSize ? "alert red bold" : "alert"}>
+          {locale === "TKM"
+            ? `Faýlyň ölçegi ${maxFileSize} MB-den geçmeli däl`
+            : `Размер файла не должен превышать ${maxFileSize} МБ`}
+        </p>
         <div className="cu-bottom card-stage-4-bottom">
           <button
             type="button"

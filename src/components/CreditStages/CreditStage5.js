@@ -1,6 +1,7 @@
 // IMPORT MODULES
 import React, { useState, useEffect, useContext } from "react";
 import { LanguageContext } from "../../backend/LanguageContext";
+import { maxFileSize } from "../../maxFileSize";
 
 // IMPORT IMAGES
 import remove from "../../icons/remove.svg";
@@ -17,6 +18,13 @@ const CreditStage5 = ({ setStage, data, setData, creditData, id }) => {
     rus: "",
     TKM: "",
   });
+
+  const [validSize, setValidSize] = useState(true);
+
+  //    Bytes <=    Megabytes
+  //      |      |||||||||||||||||
+  const maxSize = maxFileSize * 1024 * 1024;
+
   useEffect(() => {
     if (files.length > 0) {
       setBtnEnabled(true);
@@ -94,8 +102,14 @@ const CreditStage5 = ({ setStage, data, setData, creditData, id }) => {
               type="file"
               accept=".jpg, .jpeg, .docx, .doc, .pdf, .png"
               onChange={(e) => {
-                setFiles([...files, e.target.files[0]]);
-                e.target.value = "";
+                if (e.target.files[0].size > maxSize) {
+                  setValidSize(false);
+                  e.target.value = "";
+                } else {
+                  setFiles([...files, e.target.files[0]]);
+                  e.target.value = "";
+                  setValidSize(true);
+                }
               }}
             />
           </div>
@@ -130,6 +144,11 @@ const CreditStage5 = ({ setStage, data, setData, creditData, id }) => {
             ? "Hemme faýllar diňe görkezilen formatda bolmaly: "
             : "Все файлы должны быть следующих форматов: "}
           <span className="red">.jpg, .jpeg, .doc, .docx, .pdf, .png</span>
+        </p>
+        <p className={!validSize ? "alert red bold" : "alert"}>
+          {locale === "TKM"
+            ? `Faýlyň ölçegi ${maxFileSize} MB-den geçmeli däl`
+            : `Размер файла не должен превышать ${maxFileSize} МБ`}
         </p>
         <div className="cu-bottom card-stage-4-bottom">
           <button
