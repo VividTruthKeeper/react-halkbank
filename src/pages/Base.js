@@ -46,7 +46,7 @@ const Base = () => {
 
                 {user ? (
                   user.online_credit.length !== 0 ? (
-                    user.online_credit.map((el, i) => {
+                    [...user.online_credit].reverse().map((el, i) => {
                       return (
                         <tr key={i}>
                           <td>#{el.id}</td>
@@ -90,10 +90,6 @@ const Base = () => {
                                   <h4>{el.action}</h4>
                                 </div>
                                 <img src={allert} alt="reject" />
-                              </div>
-                            ) : el.status !== "4" && el.status !== "2" ? (
-                              <div>
-                                <img src={nul} alt="null" />
                               </div>
                             ) : (
                               ""
@@ -183,10 +179,6 @@ const Base = () => {
                                       <h4>{el.action}</h4>
                                     </div>
                                     <img src={allert} alt="reject" />
-                                  </div>
-                                ) : el.status !== "4" && el.status !== "2" ? (
-                                  <div>
-                                    <img src={nul} alt="null" />
                                   </div>
                                 ) : (
                                   ""

@@ -151,10 +151,6 @@ const Cards = () => {
                                   </div>
                                   <img src={allert} alt="reject" />
                                 </div>
-                              ) : el.status !== "4" && el.status !== "2" ? (
-                                <div>
-                                  <img src={nul} alt="null" />
-                                </div>
                               ) : (
                                 ""
                               )}
