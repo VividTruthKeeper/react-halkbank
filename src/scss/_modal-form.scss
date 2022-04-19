@@ -10,7 +10,7 @@
 .modal {
   display: flex;
   justify-content: center;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   opacity: 0;
@@ -502,8 +502,8 @@
 
 @media screen and (max-width: 1300px) {
   .modal-window {
-    max-height: 82.6rem;
-    overflow-y: auto;
+    // max-height: 82.6rem;
+    // overflow-y: auto;
     margin: 0 auto;
   }
   .modal-middle {

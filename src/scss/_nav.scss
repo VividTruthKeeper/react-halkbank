@@ -298,7 +298,10 @@
       flex-direction: column;
 
       li {
-        padding: 1rem;
+        padding: 0;
+        * {
+          padding: 1rem;
+        }
         background: transparent;
         transition: 0.4s all ease;
         &:hover {
