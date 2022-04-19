@@ -32,8 +32,6 @@ const SignIn = ({ stage }) => {
   useEffect(() => {
     if (user) {
       navigate("/home");
-    } else {
-      navigate("/sign-in");
     }
   }, [user]);
 

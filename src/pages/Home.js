@@ -17,7 +17,7 @@ const Home = ({ ChildEl }) => {
   }, []);
   useEffect(() => {
     if (!user) {
-      navigate("/sign-in");
+      navigate("/");
     }
   }, [user, navigate]);
 

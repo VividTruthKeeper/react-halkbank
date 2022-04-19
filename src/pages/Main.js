@@ -1,6 +1,6 @@
 // IMPORT MODULES
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../backend/UserContext";
 import { LanguageContext } from "../backend/LanguageContext";
 
@@ -17,6 +17,12 @@ import TitleGrid from "../components/main/TitleGrid";
 const Main = () => {
   const { user } = useContext(UserContext);
   const { locale } = useContext(LanguageContext);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (user) {
+      navigate("/home");
+    }
+  }, [user]);
   return (
     <section className="main">
       <Nav />
