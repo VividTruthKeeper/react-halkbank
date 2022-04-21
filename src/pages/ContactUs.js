@@ -34,6 +34,7 @@ const ContactUs = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [inputValid, setInputValid] = useState({
     message: false,
+    type: null,
     captcha: false,
   });
   const [btnEnabled, setBtnEnabled] = useState(false);
@@ -104,6 +105,14 @@ const ContactUs = () => {
                     }
                     stateSetter={(e) => {
                       setTopic(e);
+                      if (
+                        e === "Пластиковые карты" ||
+                        e === "Plastik kartlar"
+                      ) {
+                        setInputValid({ ...inputValid, type: true });
+                      } else {
+                        setInputValid({ ...inputValid, type: false });
+                      }
                     }}
                     eTarget={true}
                     customId={"topic"}
@@ -151,6 +160,8 @@ const ContactUs = () => {
                       setIsLoading(true);
                       formData.append("subject", topic);
                       formData.append("message", inputValid.message);
+                      formData.append("type", inputValid.type);
+                      console.log(inputValid.type);
                       let today = new Date();
                       let dd = String(today.getDate()).padStart(2, "0");
                       let mm = String(today.getMonth() + 1).padStart(2, "0");
