@@ -57,7 +57,7 @@ const LoggedNav = ({ sideOpen, setSideOpen }) => {
                 </div>
               </div>
             </div>
-            <Link to="/" className="nav-logo">
+            <Link to="/home" className="nav-logo">
               <img src={hb} alt="Halk Bank" />
             </Link>
             <Link to="/" className="nav-title">

@@ -26,6 +26,7 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
 import PaymentResult from "./pages/PaymentResult";
+import Redirect from "./pages/Redirect";
 
 // IMPORT COMPONENTS
 import Loader from "./components/global/Loader";
@@ -50,12 +51,15 @@ const App = () => {
   useEffect(() => {
     const userLanguage = localStorage.getItem("userLanguage");
     const userToken = localStorage.getItem("userToken");
+    // const params = new URLSearchParams(window.location.search);
+    // const init_lang = params.get("init_lang");
     setLoaderActive(true);
     if (userToken) {
       getUserInfo(loginUrl, userToken, setUser, setLoaderActive);
     } else {
       setLoaderActive(false);
     }
+
     if (userLanguage) {
       setLocale(userLanguage);
     }
@@ -67,6 +71,8 @@ const App = () => {
         <div className="App">
           {loaderActive ? <Loader /> : ""}
           <Routes>
+            <Route path="/ru" element={<Redirect lang={"РУС"} />} />
+            <Route path="/tm" element={<Redirect lang={"TKM"} />} />
             <Route path="/" element={<Main />} />
             <Route path="/sign-in" element={<SignIn stage={1} />} />
             <Route path="/sign-in-direct" element={<SignIn stage={2} />} />
