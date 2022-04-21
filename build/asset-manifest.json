@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.8473c452.css",
-    "main.js": "/static/js/main.e9d12536.js",
+    "main.js": "/static/js/main.d579b645.js",
     "static/media/logo-transp.svg": "/static/media/logo-transp.66d6235f12fb5d9a6264c592bce58c5a.svg",
     "static/media/logo-bg.jpg": "/static/media/logo-bg.1d55df78b7376108f96c.jpg",
     "static/media/credit-card.jpg": "/static/media/credit-card.ff2990f7d50439a8f34d.jpg",
@@ -52,9 +52,9 @@
     "static/media/arrow-circle-right.svg": "/static/media/arrow-circle-right.aeb8af24d4566d7bee70783e15c04c18.svg",
     "static/media/next-reverse.svg": "/static/media/next-reverse.01b76f99093901b5ca0e6cadbe9b334b.svg",
     "static/media/next.svg": "/static/media/next.c5d0814e63d8a16171e959fc3c541ff0.svg",
-    "index.html": "/index.html",
     "static/media/loader.svg": "/static/media/loader.c1d5ba1f67cc967b86d796282b98942d.svg",
     "static/media/close.svg": "/static/media/close.529361d55807e3a67b716cb14b0e62b5.svg",
+    "index.html": "/index.html",
     "static/media/user-square.svg": "/static/media/user-square.d8e480e0d0a30f34f74130c8c706f68a.svg",
     "static/media/arrow-back.svg": "/static/media/arrow-back.7106eb7539d85d1dc7288726f85efeba.svg",
     "static/media/plus.svg": "/static/media/plus.b1ec7d12ed032199b6801f0b0e8e8bf9.svg",
@@ -67,10 +67,10 @@
     "static/media/arrow-down.svg": "/static/media/arrow-down.2ec2ec0ddf677f60c1aa23e6d1abdc8d.svg",
     "static/media/arrow.svg": "/static/media/arrow.c8492a68102634ab2875008b3e67164c.svg",
     "main.8473c452.css.map": "/static/css/main.8473c452.css.map",
-    "main.e9d12536.js.map": "/static/js/main.e9d12536.js.map"
+    "main.d579b645.js.map": "/static/js/main.d579b645.js.map"
   },
   "entrypoints": [
     "static/css/main.8473c452.css",
-    "static/js/main.e9d12536.js"
+    "static/js/main.d579b645.js"
   ]
 }
