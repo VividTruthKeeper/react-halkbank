@@ -100,7 +100,7 @@ const CreditStage5 = ({ setStage, data, setData, creditData, id }) => {
             <input
               id="file"
               type="file"
-              accept=".jpg, .jpeg, .docx, .doc, .pdf, .png"
+              accept=".jpg, .jpeg, .docx, .xls, .xlsx, .doc, .pdf, .png"
               onChange={(e) => {
                 if (e.target.files[0].size > maxSize) {
                   setValidSize(false);
@@ -143,7 +143,9 @@ const CreditStage5 = ({ setStage, data, setData, creditData, id }) => {
           {locale === "TKM"
             ? "Hemme faýllar diňe görkezilen formatda bolmaly: "
             : "Все файлы должны быть следующих форматов: "}
-          <span className="red">.jpg, .jpeg, .doc, .docx, .pdf, .png</span>
+          <span className="red">
+            .jpg, .jpeg, .doc, .docx, .xls, .xlsx, .pdf, .png
+          </span>
         </p>
         <p className={!validSize ? "alert red bold" : "alert"}>
           {locale === "TKM"

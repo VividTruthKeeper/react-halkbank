@@ -75,7 +75,7 @@ const CardStage4 = ({ setStage, data, setData, req }) => {
             <input
               id="file"
               type="file"
-              accept=".jpg, .jpeg, .docx, .doc, .pdf, .png"
+              accept=".jpg, .jpeg, .docx, .xls, .xlsx, .doc, .pdf, .png"
               onChange={(e) => {
                 if (e.target.files[0].size > maxSize) {
                   setValidSize(false);
@@ -118,7 +118,9 @@ const CardStage4 = ({ setStage, data, setData, req }) => {
           {locale === "TKM"
             ? "Hemme faýllar diňe görkezilen formatda bolmaly: "
             : "Все файлы должны быть следующих форматов: "}
-          <span className="red">.jpg, .jpeg, .doc, .docx, .pdf, .png</span>
+          <span className="red">
+            .jpg, .jpeg, .doc, .docx, .xls, .xlsx, .pdf, .png
+          </span>
         </p>
         <p className={!validSize ? "alert red bold" : "alert"}>
           {locale === "TKM"
