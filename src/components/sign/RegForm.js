@@ -228,7 +228,7 @@ const RegForm = () => {
                 <label htmlFor="serie">
                   {locale === "TKM"
                     ? "Pasportyň seriýasy we belgisi"
-                    : "Серия и номер паспорта"}
+                    : "Серия-I"}
                   <span>*</span>
                 </label>
                 <CustomSelect
@@ -245,6 +245,12 @@ const RegForm = () => {
                 />
               </div>
               <div className="split-block">
+                <label htmlFor="reg">
+                  {locale === "TKM"
+                    ? "Pasportyň seriýasy we belgisi"
+                    : "Серия-II"}
+                  <span>*</span>
+                </label>
                 <CustomSelect
                   items={["AŞ", "AH", "DZ", "MR", "BN", "LB"]}
                   blockName={"select-block"}
@@ -372,7 +378,7 @@ const RegForm = () => {
                 autoComplete="true"
                 type="text"
                 name="mobile"
-                placeholder="865656565"
+                placeholder="+99365123456"
                 id="mobile"
                 required
                 onChange={(e) => {
@@ -407,7 +413,7 @@ const RegForm = () => {
                 autoComplete="true"
                 type="text"
                 name="hometel"
-                placeholder="812121212"
+                placeholder="+99312123456"
                 id="hometel"
                 required
                 onChange={(e) => {
