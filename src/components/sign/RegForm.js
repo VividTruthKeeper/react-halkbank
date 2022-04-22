@@ -226,9 +226,7 @@ const RegForm = () => {
             <div className="reg-input-block split">
               <div className="split-block">
                 <label htmlFor="serie">
-                  {locale === "TKM"
-                    ? "Pasportyň seriýasy we belgisi"
-                    : "Серия-I"}
+                  {locale === "TKM" ? "Seriýa-I" : "Серия-I"}
                   <span>*</span>
                 </label>
                 <CustomSelect
@@ -246,9 +244,7 @@ const RegForm = () => {
               </div>
               <div className="split-block">
                 <label htmlFor="reg">
-                  {locale === "TKM"
-                    ? "Pasportyň seriýasy we belgisi"
-                    : "Серия-II"}
+                  {locale === "TKM" ? "Seriýa-II" : "Серия-II"}
                   <span>*</span>
                 </label>
                 <CustomSelect
@@ -607,7 +603,7 @@ const RegForm = () => {
           ) : (
             <h2>
               Все поля с символом ( <span>*</span> ) обязательны для заполнения
-              Все поля доожны быть заполненны латиницей
+              Все поля должны быть заполненны латиницей
             </h2>
           )}
           <button

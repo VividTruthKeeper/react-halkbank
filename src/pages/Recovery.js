@@ -100,9 +100,7 @@ const Recovery = () => {
               >
                 <div className="cu-bottom p-recovery-title">
                   <h2>
-                    {locale === "TKM"
-                      ? "Açar sözüni çalyşmak"
-                      : "Поменять пароля"}
+                    {locale === "TKM" ? "Açar sözüni çalyşmak" : "Смена пароля"}
                   </h2>
                   <button
                     type="submit"
