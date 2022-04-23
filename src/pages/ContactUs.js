@@ -109,9 +109,9 @@ const ContactUs = () => {
                         e === "Пластиковые карты" ||
                         e === "Plastik kartlar"
                       ) {
-                        setInputValid({ ...inputValid, type: true });
+                        setInputValid({ ...inputValid, type: 1 });
                       } else {
-                        setInputValid({ ...inputValid, type: false });
+                        setInputValid({ ...inputValid, type: 0 });
                       }
                     }}
                     eTarget={true}
