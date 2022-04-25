@@ -12,8 +12,11 @@ import next from "../../icons/next.svg";
 const CardStage1 = ({ setStage, data, setData, cardData, req, setReq }) => {
   const { locale } = useContext(LanguageContext);
   const [price, setPrice] = useState(0);
-  const [inputValid, setInputValid] = useState(
+  const [input, setInput] = useState(
     data.selected_card ? data.selected_card : false
+  );
+  const [inputValid, setInputValid] = useState(
+    data.selected_card_localized ? data.selected_card_localized : false
   );
   const [id, setId] = useState(1);
   const [img, setImg] = useState(credit);
@@ -43,6 +46,7 @@ const CardStage1 = ({ setStage, data, setData, cardData, req, setReq }) => {
       cardData.data.map((el) => {
         if (el.id === id) {
           setImg(el.image.path);
+          setInput(el.name);
         }
       });
     }
@@ -180,7 +184,12 @@ const CardStage1 = ({ setStage, data, setData, cardData, req, setReq }) => {
             className="sign-btn cd-btn"
             onClick={() => {
               setStage(2);
-              setData({ ...data, selected_card: inputValid, price: price });
+              setData({
+                ...data,
+                selected_card: input,
+                selected_card_localized: inputValid,
+                price: price,
+              });
             }}
           >
             <div>
