@@ -6,7 +6,8 @@ export const sendRequest = (
   data,
   setState,
   setLoader,
-  setError
+  setError,
+  setProgress
 ) => {
   const form = new FormData();
 
@@ -37,7 +38,12 @@ export const sendRequest = (
   form.append("work_experience", data.exp);
   form.append("date", `${dd}.${mm}.${yyyy}`);
   axios
-    .post(`${url}?token=${token}`, form)
+    .post(`${url}?token=${token}`, form, {
+      onUploadProgress: (progressEvent) => {
+        const progress = progressEvent.loaded / progressEvent.total;
+        setProgress(progress);
+      },
+    })
     .then((res) => {
       setState(res);
       if (setLoader) {

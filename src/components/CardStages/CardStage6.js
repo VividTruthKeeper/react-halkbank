@@ -14,7 +14,13 @@ import { reformatDate } from "../../helpers/reformatDate";
 // URL
 import { destination } from "../../destinationUrl";
 
-const CardStage6 = ({ setStage, data, setLoader, setModalOpen }) => {
+const CardStage6 = ({
+  setStage,
+  data,
+  setLoader,
+  setModalOpen,
+  setProgress,
+}) => {
   const { locale } = useContext(LanguageContext);
   const token = localStorage.getItem("userToken");
   const postUrl = destination + "/online_card";
@@ -143,7 +149,7 @@ const CardStage6 = ({ setStage, data, setLoader, setModalOpen }) => {
           onClick={() => {
             setLoader(true);
             setModalOpen(false);
-            sendRequestCard(postUrl, token, data);
+            sendRequestCard(postUrl, token, data, setProgress);
           }}
         >
           <div>

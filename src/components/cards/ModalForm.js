@@ -31,6 +31,7 @@ const ModalForm = ({
   setLoader,
   setSuccess,
   setError,
+  setProgress,
 }) => {
   const window = useRef();
   const { locale } = useContext(LanguageContext);
@@ -228,6 +229,7 @@ const ModalForm = ({
                   setModalOpen={setModalOpen}
                   setSuccess={setSuccess}
                   setError={setError}
+                  setProgress={setProgress}
                 />
               ) : (
                 ""

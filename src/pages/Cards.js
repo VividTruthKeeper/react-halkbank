@@ -6,15 +6,14 @@ import { LanguageContext } from "../backend/LanguageContext";
 // IMPORT COMPONENTS
 import Breadcrumb from "../components/global/Breadcrumb";
 import ModalForm from "../components/cards/ModalForm";
-import Loader from "../components/global/Loader";
 import Success from "../components/global/Success";
+import ProgressLoader from "../components/global/ProgressLoader";
 import Error from "../components/global/Error";
 
 // IMPORT IMAGES
 import card from "../icons/card-black.svg";
 import add from "../icons/add.svg";
 import allert from "../icons/info-circle.svg";
-import nul from "../icons/null.svg";
 
 const Cards = () => {
   const { locale } = useContext(LanguageContext);
@@ -23,6 +22,7 @@ const Cards = () => {
   const { user } = useContext(UserContext);
   const [loader, setLoader] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [progress, setProgress] = useState(0);
   const [stage, setStage] = useState(1);
   useEffect(() => {
     if (modalOpen) {
@@ -67,8 +67,10 @@ const Cards = () => {
         setLoader={setLoader}
         setSuccess={setSuccess}
         setError={setError}
+        setProgress={setProgress}
       />
-      {loader ? <Loader /> : null}
+      {/* {loader ? <Loader /> : null} */}
+      {loader ? <ProgressLoader progress={progress} /> : null}
       <div className="container">
         <div className="cards-inner">
           <div className="card-title">

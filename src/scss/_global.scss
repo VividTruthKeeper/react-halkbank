@@ -79,13 +79,54 @@ input::placeholder {
     width: 100%;
     height: 100%;
     display: flex;
+    flex-direction: column;
+    gap: 7rem;
     align-items: center;
     justify-content: center;
+
+    svg {
+      margin: 0 auto !important;
+    }
   }
 
   .spinner {
     width: 6rem;
     height: 6rem;
+  }
+}
+.splitter {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-not {
+  margin-top: 2rem;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.progress-percentage {
+  font-size: 2rem;
+  color: $base-green;
+}
+
+.linear-progress {
+  width: 30rem;
+  height: 1rem;
+  position: relative;
+  background: lightgrey;
+  overflow: hidden;
+  border-radius: 2rem;
+
+  .bar {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    background-color: $base-green;
   }
 }
 
@@ -236,6 +277,16 @@ input[type="range"]:focus::-ms-fill-upper {
   }
   .captcha-wrapper {
     width: 3rem;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .linear-progress {
+    width: 25rem;
+  }
+
+  .progress-not {
+    font-size: 2.5rem;
   }
 }
 

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const sendRequestCard = (url, token, data) => {
+export const sendRequestCard = (url, token, data, setProgress) => {
   let today = new Date();
   let dd = String(today.getDate()).padStart(2, "0");
   let mm = String(today.getMonth() + 1).padStart(2, "0");
@@ -30,7 +30,12 @@ export const sendRequestCard = (url, token, data) => {
 
   form.append("price", data.price);
   axios
-    .post(`${url}?token=${token}`, form)
+    .post(`${url}?token=${token}`, form, {
+      onUploadProgress: (progressEvent) => {
+        const progress = progressEvent.loaded / progressEvent.total;
+        setProgress(progress);
+      },
+    })
     .then((res) => {
       window.open(res.data, "_self").focus();
     })

@@ -7,7 +7,8 @@ import axios from "axios";
 // IMPORT COMPONENTS
 import Breadcrumb from "../components/global/Breadcrumb";
 import CreditModal from "../components/credits/CreditModal";
-import Loader from "../components/global/Loader";
+// import Loader from "../components/global/Loader";
+import ProgressLoader from "../components/global/ProgressLoader";
 import Success from "../components/global/Success";
 import Error from "../components/global/Error";
 
@@ -29,6 +30,7 @@ const Credits = () => {
   const [stage, setStage] = useState(1);
   const [loader, setLoader] = useState(false);
   const [creditData, setCreditData] = useState();
+  const [progress, setProgress] = useState(0);
   useEffect(() => {
     if (modalOpen) {
       document.body.style.overflowY = "hidden";
@@ -89,8 +91,9 @@ const Credits = () => {
         setSuccess={setSuccess}
         setError={setError}
         creditData={creditData}
+        setProgress={setProgress}
       />
-      {loader ? <Loader /> : null}
+      {loader ? <ProgressLoader progress={progress} /> : null}
       <div className="container">
         <div className="cards-inner">
           <div className="card-title">

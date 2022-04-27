@@ -29,11 +29,11 @@ const CreditModal = ({
   setSuccess,
   setError,
   creditData,
+  setProgress,
 }) => {
   const { locale } = useContext(LanguageContext);
   const window = useRef();
   const [data, setData] = useState({});
-
   const [id, setId] = useState(1);
   return (
     <section
@@ -228,6 +228,7 @@ const CreditModal = ({
                   setLoader={setLoader}
                   setSuccess={setSuccess}
                   setError={setError}
+                  setProgress={setProgress}
                 />
               ) : (
                 ""

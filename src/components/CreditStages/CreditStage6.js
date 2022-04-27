@@ -22,6 +22,7 @@ const CreditStage6 = ({
   setLoader,
   setSuccess,
   setError,
+  setProgress,
 }) => {
   const { locale } = useContext(LanguageContext);
   const { setUser } = useContext(UserContext);
@@ -148,7 +149,8 @@ const CreditStage6 = ({
                 }, 2000);
               },
               setLoader,
-              setError
+              setError,
+              setProgress
             );
           }}
         >
