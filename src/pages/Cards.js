@@ -116,37 +116,38 @@ const Cards = () => {
                             <td>{el.date}</td>
                             <td
                               className={
-                                el.status === "5"
+                                el.status === "kart_chykarylmady"
                                   ? "red"
-                                  : el.status === "4" || el.status === "2"
+                                  : el.status === "kart_chykaryldy" ||
+                                    el.status === "kabul_edildi"
                                   ? "green"
                                   : ""
                               }
                             >
-                              {el.status === "1"
+                              {el.status === "ugradyldy"
                                 ? locale === "TKM"
                                   ? "Ugradyldy"
                                   : "Отправлено"
-                                : el.status === "2"
+                                : el.status === "kabul_edildi"
                                 ? locale === "TKM"
                                   ? "Kabul edildi"
                                   : "Принята"
-                                : el.status === "3"
+                                : el.status === "seredilyar"
                                 ? locale === "TKM"
                                   ? "Görülyar"
                                   : "На стадии рассмотрения"
-                                : el.status === "4"
+                                : el.status === "kart_chykaryldy"
                                 ? locale === "TKM"
                                   ? "Kart çykaryldy"
                                   : "Карта выпущена"
-                                : el.status === "5"
+                                : el.status === "kart_chykarylmady"
                                 ? locale === "TKM"
                                   ? "Ret edildi"
                                   : "Отказано"
                                 : ""}
                             </td>
                             <td>
-                              {el.status === "5" ? (
+                              {el.status === "kart_chykarylmady" ? (
                                 <div className="reject">
                                   <div className="reason">
                                     <h4>{el.action}</h4>

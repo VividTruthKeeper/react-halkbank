@@ -19,11 +19,6 @@
     transition: all 0.3s ease;
   }
 
-  .cross {
-    opacity: 0;
-    transition: all 0.3s ease;
-  }
-
   .lines {
     left: 0;
     border-radius: 0.5rem;
@@ -50,61 +45,16 @@
   }
 
   &.active {
-    transform: rotate(90deg);
-    transition: all 0.3s ease;
-
-    .cross {
-      width: 2rem;
-      height: 3rem;
-      position: relative;
-      opacity: 1;
-      transition: all 0.3s ease;
-
-      * {
-        width: 3.8rem;
-        height: 0.3rem;
-        position: absolute;
-        background-color: $base-green;
-        border-radius: 1rem;
-      }
-
-      .cross-1 {
-        top: 28%;
-        left: -22%;
-        transform: rotate(45deg);
-      }
-      .cross-2 {
-        top: 27%;
-        left: -17%;
-        transform: rotate(-45deg);
-      }
-    }
-
-    &::after {
-      opacity: 1;
-      left: -48%;
-      top: 0.9rem;
-      transform: rotate(-90deg);
-      transition: all 0.3s ease;
-    }
-
     .line-1 {
-      height: 0.3rem;
-      top: -23%;
-      transition: all 0.3s ease;
+      top: 50%;
+      transform: rotate(45deg);
     }
-
     .line-3 {
-      height: 0.3rem;
-      top: 116%;
+      top: 50%;
+      transform: rotate(-45deg);
     }
-
     .line-2 {
-      top: 46%;
-      width: 3rem;
-      left: 50%;
-      transform: rotate(-90deg);
-      transition: all 0.3s ease;
+      opacity: 0;
     }
   }
 }

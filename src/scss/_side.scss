@@ -121,9 +121,6 @@
 // MEDIA
 
 @media screen and (max-width: 1500px) {
-  body {
-    overflow-x: hidden;
-  }
   .side.active {
     min-width: 30rem;
     transition: 0.4s all ease;

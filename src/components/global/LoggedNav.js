@@ -51,10 +51,6 @@ const LoggedNav = ({ sideOpen, setSideOpen }) => {
                 <div className="lines line-1"></div>
                 <div className="lines line-2"></div>
                 <div className="lines line-3"></div>
-                <div className="cross">
-                  <div className="cross-1"></div>
-                  <div className="cross-2"></div>
-                </div>
               </div>
             </div>
             <Link to="/home" className="nav-logo">
