@@ -2,7 +2,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { LanguageContext } from "../../backend/LanguageContext";
 import { branchData } from "../../localization/branchData";
-import { timeSheet } from "../../data/timeSheet";
 
 // IMPORT IMAGES
 import next from "../../icons/next.svg";

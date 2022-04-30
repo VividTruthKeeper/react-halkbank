@@ -9,7 +9,6 @@ import Loader from "../components/global/Loader";
 
 // IMPORT IMAGES
 import allert from "../icons/info-circle.svg";
-import nul from "../icons/null.svg";
 
 const Base = () => {
   const { locale } = useContext(LanguageContext);

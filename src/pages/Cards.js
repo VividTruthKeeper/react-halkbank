@@ -69,7 +69,6 @@ const Cards = () => {
         setError={setError}
         setProgress={setProgress}
       />
-      {/* {loader ? <Loader /> : null} */}
       {loader ? <ProgressLoader progress={progress} /> : null}
       <div className="container">
         <div className="cards-inner">

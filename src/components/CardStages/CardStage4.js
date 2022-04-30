@@ -12,7 +12,6 @@ import next_reverse from "../../icons/next-reverse.svg";
 const CardStage4 = ({ setStage, data, setData, req }) => {
   const { locale } = useContext(LanguageContext);
   const [files, setFiles] = useState(data.file ? data.file : []);
-
   const [btnEnabled, setBtnEnabled] = useState(false);
   const [dropdown, setDropdown] = useState(false);
   const [validSize, setValidSize] = useState(true);

@@ -7,7 +7,6 @@ import axios from "axios";
 // IMPORT COMPONENTS
 import Breadcrumb from "../components/global/Breadcrumb";
 import CreditModal from "../components/credits/CreditModal";
-// import Loader from "../components/global/Loader";
 import ProgressLoader from "../components/global/ProgressLoader";
 import Success from "../components/global/Success";
 import Error from "../components/global/Error";
@@ -19,7 +18,6 @@ import { dataDestination } from "../destinationUrl";
 import credit from "../icons/credit-black.svg";
 import add from "../icons/add.svg";
 import allert from "../icons/info-circle.svg";
-import nul from "../icons/null.svg";
 
 const Credits = () => {
   const { locale } = useContext(LanguageContext);

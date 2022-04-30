@@ -13,10 +13,7 @@ import next_reverse from "../../icons/next-reverse.svg";
 const CardStage2 = ({ setStage, data, setData }) => {
   const { locale } = useContext(LanguageContext);
   const { user } = useContext(UserContext);
-  const [
-    inputValid,
-    // setInputValid
-  ] = useState({
+  const [inputValid] = useState({
     surname: data.surname ? data.surname : user ? user.surname : null,
     name: data.name ? data.name : user ? user.name : null,
     fathers: data.middlename ? data.middlename : user ? user.middle_name : null,
