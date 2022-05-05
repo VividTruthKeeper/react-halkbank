@@ -301,7 +301,7 @@ const CardStage3 = ({ setStage, data, setData }) => {
                 region: inputLocal.region,
                 region_localized: inputValid.region,
                 branch: inputLocal.affiliate,
-                branch_localized: inputLocal.affiliate,
+                branch_localized: inputValid.affiliate,
                 date_arrival_bank: inputValid.date,
                 selected_time: inputValid.time,
                 the_codeword: inputValid.code,

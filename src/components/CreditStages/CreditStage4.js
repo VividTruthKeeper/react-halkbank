@@ -18,6 +18,11 @@ const CreditStage4 = ({ setStage, data, setData }) => {
     salary: data.salary ? data.salary : null,
     position: data.position ? data.position : null,
     experience: data.exp ? data.exp : null,
+    region: data.region_localized ? data.region_localized : null,
+    affiliate: data.branch_localized ? data.branch_localized : null,
+  });
+
+  const [inputLocal, setInputLocal] = useState({
     region: data.region ? data.region : null,
     affiliate: data.branch ? data.branch : null,
   });
@@ -121,9 +126,22 @@ const CreditStage4 = ({ setStage, data, setData }) => {
               placeholder={
                 locale === "TKM" ? "Welaýaty saýlaň" : "Выберите регион"
               }
-              stateSetter={(state) =>
-                setInputValid({ ...inputValid, region: state })
-              }
+              stateSetter={(state) => {
+                setInputValid({ ...inputValid, region: state });
+                if (state) {
+                  const index = branch.regions.RUS.findIndex(
+                    (e) => e === state
+                  );
+                  if (index === -1) {
+                    setInputLocal({ ...inputLocal, region: state });
+                  } else {
+                    setInputLocal({
+                      ...inputLocal,
+                      region: branch.regions.TKM[index],
+                    });
+                  }
+                }
+              }}
               eTarget={true}
               defaultValue={inputValid.region}
             />
@@ -170,15 +188,53 @@ const CreditStage4 = ({ setStage, data, setData }) => {
               customId={"affiliate"}
               blockName={"card-3-select"}
               elName={"card-3-select-el"}
+              defaultValue={inputValid.affiliate}
               name={"affiliate"}
               placeholder={
                 locale === "TKM" ? "Filialy saýlaň" : "Выберите филиал"
               }
-              stateSetter={(state) =>
-                setInputValid({ ...inputValid, affiliate: state })
-              }
+              stateSetter={(state) => {
+                setInputValid({ ...inputValid, affiliate: state });
+                if (state && inputLocal.region) {
+                  console.log(inputLocal.region);
+                  let index;
+                  if (inputLocal.region === "Aşgabat şäheri") {
+                    index = branch["Ashgabat"].RUS.findIndex(
+                      (e) => e === state
+                    );
+                  } else if (inputLocal.region === "Daşoguz") {
+                    index = branch["Dashoguz"].RUS.findIndex(
+                      (e) => e === state
+                    );
+                  } else {
+                    index = branch[inputLocal.region].RUS.findIndex(
+                      (e) => e === state
+                    );
+                  }
+
+                  if (index === -1) {
+                    setInputLocal({ ...inputLocal, affiliate: state });
+                  } else {
+                    if (inputLocal.region === "Aşgabat şäheri") {
+                      setInputLocal({
+                        ...inputLocal,
+                        affiliate: branch["Ashgabat"].TKM[index],
+                      });
+                    } else if (inputLocal.region === "Daşoguz") {
+                      setInputLocal({
+                        ...inputLocal,
+                        affiliate: branch["Dashoguz"].TKM[index],
+                      });
+                    } else {
+                      setInputLocal({
+                        ...inputLocal,
+                        affiliate: branch[inputLocal.region].TKM[index],
+                      });
+                    }
+                  }
+                }
+              }}
               eTarget={true}
-              defaultValue={inputValid.affiliate}
             />
           </div>
         </div>
@@ -212,11 +268,13 @@ const CreditStage4 = ({ setStage, data, setData }) => {
               setData({
                 ...data,
                 workplace: inputValid.workplace,
-                region: inputValid.region,
+                region: inputLocal.region,
+                region_localized: inputValid.region,
+                branch: inputLocal.affiliate,
+                branch_localized: inputValid.affiliate,
                 exp: inputValid.experience,
                 position: inputValid.position,
                 salary: inputValid.salary,
-                branch: inputValid.affiliate,
               });
             }}
           >

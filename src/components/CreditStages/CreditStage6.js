@@ -29,7 +29,7 @@ const CreditStage6 = ({
   const token = localStorage.getItem("userToken");
   const postUrl = destination + "/online_credit";
   const getUrl = destination + "/me";
-
+  console.log(data);
   return (
     <section className="card-stage-6">
       <div className="cd-6-top">
@@ -84,11 +84,11 @@ const CreditStage6 = ({
           </li>
           <li>
             <p>{locale === "TKM" ? "Welaýat" : "Регион"}:</p>
-            <h4>{data.region ? data.region : "-"}</h4>
+            <h4>{data.region_localized ? data.region_localized : "-"}</h4>
           </li>
           <li>
             <p>{locale === "TKM" ? "Filial" : "Филиал"}:</p>
-            <h4>{data.branch ? data.branch : "-"}</h4>
+            <h4>{data.branch_localized ? data.branch_localized : "-"}</h4>
           </li>
           <li>
             <p>{locale === "TKM" ? "Iş ýeri" : "Место работы"}:</p>

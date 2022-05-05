@@ -93,11 +93,11 @@ const CardStage6 = ({
           </li>
           <li>
             <p>{locale === "TKM" ? "Welaýat" : "Регион"}:</p>
-            <h4>{data.region ? data.region : "-"}</h4>
+            <h4>{data.region_localized ? data.region_localized : "-"}</h4>
           </li>
           <li>
             <p>{locale === "TKM" ? "Filial" : "Филиал"}:</p>
-            <h4>{data.branch ? data.branch : "-"}</h4>
+            <h4>{data.branch_localized ? data.branch_localized : "-"}</h4>
           </li>
           <li>
             <p>
