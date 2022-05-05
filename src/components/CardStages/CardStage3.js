@@ -143,7 +143,6 @@ const CardStage3 = ({ setStage, data, setData }) => {
                       (e) => e === state
                     );
                   } else {
-                    console.log(inputLocal.region);
                     index = branch[inputLocal.region].RUS.findIndex(
                       (e) => e === state
                     );
