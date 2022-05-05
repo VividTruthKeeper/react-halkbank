@@ -21,6 +21,7 @@ const CardStage6 = ({
   setModalOpen,
   setProgress,
 }) => {
+  console.log(data.region, data.branch);
   const { locale } = useContext(LanguageContext);
   const token = localStorage.getItem("userToken");
   const postUrl = destination + "/online_card";

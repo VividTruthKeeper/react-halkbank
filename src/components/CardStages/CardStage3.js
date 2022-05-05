@@ -27,6 +27,11 @@ const CardStage3 = ({ setStage, data, setData }) => {
   });
   const [btnEnabled, setBtnEnabled] = useState(false);
 
+  const [inputLocal, setInputLocal] = useState({
+    region: data.region ? data.region : null,
+    affiliate: data.branch ? data.branch : null,
+  });
+
   useEffect(() => {
     if (
       inputValid.region &&
@@ -61,6 +66,19 @@ const CardStage3 = ({ setStage, data, setData }) => {
               }
               stateSetter={(state) => {
                 setInputValid({ ...inputValid, region: state });
+                if (state) {
+                  const index = branch.regions.RUS.findIndex(
+                    (e) => e === state
+                  );
+                  if (index === -1) {
+                    setInputLocal({ ...inputLocal, region: state });
+                  } else {
+                    setInputLocal({
+                      ...inputLocal,
+                      region: branch.regions.TKM[index],
+                    });
+                  }
+                }
               }}
               eTarget={true}
               defaultValue={inputValid.region}
@@ -112,9 +130,47 @@ const CardStage3 = ({ setStage, data, setData }) => {
               placeholder={
                 locale === "TKM" ? "Şahamçany saýlaň" : "Выберите филиал"
               }
-              stateSetter={(state) =>
-                setInputValid({ ...inputValid, affiliate: state })
-              }
+              stateSetter={(state) => {
+                setInputValid({ ...inputValid, affiliate: state });
+                if (state && inputLocal.region) {
+                  let index;
+                  if (inputLocal.region === "Aşgabat şäheri") {
+                    index = branch["Ashgabat"].RUS.findIndex(
+                      (e) => e === state
+                    );
+                  } else if (inputLocal.region === "Daşoguz") {
+                    index = branch["Dashoguz"].RUS.findIndex(
+                      (e) => e === state
+                    );
+                  } else {
+                    console.log(inputLocal.region);
+                    index = branch[inputLocal.region].RUS.findIndex(
+                      (e) => e === state
+                    );
+                  }
+
+                  if (index === -1) {
+                    setInputLocal({ ...inputLocal, affiliate: state });
+                  } else {
+                    if (inputLocal.region === "Aşgabat şäheri") {
+                      setInputLocal({
+                        ...inputLocal,
+                        affiliate: branch["Ashgabat"].TKM[index],
+                      });
+                    } else if (inputLocal.region === "Daşoguz") {
+                      setInputLocal({
+                        ...inputLocal,
+                        affiliate: branch["Dashoguz"].TKM[index],
+                      });
+                    } else {
+                      setInputLocal({
+                        ...inputLocal,
+                        affiliate: branch[inputLocal.region].TKM[index],
+                      });
+                    }
+                  }
+                }
+              }}
               eTarget={true}
               defaultValue={inputValid.affiliate}
             />
@@ -243,8 +299,10 @@ const CardStage3 = ({ setStage, data, setData }) => {
               setData({
                 ...data,
                 sms_notification: inputValid.sms ? 1 : 0,
-                region: inputValid.region,
-                branch: inputValid.affiliate,
+                region: inputLocal.region,
+                region_localized: inputValid.region,
+                branch: inputLocal.affiliate,
+                branch_localized: inputLocal.affiliate,
                 date_arrival_bank: inputValid.date,
                 selected_time: inputValid.time,
                 the_codeword: inputValid.code,
