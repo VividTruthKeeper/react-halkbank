@@ -15,7 +15,10 @@ const CreditStage1 = ({ setStage, data, setData, creditData, id, setId }) => {
     rus: "",
     TKM: "",
   });
-  const [input, setInput] = useState(data.type ? data.type : null);
+  const [input, setInput] = useState(
+    data.type_localized ? data.type_localized : null
+  );
+  const [inputValid, setInputValid] = useState(data.type ? data.type : null);
   const [dropdown, setDropdown] = useState({
     one: false,
     two: false,
@@ -33,6 +36,7 @@ const CreditStage1 = ({ setStage, data, setData, creditData, id, setId }) => {
           ).includes(input)
         ) {
           setId(el.id);
+          setInputValid(el.name);
           setReq({
             ...req,
             TKM: el.documents,
@@ -42,6 +46,7 @@ const CreditStage1 = ({ setStage, data, setData, creditData, id, setId }) => {
       });
     }
   }, [input]);
+
   return (
     <section className="cs-1">
       <form>
@@ -212,7 +217,7 @@ const CreditStage1 = ({ setStage, data, setData, creditData, id, setId }) => {
             className="sign-btn cd-btn"
             onClick={() => {
               setStage(2);
-              setData({ ...data, type: input });
+              setData({ ...data, type: inputValid, type_localized: input });
             }}
           >
             <div>

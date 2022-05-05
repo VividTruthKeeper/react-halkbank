@@ -18,8 +18,8 @@ const CardStage3 = ({ setStage, data, setData }) => {
   const { locale } = useContext(LanguageContext);
   const branch = branchData();
   const [inputValid, setInputValid] = useState({
-    region: data.region ? data.region : null,
-    affiliate: data.branch ? data.branch : null,
+    region: data.region_localized ? data.region_localized : null,
+    affiliate: data.branch_localized ? data.branch_localized : null,
     date: data.date_arrival_bank ? data.date_arrival_bank : null,
     time: data.selected_time ? data.selected_time : null,
     code: data.the_codeword ? data.the_codeword : null,

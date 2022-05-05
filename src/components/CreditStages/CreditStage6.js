@@ -29,6 +29,8 @@ const CreditStage6 = ({
   const token = localStorage.getItem("userToken");
   const postUrl = destination + "/online_credit";
   const getUrl = destination + "/me";
+
+  console.log(data.type, data.type_localized);
   return (
     <section className="card-stage-6">
       <div className="cd-6-top">
