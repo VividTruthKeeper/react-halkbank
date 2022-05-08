@@ -203,13 +203,14 @@ const Side = ({ sideOpen, setSideOpen }) => {
               </li>
             </ul>
           </div>
-          <Link
-            to="/"
+          <span
             className="side-footer"
             onClick={() => {
               if (closeOnInteract) {
                 setSideOpen(true);
               }
+              deleteUser();
+              setUser(null);
             }}
           >
             <div className="footer-img">
@@ -220,7 +221,7 @@ const Side = ({ sideOpen, setSideOpen }) => {
                 ? "Baş sahypa dolanmak"
                 : "Вернутся на главный сайт"}
             </span>
-          </Link>
+          </span>
         </div>
       </div>
     </section>

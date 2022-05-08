@@ -241,6 +241,11 @@
 .user {
   position: relative;
 
+  .user-arrow {
+    transform: rotate(0deg);
+    transition: 0.4s all ease;
+  }
+
   .user-dropdown {
     border-radius: 1rem;
     ul {
@@ -284,6 +289,10 @@
       max-height: 15rem;
       transition: 0.4s all ease;
     }
+    .user-arrow {
+      transform: rotate(180deg);
+      transition: 0.4s all ease;
+    }
   }
 }
 
@@ -299,6 +308,8 @@
 
 // MEDIA
 
+@media screen and (max-width: 1000px) {
+}
 @media screen and (max-width: 1000px) {
   .nav-title {
     display: none;
