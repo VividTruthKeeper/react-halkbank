@@ -56,7 +56,7 @@ const LoggedNav = ({ sideOpen, setSideOpen }) => {
             <Link to="/home" className="nav-logo">
               <img src={hb} alt="Halk Bank" />
             </Link>
-            <Link to="/" className="nav-title">
+            <Link to="/home" className="nav-title">
               <h1>{locale === "РУС" ? "Халкбанк" : "Halkbank"}</h1>
               <h4>
                 {locale === "РУС"
