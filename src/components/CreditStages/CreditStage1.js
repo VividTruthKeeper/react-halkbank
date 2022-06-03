@@ -162,23 +162,7 @@ const CreditStage1 = ({ setStage, data, setData, creditData, id, setId }) => {
                             .filter((string) => string !== "")
                       : "",
                   }}
-                >
-                  {/* {creditData
-                    ? locale !== "TKM"
-                      ? creditData.data.map((el) =>
-                          el.id === id
-                            ? JSON.parse(
-                                el.translations.find(
-                                  (els) => els.locale === "ru"
-                                ).attribute_data
-                              ).securing_return
-                            : ""
-                        )
-                      : creditData.data.map((el) =>
-                          el.id === id ? el.securing_return : ""
-                        )
-                    : ""} */}
-                </h2>
+                ></h2>
               </div>
               <div className="dropdown-inner left right">
                 <h6>
