@@ -140,8 +140,30 @@ const CreditStage1 = ({ setStage, data, setData, creditData, id, setId }) => {
                     ? "Karzyň üzülmegini üpjün etmek"
                     : "Обеспечение возврата кредита"}
                 </h6>
-                <h2>
-                  {creditData
+                <h2
+                  dangerouslySetInnerHTML={{
+                    __html: creditData
+                      ? locale !== "TKM"
+                        ? creditData.data
+                            .map((el) =>
+                              el.id === id
+                                ? JSON.parse(
+                                    el.translations.find(
+                                      (els) => els.locale === "ru"
+                                    ).attribute_data
+                                  ).securing_return
+                                : ""
+                            )
+                            .filter((string) => string !== "")
+                        : creditData.data
+                            .map((el) =>
+                              el.id === id ? el.securing_return : ""
+                            )
+                            .filter((string) => string !== "")
+                      : "",
+                  }}
+                >
+                  {/* {creditData
                     ? locale !== "TKM"
                       ? creditData.data.map((el) =>
                           el.id === id
@@ -155,7 +177,7 @@ const CreditStage1 = ({ setStage, data, setData, creditData, id, setId }) => {
                       : creditData.data.map((el) =>
                           el.id === id ? el.securing_return : ""
                         )
-                    : ""}
+                    : ""} */}
                 </h2>
               </div>
               <div className="dropdown-inner left right">
